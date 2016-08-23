@@ -11,8 +11,7 @@ public:
 	uint16_t value;
 };
 
-template <typename T>
-class SymbolTable: public std::vector<T>
+class SymbolTable: public std::vector<Symbol>
 {
 
 };
