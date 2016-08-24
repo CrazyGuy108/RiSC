@@ -2,5 +2,5 @@
 
 char* assemble(char* program)
 {
-
+	return nullptr;	// placeholder
 }
