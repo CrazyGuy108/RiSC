@@ -1,10 +1,5 @@
 #include "symboltable.h"
 
-SymbolTable::SymbolTable(std::initializer_list<Symbol> list)
-{
-	for (auto& i : list)
-		push_back(i);
-}
 
 bool SymbolTable::resolve(const char* token)
 {

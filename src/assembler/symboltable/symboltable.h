@@ -14,8 +14,8 @@ public:
 class SymbolTable: public std::vector<Symbol>
 {
 public:
-	// initializer list constructor
-	SymbolTable(std::initializer_list<Symbol> list);
+	// inherit vector's constructors
+	using std::vector<Symbol>::vector;
 
 	// search for a symbol and add if not already in list, returning status
 	bool resolve(const char* token);
