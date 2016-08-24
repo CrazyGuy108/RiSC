@@ -7,6 +7,9 @@
 class Symbol
 {
 public:
+	// constructor
+	Symbol(const char* name, uint16_t value);
+
 	const char* name;
 	uint16_t value;
 };
