@@ -13,7 +13,12 @@ public:
 
 class SymbolTable: public std::vector<Symbol>
 {
+public:
+	// search for a symbol and add if not already in list, returning status
+	bool resolve(char* token);
 
+	// search for a symbol and return a pointer to it
+	Symbol* search(char* token);
 };
 
 #endif // SYMBOLTABLE_H
