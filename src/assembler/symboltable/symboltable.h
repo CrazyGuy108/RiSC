@@ -14,6 +14,9 @@ public:
 class SymbolTable: public std::vector<Symbol>
 {
 public:
+	// initializer list constructor
+	SymbolTable(std::initializer_list<Symbol> list);
+
 	// search for a symbol and add if not already in list, returning status
 	bool resolve(char* token);
 
