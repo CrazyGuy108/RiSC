@@ -4,6 +4,6 @@
 #include "symboltable/symboltable.h"
 #include "opcodes/opcodes.h"
 
-char* assemble(char* program);
+char* assemble(const char* program);
 
 #endif // ASSEMBLER_H

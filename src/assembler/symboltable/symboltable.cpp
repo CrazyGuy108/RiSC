@@ -6,12 +6,12 @@ SymbolTable::SymbolTable(std::initializer_list<Symbol> list)
 		push_back(i);
 }
 
-bool SymbolTable::resolve(char* token)
+bool SymbolTable::resolve(const char* token)
 {
 	return false;	// placeholder
 }
 
-Symbol* SymbolTable::search(char* token)
+Symbol* SymbolTable::search(const char* token)
 {
 	// performs a uniform binary search
 

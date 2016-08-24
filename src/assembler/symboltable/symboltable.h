@@ -7,7 +7,7 @@
 class Symbol
 {
 public:
-	char* name;
+	const char* name;
 	uint16_t value;
 };
 
@@ -18,10 +18,10 @@ public:
 	SymbolTable(std::initializer_list<Symbol> list);
 
 	// search for a symbol and add if not already in list, returning status
-	bool resolve(char* token);
+	bool resolve(const char* token);
 
 	// search for a symbol and return a pointer to it
-	Symbol* search(char* token);
+	Symbol* search(const char* token);
 };
 
 #endif // SYMBOLTABLE_H

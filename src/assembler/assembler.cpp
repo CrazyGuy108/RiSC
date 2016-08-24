@@ -1,6 +1,6 @@
 #include "assembler.h"
 
-char* assemble(char* program)
+char* assemble(const char* program)
 {
 	return nullptr;	// placeholder
 }
