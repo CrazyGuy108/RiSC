@@ -3,11 +3,6 @@
 Symbol::Symbol(const char* name, uint16_t value)
 	: name{ name }, value{ value } {}
 
-bool SymbolTable::resolve(const char* token)
-{
-	return false;	// placeholder
-}
-
 Symbol* SymbolTable::search(const char* token)
 {
 	// performs a uniform binary search

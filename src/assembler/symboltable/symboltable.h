@@ -20,10 +20,6 @@ public:
 	// inherit vector's constructors
 	using std::vector<Symbol>::vector;
 
-	// search for a symbol and add if nonexistent
-	// returns true if the token is not already registered
-	bool resolve(const char* token);
-
 	// binary search for a symbol
 	// returns nullptr if not found so be careful
 	Symbol* search(const char* token);
