@@ -29,8 +29,8 @@ Symbol* SymbolTable::search(const char* token)
 		else if (comparison > 0)	// data>token
 			end = middle - 1;
 		else						// data=token
-			break;
+			return dataptr;
 	} while (start <= end);
 
-	return dataptr;
+	return nullptr;
 }
