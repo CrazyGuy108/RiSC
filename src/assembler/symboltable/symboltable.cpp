@@ -21,7 +21,7 @@ Symbol* SymbolTable::search(char* token)
 	int comparison;					// temp value to compare strings
 	Symbol* dataptr{ nullptr };		// symbol to compare with token
 
-	while(start <= end)
+	do
 	{
 		middle = (start + end) >> 1;	// average with shift optimization
 		dataptr = &(at(middle));
@@ -33,7 +33,7 @@ Symbol* SymbolTable::search(char* token)
 			end = middle - 1;
 		else						// data=token
 			break;
-	}
+	} while (start <= end);
 
 	return dataptr;
 }
