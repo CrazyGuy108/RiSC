@@ -24,4 +24,10 @@ public:
 	size_type search(const char* token);
 };
 
+// compare 2 strings
+// compare result with 0 to get comparison result
+// i.e. -1(returned from cmp) is < because -1<0
+// strcmp("a","ab") returns 0(=) for me so I had to rewrite it here
+int cmp(const char* a, const char* b);
+
 #endif // SYMBOLTABLE_H

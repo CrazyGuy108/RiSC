@@ -5,7 +5,7 @@ Symbol::Symbol(const char* name, uint16_t value)
 
 SymbolTable::size_type SymbolTable::search(const char* token)
 {
-	// performs a uniform binary search
+	// performs a binary search
 
 	size_type start{ 0 };			// start index
 	size_type end{ size() - 1 };	// end index
@@ -15,7 +15,7 @@ SymbolTable::size_type SymbolTable::search(const char* token)
 	do
 	{
 		middle = (start + end) >> 1;	// average with shift optimization
-		comparison = strcmp(at(middle).name, token);
+		comparison = cmp(at(middle).name, token);
 
 		if (comparison < 0)			// <
 			start = middle + 1;
@@ -26,4 +26,23 @@ SymbolTable::size_type SymbolTable::search(const char* token)
 	} while (start <= end);
 
 	return -1;
+}
+
+int cmp(const char* a, const char* b)
+{
+	// go through every character and compare them
+	// stop AFTER comparing the null terminator, not before like in strcmp
+	size_t index{ 0 };
+	do
+	{
+		if (a[index] < b[index])
+			return -1;
+		else if (a[index] > b[index])
+			return 1;
+		else
+			++index;
+	}
+	while (a[index] && b[index]);
+
+	return 0;
 }
