@@ -3,7 +3,7 @@
 Symbol::Symbol(const char* name, uint16_t value)
 	: name{ name }, value{ value } {}
 
-SymbolTable::size_type SymbolTable::search(const char* token)
+int SymbolTable::search(const char* token)
 {
 	// performs a binary search
 

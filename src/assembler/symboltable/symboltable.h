@@ -21,7 +21,7 @@ public:
 	using std::vector<Symbol>::vector;
 
 	// binary search for a symbol
-	size_type search(const char* token);
+	int search(const char* token);
 };
 
 // compare 2 strings
