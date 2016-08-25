@@ -10,18 +10,18 @@ SymbolTable::size_type SymbolTable::search(const char* token)
 	size_type start{ 0 };			// start index
 	size_type end{ size() - 1 };	// end index
 	size_type middle;				// index to test
-	int comparison;					// output of strcmp
+	int comparison;					// temp output of strcmp
 
 	do
 	{
 		middle = (start + end) >> 1;	// average with shift optimization
 		comparison = strcmp(at(middle).name, token);
 
-		if (comparison < 0)			// data<token
+		if (comparison < 0)			// <
 			start = middle + 1;
-		else if (comparison > 0)	// data>token
+		else if (comparison > 0)	// >
 			end = middle - 1;
-		else						// data=token
+		else						// =
 			return middle;
 	} while (start <= end);
 
