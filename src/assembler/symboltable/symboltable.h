@@ -21,8 +21,7 @@ public:
 	using std::vector<Symbol>::vector;
 
 	// binary search for a symbol
-	// returns nullptr if not found so be careful
-	Symbol* search(const char* token);
+	size_type search(const char* token);
 };
 
 #endif // SYMBOLTABLE_H
