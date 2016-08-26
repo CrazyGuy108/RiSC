@@ -11,7 +11,8 @@ int cmp(const char* a, const char* b)
 			return 1;
 		else
 			++index;
-	} while (a[index] && b[index]);
+	}
+	while (a[index] && b[index]);
 
 	return 0;
 }
