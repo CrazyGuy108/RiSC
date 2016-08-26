@@ -23,6 +23,25 @@ public:
 		return data[search(token)];
 	}
 
+	// access data by index with bounds checking
+	data_type& at(size_t index)
+	{
+		if (index < size())
+			return operator[](index);
+		else
+			abort();
+	}
+
+	// access data by name with bounds checking
+	data_type& at(const char* token)
+	{
+		size_t index{ search(token) };
+		if (index >= 0)
+			return data[index];
+		else
+			abort();
+	}
+
 protected:
 	list_type data;
 
