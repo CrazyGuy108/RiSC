@@ -19,6 +19,7 @@ class SymbolTable
 	: public Table<Symbol, std::vector<Symbol>>
 {
 public:
+	virtual size_t size();
 };
 
 #endif // SYMBOLTABLE_H
