@@ -12,6 +12,11 @@ class RegTable
 public:
 	RegTable(Symbol* data)
 		: data{ data } {}
+
+	virtual size_t size()
+	{
+		return length;
+	}
 };
 
 class Reg
