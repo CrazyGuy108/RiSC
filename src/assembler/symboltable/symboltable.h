@@ -19,8 +19,6 @@ class SymbolTable
 	: public Table<Symbol, std::vector<Symbol>>
 {
 public:
-	// vector of symbols to build during assemble-time
-	std::vector<Symbol> data;
 };
 
 #endif // SYMBOLTABLE_H
