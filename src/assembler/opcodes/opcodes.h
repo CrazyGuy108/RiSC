@@ -34,7 +34,8 @@ public:
 class Add
 	: public Opcode, public RRR
 {
-
+public:
+	Add(const char** operands);
 };
 
 #endif // OPCODES_H
