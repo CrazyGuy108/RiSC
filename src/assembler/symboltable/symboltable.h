@@ -36,9 +36,11 @@ private:
 };
 
 // string comparison that includes the null character unlike strcmp
-// strcmp("a","ab")=0 cmp("a","ab")=-1
+// e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
 
-extern SymbolTable table;
+// reg table and symbol table are separate to prevent errors
+extern SymbolTable regs;
+extern SymbolTable symbols;
 
 #endif // SYMBOLTABLE_H

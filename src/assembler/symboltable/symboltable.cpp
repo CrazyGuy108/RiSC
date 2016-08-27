@@ -79,7 +79,7 @@ int cmp(const char* a, const char* b)
 	return 0;
 }
 
-SymbolTable table
+SymbolTable regs
 {
 	{ "r0", 0x0000 },
 	{ "r1", 0x0001 },
@@ -90,3 +90,5 @@ SymbolTable table
 	{ "r6", 0x0006 },
 	{ "r7", 0x0007 }
 };
+
+SymbolTable symbols;
