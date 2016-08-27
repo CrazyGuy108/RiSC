@@ -82,13 +82,13 @@ int cmp(const char* a, const char* b)
 SymbolTable opcodes
 {
 	{ "add",	0x0000 },
-	{ "addi",	0x0001 },
-	{ "beq",	0x0006 },
-	{ "jalr",	0x0007 },
-	{ "lui",	0x0003 },
-	{ "lw",		0x0005 },
-	{ "nand",	0x0002 },
-	{ "sw",		0x0004 }
+	{ "addi",	0x2000 },
+	{ "beq",	0xC000 },
+	{ "jalr",	0xE000 },
+	{ "lui",	0x6000 },
+	{ "lw",		0xA000 },
+	{ "nand",	0x4000 },
+	{ "sw",		0x8000 }
 };
 
 SymbolTable regs
