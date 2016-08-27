@@ -22,4 +22,10 @@ class RRR
 
 };
 
+class Add
+	: public Opcode, public RRR
+{
+
+};
+
 #endif // OPCODES_H
