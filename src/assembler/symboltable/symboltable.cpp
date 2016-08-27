@@ -1,6 +1,6 @@
 #include "symboltable.h"
 
-Symbol::Symbol(const char* name, uint16_t value)
+constexpr Symbol::Symbol(const char* name, uint16_t value)
 	: name{ name }, value{ value } {}
 
 size_t SymbolTable::size()
