@@ -42,7 +42,7 @@ int cmp(const char* a, const char* b);
 /***** move to a separate file later *****/
 extern SymbolTable opcodes;
 extern SymbolTable regs;
-extern SymbolTable imms;	/***** create ImmTable class for resolving? *****/
+extern SymbolTable imms;	/***** create class/function instead of this *****/
 extern SymbolTable symbols;
 
 #endif // SYMBOLTABLE_H
