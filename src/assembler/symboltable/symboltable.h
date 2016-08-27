@@ -39,7 +39,8 @@ private:
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
 
-// reg table and symbol table are separate to prevent errors
+// ***** move to a separate file later *****
+extern SymbolTable opcodes;
 extern SymbolTable regs;
 extern SymbolTable symbols;
 
