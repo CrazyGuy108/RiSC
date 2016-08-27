@@ -17,9 +17,18 @@ public:
 	uint16_t opcode;
 };
 
+class Reg
+{
+public:
+	Reg(const char* name);
+	uint16_t value;
+};
+
 class RRR
 {
-
+public:
+	RRR(const char* r1, const char* r2, const char* r3);
+	const Reg data[3];
 };
 
 class Add
