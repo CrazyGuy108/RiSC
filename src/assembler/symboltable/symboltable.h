@@ -1,8 +1,8 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <cstdint>			// for uint16_t
-#include <vector>			// for std::vector
+#include <cstdint>	// for uint16_t
+#include <vector>	// for std::vector
 
 class Symbol
 {
@@ -28,20 +28,21 @@ public:
 	Symbol& at(size_t index);
 	Symbol& at(const char* token);
 
-private:
-	std::vector<Symbol> data;
-
 	// binary search for a Symbol's index
 	int search(const char* token);
+
+private:
+	std::vector<Symbol> data;
 };
 
 // string comparison that includes the null character unlike strcmp
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
 
-// ***** move to a separate file later *****
+/***** move to a separate file later *****/
 extern SymbolTable opcodes;
 extern SymbolTable regs;
+extern SymbolTable imms;	/***** create ImmTable class for resolving? *****/
 extern SymbolTable symbols;
 
 #endif // SYMBOLTABLE_H

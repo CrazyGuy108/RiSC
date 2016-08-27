@@ -33,7 +33,7 @@ Symbol& SymbolTable::at(const char* token)
 {
 	int index{ search(token) };
 	if (index != -1)
-		return data[index];
+		return operator[](index);
 	else
 		abort();
 }
