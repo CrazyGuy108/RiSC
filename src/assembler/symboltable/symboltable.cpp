@@ -1,9 +1,74 @@
 #include "symboltable.h"
 
-constexpr Symbol::Symbol(const char* name, uint16_t value)
+Symbol::Symbol(const char* name, uint16_t value)
 	: name{ name }, value{ value } {}
+
+SymbolTable::SymbolTable(std::initializer_list<Symbol> data)
+	: data{ data } {}
 
 size_t SymbolTable::size()
 {
 	return data.size();
 }
+
+Symbol& SymbolTable::operator[](size_t index)
+{
+	return data[index];
+}
+
+Symbol& SymbolTable::operator[](const char* token)
+{
+	return data[search(token)];
+}
+
+Symbol& SymbolTable::at(size_t index)
+{
+	if (index < size())
+		return operator[](index);
+	else
+		abort();
+}
+
+Symbol& SymbolTable::at(const char* token)
+{
+	size_t index{ search(token) };
+	if (index >= 0)
+		return data[index];
+	else
+		abort();
+}
+
+size_t SymbolTable::search(const char* token)
+{
+	size_t start{ 0 };
+	size_t end{ size() - 1 };
+	size_t middle;
+	int comparison;
+
+	do
+	{
+		middle = (start + end) >> 1;
+		comparison = cmp(data[middle].name, token);
+
+		if (comparison < 0)			// <
+			start = middle + 1;
+		else if (comparison > 0)	// >
+			end = middle - 1;
+		else						// =
+			return middle;
+	} while (start <= end);
+
+	return -1;
+}
+
+SymbolTable table
+{
+	{ "r0", 0x0000 },
+	{ "r1", 0x0001 },
+	{ "r2", 0x0002 },
+	{ "r3", 0x0003 },
+	{ "r4", 0x0004 },
+	{ "r5", 0x0005 },
+	{ "r6", 0x0006 },
+	{ "r7", 0x0007 }
+};
