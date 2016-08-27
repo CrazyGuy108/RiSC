@@ -12,7 +12,7 @@
 class Opcode
 {
 public:
-	Opcode(uint16_t opcode);
+	Opcode(const char* name);
 
 	uint16_t opcode;
 };

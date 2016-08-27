@@ -1,6 +1,6 @@
 #include "opcodes.h"
 
-Opcode::Opcode(uint16_t opcode)
+Opcode::Opcode(const char* name)
 	: opcode{ opcode } {}
 
 Reg::Reg(const char* name)
