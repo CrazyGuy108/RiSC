@@ -12,7 +12,7 @@
 class Opcode
 {
 public:
-	Opcode(const char* name);
+	Opcode(uint16_t value);
 
 	uint16_t value;
 };
@@ -35,7 +35,7 @@ class Add
 	: public Opcode, public RRR
 {
 public:
-	Add(const char** operands);
+	Add(uint16_t opcode, const char* r1, const char* r2, const char* r3);
 };
 
 #endif // OPCODES_H
