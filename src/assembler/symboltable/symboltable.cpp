@@ -90,5 +90,3 @@ SymbolTable regs
 	{ "r6", 0x0006 },
 	{ "r7", 0x0007 }
 };
-
-SymbolTable symbols;
