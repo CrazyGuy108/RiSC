@@ -1,7 +1,7 @@
 #include "opcodes.h"
 
 Opcode::Opcode(const char* name)
-	: opcode{ opcode } {}
+	: value{ opcodes[name].value } {}
 
 Reg::Reg(const char* name)
 	: value{ regs[name].value } {}

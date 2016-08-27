@@ -14,7 +14,7 @@ class Opcode
 public:
 	Opcode(const char* name);
 
-	uint16_t opcode;
+	uint16_t value;
 };
 
 class Reg
