@@ -9,33 +9,70 @@
 // in some other file make pseudo op class
 	// gives data + conditional compilation(if needed) for how to translate
 
-class Opcode
+typedef uint16_t Opcode;
+
+class Instruction
 {
 public:
-	Opcode(uint16_t value);
+	Instruction(int argc, const char** argv);
+	~Instruction();
 
+	Opcode opcode;
+	OperandField* operands;
+};
+
+class Operand
+{
+public:
 	uint16_t value;
 };
 
 class Reg
+	: public Operand
 {
-public:
-	Reg(const char* name);
-	uint16_t value;
+	
+};
+
+class Imm
+	: public Operand
+{
+	
+};
+
+// operand field types
+
+class OperandField
+{
+
 };
 
 class RRR
+	: public OperandField
 {
 public:
 	RRR(const char* r1, const char* r2, const char* r3);
-	const Reg data[3];
+
+	Reg reg1, reg2, reg3;
 };
 
-class Add
-	: public Opcode, public RRR
+class RRI
+	: public OperandField
 {
 public:
-	Add(uint16_t opcode, const char* r1, const char* r2, const char* r3);
+	RRI(const char* r1, const char* r2, const char* i1);
+
+	Reg reg1, reg2;
+	Imm imm1;
+};
+
+class RI
+	: public OperandField
+{
+public:
+	RI(const char* r1, const char* i1);
+
+	Reg reg1;
+	Imm imm1;
 };
 
 #endif // OPCODES_H
