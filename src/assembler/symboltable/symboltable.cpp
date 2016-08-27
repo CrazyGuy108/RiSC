@@ -31,14 +31,14 @@ Symbol& SymbolTable::at(size_t index)
 
 Symbol& SymbolTable::at(const char* token)
 {
-	size_t index{ search(token) };
-	if (index >= 0)
+	int index{ search(token) };
+	if (index != -1)
 		return data[index];
 	else
 		abort();
 }
 
-size_t SymbolTable::search(const char* token)
+int SymbolTable::search(const char* token)
 {
 	size_t start{ 0 };
 	size_t end{ size() - 1 };
@@ -59,6 +59,26 @@ size_t SymbolTable::search(const char* token)
 	} while (start <= end);
 
 	return -1;
+}
+
+int cmp(const char* a, const char* b)
+{
+	// go through every character and compare them
+	// stop AFTER comparing the null terminator, not before like in strcmp
+	size_t index{ 0 };
+
+	do
+	{
+		if (a[index] < b[index])
+			 return -1;
+		else if (a[index] > b[index])
+			 return 1;
+		else
+			 ++index;
+	}
+	while (a[index] && b[index]);
+	
+	return 0;
 }
 
 SymbolTable table

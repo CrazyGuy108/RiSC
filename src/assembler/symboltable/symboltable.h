@@ -32,8 +32,12 @@ private:
 	std::vector<Symbol> data;
 
 	// binary search for a Symbol's index
-	size_t search(const char* token);
+	int search(const char* token);
 };
+
+// string comparison that includes the null character unlike strcmp
+// strcmp("a","ab")=0 cmp("a","ab")=-1
+int cmp(const char* a, const char* b);
 
 extern SymbolTable table;
 
