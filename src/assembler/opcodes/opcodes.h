@@ -25,7 +25,6 @@ public:
 };
 
 class RRR
-	: public Opcode
 {
 public:
 	RRR(const char* r1, const char* r2, const char* r3);
@@ -33,7 +32,7 @@ public:
 };
 
 class Add
-	: public Opcode
+	: public Opcode, public RRR
 {
 
 };
