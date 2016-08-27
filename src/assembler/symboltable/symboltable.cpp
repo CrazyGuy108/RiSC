@@ -63,8 +63,6 @@ int SymbolTable::search(const char* token)
 
 int cmp(const char* a, const char* b)
 {
-	// go through every character and compare them
-	// stop AFTER comparing the null terminator, not before like in strcmp
 	size_t index{ 0 };
 
 	do
