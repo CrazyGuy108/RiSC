@@ -9,21 +9,17 @@
 // in some other file make pseudo op class
 	// gives data + conditional compilation(if needed) for how to translate
 
-class Reg
+class Opcode
 {
 public:
-	Reg(const char* name);
-	uint16_t value;
+	Opcode(uint16_t opcode);
+
+	uint16_t opcode;
 };
 
 class RRR
 {
 
 };
-
-uint16_t add(RRR& operands)
-{
-
-}
 
 #endif // OPCODES_H

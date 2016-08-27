@@ -1,4 +1,4 @@
 #include "opcodes.h"
 
-Reg::Reg(const char* name)
-	: value{ regs.at(name).value } {}
+Opcode::Opcode(uint16_t opcode)
+	: opcode{ opcode } {}
