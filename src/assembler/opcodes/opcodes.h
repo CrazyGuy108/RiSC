@@ -11,6 +11,18 @@
 
 typedef uint16_t Opcode;
 
+class Line
+{
+public:
+	Line(int argc, const char** argv);
+
+	// array of Instructions to translate into
+	Instruction* instructions;
+
+	// keeps track of how many Instructions
+	size_t length;
+};
+
 class Instruction
 {
 public:
