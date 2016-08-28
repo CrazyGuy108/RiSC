@@ -18,14 +18,11 @@ template <typename T>
 class Symbol
 {
 public:
-	typedef const char* name_type;
-	typedef T value_type;
-
-	Symbol(name_type name, value_type& value)
+	Symbol(const char* name, T& value)
 		: name{ name }, value{ value } {}
 
-	name_type name;
-	value_type value;
+	const char* name;
+	T value;
 };
 
 template <typename T>
@@ -42,17 +39,17 @@ public:
 		return data.size();
 	}
 
-	symbol_type& operator[](size_t index)
+	T& operator[](size_t index)
 	{
 		return data[index];
 	}
 
-	symbol_type& operator[](symbol_type::name_type token)
+	T& operator[](const char* token)
 	{
 		return data[search(token)];
 	}
 
-	symbol_type& at(size_t index)
+	T& at(size_t index)
 	{
 		if (index < size())
 			return operator[](index);
@@ -60,7 +57,7 @@ public:
 			abort();
 	}
 
-	symbol_type& at(symbol_type::name_type token)
+	T& at(const char* token)
 	{
 		int index{ search(token) };
 		if (index != -1)
@@ -70,7 +67,7 @@ public:
 	}
 
 	// binary search for a Symbol's index
-	int search(symbol_type::name_type token)
+	int search(const char* token)
 	{
 		size_t start{ 0 };
 		size_t end{ size() - 1 };
