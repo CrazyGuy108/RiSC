@@ -4,6 +4,16 @@
 #include <cstdint>	// for uint16_t
 #include <vector>	// for std::vector
 
+/***** move to a separate file later *****/
+#define ADD 0x0000
+#define ADDI 0x2000
+#define NAND 0x4000
+#define LUI 0x6000
+#define SW 0x8000
+#define LW 0xA000
+#define BEQ 0xC000
+#define JALR 0xE000
+
 class Symbol
 {
 public:
