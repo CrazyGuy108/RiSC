@@ -2,6 +2,7 @@
 #define ASSEMBLER_H
 
 #include "symboltable/symboltable.h"
+#include "utilities/utilities.h"
 #include "opcodes/opcodes.h"
 
 char* assemble(const char* program);

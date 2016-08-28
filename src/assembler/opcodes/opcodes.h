@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include "../symboltable/symboltable.h"
+#include "../utilities/utilities.h"
 
 typedef uint16_t Opcode;
 class Instruction;
