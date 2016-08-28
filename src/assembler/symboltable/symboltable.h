@@ -84,8 +84,4 @@ private:
 	std::vector<symbol_type> data;
 };
 
-// string comparison that includes the null character unlike strcmp
-// e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
-int cmp(const char* a, const char* b);
-
 #endif // SYMBOLTABLE_H
