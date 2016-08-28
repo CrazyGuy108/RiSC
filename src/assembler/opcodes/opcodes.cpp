@@ -16,7 +16,7 @@ Instruction::Instruction(int argc, const char** argv)
 			; // error: unresolved opcode
 	}
 	else
-		; // no opcode given, must be a blank line then
+		; // no instruction given, must be a blank line then
 
 	/***** wrap argc checks in instruction type check *****/
 
