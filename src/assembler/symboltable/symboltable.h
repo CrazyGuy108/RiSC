@@ -29,17 +29,17 @@ public:
 		return data.size();
 	}
 
-	T& operator[](size_t index)
+	symbol_type& operator[](size_t index)
 	{
 		return data[index];
 	}
 
-	T& operator[](const char* token)
+	symbol_type& operator[](const char* token)
 	{
 		return data[search(token)];
 	}
 
-	T& at(size_t index)
+	symbol_type& at(size_t index)
 	{
 		if (index < size())
 			return operator[](index);
@@ -47,7 +47,7 @@ public:
 			abort();
 	}
 
-	T& at(const char* token)
+	symbol_type& at(const char* token)
 	{
 		int index{ search(token) };
 		if (index != -1)
