@@ -5,6 +5,8 @@
 #include "../symboltable/symboltable.h"
 
 typedef uint16_t Opcode;
+class Instruction;
+class OperandField;
 
 class Line
 {
