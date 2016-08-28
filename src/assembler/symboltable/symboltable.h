@@ -8,7 +8,7 @@ template <typename T>
 class Symbol
 {
 public:
-	Symbol(const char* name, T& value)
+	Symbol(const char* name, T value)
 		: name{ name }, value{ value } {}
 
 	const char* name;
