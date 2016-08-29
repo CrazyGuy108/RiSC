@@ -21,6 +21,9 @@ class Table
 public:
 	typedef Symbol<T> symbol_type;
 
+	Table()
+		: data{} {}
+
 	Table(std::initializer_list<symbol_type> data)
 		: data{ data } {}
 
