@@ -2,7 +2,7 @@
 #define OPCODES_H
 
 #include <cstdint>
-#include "../symboltable/symboltable.h"
+#include "../table/table.h"
 #include "../utilities/utilities.h"
 
 typedef uint16_t Opcode;

@@ -1,7 +1,7 @@
 #ifndef ASSEMBLER_H
 #define ASSEMBLER_H
 
-#include "symboltable/symboltable.h"
+#include "table/table.h"
 #include "utilities/utilities.h"
 #include "opcodes/opcodes.h"
 
