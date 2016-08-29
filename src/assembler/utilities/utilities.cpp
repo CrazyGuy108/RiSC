@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-Table<uint16_t> opcodes
+const Table<uint16_t> opcodes
 {
 	{ "add",	ADD },
 	{ "addi",	ADDI },
@@ -12,7 +12,7 @@ Table<uint16_t> opcodes
 	{ "sw",		SW }
 };
 
-Table<uint16_t> regs
+const Table<uint16_t> regs
 {
 	{ "0",	0x0000 },
 	{ "1",	0x0001 },
