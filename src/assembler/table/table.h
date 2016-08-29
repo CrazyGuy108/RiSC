@@ -5,10 +5,10 @@
 #include <vector>	// for std::vector
 
 template <typename T>
-class Symbol
+class Item
 {
 public:
-	Symbol(const char* name, T value)
+	Item(const char* name, T value)
 		: name{ name }, value{ value } {}
 
 	const char* name;
@@ -19,12 +19,12 @@ template <typename T>
 class Table
 {
 public:
-	typedef Symbol<T> symbol_type;
+	typedef Item<T> item_type;
 
 	Table()
 		: data{} {}
 
-	Table(std::initializer_list<symbol_type> data)
+	Table(std::initializer_list<item_type> data)
 		: data{ data } {}
 
 	size_t size()
@@ -32,17 +32,17 @@ public:
 		return data.size();
 	}
 
-	symbol_type& operator[](size_t index)
+	item_type& operator[](size_t index)
 	{
 		return data[index];
 	}
 
-	symbol_type& operator[](const char* token)
+	item_type& operator[](const char* token)
 	{
 		return at(token);
 	}
 
-	symbol_type& at(size_t index)
+	item_type& at(size_t index)
 	{
 		if (index < size())
 			return operator[](index);
@@ -50,7 +50,7 @@ public:
 			abort();
 	}
 
-	symbol_type& at(const char* token)
+	item_type& at(const char* token)
 	{
 		int index{ search(token) };
 		if (index != -1)
@@ -84,7 +84,7 @@ public:
 	}
 
 private:
-	std::vector<symbol_type> data;
+	std::vector<item_type> data;
 };
 
 #endif // SYMBOLTABLE_H
