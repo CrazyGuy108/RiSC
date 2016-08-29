@@ -14,8 +14,8 @@
 
 typedef Table<uint16_t> SymbolTable;
 
-extern const Table<uint16_t> opcodes;
-extern const Table<uint16_t> regs;
+extern Table<uint16_t> opcodes;
+extern Table<uint16_t> regs;
 extern Table<uint16_t> imms;
 extern Table<uint16_t> symbols;
 
