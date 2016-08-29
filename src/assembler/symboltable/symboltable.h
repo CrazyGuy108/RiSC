@@ -36,7 +36,7 @@ public:
 
 	symbol_type& operator[](const char* token)
 	{
-		return data[search(token)];
+		return at(token);
 	}
 
 	symbol_type& at(size_t index)
