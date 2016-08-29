@@ -34,19 +34,23 @@ public:
 class Operand
 {
 public:
+	Operand(uint16_t value);
+
 	uint16_t value;
 };
 
 class Reg
 	: public Operand
 {
-	
+public:
+	Reg(const char* name);
 };
 
 class Imm
 	: public Operand
 {
-	
+public:
+	Imm(const char* name);
 };
 
 // operand field types
@@ -60,29 +64,32 @@ class RRR
 	: public OperandField
 {
 public:
-	RRR(const char* r1, const char* r2, const char* r3);
+	RRR(const char* regA, const char* regB, const char* regC);
 
-	Reg reg1, reg2, reg3;
+	Reg regA;
+	Reg regB;
+	Reg regC;
 };
 
 class RRI
 	: public OperandField
 {
 public:
-	RRI(const char* r1, const char* r2, const char* i1);
+	RRI(const char* regA, const char* regB, const char* immC);
 
-	Reg reg1, reg2;
-	Imm imm1;
+	Reg regA;
+	Reg regB;
+	Imm immC;
 };
 
 class RI
 	: public OperandField
 {
 public:
-	RI(const char* r1, const char* i1);
+	RI(const char* regA, const char* immB);
 
-	Reg reg1;
-	Imm imm1;
+	Reg regA;
+	Imm immB;
 };
 
 #endif // OPCODES_H

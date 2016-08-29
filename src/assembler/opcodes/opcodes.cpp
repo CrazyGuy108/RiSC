@@ -43,3 +43,21 @@ Instruction::~Instruction()
 {
 	delete operands;
 }
+
+Operand::Operand(uint16_t value)
+	: value{ value } {}
+
+Reg::Reg(const char* name)
+	: Operand{ regs[name].value } {}
+
+Imm::Imm(const char* name)
+	: Operand{ imms[name].value } {}
+
+RRR::RRR(const char* regA, const char* regB, const char* regC)
+	: regA{ regA }, regB{ regB }, regC{ regC } {}
+
+RRI::RRI(const char* regA, const char* regB, const char* immC)
+	: regA{ regA }, regB{ regB }, immC{ immC } {}
+
+RI::RI(const char* regA, const char* immB)
+	: regA{ regA }, immB{ immB } {}
