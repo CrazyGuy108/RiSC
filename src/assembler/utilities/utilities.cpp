@@ -32,6 +32,10 @@ Table<uint16_t> regs
 	{ "r7", 0x0007 }
 };
 
+Table<uint16_t> imms;
+
+Table<uint16_t> symbols;
+
 int cmp(const char* a, const char* b)
 {
 	size_t index{ 0 };
