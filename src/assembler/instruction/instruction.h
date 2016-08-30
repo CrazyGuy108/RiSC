@@ -105,6 +105,7 @@ class Line
 {
 public:
 	Line(int argc, const char** argv);
+	~Line();
 
 	// array of Instructions to translate into
 	Instruction* instructions;
