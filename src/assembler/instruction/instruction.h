@@ -110,6 +110,7 @@ public:
 
 	Opcode opcode;
 	OperandField* operands;
+	size_t length;
 };
 
 // instruction container class

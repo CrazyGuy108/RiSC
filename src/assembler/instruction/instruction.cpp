@@ -42,6 +42,7 @@ Line::Line(int argc, const char** argv)
 
 		instructions = new Instruction[1];
 		instructions->opcode = op;
+		length = 1;
 
 		switch (op.type)
 		{
@@ -49,7 +50,7 @@ Line::Line(int argc, const char** argv)
 			if (argc == 4)
 			{
 				instructions->operands = new RRR{ argv[1], argv[2], argv[3] };
-				length = 3;
+				instructions->length = 3;
 			}
 			else
 				; // error
@@ -60,7 +61,7 @@ Line::Line(int argc, const char** argv)
 			if (argc == 4)
 			{
 				instructions->operands = new RRI{ argv[1], argv[2], argv[3] };
-				length = 3;
+				instructions->length = 3;
 			}
 			else
 				; // error
@@ -70,14 +71,14 @@ Line::Line(int argc, const char** argv)
 			if (argc == 3)
 			{
 				instructions->operands = new RI{ argv[1], argv[2] };
-				length = 2;
+				instructions->length = 2;
 			}
 			else
 				; // error
 			break;
 
 		default:
-			length = 0; // error (should never happen)
+			instructions->length = 0; // error (should never happen)
 		}
 	}
 	else
