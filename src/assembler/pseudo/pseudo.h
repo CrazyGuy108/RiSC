@@ -3,10 +3,28 @@
 
 #include "../instruction/instruction.h"
 
-class Pseudo
+enum class Pseudo
+{
+	NOP,
+	HALT,
+	LLI,
+	MOVI
+};
+
+class PseudoInstruction
 {
 public:
 	Instruction* translation;
+};
+
+// abstract example
+class Nop
+	: public PseudoInstruction
+{
+public:
+	// takes no arguments of course
+	// translates into "add 0 0 0"
+	Nop();
 };
 
 #endif // PSEUDO_H
