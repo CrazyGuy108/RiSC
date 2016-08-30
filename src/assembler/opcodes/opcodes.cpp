@@ -1,5 +1,8 @@
 #include "opcodes.h"
 
+Opcode::Opcode()
+	{}
+
 Opcode::Opcode(uint16_t value, OpType type)
 	: value{ value }, type{ type } {}
 
@@ -27,7 +30,7 @@ Instruction::Instruction(int argc, const char** argv)
 	{
 		int index{ opcodes.search(argv[0]) };
 		if (index != -1)
-			opcode.value = opcodes[index].value;
+			opcode = opcodes[index].value;
 		else
 			; // error: unresolved opcode
 	}
@@ -62,5 +65,5 @@ Instruction::~Instruction()
 
 Line::Line(int argc, const char** argv)
 {
-
+	// this is where we figure out the opcode
 }

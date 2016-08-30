@@ -17,6 +17,7 @@ enum class OpType
 class Opcode
 {
 public:
+	Opcode();
 	Opcode(uint16_t value, OpType type);
 
 	uint16_t value;
