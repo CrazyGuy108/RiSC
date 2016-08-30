@@ -11,7 +11,7 @@ Instruction::Instruction(int argc, const char** argv)
 	{
 		int index{ opcodes.search(argv[0]) };
 		if (index != -1)
-			opcode = opcodes[index].value;
+			opcode.value = opcodes[index].value;
 		else
 			; // error: unresolved opcode
 	}
@@ -43,6 +43,9 @@ Instruction::~Instruction()
 {
 	delete operands;
 }
+
+Opcode::Opcode(uint16_t value, OpType type)
+	: value{ value }, type{ type } {}
 
 Operand::Operand(uint16_t value)
 	: value{ value } {}

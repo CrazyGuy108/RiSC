@@ -5,9 +5,16 @@
 #include "../table/table.h"
 #include "../utilities/utilities.h"
 
-typedef uint16_t Opcode;
 class Instruction;
+class Opcode;
 class OperandField;
+
+enum class OpType
+{
+	RRR,
+	RRI,
+	RI
+};
 
 class Line
 {
@@ -29,6 +36,15 @@ public:
 
 	Opcode opcode;
 	OperandField* operands;
+};
+
+class Opcode
+{
+public:
+	Opcode(uint16_t value, OpType type);
+
+	uint16_t value;
+	OpType type;
 };
 
 class Operand
