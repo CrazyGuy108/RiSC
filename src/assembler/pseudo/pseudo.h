@@ -8,7 +8,9 @@ enum class Pseudo
 	NOP,
 	HALT,
 	LLI,
-	MOVI
+	MOVI,
+	FILL,
+	SPACE
 };
 
 class PseudoInstruction
