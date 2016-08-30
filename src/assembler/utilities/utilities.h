@@ -2,7 +2,7 @@
 #define UTILITIES_H
 
 #include "../table/table.h"
-#include "../opcodes/opcodes.h"
+#include "../instruction/instruction.h"
 
 #define ADD 0x0000
 #define ADDI 0x2000

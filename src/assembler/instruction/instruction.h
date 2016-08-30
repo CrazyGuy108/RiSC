@@ -1,5 +1,5 @@
-#ifndef OPCODES_H
-#define OPCODES_H
+#ifndef INSTRUCTION_H
+#define INSTRUCTION_H
 
 #include <cstdint>
 #include "../table/table.h"
@@ -113,4 +113,4 @@ public:
 	size_t length;
 };
 
-#endif // OPCODES_H
+#endif // INSTRUCTION_H

@@ -3,7 +3,7 @@
 
 #include "table/table.h"
 #include "utilities/utilities.h"
-#include "opcodes/opcodes.h"
+#include "instruction/instruction.h"
 
 char* assemble(const char* program);
 
