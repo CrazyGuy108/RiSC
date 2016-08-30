@@ -26,6 +26,8 @@ RI::RI(const char* regA, const char* immB)
 
 Instruction::Instruction(int argc, const char** argv)
 {
+	/***** rewrite regarding Line *****/
+
 	if (argc >= 0)
 	{
 		int index{ opcodes.search(argv[0]) };
@@ -65,5 +67,12 @@ Instruction::~Instruction()
 
 Line::Line(int argc, const char** argv)
 {
-	// this is where we figure out the opcode
+	// distinguish between op and pseudo-op
+	int indexOp{ opcodes.search(argv[0]) };
+	if (indexOp >= 0)
+	{
+		// do a switch statement with OpType to figure out if should RRR/RRI/RI
+	}
+	else
+		; // evaluate as pseudo-op
 }
