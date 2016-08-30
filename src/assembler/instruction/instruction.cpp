@@ -59,7 +59,7 @@ Line::Line(int argc, const char** argv)
 			break;
 
 		default:
-			// cant figure out op type (should never happen)
+			; // cant figure out op type (should never happen)
 		}
 	}
 	else
