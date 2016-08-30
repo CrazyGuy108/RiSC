@@ -24,41 +24,8 @@ RRI::RRI(const char* regA, const char* regB, const char* immC)
 RI::RI(const char* regA, const char* immB)
 	: regA{ regA }, immB{ immB } {}
 
-Instruction::Instruction(int argc, const char** argv)
-{
-	/***** rewrite regarding Line *****/
-
-	if (argc >= 0)
-	{
-		int index{ opcodes.search(argv[0]) };
-		if (index != -1)
-			opcode = opcodes[index].value;
-		else
-			; // error: unresolved opcode
-	}
-	else
-		; // no instruction given, must be a blank line then
-
-	/***** wrap argc checks in instruction type check *****/
-
-	// can only be RI
-	if (argc >= 3)
-		operands = new RI{ argv[1], argv[2] };
-	else
-		; // error: too few operands
-
-	// could be RRR or RRI
-	if (argc == 4)
-	{
-		// the only difference is the last operand, so check that first
-		if (regs.search(argv[3]) != -1)
-			operands = new RRR{ argv[1], argv[2], argv[3] };
-		else
-			operands = new RRI{ argv[1], argv[2], argv[3] };
-	}
-	else
-		; // error: too many operands
-}
+Instruction::Instruction(Opcode opcode)
+	: opcode{ opcode } {}
 
 Instruction::~Instruction()
 {
@@ -71,8 +38,27 @@ Line::Line(int argc, const char** argv)
 	int indexOp{ opcodes.search(argv[0]) };
 	if (indexOp >= 0)
 	{
-		// do a switch statement with OpType to figure out if should RRR/RRI/RI
+		const Opcode& op{ opcodes[indexOp].value };
+		instructions = new Instruction{ op };
+
+		switch (op.type)
+		{
+		case OpType::RRR:
+			instructions->operands = new RRR{ argv[1], argv[2], argv[3] };
+			break;
+
+		case OpType::RRI:
+			instructions->operands = new RRI{ argv[1], argv[2], argv[3] };
+			break;
+
+		case OpType::RI:
+			instructions->operands = new RI{ argv[1], argv[2] };
+			break;
+
+		default:
+			// cant figure out op type (should never happen)
+		}
 	}
 	else
-		; // evaluate as pseudo-op
+		; // evaluate as pseudo-op (semi-recursively?)
 }

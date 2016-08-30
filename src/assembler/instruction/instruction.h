@@ -92,7 +92,7 @@ public:
 class Instruction
 {
 public:
-	Instruction(int argc, const char** argv);
+	Instruction(Opcode opcode);
 	~Instruction();
 
 	Opcode opcode;
