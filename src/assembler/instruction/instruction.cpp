@@ -46,22 +46,38 @@ Line::Line(int argc, const char** argv)
 		switch (op.type)
 		{
 		case OpType::RRR:
-			instructions->operands = new RRR{ argv[1], argv[2], argv[3] };
-			length = 3;
+			if (argc == 4)
+			{
+				instructions->operands = new RRR{ argv[1], argv[2], argv[3] };
+				length = 3;
+			}
+			else
+				; // error
+
 			break;
 
 		case OpType::RRI:
-			instructions->operands = new RRI{ argv[1], argv[2], argv[3] };
-			length = 3;
+			if (argc == 4)
+			{
+				instructions->operands = new RRI{ argv[1], argv[2], argv[3] };
+				length = 3;
+			}
+			else
+				; // error
 			break;
 
 		case OpType::RI:
-			instructions->operands = new RI{ argv[1], argv[2] };
-			length = 2;
+			if (argc == 3)
+			{
+				instructions->operands = new RI{ argv[1], argv[2] };
+				length = 2;
+			}
+			else
+				; // error
 			break;
 
 		default:
-			length = 0; // cant figure out op type (should never happen)
+			length = 0; // error (should never happen)
 		}
 	}
 	else
