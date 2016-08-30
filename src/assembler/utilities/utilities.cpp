@@ -1,15 +1,15 @@
 #include "utilities.h"
 
-Table<uint16_t> opcodes
+Table<Opcode> opcodes
 {
-	{ "add",	ADD },
-	{ "addi",	ADDI },
-	{ "beq",	BEQ },
-	{ "jalr",	JALR },
-	{ "lui",	LUI },
-	{ "lw",		LW },
-	{ "nand",	NAND },
-	{ "sw",		SW }
+	{ "add",  { ADD,  OpType::RRR } },
+	{ "addi", { ADDI, OpType::RRI } },
+	{ "beq",  { BEQ,  OpType::RRI } },
+	{ "jalr", { JALR, OpType::RRI } },
+	{ "lui",  { LUI,  OpType::RI  } },
+	{ "lw",	  { LW,   OpType::RRI } },
+	{ "nand", { NAND, OpType::RRR } },
+	{ "sw",	  { SW,   OpType::RRI } }
 };
 
 Table<uint16_t> regs

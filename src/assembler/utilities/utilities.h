@@ -2,6 +2,7 @@
 #define UTILITIES_H
 
 #include "../table/table.h"
+#include "../opcodes/opcodes.h"
 
 #define ADD 0x0000
 #define ADDI 0x2000
@@ -14,7 +15,7 @@
 
 typedef Table<uint16_t> SymbolTable;
 
-extern Table<uint16_t> opcodes;
+extern Table<Opcode> opcodes;
 extern Table<uint16_t> regs;
 extern Table<uint16_t> imms;
 extern Table<uint16_t> symbols;
