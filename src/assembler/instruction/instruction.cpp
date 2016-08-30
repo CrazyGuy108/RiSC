@@ -24,9 +24,6 @@ RRI::RRI(const char* regA, const char* regB, const char* immC)
 RI::RI(const char* regA, const char* immB)
 	: regA{ regA }, immB{ immB } {}
 
-Instruction::Instruction(Opcode opcode)
-	: opcode{ opcode } {}
-
 Instruction::~Instruction()
 {
 	delete operands;
@@ -39,7 +36,9 @@ Line::Line(int argc, const char** argv)
 	if (indexOp >= 0)
 	{
 		const Opcode& op{ opcodes[indexOp].value };
-		instructions = new Instruction{ op };
+
+		instructions = (Instruction*)std::malloc(sizeof(Instruction));
+		instructions->opcode = op;
 
 		switch (op.type)
 		{

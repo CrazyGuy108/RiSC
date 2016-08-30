@@ -105,7 +105,6 @@ public:
 class Instruction
 {
 public:
-	Instruction(Opcode opcode);
 	~Instruction();
 
 	Opcode opcode;
