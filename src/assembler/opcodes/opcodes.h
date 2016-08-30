@@ -5,37 +5,13 @@
 #include "../table/table.h"
 #include "../utilities/utilities.h"
 
-class Instruction;
-class Opcode;
-class OperandField;
+// opcode enum and class
 
 enum class OpType
 {
 	RRR,
 	RRI,
 	RI
-};
-
-class Line
-{
-public:
-	Line(int argc, const char** argv);
-
-	// array of Instructions to translate into
-	Instruction* instructions;
-
-	// keeps track of how many Instructions
-	size_t length;
-};
-
-class Instruction
-{
-public:
-	Instruction(int argc, const char** argv);
-	~Instruction();
-
-	Opcode opcode;
-	OperandField* operands;
 };
 
 class Opcode
@@ -46,6 +22,8 @@ public:
 	uint16_t value;
 	OpType type;
 };
+
+// operand class and inherited forms
 
 class Operand
 {
@@ -69,7 +47,7 @@ public:
 	Imm(const char* name);
 };
 
-// operand field types
+// operand field class and inherited forms
 
 class OperandField
 {
@@ -106,6 +84,32 @@ public:
 
 	Reg regA;
 	Imm immB;
+};
+
+// semi-compiled instruction class
+
+class Instruction
+{
+public:
+	Instruction(int argc, const char** argv);
+	~Instruction();
+
+	Opcode opcode;
+	OperandField* operands;
+};
+
+// instruction container class
+
+class Line
+{
+public:
+	Line(int argc, const char** argv);
+
+	// array of Instructions to translate into
+	Instruction* instructions;
+
+	// keeps track of how many Instructions
+	size_t length;
 };
 
 #endif // OPCODES_H
