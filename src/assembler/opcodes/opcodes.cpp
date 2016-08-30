@@ -1,9 +1,25 @@
 #include "opcodes.h"
 
-Line::Line(int argc, const char** argv)
-{
+Opcode::Opcode(uint16_t value, OpType type)
+	: value{ value }, type{ type } {}
 
-}
+Operand::Operand(uint16_t value)
+	: value{ value } {}
+
+Reg::Reg(const char* name)
+	: Operand{ regs[name].value } {}
+
+Imm::Imm(const char* name)
+	: Operand{ imms[name].value } {}
+
+RRR::RRR(const char* regA, const char* regB, const char* regC)
+	: regA{ regA }, regB{ regB }, regC{ regC } {}
+
+RRI::RRI(const char* regA, const char* regB, const char* immC)
+	: regA{ regA }, regB{ regB }, immC{ immC } {}
+
+RI::RI(const char* regA, const char* immB)
+	: regA{ regA }, immB{ immB } {}
 
 Instruction::Instruction(int argc, const char** argv)
 {
@@ -44,23 +60,7 @@ Instruction::~Instruction()
 	delete operands;
 }
 
-Opcode::Opcode(uint16_t value, OpType type)
-	: value{ value }, type{ type } {}
+Line::Line(int argc, const char** argv)
+{
 
-Operand::Operand(uint16_t value)
-	: value{ value } {}
-
-Reg::Reg(const char* name)
-	: Operand{ regs[name].value } {}
-
-Imm::Imm(const char* name)
-	: Operand{ imms[name].value } {}
-
-RRR::RRR(const char* regA, const char* regB, const char* regC)
-	: regA{ regA }, regB{ regB }, regC{ regC } {}
-
-RRI::RRI(const char* regA, const char* regB, const char* immC)
-	: regA{ regA }, regB{ regB }, immC{ immC } {}
-
-RI::RI(const char* regA, const char* immB)
-	: regA{ regA }, immB{ immB } {}
+}
