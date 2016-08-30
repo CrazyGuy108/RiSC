@@ -1,6 +1,19 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
+// prototypes
+enum class OpType;
+class Opcode;
+class Operand;
+class Reg;
+class Imm;
+class OperandField;
+class RRR;
+class RRI;
+class RI;
+class Instruction;
+class Line;
+
 #include <cstdint>
 #include "../table/table.h"
 #include "../utilities/utilities.h"
