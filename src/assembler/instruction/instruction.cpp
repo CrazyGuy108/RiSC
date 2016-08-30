@@ -45,14 +45,17 @@ Line::Line(int argc, const char** argv)
 		{
 		case OpType::RRR:
 			instructions->operands = new RRR{ argv[1], argv[2], argv[3] };
+			length = 3;
 			break;
 
 		case OpType::RRI:
 			instructions->operands = new RRI{ argv[1], argv[2], argv[3] };
+			length = 3;
 			break;
 
 		case OpType::RI:
 			instructions->operands = new RI{ argv[1], argv[2] };
+			length = 2;
 			break;
 
 		default:
@@ -61,4 +64,9 @@ Line::Line(int argc, const char** argv)
 	}
 	else
 		; // evaluate as pseudo-op (semi-recursively?)
+}
+
+Line::~Line()
+{
+	delete instructions;
 }
