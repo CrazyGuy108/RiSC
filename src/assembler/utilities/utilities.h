@@ -13,8 +13,6 @@
 #define BEQ 0xC000
 #define JALR 0xE000
 
-typedef Table<uint16_t> SymbolTable;
-
 extern Table<Opcode> opcodes;
 extern Table<uint16_t> regs;
 extern Table<uint16_t> imms;
