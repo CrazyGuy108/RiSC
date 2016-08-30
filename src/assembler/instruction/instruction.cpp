@@ -1,4 +1,4 @@
-#include "opcodes.h"
+#include "instruction.h"
 
 Opcode::Opcode()
 	{}
