@@ -1,6 +1,10 @@
 #ifndef PSEUDO_H
 #define PSEUDO_H
 
+// prototypes
+enum class Pseudo;
+class PseudoInstruction;
+
 #include "../instruction/instruction.h"
 
 enum class Pseudo
