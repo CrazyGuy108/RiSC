@@ -43,10 +43,10 @@ Instruction::~Instruction()
 
 Line::Line(int argc, const char** argv)
 {
-	int indexOp{ opcodes.search(argv[0]) };
-	if (indexOp >= 0)
+	int index{ opcodes.search(argv[0]) };
+	if (index >= 0)
 	{
-		const Opcode& op{ opcodes[indexOp].value };
+		const Opcode& op{ opcodes[index].value };
 
 		instructions = new Instruction[1];
 		instructions->opcode = op;
@@ -90,7 +90,39 @@ Line::Line(int argc, const char** argv)
 		}
 	}
 	else
-		; // evaluate as pseudo-op (semi-recursively?)
+	{
+		index = pseudos.search(argv[0]);
+		if (index >= 0)
+		{
+			switch (pseudos[index].value)
+			{
+			case Pseudo::NOP:
+				/***** create class and maybe function pointer table later *****/
+				instructions = new Instruction[1];
+				instructions->opcode = opcodes["add"].value;
+				instructions->operands = new RRR{ "0", "0", "0" };
+				instructions->length = 3;
+				length = 1;
+				break;
+			case Pseudo::HALT:
+				break;
+
+			case Pseudo::LLI:
+				break;
+
+			case Pseudo::MOVI:
+				break;
+
+			case Pseudo::FILL:
+				break;
+
+			case Pseudo::SPACE:
+				break;
+			}
+		}
+		else
+			; // error: undefined opcode
+	}
 }
 
 Line::~Line()
