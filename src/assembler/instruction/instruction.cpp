@@ -15,6 +15,15 @@ Reg::Reg(const char* name)
 Imm::Imm(const char* name)
 	: Operand{ imm(name) } {}
 
+Imm::Imm(uint16_t value)
+	: Operand{ value } {}
+
+Imm6::Imm6(const char* name)
+	: Imm{ imm(name) & 0x003f } {}
+
+Imm10::Imm10(const char* name)
+	: Imm{ imm(name) & 0x03ff } {}
+
 RRR::RRR(const char* regA, const char* regB, const char* regC)
 	: regA{ regA }, regB{ regB }, regC{ regC } {}
 

@@ -59,6 +59,21 @@ class Imm
 {
 public:
 	Imm(const char* name);
+	Imm(uint16_t value);
+};
+
+class Imm6
+	: public Imm
+{
+public:
+	Imm6(const char* name);
+};
+
+class Imm10
+	: public Imm
+{
+public:
+	Imm10(const char* name);
 };
 
 // operand field class and inherited forms
@@ -87,7 +102,7 @@ public:
 
 	Reg regA;
 	Reg regB;
-	Imm immC;
+	Imm6 immC;
 };
 
 class RI
@@ -97,7 +112,7 @@ public:
 	RI(const char* regA, const char* immB);
 
 	Reg regA;
-	Imm immB;
+	Imm10 immB;
 };
 
 // semi-compiled instruction class
