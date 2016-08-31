@@ -36,6 +36,9 @@ RI::RI(const char* regA, const char* immB)
 Instruction::Instruction()
 	{}
 
+Instruction::Instruction(Opcode opcode, OperandField* operands, size_t length)
+	: opcode{ opcode }, operands{ operands }, length{ length } {}
+
 Instruction::~Instruction()
 {
 	delete[] operands;
@@ -97,12 +100,10 @@ Line::Line(int argc, const char** argv)
 			switch (pseudos[index].value)
 			{
 			case Pseudo::NOP:
-				/***** create class and maybe function pointer table later *****/
-				instructions = new Instruction[1];
-				instructions->opcode = opcodes["add"].value;
-				instructions->operands = new RRR{ "0", "0", "0" };
-				instructions->length = 3;
-				length = 1;
+				PseudoInstruction* nop = new Nop;
+				instructions = nop->translation;
+				length = nop->length;
+				delete nop;
 				break;
 			case Pseudo::HALT:
 				break;

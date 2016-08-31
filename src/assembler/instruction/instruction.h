@@ -121,6 +121,7 @@ class Instruction
 {
 public:
 	Instruction();
+	Instruction(Opcode opcode, OperandField* operands, size_t length);
 	~Instruction();
 
 	Opcode opcode;

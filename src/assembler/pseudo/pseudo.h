@@ -20,15 +20,18 @@ enum class Pseudo
 class PseudoInstruction
 {
 public:
+	PseudoInstruction(size_t length);
+
+	// dynamically allocated array of Instructions
+	// expected to be constructed and destructed by Line
 	Instruction* translation;
+	size_t length;
 };
 
-// abstract example
 class Nop
 	: public PseudoInstruction
 {
 public:
-	// takes no arguments of course
 	// translates into "add 0 0 0"
 	Nop();
 };
