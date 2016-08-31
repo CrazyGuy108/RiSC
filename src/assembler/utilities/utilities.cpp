@@ -34,6 +34,16 @@ Table<uint16_t> regs
 
 Table<uint16_t> symbols;
 
+Table<Pseudo> pseudos
+{
+	{ "nop",    Pseudo::NOP   },
+	{ "halt",   Pseudo::HALT  },
+	{ "lli",    Pseudo::LLI   },
+	{ "movi",   Pseudo::MOVI  },
+	{ ".fill",  Pseudo::FILL  },
+	{ ".space", Pseudo::SPACE }
+};
+
 int cmp(const char* a, const char* b)
 {
 	size_t index{ 0 };
