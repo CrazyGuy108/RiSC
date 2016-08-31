@@ -32,8 +32,6 @@ Table<uint16_t> regs
 	{ "r7", 0x0007 }
 };
 
-Table<uint16_t> imms;
-
 Table<uint16_t> symbols;
 
 int cmp(const char* a, const char* b)
@@ -51,4 +49,15 @@ int cmp(const char* a, const char* b)
 	} while (a[index] && b[index]);
 
 	return 0;
+}
+
+uint16_t imm(const char* name)
+{
+	int index{ symbols.search(name) };
+
+	// check if not in symbol table first
+	if (index >= 0)
+		return (uint16_t)strtoul(name, nullptr, 0);
+	else
+		return symbols[index].value;
 }

@@ -15,11 +15,13 @@
 
 extern Table<Opcode> opcodes;
 extern Table<uint16_t> regs;
-extern Table<uint16_t> imms;
 extern Table<uint16_t> symbols;
 
 // string comparison that includes the null character unlike strcmp
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
+
+// parses and converts a number into an immediate
+uint16_t imm(const char* name);
 
 #endif // UTILITIES_H

@@ -13,7 +13,7 @@ Reg::Reg(const char* name)
 	: Operand{ regs[name].value } {}
 
 Imm::Imm(const char* name)
-	: Operand{ imms[name].value } {}
+	: Operand{ imm(name) } {}
 
 RRR::RRR(const char* regA, const char* regB, const char* regC)
 	: regA{ regA }, regB{ regB }, regC{ regC } {}
