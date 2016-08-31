@@ -34,7 +34,6 @@ Instruction::~Instruction()
 
 Line::Line(int argc, const char** argv)
 {
-	// distinguish between op and pseudo-op
 	int indexOp{ opcodes.search(argv[0]) };
 	if (indexOp >= 0)
 	{
@@ -53,7 +52,7 @@ Line::Line(int argc, const char** argv)
 				instructions->length = 3;
 			}
 			else
-				; // error
+				; // error: operand amount doesn't match
 
 			break;
 
@@ -64,7 +63,7 @@ Line::Line(int argc, const char** argv)
 				instructions->length = 3;
 			}
 			else
-				; // error
+				; // error: operand amount doesn't match
 			break;
 
 		case OpType::RI:
@@ -74,11 +73,11 @@ Line::Line(int argc, const char** argv)
 				instructions->length = 2;
 			}
 			else
-				; // error
+				; // error: operand amount doesn't match
 			break;
 
 		default:
-			instructions->length = 0; // error (should never happen)
+			instructions->length = 0; // error: opcode type undefined (should never happen)
 		}
 	}
 	else
