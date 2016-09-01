@@ -24,6 +24,9 @@ Imm::Imm(const char* name)
 Imm6::Imm6(const char* name)
 	: Imm{ imm(name) & 0x003f } {}
 
+Imm10::Imm10(uint16_t value)
+	: Imm{ value & 0x03ff } {}
+
 Imm10::Imm10(const char* name)
 	: Imm{ imm(name) & 0x03ff } {}
 
@@ -34,6 +37,9 @@ RRI::RRI(const char* regA, const char* regB, const char* immC)
 	: regA{ regA }, regB{ regB }, immC{ immC } {}
 
 RI::RI(const char* regA, const char* immB)
+	: regA{ regA }, immB{ immB } {}
+
+RI::RI(Reg regA, Imm10 immb)
 	: regA{ regA }, immB{ immB } {}
 
 Instruction::Instruction()

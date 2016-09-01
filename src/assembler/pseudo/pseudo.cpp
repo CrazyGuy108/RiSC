@@ -8,7 +8,7 @@ void nop(Line* thisptr, size_t argc, const char** argv)
 	{
 		thisptr->instructions = new Instruction[1]
 		{
-			Instruction{ { ADD, OpType::RRR }, new RRR{ 0, 0, 0 }, 3 }
+			Instruction{ { ADD, OpType::RRR }, new RRR{ "0", "0", "0" }, 3 }
 		};
 
 		thisptr->length = 1;
@@ -79,6 +79,16 @@ void movi(Line* thisptr, size_t argc, const char** argv)
 void fill(Line* thisptr, size_t argc, const char** argv)
 {
 	// immediate replaces the entire instruction
+	if (argc == 2)
+	{
+		uint16_t immed{ imm(argv[1]) };
+		thisptr->instructions = new Instruction[1]
+		{
+			Instruction{ { immed, OpType::RI }, new RI{ Reg{ immed }, Imm10{ immed } }, 2 }
+		};
+	}
+	else
+		; // error: operand count does not match
 }
 
 void space(Line* thisptr, size_t argc, const char** argv)

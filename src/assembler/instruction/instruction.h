@@ -74,6 +74,7 @@ class Imm10
 	: public Imm
 {
 public:
+	Imm10(uint16_t value);
 	Imm10(const char* name);
 };
 
@@ -111,6 +112,7 @@ class RI
 {
 public:
 	RI(const char* regA, const char* immB);
+	RI(Reg regA, Imm10 immb);
 
 	Reg regA;
 	Imm10 immB;
