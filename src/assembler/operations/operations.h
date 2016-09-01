@@ -1,7 +1,10 @@
-#ifndef OPCODE_H
-#define OPCODE_H
+#ifndef OPERATIONS_H
+#define OPERATIONS_H
 
+// prototype to resolve circular inclusion
 class Line;
+
+// opcodes
 
 Line add(size_t argc, const char** argv);
 
@@ -19,6 +22,20 @@ Line beq(size_t argc, const char** argv);
 
 Line jalr(size_t argc, const char** argv);
 
+// pseudo ops
+
+Line nop(size_t argc, const char** argv);
+
+Line halt(size_t argc, const char** argv);
+
+Line lli(size_t argc, const char** argv);
+
+Line movi(size_t argc, const char** argv);
+
+Line fill(size_t argc, const char** argv);
+
+Line space(size_t argc, const char** argv);
+
 #include "../instruction/instruction.h"
 
-#endif // OPCODE_H
+#endif // OPERATIONS_H

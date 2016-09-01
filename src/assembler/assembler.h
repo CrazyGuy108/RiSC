@@ -2,8 +2,7 @@
 #define ASSEMBLER_H
 
 #include "instruction/instruction.h"
-#include "opcode/opcode.h"
-#include "pseudo/pseudo.h"
+#include "operations/operations.h"
 #include "table/table.h"
 #include "utilities/utilities.h"
 

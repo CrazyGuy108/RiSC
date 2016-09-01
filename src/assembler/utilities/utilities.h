@@ -2,8 +2,7 @@
 #define UTILITIES_H
 
 #include "../instruction/instruction.h"
-#include "../opcode/opcode.h"
-#include "../pseudo/pseudo.h"
+#include "../operations/operations.h"
 #include "../table/table.h"
 
 #define ADD 0x0000
