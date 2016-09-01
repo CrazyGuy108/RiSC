@@ -14,12 +14,12 @@ Table<Opcode> opcodes
 
 Table<Pseudo> pseudos
 {
-	{ "nop",    &nop },
+	{ ".fill",  &fill },
+	{ ".space", &space },
 	{ "halt",   &halt },
 	{ "lli",    &lli },
 	{ "movi",   &movi },
-	{ ".fill",  &fill },
-	{ ".space", &space }
+	{ "nop",    &nop }
 };
 
 Table<uint16_t> regs
