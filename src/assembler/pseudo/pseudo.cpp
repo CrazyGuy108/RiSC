@@ -1,6 +1,6 @@
 #include "pseudo.h"
 
-void nop(Line* thisptr, size_t argc, const char** argv)
+void nop(size_t argc, const char** argv)
 {
 	// translates from "nop" to "add 0 0 0"
 	if (argc == 1)
@@ -11,12 +11,12 @@ void nop(Line* thisptr, size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void halt(Line* thisptr, size_t argc, const char** argv)
+void halt(size_t argc, const char** argv)
 {
 
 }
 
-void lli(Line* thisptr, size_t argc, const char** argv)
+void lli(size_t argc, const char** argv)
 {
 	// translates from "lli rA, imm6" to "addi rA, rA, imm6"
 	if (argc == 3)
@@ -27,7 +27,7 @@ void lli(Line* thisptr, size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void movi(Line* thisptr, size_t argc, const char** argv)
+void movi(size_t argc, const char** argv)
 {
 	if (argc == 3)
 	{
@@ -49,7 +49,7 @@ void movi(Line* thisptr, size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void fill(Line* thisptr, size_t argc, const char** argv)
+void fill(size_t argc, const char** argv)
 {
 	// immediate replaces the entire instruction
 	if (argc == 2)
@@ -60,7 +60,7 @@ void fill(Line* thisptr, size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void space(Line* thisptr, size_t argc, const char** argv)
+void space(size_t argc, const char** argv)
 {
 
 }
