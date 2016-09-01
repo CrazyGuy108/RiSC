@@ -141,7 +141,7 @@ public:
 	~Line();
 
 	// uses all the constructed object heiarchy to compile into a series of bytecode
-	uint16_t compile();
+	uint16_t* compile();
 
 	// array of Instructions to translate into
 	Instruction* instructions;
