@@ -5,8 +5,6 @@ class Line;
 
 typedef Line(*Opcode)(size_t argc, const char** argv);
 
-#include "../instruction/instruction.h"
-
 Line add(size_t argc, const char** argv);
 
 Line addi(size_t argc, const char** argv);
@@ -22,5 +20,7 @@ Line lw(size_t argc, const char** argv);
 Line beq(size_t argc, const char** argv);
 
 Line jalr(size_t argc, const char** argv);
+
+#include "../instruction/instruction.h"
 
 #endif // OPCODE_H

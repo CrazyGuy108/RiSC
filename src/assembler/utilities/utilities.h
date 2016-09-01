@@ -1,10 +1,10 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include "../table/table.h"
 #include "../instruction/instruction.h"
 #include "../opcode/opcode.h"
 #include "../pseudo/pseudo.h"
+#include "../table/table.h"
 
 #define ADD 0x0000
 #define ADDI 0x2000
