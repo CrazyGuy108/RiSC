@@ -2,7 +2,7 @@
 
 void nop(Line* thisptr, size_t argc, const char** argv)
 {
-	// translates to "add 0 0 0"
+	// translates from "nop" to "add 0 0 0"
 	// no compiling step needed, so init with pre-compiled data
 	if (argc == 0)
 	{
