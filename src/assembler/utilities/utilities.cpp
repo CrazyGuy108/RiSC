@@ -61,13 +61,13 @@ int cmp(const char* a, const char* b)
 	return 0;
 }
 
-uint16_t imm(const char* name)
+int16_t imm(const char* name)
 {
 	int index{ symbols.search(name) };
 
 	// check if not in symbol table first
 	if (index >= 0)
-		return (uint16_t)strtoul(name, nullptr, 0); /***** add error checking later *****/
+		return (int16_t)strtol(name, nullptr, 0); /***** add error checking later *****/
 	else
 		return symbols[index].value;
 }

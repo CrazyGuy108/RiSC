@@ -28,6 +28,6 @@ extern Table<uint16_t> symbols;
 int cmp(const char* a, const char* b);
 
 // parses and converts a number into an immediate
-uint16_t imm(const char* name);
+int16_t imm(const char* name);
 
 #endif // UTILITIES_H
