@@ -3,7 +3,7 @@
 
 class Line;
 
-typedef Line(*Op)(size_t argc, const char** argv);
+typedef Line(*Opcode)(size_t argc, const char** argv);
 
 #include "../instruction/instruction.h"
 
