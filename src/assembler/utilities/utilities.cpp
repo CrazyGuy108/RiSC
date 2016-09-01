@@ -1,25 +1,21 @@
 #include "utilities.h"
 
-Table<Opcode> opcodes
-{
-	{ "add",  &add },
-	{ "addi", &addi },
-	{ "beq",  &beq },
-	{ "jalr", &jalr },
-	{ "lui",  &lui },
-	{ "lw",	  &lw },
-	{ "nand", &nand },
-	{ "sw",	  &sw }
-};
-
-Table<Pseudo> pseudos
+Table<Op> ops
 {
 	{ ".fill",  &fill },
 	{ ".space", &space },
+	{ "add",    &add },
+	{ "addi",   &addi },
+	{ "beq",    &beq },
 	{ "halt",   &halt },
+	{ "jalr",   &jalr },
 	{ "lli",    &lli },
+	{ "lui",    &lui },
+	{ "lw",	    &lw },
 	{ "movi",   &movi },
-	{ "nop",    &nop }
+	{ "nand",   &nand },
+	{ "nop",    &nop },
+	{ "sw",	    &sw }
 };
 
 Table<uint16_t> regs
