@@ -3,8 +3,6 @@
 
 class Line;
 
-typedef Line(*Opcode)(size_t argc, const char** argv);
-
 Line add(size_t argc, const char** argv);
 
 Line addi(size_t argc, const char** argv);
