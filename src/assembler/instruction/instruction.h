@@ -140,6 +140,9 @@ public:
 	Line(int argc, const char** argv);
 	~Line();
 
+	// uses all the constructed object heiarchy to compile into a series of bytecode
+	uint16_t compile();
+
 	// array of Instructions to translate into
 	Instruction* instructions;
 

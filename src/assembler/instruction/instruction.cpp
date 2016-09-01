@@ -115,3 +115,8 @@ Line::~Line()
 {
 	delete instructions;
 }
+
+uint16_t* Line::compile()
+{
+
+}
