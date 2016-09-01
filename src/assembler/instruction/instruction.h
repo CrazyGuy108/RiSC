@@ -5,6 +5,7 @@
 class Line;
 
 #include <cstdint>
+#include "../opcode/opcode.h"
 #include "../table/table.h"
 #include "../utilities/utilities.h"
 
