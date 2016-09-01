@@ -2,14 +2,24 @@
 
 Table<Opcode> opcodes
 {
-	{ "add",  { ADD,  OpType::RRR } },
-	{ "addi", { ADDI, OpType::RRI } },
-	{ "beq",  { BEQ,  OpType::RRI } },
-	{ "jalr", { JALR, OpType::RRI } },
-	{ "lui",  { LUI,  OpType::RI  } },
-	{ "lw",	  { LW,   OpType::RRI } },
-	{ "nand", { NAND, OpType::RRR } },
-	{ "sw",	  { SW,   OpType::RRI } }
+	{ "add",  &add },
+	{ "addi", &addi },
+	{ "beq",  &beq },
+	{ "jalr", &jalr },
+	{ "lui",  &lui },
+	{ "lw",	  &lw },
+	{ "nand", &nand },
+	{ "sw",	  &sw }
+};
+
+Table<Pseudo> pseudos
+{
+	{ "nop",    &nop },
+	{ "halt",   &halt },
+	{ "lli",    &lli },
+	{ "movi",   &movi },
+	{ ".fill",  &fill },
+	{ ".space", &space }
 };
 
 Table<uint16_t> regs
@@ -33,16 +43,6 @@ Table<uint16_t> regs
 };
 
 Table<uint16_t> symbols;
-
-Table<Pseudo> pseudos
-{
-	{ "nop",    &nop   },
-	{ "halt",   &halt  },
-	{ "lli",    &lli   },
-	{ "movi",   &movi  },
-	{ ".fill",  &fill  },
-	{ ".space", &space }
-};
 
 int cmp(const char* a, const char* b)
 {

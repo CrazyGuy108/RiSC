@@ -3,6 +3,7 @@
 
 #include "../table/table.h"
 #include "../instruction/instruction.h"
+#include "../opcode/opcode.h"
 #include "../pseudo/pseudo.h"
 
 #define ADD 0x0000
@@ -15,9 +16,9 @@
 #define JALR 0xE000
 
 extern Table<Opcode> opcodes;
+extern Table<Pseudo> pseudos;
 extern Table<uint16_t> regs;
 extern Table<uint16_t> symbols;
-extern Table<Pseudo> pseudos;
 
 // string comparison that includes the null character unlike strcmp
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
