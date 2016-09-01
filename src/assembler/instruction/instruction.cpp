@@ -97,29 +97,7 @@ Line::Line(int argc, const char** argv)
 		index = pseudos.search(argv[0]);
 		if (index >= 0)
 		{
-			switch (pseudos[index].value)
-			{
-			case Pseudo::NOP:
-				PseudoInstruction* nop = new Nop;
-				instructions = nop->translation;
-				length = nop->length;
-				delete nop;
-				break;
-			case Pseudo::HALT:
-				break;
-
-			case Pseudo::LLI:
-				break;
-
-			case Pseudo::MOVI:
-				break;
-
-			case Pseudo::FILL:
-				break;
-
-			case Pseudo::SPACE:
-				break;
-			}
+			// evaluate as pseudo op
 		}
 		else
 			; // error: undefined opcode

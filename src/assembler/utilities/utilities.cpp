@@ -36,12 +36,12 @@ Table<uint16_t> symbols;
 
 Table<Pseudo> pseudos
 {
-	{ "nop",    Pseudo::NOP   },
-	{ "halt",   Pseudo::HALT  },
-	{ "lli",    Pseudo::LLI   },
-	{ "movi",   Pseudo::MOVI  },
-	{ ".fill",  Pseudo::FILL  },
-	{ ".space", Pseudo::SPACE }
+	{ "nop",    &nop   },
+	{ "halt",   &halt  },
+	{ "lli",    &lli   },
+	{ "movi",   &movi  },
+	{ ".fill",  &fill  },
+	{ ".space", &space }
 };
 
 int cmp(const char* a, const char* b)
