@@ -9,14 +9,17 @@ Opcode::Opcode(uint16_t value, OpType type)
 Operand::Operand(uint16_t value)
 	: value{ value } {}
 
+Reg::Reg(uint16_t value)
+	: Operand{ value } {}
+
 Reg::Reg(const char* name)
 	: Operand{ regs[name].value } {}
 
-Imm::Imm(const char* name)
-	: Operand{ imm(name) } {}
-
 Imm::Imm(uint16_t value)
 	: Operand{ value } {}
+
+Imm::Imm(const char* name)
+	: Operand{ imm(name) } {}
 
 Imm6::Imm6(const char* name)
 	: Imm{ imm(name) & 0x003f } {}

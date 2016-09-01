@@ -51,6 +51,7 @@ class Reg
 	: public Operand
 {
 public:
+	Reg(uint16_t value);
 	Reg(const char* name);
 };
 
@@ -58,8 +59,8 @@ class Imm
 	: public Operand
 {
 public:
-	Imm(const char* name);
 	Imm(uint16_t value);
+	Imm(const char* name);
 };
 
 class Imm6
