@@ -3,9 +3,6 @@
 
 class Line;
 
-// function pointer typedef for the functions below
-typedef Line(*Pseudo)(size_t argc, const char** argv);
-
 Line nop(size_t argc, const char** argv);
 
 Line halt(size_t argc, const char** argv);
