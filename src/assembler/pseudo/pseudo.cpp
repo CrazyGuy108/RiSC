@@ -31,7 +31,7 @@ Line movi(size_t argc, const char** argv)
 {
 	if (argc == 3)
 	{
-		uint16_t immed{ imm(argv[2]) };
+		int16_t immed{ imm(argv[2]) };
 		if (immed & 0xffc0 == immed) // use only lui
 		{
 			
