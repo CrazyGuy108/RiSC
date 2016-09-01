@@ -2,6 +2,7 @@
 #define OPERATIONS_H
 
 // prototype to resolve circular inclusion
+
 class Line;
 
 // opcodes
