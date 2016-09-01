@@ -4,7 +4,7 @@
 class Line;
 
 // function pointer typedef for the functions below
-typedef void(*Pseudo)(size_t argc, const char** argv);
+typedef Line(*Pseudo)(size_t argc, const char** argv);
 
 void nop(size_t argc, const char** argv);
 

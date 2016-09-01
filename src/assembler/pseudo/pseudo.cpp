@@ -1,6 +1,6 @@
 #include "pseudo.h"
 
-void nop(size_t argc, const char** argv)
+Line nop(size_t argc, const char** argv)
 {
 	// translates from "nop" to "add 0 0 0"
 	if (argc == 1)
@@ -11,12 +11,12 @@ void nop(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void halt(size_t argc, const char** argv)
+Line halt(size_t argc, const char** argv)
 {
 
 }
 
-void lli(size_t argc, const char** argv)
+Line lli(size_t argc, const char** argv)
 {
 	// translates from "lli rA, imm6" to "addi rA, rA, imm6"
 	if (argc == 3)
@@ -27,7 +27,7 @@ void lli(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void movi(size_t argc, const char** argv)
+Line movi(size_t argc, const char** argv)
 {
 	if (argc == 3)
 	{
@@ -49,7 +49,7 @@ void movi(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void fill(size_t argc, const char** argv)
+Line fill(size_t argc, const char** argv)
 {
 	// immediate replaces the entire instruction
 	if (argc == 2)
@@ -60,7 +60,7 @@ void fill(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-void space(size_t argc, const char** argv)
+Line space(size_t argc, const char** argv)
 {
 
 }
