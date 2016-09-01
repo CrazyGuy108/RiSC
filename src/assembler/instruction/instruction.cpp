@@ -96,9 +96,7 @@ Line::Line(int argc, const char** argv)
 	{
 		index = pseudos.search(argv[0]);
 		if (index >= 0)
-		{
-			// evaluate as pseudo op
-		}
+			pseudos[index].value(this, argc, argv); // evaluate as pseudo op by calling the contained function
 		else
 			; // error: undefined opcode
 	}
