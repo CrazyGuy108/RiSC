@@ -38,17 +38,17 @@ public:
 		return data.size();
 	}
 
-	item_type& operator[](size_t index)
+	value_type& operator[](size_t index)
 	{
-		return data[index];
+		return data[index].value;
 	}
 
-	item_type& operator[](const char* token)
+	value_type& operator[](const char* token)
 	{
 		return at(token);
 	}
 
-	item_type& at(size_t index)
+	value_type& at(size_t index)
 	{
 		if (index < size())
 			return operator[](index);
@@ -56,10 +56,10 @@ public:
 			abort();
 	}
 
-	item_type& at(const char* token)
+	value_type& at(const char* token)
 	{
 		int index{ search(token) };
-		if (index != -1)
+		if (index > 0)
 			return operator[](index);
 		else
 			abort();
