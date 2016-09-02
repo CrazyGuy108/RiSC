@@ -17,7 +17,7 @@ Line add(size_t argc, const char** argv)
 				; // error: undefined operand
 		}
 
-		return Line{ new RRR[1]{ { ADD, regs[operands[0]], regs[operands[1]], regs[operands[2]] } }, 1 };
+		return Line{ new RRR[1]{ RRR{ ADD, regs[operands[0]], regs[operands[1]], regs[operands[2]] } }, 1 };
 	}
 	else
 		; // error: operand count does not match
@@ -39,7 +39,7 @@ Line addi(size_t argc, const char** argv)
 				; // error: undefined operand
 		}
 
-		return Line{ new RRI[1]{ { ADDI, regs[operands[0]], regs[operands[1]], imm(argv[3]) } }, 1 };
+		return Line{ new RRI[1]{ RRI{ ADDI, regs[operands[0]], regs[operands[1]], imm(argv[3]) } }, 1 };
 	}
 	else
 		; // error: operand count does not match
