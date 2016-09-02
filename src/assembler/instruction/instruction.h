@@ -42,6 +42,8 @@ public:
 	Line(Instruction* instructions, size_t length);
 	~Line();
 
+	/***** use vector and overload operator+? *****/
+
 	// array of compiled instructions
 	Instruction* instructions;
 
