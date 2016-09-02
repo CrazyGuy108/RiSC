@@ -3,6 +3,12 @@
 Line::Line(uint16_t* instructions, size_t length)
 	: instructions{ instructions }, length{ length } {}
 
+Line::~Line()
+{
+	if (instructions != nullptr)
+		delete[] instructions;
+}
+
 /***** move to utilities and rename instruction to line? *****/
 Line compile(size_t argc, const char** argv)
 {

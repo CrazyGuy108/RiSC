@@ -11,6 +11,7 @@ class Line
 {
 public:
 	Line(uint16_t* instructions, size_t length);
+	~Line();
 
 	// array of compiled instructions
 	uint16_t* instructions;
