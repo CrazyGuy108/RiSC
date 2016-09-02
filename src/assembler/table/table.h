@@ -13,6 +13,9 @@ public:
 	Item(const char* name, value_type value)
 		: name{ name }, value{ value } {}
 
+	Item(const char* name, value_type& value)
+		: name{ name }, value{ value } {}
+
 	const char* name;
 	value_type value;
 };
