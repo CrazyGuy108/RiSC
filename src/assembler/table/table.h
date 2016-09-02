@@ -8,11 +8,13 @@ template <typename T>
 class Item
 {
 public:
-	Item(const char* name, T value)
+	typedef T value_type;
+
+	Item(const char* name, value_type value)
 		: name{ name }, value{ value } {}
 
 	const char* name;
-	T value;
+	value_type value;
 };
 
 template <typename T>
@@ -20,6 +22,7 @@ class Table
 {
 public:
 	typedef Item<T> item_type;
+	typedef T value_type;
 
 	Table()
 		: data{} {}
