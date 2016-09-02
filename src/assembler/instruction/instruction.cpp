@@ -1,6 +1,12 @@
 #include "instruction.h"
 
-Line::Line(uint16_t* instructions, size_t length)
+Instruction::Instruction(uint16_t value)
+	: value{ value } {}
+
+RRR::RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC)
+	: Instruction{ opcode | (regA << 13) | (regB << 10) | regC } {}
+
+Line::Line(Instruction* instructions, size_t length)
 	: instructions{ instructions }, length{ length } {}
 
 Line::~Line()

@@ -7,14 +7,29 @@ class Line;
 #include <cstdint>
 #include "../utilities/utilities.h"
 
+class Instruction
+{
+public:
+	Instruction(uint16_t value);
+
+	uint16_t value;
+};
+
+class RRR
+	: public Instruction
+{
+public:
+	RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
+};
+
 class Line
 {
 public:
-	Line(uint16_t* instructions, size_t length);
+	Line(Instruction* instructions, size_t length);
 	~Line();
 
 	// array of compiled instructions
-	uint16_t* instructions;
+	Instruction* instructions;
 
 	// keeps track of how many Instructions
 	size_t length;

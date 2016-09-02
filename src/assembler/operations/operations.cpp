@@ -17,7 +17,7 @@ Line add(size_t argc, const char** argv)
 				; // error: undefined operand
 		}
 
-		return Line{ new uint16_t[1]{ ADD | (regs[operands[0]].value << 13) | (regs[operands[0]].value << 10) | (regs[operands[0]].value) }, 1 };
+		return Line{ new RRR[1]{{ ADD, regs[operands[0]].value, regs[operands[0]].value, regs[operands[0]].value }}, 1 };
 	}
 	else
 		; // error: operand count does not match
