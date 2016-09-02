@@ -23,7 +23,7 @@ Line compile(size_t argc, const char** argv)
 		int index{ ops.search(argv[0]) };
 		if (index != -1)
 		{
-			return ops[index].value(argc, argv);
+			return ops[index](argc, argv);
 		}
 		else
 			; // error: undefined opcode

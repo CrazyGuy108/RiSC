@@ -65,5 +65,5 @@ int16_t imm(const char* name)
 	if (index < 0)
 		return (int16_t)strtol(name, nullptr, 0); /***** add error checking later *****/
 	else
-		return symbols[index].value;
+		return symbols[index];
 }
