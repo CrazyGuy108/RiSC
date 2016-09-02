@@ -62,7 +62,7 @@ int16_t imm(const char* name)
 	int index{ symbols.search(name) };
 
 	// check if not in symbol table first
-	if (index >= 0)
+	if (index < 0)
 		return (int16_t)strtol(name, nullptr, 0); /***** add error checking later *****/
 	else
 		return symbols[index].value;
