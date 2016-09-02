@@ -22,6 +22,20 @@ public:
 	RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
 };
 
+class RRI
+	: public Instruction
+{
+public:
+	RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC);
+};
+
+class RI
+	: public Instruction
+{
+public:
+	RI(uint16_t opcode, uint16_t regA, uint16_t immB);
+};
+
 class Line
 {
 public:

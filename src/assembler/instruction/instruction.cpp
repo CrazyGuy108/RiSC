@@ -6,6 +6,12 @@ Instruction::Instruction(uint16_t value)
 RRR::RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC)
 	: Instruction{ opcode | (regA << 13) | (regB << 10) | regC } {}
 
+RRI::RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC)
+	: Instruction{opcode | (regA << 13) | (regB << 10) | (immC & 0x007f) } {}
+
+RI::RI(uint16_t opcode, uint16_t regA, uint16_t immB)
+	: Instruction{ opcode | (regA << 13) + (immB & 0x03ff) } {}
+
 Line::Line(Instruction* instructions, size_t length)
 	: instructions{ instructions }, length{ length } {}
 
