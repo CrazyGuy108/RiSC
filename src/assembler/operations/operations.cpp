@@ -4,20 +4,7 @@ Line add(size_t argc, const char** argv)
 {
 	if (argc == 4)
 	{
-		int operands[3]
-		{
-			regs.search(argv[1]),
-			regs.search(argv[2]),
-			regs.search(argv[3])
-		};
-
-		for (uint8_t i{ 0 }; i < 3; ++i)
-		{
-			if (operands[i] < 0)
-				; // error: undefined operand
-		}
-
-		return Line{ new RRR[1]{ RRR{ ADD, regs[operands[0]], regs[operands[1]], regs[operands[2]] } }, 1 };
+		return Line{ new RRR[1]{ { ADD, argv[1], argv[2], argv[3] } }, 1 };
 	}
 	else
 		; // error: operand count does not match
@@ -54,20 +41,7 @@ Line nand(size_t argc, const char** argv)
 {
 	if (argc == 4)
 	{
-		int operands[3]
-		{
-			regs.search(argv[1]),
-			regs.search(argv[2]),
-			regs.search(argv[3])
-		};
-
-		for (uint8_t i{ 0 }; i < 3; ++i)
-		{
-			if (operands[i] < 0)
-				; // error: undefined operand
-		}
-
-		return Line{ new RRR[1]{ RRR{ NAND, regs[operands[0]], regs[operands[1]], regs[operands[2]] } }, 1 };
+		return Line{ new RRR[1]{ { NAND, argv[1], argv[2], argv[3] } }, 1 };
 	}
 	else
 		; // error: operand count does not match
