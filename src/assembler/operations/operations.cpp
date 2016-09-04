@@ -85,7 +85,18 @@ Line lw(size_t argc, const char** argv, uint16_t line)
 
 Line beq(size_t argc, const char** argv, uint16_t line)
 {
-	
+	if (argc == 4)
+	{
+		uint16_t immed{ imm(argv[3], line) };
+
+		/***** improve immed check *****/
+		if (immed & IMM7_MASK == immed || immed & IMM7_NEG_MASK == IMM7_NEG_MASK)
+			return Line{ new RRI[1]{ RRI{ BEQ, argv[1], argv[2], immed } }, 1 };
+		else
+			; // either pseudo op or error: immediate too big
+	}
+	else
+		; // error: operand count does not match
 }
 
 Line jalr(size_t argc, const char** argv, uint16_t line)

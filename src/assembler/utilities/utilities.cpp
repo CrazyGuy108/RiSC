@@ -57,7 +57,7 @@ int cmp(const char* a, const char* b)
 	return 0;
 }
 
-uint16_t imm(const char* name)
+uint16_t imm(const char* name, uint16_t line /* = 0 */)
 {
 	int index{ symbols.search(name) };
 
@@ -65,5 +65,5 @@ uint16_t imm(const char* name)
 	if (index < 0)
 		return (uint16_t)strtoul(name, nullptr, 0); /***** add error checking later *****/
 	else
-		return symbols[index];
+		return symbols[index] - line; // generates offset
 }
