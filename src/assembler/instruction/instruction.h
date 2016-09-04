@@ -26,6 +26,7 @@ class RRR
 {
 public:
 	RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
+	RRR(uint16_t opcode, const char* regA, const char* regB, const char* regC);
 };
 
 class RRI
