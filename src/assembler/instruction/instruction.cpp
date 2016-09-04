@@ -70,14 +70,14 @@ Line::~Line()
 }
 
 /***** move to utilities and rename instruction to line? *****/
-Line compile(size_t argc, const char** argv)
+Line compile(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc > 0)
 	{
 		int index{ ops.search(argv[0]) };
 		if (index != -1)
 		{
-			return ops[index](argc, argv);
+			return ops[index](argc, argv, line);
 		}
 		else
 			; // error: undefined opcode

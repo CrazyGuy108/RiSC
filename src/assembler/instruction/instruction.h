@@ -63,6 +63,6 @@ public:
 };
 
 // takes in a parsed line of code to produce a series of bytecode instructions
-Line compile(size_t argc, const char** argv);
+Line compile(size_t argc, const char** argv, uint16_t line);
 
 #endif // INSTRUCTION_H

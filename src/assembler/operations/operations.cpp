@@ -1,6 +1,6 @@
 #include "operations.h"
 
-Line add(size_t argc, const char** argv)
+Line add(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 4)
 	{
@@ -10,7 +10,7 @@ Line add(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line addi(size_t argc, const char** argv)
+Line addi(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 4)
 	{
@@ -26,7 +26,7 @@ Line addi(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line nand(size_t argc, const char** argv)
+Line nand(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 4)
 	{
@@ -36,7 +36,7 @@ Line nand(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line lui(size_t argc, const char** argv)
+Line lui(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 3)
 	{
@@ -51,7 +51,7 @@ Line lui(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line sw(size_t argc, const char** argv)
+Line sw(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 4)
 	{
@@ -67,7 +67,7 @@ Line sw(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line lw(size_t argc, const char** argv)
+Line lw(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc == 4)
 	{
@@ -83,42 +83,42 @@ Line lw(size_t argc, const char** argv)
 		; // error: operand count does not match
 }
 
-Line beq(size_t argc, const char** argv)
+Line beq(size_t argc, const char** argv, uint16_t line)
 {
-	/***** add line count parameter *****/
+	
 }
 
-Line jalr(size_t argc, const char** argv)
-{
-
-}
-
-Line nop(size_t argc, const char** argv)
+Line jalr(size_t argc, const char** argv, uint16_t line)
 {
 
 }
 
-Line halt(size_t argc, const char** argv)
+Line nop(size_t argc, const char** argv, uint16_t line)
 {
 
 }
 
-Line lli(size_t argc, const char** argv)
+Line halt(size_t argc, const char** argv, uint16_t line)
 {
 
 }
 
-Line movi(size_t argc, const char** argv)
+Line lli(size_t argc, const char** argv, uint16_t line)
 {
 
 }
 
-Line fill(size_t argc, const char** argv)
+Line movi(size_t argc, const char** argv, uint16_t line)
 {
 
 }
 
-Line space(size_t argc, const char** argv)
+Line fill(size_t argc, const char** argv, uint16_t line)
+{
+
+}
+
+Line space(size_t argc, const char** argv, uint16_t line)
 {
 
 }
