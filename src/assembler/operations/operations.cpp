@@ -14,22 +14,11 @@ Line addi(size_t argc, const char** argv)
 {
 	if (argc == 4)
 	{
-		int operands[2]
-		{
-			regs.search(argv[1]),
-			regs.search(argv[2])
-		};
-
-		for (uint8_t i{ 0 }; i < 2; ++i)
-		{
-			if (operands[i] < 0)
-				; // error: undefined operand
-		}
-
 		uint16_t immed{ imm(argv[3]) };
 
+		/***** improve immed check *****/
 		if (immed & IMM7_MASK == immed || immed & IMM7_NEG_MASK == IMM7_NEG_MASK)
-			return Line{ new RRI[1]{ RRI{ ADDI, regs[operands[0]], regs[operands[1]], immed } }, 1 };
+			return Line{ new RRI[1]{ RRI{ ADDI, argv[1], argv[2], immed } }, 1 };
 		else
 			; // either pseudo op or error: immediate too big
 	}
