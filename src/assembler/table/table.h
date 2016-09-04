@@ -68,6 +68,9 @@ public:
 	// binary search for a Symbol's index
 	int search(const char* token)
 	{
+		if (token == nullptr)
+			return -1;
+
 		size_t start{ 0 };
 		size_t end{ size() - 1 };
 		size_t middle;
