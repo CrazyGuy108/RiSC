@@ -43,6 +43,7 @@ class RI
 {
 public:
 	RI(uint16_t opcode, uint16_t regA, uint16_t immB);
+	RI(uint16_t opcode, const char* regA, uint16_t immB);
 };
 
 class Line
