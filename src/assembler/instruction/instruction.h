@@ -53,6 +53,7 @@ public:
 	~Line();
 
 	/***** use vector and overload operator+? *****/
+	/***** overload operator[]? *****/
 
 	// array of compiled instructions
 	Instruction* instructions;
