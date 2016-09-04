@@ -85,7 +85,7 @@ Line lw(size_t argc, const char** argv)
 
 Line beq(size_t argc, const char** argv)
 {
-
+	/***** add line count parameter *****/
 }
 
 Line jalr(size_t argc, const char** argv)
