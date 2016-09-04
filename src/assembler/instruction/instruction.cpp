@@ -1,5 +1,8 @@
 #include "instruction.h"
 
+Instruction::Instruction()
+	{}
+
 Instruction::Instruction(uint16_t value)
 	: value{ value } {}
 

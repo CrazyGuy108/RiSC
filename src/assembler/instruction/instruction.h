@@ -16,6 +16,7 @@ class Line;
 class Instruction
 {
 public:
+	Instruction();
 	Instruction(uint16_t value);
 
 	uint16_t value;
