@@ -109,33 +109,33 @@ Line jalr(size_t argc, const char** argv, uint16_t line)
 	else
 		; // error: operand count does not match
 }
-
+/***** implement after everything else works *****/
 Line nop(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
 
 Line halt(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
 
 Line lli(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
 
 Line movi(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
 
 Line fill(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
 
 Line space(size_t argc, const char** argv, uint16_t line)
 {
-
+	return Line(); // placeholder
 }
