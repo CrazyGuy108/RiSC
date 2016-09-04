@@ -15,8 +15,10 @@
 #define JALR 0xE000
 
 typedef Line(*operation_t)(size_t argc, const char** argv, uint16_t line);
+typedef void(*extension_t)(int argc, char** argv);
 
 extern Table<operation_t> ops;
+extern Table<extension_t> extensions;
 extern Table<uint16_t> regs;
 extern Table<uint16_t> symbols;
 

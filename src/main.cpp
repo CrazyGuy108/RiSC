@@ -5,9 +5,7 @@ int main(int argc, char** argv)
 {
 	if (argc == 2)
 	{
-		std::ifstream source{ argv[2] };
-		
-		// verify extension
+		// get file extension
 
 		const char* extension{ strchr(argv[2], '/') };
 
@@ -16,14 +14,14 @@ int main(int argc, char** argv)
 		else
 			extension = strchr(extension, '.');
 
-		if (strcmp(extension, ".asm") == 0)
-		{
-			// assemble
-		}
+		// verify extension
+
+		int index{ extensions.search(extension) };
+
+		if (index >= 0)
+			extensions[index](argc, argv);
 		else
 			; // error: invalid extension
-
-		source.close();
 	}
 	else
 		; // error: no file
