@@ -48,6 +48,7 @@ public:
 class Line
 {
 public:
+	Line();
 	Line(Instruction* instructions, size_t length);
 	~Line();
 

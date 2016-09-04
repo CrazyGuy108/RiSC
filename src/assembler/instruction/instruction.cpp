@@ -60,6 +60,9 @@ RI::RI(uint16_t opcode, const char* regA, uint16_t immB)
 		; // error: undefined operand
 }
 
+Line::Line()
+	{}
+
 Line::Line(Instruction* instructions, size_t length)
 	: instructions{ instructions }, length{ length } {}
 
