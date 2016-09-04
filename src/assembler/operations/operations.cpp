@@ -101,7 +101,18 @@ Line beq(size_t argc, const char** argv, uint16_t line)
 
 Line jalr(size_t argc, const char** argv, uint16_t line)
 {
+	if (argc == 4)
+	{
+		uint16_t immed{ imm(argv[3]) };
 
+		/***** improve immed check *****/
+		if (immed & IMM7_MASK == immed)
+			return Line{ new RRI[1]{ RRI{ JALR, argv[1], argv[2], immed } }, 1 };
+		else
+			; // either pseudo op or error: immediate too big
+	}
+	else
+		; // error: operand count does not match
 }
 
 Line nop(size_t argc, const char** argv, uint16_t line)
