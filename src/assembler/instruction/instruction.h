@@ -7,6 +7,11 @@ class Line;
 #include <cstdint>
 #include "../utilities/utilities.h"
 
+#define A_SHIFT    13
+#define B_SHIFT    10
+#define IMM7_MASK  0x007f
+#define IMM10_MASK 0x03ff
+
 class Instruction
 {
 public:

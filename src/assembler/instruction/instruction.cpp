@@ -4,13 +4,13 @@ Instruction::Instruction(uint16_t value)
 	: value{ value } {}
 
 RRR::RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC)
-	: Instruction{ opcode | (regA << 13) | (regB << 10) | regC } {}
+	: Instruction{ opcode | (regA << A_SHIFT) | (regB << B_SHIFT) | regC } {}
 
 RRI::RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC)
-	: Instruction{opcode | (regA << 13) | (regB << 10) | (immC & 0x007f) } {}
+	: Instruction{opcode | (regA << A_SHIFT) | (regB << B_SHIFT) | (immC & IMM7_MASK) } {}
 
 RI::RI(uint16_t opcode, uint16_t regA, uint16_t immB)
-	: Instruction{ opcode | (regA << 13) + (immB & 0x03ff) } {}
+	: Instruction{ opcode | (regA << A_SHIFT) + (immB & IMM10_MASK) } {}
 
 Line::Line(Instruction* instructions, size_t length)
 	: instructions{ instructions }, length{ length } {}
