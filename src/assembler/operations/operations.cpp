@@ -38,7 +38,17 @@ Line nand(size_t argc, const char** argv)
 
 Line lui(size_t argc, const char** argv)
 {
+	if (argc == 3)
+	{
+		uint16_t immed{ imm(argv[2]) };
 
+		if (immed & IMM10_MASK == immed)
+			return Line{ new RI[1]{ { LUI, argv[1], immed } }, 1 };
+		else
+			; // error: immediate too big
+	}
+	else
+		; // error: operand count does not match
 }
 
 Line sw(size_t argc, const char** argv)
