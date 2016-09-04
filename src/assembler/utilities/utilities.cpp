@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-Table<Op> ops
+Table<operation_t> ops
 {
 	{ ".fill",  &fill },
 	{ ".space", &space },
