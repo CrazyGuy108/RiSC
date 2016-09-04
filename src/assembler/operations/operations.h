@@ -3,6 +3,11 @@
 
 #include <cstdint>
 
+#define IMM7_MIN -64
+#define IMM7_MAX 63
+#define IMM10_MIN 0
+#define IMM10_MAX 1023
+
 // prototype to resolve circular inclusion
 
 class Line;
