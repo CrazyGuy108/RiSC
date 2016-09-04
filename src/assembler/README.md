@@ -5,11 +5,10 @@ The first part has to do with building the symbol table and resolving any other 
 
 Here's what I have for how everything would work:
 
-1. Open the file to read from using command line argument.
-	1. If file not found, ask for the name instead.
-2. Go through every word and identify+resolve symbols, opcodes, and operands.
-	1. How it will resolve the operands depends initially on the opcode.
-	2. Exceptions can be thrown which should be handled by main and respond accordingly.
-3. Using a ton of bitwise operations, assemble the bytecode line by line and output to the specified file.
-	1. Same as 1.1.
-	2. By now, everything should be ready to compile, since all symbols and words have been resolved.
+1. Load the file to read from.
+2. Build the symbol table.
+	1. Symbols are identified as words that end with a colon.
+	2. Exceptions such as redefining a symbol, or more than one symbol in a given line, can be thrown.
+3. Using a ton of bitwise operations, assemble the bytecode line by line and write to the specified file.
+	1. After the symbol table is built, the assembler can proceed to go through and compile.
+	2. Exceptions thrown can include undefined/missing operands, opcodes, and immediates.
