@@ -39,7 +39,12 @@ Line addi(size_t argc, const char** argv)
 				; // error: undefined operand
 		}
 
-		return Line{ new RRI[1]{ RRI{ ADDI, regs[operands[0]], regs[operands[1]], imm(argv[3]) } }, 1 };
+		uint16_t immed{ imm(argv[3]) };
+
+		if (immed & IMM7_MASK == immed || immed & IMM7_NEG_MASK == IMM7_NEG_MASK)
+			return Line{ new RRI[1]{ RRI{ ADDI, regs[operands[0]], regs[operands[1]], immed } }, 1 };
+		else
+			; // either pseudo op or error: immediate too big
 	}
 	else
 		; // error: operand count does not match
