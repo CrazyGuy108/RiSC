@@ -10,7 +10,6 @@ class Line;
 #define A_SHIFT       13
 #define B_SHIFT       10
 #define IMM7_MASK     0x007f
-#define IMM7_NEG_MASK 0xff80
 #define IMM10_MASK    0x03ff
 
 class Instruction
