@@ -30,6 +30,23 @@ RRR::RRR(uint16_t opcode, const char* regA, const char* regB, const char* regC)
 RRI::RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC)
 	: Instruction{opcode | (regA << A_SHIFT) | (regB << B_SHIFT) | (immC & IMM7_MASK) } {}
 
+RRI::RRI(uint16_t opcode, const char* regA, const char* regB, uint16_t immC)
+{
+	int operands[2]
+	{
+		regs.search(regA),
+		regs.search(regB)
+	};
+
+	for (uint8_t i{ 0 }; i < 2; ++i)
+	{
+		if (operands[i] < 0)
+			; // error: undefined operand
+	}
+
+	*this = RRI{ opcode, regs[operands[0]], regs[operands[1]], immC };
+}
+
 RI::RI(uint16_t opcode, uint16_t regA, uint16_t immB)
 	: Instruction{ opcode | (regA << A_SHIFT) + (immB & IMM10_MASK) } {}
 

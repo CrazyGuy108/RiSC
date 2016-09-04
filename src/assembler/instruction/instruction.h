@@ -35,6 +35,7 @@ class RRI
 {
 public:
 	RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC);
+	RRI(uint16_t opcode, const char* regA, const char* regB, uint16_t immC);
 };
 
 class RI
