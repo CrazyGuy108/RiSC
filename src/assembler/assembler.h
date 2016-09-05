@@ -6,6 +6,6 @@
 #include "table/table.h"
 #include "utilities/utilities.h"
 
-char* assemble(const char* program);
+void assemble(int argc, char** argv);
 
 #endif // ASSEMBLER_H

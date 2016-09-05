@@ -5,8 +5,7 @@ typedef void(*extension_t)(int argc, char** argv);
 
 Table<extension_t> extensions
 {
-	{ ".asm", &assemble },
-	{ ".s",   &assemble }
+	{ ".asm", &assemble }
 };
 
 int main(int argc, char** argv)
