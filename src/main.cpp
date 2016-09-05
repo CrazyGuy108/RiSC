@@ -1,6 +1,12 @@
 #include <fstream>
 #include "assembler/assembler.h"
 
+Table<void(*)(int argc, char** argv)> extensions
+{
+	{ ".asm", &assemble },
+	{ ".s", &assemble }
+};
+
 int main(int argc, char** argv)
 {
 	if (argc == 2)
