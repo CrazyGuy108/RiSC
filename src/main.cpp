@@ -1,10 +1,12 @@
 #include <fstream>
 #include "assembler/assembler.h"
 
-Table<void(*)(int argc, char** argv)> extensions
+typedef void(*extension_t)(int argc, char** argv);
+
+Table<extension_t> extensions
 {
 	{ ".asm", &assemble },
-	{ ".s", &assemble }
+	{ ".s",   &assemble }
 };
 
 int main(int argc, char** argv)
