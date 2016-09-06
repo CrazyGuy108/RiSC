@@ -3,4 +3,6 @@
 void assemble(int argc, char** argv)
 {
 	std::ifstream infile{ argv[1] };
+
+	infile.close();
 }
