@@ -9,5 +9,9 @@ void assemble(int argc, char** argv)
 	std::streamoff length = infile.tellg();
 	infile.seekg(0, infile.beg);
 
+	// put into char array
+	char* contents = new char[length];
+	infile.read(contents, length);
+
 	infile.close();
 }
