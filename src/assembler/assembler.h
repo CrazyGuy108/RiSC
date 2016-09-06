@@ -2,6 +2,7 @@
 #define ASSEMBLER_H
 
 #include <fstream>
+#include "utilities/utilities.h"
 
 void assemble(int argc, char** argv);
 
