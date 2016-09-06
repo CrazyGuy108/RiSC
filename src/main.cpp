@@ -1,4 +1,3 @@
-#include <fstream>
 #include "assembler/assembler.h"
 
 typedef void(*extension_t)(int argc, char** argv);
