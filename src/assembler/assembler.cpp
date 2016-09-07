@@ -6,7 +6,7 @@ void assemble(int argc, char** argv)
 
 	// get file length
 	infile.seekg(0, infile.end);
-	std::streamoff length = infile.tellg();
+	std::streamsize length = infile.tellg();
 	infile.seekg(0, infile.beg);
 
 	// put into char array
