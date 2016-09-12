@@ -42,7 +42,7 @@ void assemble(int argc, char** argv)
 				break;
 
 			case '\n': // new line
-				words.push_back(std::vector<char*>{});
+				words.push_back(std::vector<char*>{}); // construct empty vector
 
 				// reset and increment line index
 				contents += index;
