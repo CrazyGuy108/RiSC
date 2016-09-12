@@ -64,7 +64,7 @@ void assemble(int argc, char** argv)
 		// build symbol table
 		
 		// compile into bytecode
-		
+		/*
 		// write to file
 		std::ofstream outfile{ argv[2] };
 
@@ -72,6 +72,7 @@ void assemble(int argc, char** argv)
 			return; // error: file open failed
 
 		outfile.close();
+		*/
 	}
 	else
 		; // error: no dest file specified
