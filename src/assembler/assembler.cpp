@@ -53,8 +53,9 @@ void assemble(int argc, char** argv)
 			case '#': // ignore until new line
 				char* temp{ strchr(contents + index, '\n') };
 				if (temp == nullptr)
-					goto read_end;   // newline not found, so must be end of file
-				contents = temp - 1; // the next loop will execute the code associated with newlines
+					goto read_end;		 // newline not found, so must be end of file
+				else
+					contents = temp - 1; // the next loop will execute the code associated with newlines
 				break;
 			}
 		}
