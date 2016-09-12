@@ -22,7 +22,40 @@ void assemble(int argc, char** argv)
 		infile.close();
 
 		// split into words and ignore comments
+		std::vector<std::vector<char*>> words;
+		size_t wordIndex{ 0 };
+		size_t lineIndex{ 0 };
+		/***** test this stuff to see if it works *****/
+		for (size_t index{ 0 }; contents[index] != '\0' && index < SIZE_MAX; ++index)
+		{
+			switch (contents[index])
+			{
+			case ' ':
+			case '\t': // new word
+				words[lineIndex].push_back(contents);
+				contents[index] = '\0';
 
+				// reset and increment word index
+				contents += index;
+				index = 0;
+				++wordIndex;
+				break;
+
+			case '\n': // new line
+				words.push_back(std::vector<char*>{});
+
+				// reset and increment line index
+				contents += index;
+				wordIndex = 0;
+				++lineIndex;
+				break;
+
+			case '#': // ignore until new line
+				
+				break;
+			}
+		}
+		
 		// build symbol table
 		
 		// compile into bytecode
