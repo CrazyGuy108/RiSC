@@ -38,7 +38,7 @@ void assemble(int argc, char** argv)
 
 				foundSpace = true; // ignore spaces/tabs until next nonspecial character
 
-				words[lineIndex].push_back(contents); // pointer to last nonspecial character
+				words[lineIndex].push_back(contents); // pointer to first nonspecial character
 				contents[index] = '\0'; // terminate string with a null character where the tab/space was found
 
 				// reset and increment word index
