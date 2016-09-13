@@ -25,6 +25,7 @@ void assemble(int argc, char** argv)
 		std::vector<std::vector<char*>> words;
 		size_t wordIndex{ 0 };
 		size_t lineIndex{ 0 };
+		bool foundSpace{ false };
 		/***** test this stuff to see if it works *****/
 		for (size_t index{ 0 }; contents[index] != '\0' && index < SIZE_MAX; ++index)
 		{
@@ -32,6 +33,11 @@ void assemble(int argc, char** argv)
 			{
 			case ' ':
 			case '\t': // new word
+				if (foundSpace)
+					break;
+
+				foundSpace = true; // ignore spaces/tabs until next nonspecial character
+
 				words[lineIndex].push_back(contents); // pointer to last nonspecial character
 				contents[index] = '\0'; // terminate string with a null character where the tab/space was found
 
