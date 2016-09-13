@@ -1,5 +1,6 @@
 #include "assembler/assembler.h"
 
+/***** move some stuff to a global utilities folder *****/
 typedef void(*extension_t)(int argc, char** argv);
 
 Table<extension_t> extensions
