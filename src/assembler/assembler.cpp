@@ -33,7 +33,7 @@ void assemble(int argc, char** argv)
 			case ' ':
 			case '\t': // new word
 				words[lineIndex].push_back(contents); // pointer to last nonspecial character
-				contents[index] = '\0';				  // terminate string with a null character where the tab/space was found
+				contents[index] = '\0'; // terminate string with a null character where the tab/space was found
 
 				// reset and increment word index
 				contents += index;
@@ -53,7 +53,7 @@ void assemble(int argc, char** argv)
 			case '#': // ignore until new line
 				char* temp{ strchr(contents + index, '\n') };
 				if (temp == nullptr)
-					goto read_end;		 // newline not found, so must be end of file
+					goto read_end; // newline not found, so must be end of file
 				else
 					contents = temp - 1; // the next loop will execute the code associated with newlines
 				break;
