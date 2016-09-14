@@ -42,11 +42,12 @@ void assemble(int argc, char** argv)
 
 				if (iterator[index - 1] == ':') // add to symbol table
 				{
-					
+					iterator[index - 1] = '\0'; // terminate with null character where the colon was found
+					// insert word and lineIndex to symbol table
 				}
 				else // add to words list
 				{
-					iterator[index] = '\0'; // terminate with a null character where the tab/space was found
+					iterator[index] = '\0'; // terminate with null character where the tab/space was found
 					words[lineIndex].push_back(iterator); // pointer to first nonspecial character
 				}
 
