@@ -26,6 +26,7 @@ void assemble(int argc, char** argv)
 		size_t wordIndex{ 0 };
 		size_t lineIndex{ 0 };
 		bool foundSpace{ false };
+		char* temp;
 		/***** test this stuff to see if it works *****/
 		for (size_t index{ 0 }; contents[index] != '\0' && index < SIZE_MAX; ++index)
 		{
@@ -57,7 +58,7 @@ void assemble(int argc, char** argv)
 				break;
 
 			case '#': // ignore until new line
-				char* temp{ strchr(contents + index, '\n') };
+				temp = strchr(contents + index, '\n');
 				if (temp == nullptr)
 					goto read_end; // newline not found, so must be end of file
 				else
