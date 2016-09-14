@@ -63,6 +63,9 @@ void assemble(int argc, char** argv)
 				else
 					contents = temp - 1; // the next loop will execute the code associated with newlines
 				break;
+				
+			default:
+				foundSpace = false; // nonspecial character found
 			}
 		}
 		read_end:
