@@ -22,15 +22,16 @@ void assemble(int argc, char** argv)
 		infile.close();
 
 		// split into words and ignore comments
+		char* iterator{ contents };
 		std::vector<std::vector<char*>> words;
 		size_t wordIndex{ 0 };
 		size_t lineIndex{ 0 };
 		bool foundSpace{ false };
 		char* temp;
 		/***** test this stuff to see if it works *****/
-		for (size_t index{ 0 }; contents[index] != '\0' && index < SIZE_MAX; ++index)
+		for (size_t index{ 0 }; iterator[index] != '\0' && index < SIZE_MAX; ++index)
 		{
-			switch (contents[index])
+			switch (iterator[index])
 			{
 			case ' ':
 			case '\t': // new word
@@ -39,18 +40,18 @@ void assemble(int argc, char** argv)
 
 				foundSpace = true; // ignore spaces/tabs until next nonspecial character
 
-				if (contents[index - 1] == ':') // add to symbol table
+				if (iterator[index - 1] == ':') // add to symbol table
 				{
 					
 				}
 				else // add to words list
 				{
-					contents[index] = '\0'; // terminate with a null character where the tab/space was found
-					words[lineIndex].push_back(contents); // pointer to first nonspecial character
+					iterator[index] = '\0'; // terminate with a null character where the tab/space was found
+					words[lineIndex].push_back(iterator); // pointer to first nonspecial character
 				}
 
 				// reset and increment word index
-				contents += index;
+				iterator += index;
 				index = 0;
 				++wordIndex;
 				break;
@@ -59,17 +60,17 @@ void assemble(int argc, char** argv)
 				words.push_back(std::vector<char*>{}); // construct empty vector
 
 				// reset and increment line index
-				contents += index;
+				iterator += index;
 				wordIndex = 0;
 				++lineIndex;
 				break;
 
 			case '#': // ignore until new line
-				temp = strchr(contents + index, '\n');
+				temp = strchr(iterator + index, '\n');
 				if (temp == nullptr)
 					goto read_end; // newline not found, so must be end of file
 				else
-					contents = temp - 1; // the next loop will execute the code associated with newlines
+					iterator = temp - 1; // the next loop will execute the code associated with newlines
 				break;
 				
 			default:
@@ -88,6 +89,8 @@ void assemble(int argc, char** argv)
 
 		outfile.close();
 		*/
+
+		delete contents;
 	}
 	else
 		; // error: no dest file specified
