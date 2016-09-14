@@ -39,8 +39,15 @@ void assemble(int argc, char** argv)
 
 				foundSpace = true; // ignore spaces/tabs until next nonspecial character
 
-				words[lineIndex].push_back(contents); // pointer to first nonspecial character
-				contents[index] = '\0'; // terminate string with a null character where the tab/space was found
+				if (contents[index - 1] == ':') // add to symbol table
+				{
+					
+				}
+				else // add to words list
+				{
+					contents[index] = '\0'; // terminate with a null character where the tab/space was found
+					words[lineIndex].push_back(contents); // pointer to first nonspecial character
+				}
 
 				// reset and increment word index
 				contents += index;
@@ -70,8 +77,6 @@ void assemble(int argc, char** argv)
 			}
 		}
 		read_end:
-		
-		// build symbol table
 		
 		// compile into bytecode
 		/*
