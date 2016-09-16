@@ -68,6 +68,20 @@ public:
 	// binary search for a Symbol's index
 	int search(const char* token)
 	{
+		int index{ closestMatch(token) };
+		if (cmp(data[index].name, token) != -1)
+			return index;
+		else
+			return -1;
+	}
+
+private:
+	std::vector<item_type> data;
+
+	// binary search for the closest match to an item
+	// used by insert and search
+	int closestMatch(const char* token)
+	{
 		if (token == nullptr)
 			return -1;
 
@@ -89,11 +103,8 @@ public:
 				return middle;
 		} while (start <= end);
 
-		return -1;
+		return middle;
 	}
-
-private:
-	std::vector<item_type> data;
 };
 
 #endif // SYMBOLTABLE_H
