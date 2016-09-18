@@ -29,9 +29,7 @@ void assemble(int argc, char** argv)
 
 		// split into words and ignore comments
 		char* iterator{ contents };
-		std::vector<std::vector<char*>> words;
-		words.reserve(1);
-		words[0].reserve(1);
+		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
 		size_t wordIndex{ 0 };
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
