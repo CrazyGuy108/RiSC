@@ -25,7 +25,7 @@ void assemble(int argc, char** argv)
 		char* iterator{ contents };
 		std::vector<std::vector<char*>> words;
 		size_t wordIndex{ 0 };
-		size_t lineIndex{ 0 };
+		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
 		char* temp;
 		/***** test this stuff to see if it works *****/
@@ -43,7 +43,7 @@ void assemble(int argc, char** argv)
 				if (iterator[index - 1] == ':') // add to symbol table
 				{
 					iterator[index - 1] = '\0'; // terminate with null character where the colon was found
-					// insert word and lineIndex to symbol table
+					symbols.insert(iterator, lineIndex);
 				}
 				else // add to words list
 				{
