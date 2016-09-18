@@ -35,7 +35,7 @@ void assemble(int argc, char** argv)
 			{
 			case ' ':
 			case '\t': // new word
-				if (foundSpace)
+				if (foundSpace) // skip multiple spaces
 					break;
 
 				foundSpace = true; // ignore spaces/tabs until next nonspecial character
