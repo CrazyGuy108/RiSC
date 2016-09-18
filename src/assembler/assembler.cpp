@@ -76,8 +76,8 @@ void assemble(int argc, char** argv)
 				temp = strchr(iterator + index, '\n');
 				if (temp == nullptr)
 					goto read_end; // newline not found, so must be end of file
-				else
-					iterator = temp - 1; // the next loop will execute the code associated with newlines
+
+				iterator = temp - 1; // the next loop will execute the code associated with newlines
 				break;
 				
 			default:
