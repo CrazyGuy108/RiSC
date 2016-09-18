@@ -14,10 +14,10 @@ int main(int argc, char** argv)
 	{
 		// get file extension
 
-		const char* extension{ strchr(argv[2], '/') };
+		const char* extension{ strchr(argv[1], '/') };
 
 		if (extension == nullptr)
-			extension = strchr(argv[2], '.');
+			extension = strchr(argv[1], '.');
 		else
 			extension = strchr(extension, '.');
 
