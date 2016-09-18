@@ -79,7 +79,7 @@ public:
 	void insert(const char* name, value_type& value)
 	{
 		int index{ closestMatch(name) };
-		if (index != -1 && cmp(data[index].name, token) != -1)
+		if (index != -1 && cmp(data[index].name, name) != -1)
 			; // error: already defined
 		else
 			data.insert(index, value);
