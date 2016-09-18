@@ -75,6 +75,16 @@ public:
 			return -1;
 	}
 
+	// insert a value in order
+	void insert(const char* name, value_type& value)
+	{
+		int index{ closestMatch(name) };
+		if (index != -1 && cmp(data[index].name, token) != -1)
+			; // error: already defined
+		else
+			data.insert(index, value);
+	}
+
 private:
 	std::vector<item_type> data;
 
