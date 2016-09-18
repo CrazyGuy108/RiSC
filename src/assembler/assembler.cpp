@@ -5,12 +5,14 @@ void assemble(int argc, char** argv)
 	if (argc == 3)
 	{
 		std::ifstream infile{ argv[1] };
-
-		if (infile.fail()) // failed to open
+		
+		if (!infile.is_open()) // failed to open
 		{
 			std::cout << "error: input file failed to open\n";
 			return;
 		}
+
+		std::cout << "input file opened\n";
 
 		// get file length
 		infile.seekg(0, infile.end);
@@ -18,8 +20,9 @@ void assemble(int argc, char** argv)
 		infile.seekg(0, infile.beg);
 
 		// put into char array
-		char* contents = new char[length];
+		char* contents = new char[length + 1];
 		infile.read(contents, length);
+		contents[length] = '\0'; // null character to prevent reading garbage data
 
 		// no need to read from it anymore
 		infile.close();
@@ -27,6 +30,8 @@ void assemble(int argc, char** argv)
 		// split into words and ignore comments
 		char* iterator{ contents };
 		std::vector<std::vector<char*>> words;
+		words.reserve(1);
+		words[0].reserve(1);
 		size_t wordIndex{ 0 };
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
