@@ -69,7 +69,7 @@ public:
 	int search(const char* token)
 	{
 		int index{ closestMatch(token) };
-		if (cmp(data[index].name, token) != -1)
+		if (index != -1 && cmp(data[index].name, token) != -1)
 			return index;
 		else
 			return -1;
