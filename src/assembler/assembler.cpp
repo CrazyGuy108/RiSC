@@ -6,8 +6,11 @@ void assemble(int argc, char** argv)
 	{
 		std::ifstream infile{ argv[1] };
 
-		if (infile.fail())
-			return; // error: file open failed
+		if (infile.fail()) // failed to open
+		{
+			std::cout << "error: input file failed to open\n";
+			return;
+		}
 
 		// get file length
 		infile.seekg(0, infile.end);

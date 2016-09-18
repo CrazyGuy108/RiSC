@@ -2,6 +2,7 @@
 #define ASSEMBLER_H
 
 #include <fstream>
+#include <iostream>
 #include <vector>
 #include "utilities/utilities.h"
 
