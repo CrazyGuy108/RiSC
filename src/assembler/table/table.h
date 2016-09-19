@@ -25,7 +25,7 @@ public:
 	typedef T value_type;
 
 	Table()
-		{}
+		: data{} {}
 
 	Table(std::initializer_list<item_type> data)
 		: data{ data } {}
