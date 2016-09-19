@@ -93,7 +93,7 @@ private:
 			return -1;
 
 		size_t start{ 0 };
-		size_t end{ size() - 1 };
+		size_t end{ size() };
 		size_t middle;
 		int comparison;
 
