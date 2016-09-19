@@ -49,7 +49,7 @@ void assemble(int argc, char** argv)
 				if (iterator[index - 1] == ':') // add to symbol table
 				{
 					iterator[index - 1] = '\0'; // terminate with null character where the colon was found
-					symbols.insert(iterator, lineIndex);
+					symbols.insert(iterator + 1, lineIndex); // the +1 takes out the newline
 				}
 				else // add to words list
 				{
@@ -78,6 +78,7 @@ void assemble(int argc, char** argv)
 					goto read_end; // newline not found, so must be end of file
 
 				iterator = temp - 1; // the next loop will execute the code associated with newlines
+				index = 0; // reset index
 				break;
 				
 			default:
