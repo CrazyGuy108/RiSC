@@ -39,6 +39,14 @@ void assemble(int argc, char** argv)
 		{
 			switch (iterator[index])
 			{
+			case '\n': // new line
+				words.push_back(std::vector<char*>{}); // construct empty vector
+
+				// reset and increment line index
+				iterator += index;
+				wordIndex = 0;
+				++lineIndex;
+				// process new word
 			case ' ':
 			case '\t': // new word
 				if (foundSpace) // skip multiple spaces
@@ -61,15 +69,6 @@ void assemble(int argc, char** argv)
 				iterator += index;
 				index = 0;
 				++wordIndex;
-				break;
-
-			case '\n': // new line
-				words.push_back(std::vector<char*>{}); // construct empty vector
-
-				// reset and increment line index
-				iterator += index;
-				wordIndex = 0;
-				++lineIndex;
 				break;
 
 			case '#': // ignore until new line
