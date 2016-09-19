@@ -43,7 +43,6 @@ void assemble(int argc, char** argv)
 				words.push_back(std::vector<char*>{}); // construct empty vector
 
 				// reset and increment line index
-				iterator += index;
 				wordIndex = 0;
 				++lineIndex;
 				// process new word
