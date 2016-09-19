@@ -89,7 +89,8 @@ private:
 	// used by insert and search
 	int closestMatch(const char* token)
 	{
-		if (token == nullptr)
+		// don't need to check if token is a nullptr or data is empty
+		if (token == nullptr || data.empty())
 			return -1;
 
 		size_t start{ 0 };
