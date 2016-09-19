@@ -76,7 +76,9 @@ public:
 	void insert(const char* name, value_type& value)
 	{
 		int index{ closestMatch(name) };
-		if (index != -1 && cmp(data[index].name, name) != -1)
+		if (index == -1) // check if invalid
+			data.insert(data.begin(), item_type{ name, value }); // insert at start
+		else if (cmp(data[index].name, name) != -1) // check if item already defined
 			; // error: already defined
 		else
 			data.insert(data.begin() + index, item_type{ name, value });
