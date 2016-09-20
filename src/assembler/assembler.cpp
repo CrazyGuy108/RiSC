@@ -33,7 +33,7 @@ void assemble(int argc, char** argv)
 		size_t wordIndex{ 0 };
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
-		char* temp;
+		bool foundComment{ false };
 		/***** test this stuff to see if it works *****/
 		for (size_t index{ 0 }; iterator[index] != '\0' && index < SIZE_MAX; ++index)
 		{
@@ -45,10 +45,20 @@ void assemble(int argc, char** argv)
 				// reset and increment line index
 				wordIndex = 0;
 				++lineIndex;
+
+				// check if the end of a comment
+				if (foundComment)
+				{
+					foundComment = false;
+					iterator += index;
+					index = 0;
+					break;
+				}
+
 				// process new word
 			case ' ':
 			case '\t': // new word
-				if (foundSpace) // skip multiple spaces
+				if (foundSpace || foundComment) // skip multiple spaces or a comment
 					break;
 
 				foundSpace = true; // ignore spaces/tabs until next nonspecial character
@@ -56,7 +66,7 @@ void assemble(int argc, char** argv)
 				if (iterator[index - 1] == ':') // add to symbol table
 				{
 					iterator[index - 1] = '\0'; // terminate with null character where the colon was found
-					symbols.insert(iterator + 1, lineIndex); // the +1 takes out the newline
+					symbols.insert(++iterator, lineIndex); // the +1 takes out the newline
 				}
 				else // add to words list
 				{
@@ -71,19 +81,13 @@ void assemble(int argc, char** argv)
 				break;
 
 			case '#': // ignore until new line
-				temp = strchr(iterator + index, '\n');
-				if (temp == nullptr)
-					goto read_end; // newline not found, so must be end of file
-
-				iterator = temp - 1; // the next loop will execute the code associated with newlines
-				index = 0; // reset index
+				foundComment = true;
 				break;
 				
 			default:
 				foundSpace = false; // nonspecial character found
 			}
 		}
-		read_end:
 		
 		// compile into bytecode
 		/*
@@ -95,6 +99,17 @@ void assemble(int argc, char** argv)
 
 		outfile.close();
 		*/
+
+		// iterate through lines
+		for (size_t i{ 0 }; i < words.size(); ++i)
+		{
+			// iterator through words
+			for (size_t j{ 0 }; j < words[i].size(); ++j)
+			{
+				std::cout << words[i][j] << ",";
+			}
+			std::cout << '\n';
+		}
 
 		delete contents;
 	}
