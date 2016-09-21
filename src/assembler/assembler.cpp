@@ -92,8 +92,10 @@ void assemble(int argc, char** argv)
 
 				if (words[i][0][len - 1] == ':') // check last character
 				{
-					// resolve as label
-					
+					words.erase(words.begin() + i--); // remove from words vector
+
+					symbols.insert(words[i][0], i); // the value in this case would be i, the current line
+					words[i][0][len - 1] = '\0'; // overwrite colon with null character
 				}
 			}
 		}
