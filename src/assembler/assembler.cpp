@@ -33,7 +33,6 @@ void assemble(int argc, char** argv)
 		size_t wordIndex{ 0 };
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
-		bool foundComment{ false };
 		size_t index{ 0 };
 		while (iterator[index] != '\0')
 		{
@@ -79,7 +78,7 @@ void assemble(int argc, char** argv)
 		}
 
 		// resolve labels
-		
+
 		// compile into bytecode
 
 		/*
