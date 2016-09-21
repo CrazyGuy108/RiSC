@@ -34,62 +34,54 @@ void assemble(int argc, char** argv)
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
 		bool foundComment{ false };
-		/***** test this stuff to see if it works *****/
-		for (size_t index{ 0 }; iterator[index] != '\0' && index < SIZE_MAX; ++index)
+		size_t index{ 0 };
+		while (iterator[index] != '\0')
 		{
 			switch (iterator[index])
 			{
+			case '#': // comment
+				// ignore everything until newline
+				while (iterator[index] != '\n')
+					++index;
+				// next case will obviously be a newline so don't break
+
 			case '\n': // new line
-				words.push_back(std::vector<char*>{}); // construct empty vector
+				words.push_back(std::vector<char*>{}); // construct new line
 
-				// reset and increment line index
-				wordIndex = 0;
+				// reset line
 				++lineIndex;
-
-				// check if the end of a comment
-				if (foundComment)
-				{
-					foundComment = false;
-					iterator += index;
-					index = 0;
-					break;
-				}
-
-				// process new word
-			case ' ':
-			case '\t': // new word
-				if (foundSpace || foundComment) // skip multiple spaces or a comment
-					break;
-
-				foundSpace = true; // ignore spaces/tabs until next nonspecial character
-
-				if (iterator[index - 1] == ':') // add to symbol table
-				{
-					iterator[index - 1] = '\0'; // terminate with null character where the colon was found
-					symbols.insert(++iterator, lineIndex); // the +1 takes out the newline
-				}
-				else // add to words list
-				{
-					iterator[index] = '\0'; // terminate with null character where the tab/space was found
-					words[lineIndex].push_back(iterator); // pointer to first nonspecial character
-				}
-
-				// reset and increment word index
-				iterator += index;
+				wordIndex = 0;
+				iterator += index + 1; // sets iterator to just after the newline
 				index = 0;
-				++wordIndex;
 				break;
 
-			case '#': // ignore until new line
-				foundComment = true;
+			case '\t': // new word/label
+			case ' ':
+				// skip multiple spaces/tabs
+				if (foundSpace)
+					break;
+
+				foundSpace = true;
+
+				words[lineIndex].push_back(iterator); // iterator holds base pointer of string
+				iterator[index] = '\0'; // terminate the new substring
+
+				// reset word
+				++wordIndex;
+				iterator += index + 1;
+				index = 0;
 				break;
-				
-			default:
-				foundSpace = false; // nonspecial character found
+
+			default: // nonspecial character
+				foundSpace = false;
+				++index;
 			}
 		}
+
+		// resolve labels
 		
 		// compile into bytecode
+
 		/*
 		// write to file
 		std::ofstream outfile{ argv[2] };
@@ -99,6 +91,8 @@ void assemble(int argc, char** argv)
 
 		outfile.close();
 		*/
+		
+		
 
 		// iterate through lines
 		for (size_t i{ 0 }; i < words.size(); ++i)
