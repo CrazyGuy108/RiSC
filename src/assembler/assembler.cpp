@@ -81,9 +81,20 @@ void assemble(int argc, char** argv)
 
 		for (uint16_t i{ 0 }; i < words.size(); ++i)
 		{
-			if (words[i].empty())
+			if (words[i].empty()) // blank line should be removed
+				words.erase(words.begin() + i--);
+			else // check if label
 			{
-				words.erase(words.begin() + i);
+				size_t len{ 0 };
+
+				while (words[i][0][len] != '\0')
+					++len;
+
+				if (words[i][0][len - 1] == ':') // check last character
+				{
+					// resolve as label
+					
+				}
 			}
 		}
 
