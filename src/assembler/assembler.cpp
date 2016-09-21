@@ -79,6 +79,14 @@ void assemble(int argc, char** argv)
 
 		// resolve labels
 
+		for (uint16_t i{ 0 }; i < words.size(); ++i)
+		{
+			if (words[i].empty())
+			{
+				words.erase(words.begin() + i);
+			}
+		}
+
 		// compile into bytecode
 
 		/*
