@@ -125,6 +125,12 @@ void assemble(int argc, char** argv)
 			std::cout << '\n';
 		}
 
+		// iterate through symbols
+		for (size_t i{ 0 }; i < symbols.size(); ++i)
+		{
+			std::cout << symbols[i] << '\n';
+		}
+
 		delete contents;
 	}
 	else
