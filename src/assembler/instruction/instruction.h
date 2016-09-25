@@ -5,6 +5,7 @@
 class Line;
 
 #include <cstdint>
+#include <vector>
 #include "../utilities/utilities.h"
 
 #define A_SHIFT       13
@@ -49,17 +50,8 @@ class Line
 {
 public:
 	Line();
-	Line(Instruction* instructions, size_t length);
-	~Line();
 
-	/***** use vector and overload operator+? *****/
-	/***** overload operator[]? *****/
-
-	// array of compiled instructions
-	Instruction* instructions;
-
-	// keeps track of how many Instructions
-	size_t length;
+	std::vector<Instruction> instructions;
 };
 
 // takes in a parsed line of code to produce a series of bytecode instructions
