@@ -2,7 +2,7 @@
 
 line_t rrr(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC)
 {
-	return line_t{ opcode | (regA << A_SHIFT) | (regB << B_SHIFT) | regC };
+	return line_t{ opcode | (regA << a_shift) | (regB << b_shift) | regC };
 }
 
 line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC)
@@ -25,7 +25,7 @@ line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC
 
 line_t rri(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC)
 {
-	return line_t{ opcode | (regA << A_SHIFT) | (regB << B_SHIFT) | (immC & IMM7_MASK) };
+	return line_t{ opcode | (regA << a_shift) | (regB << b_shift) | (immC & imm7_mask) };
 }
 
 line_t rri(uint16_t opcode, const char* regA, const char* regB, uint16_t immC)
@@ -47,7 +47,7 @@ line_t rri(uint16_t opcode, const char* regA, const char* regB, uint16_t immC)
 
 line_t ri(uint16_t opcode, uint16_t regA, uint16_t immB)
 {
-	return line_t{ opcode | (regA << A_SHIFT) + (immB & IMM10_MASK) };
+	return line_t{ opcode | (regA << a_shift) + (immB & imm10_mask) };
 }
 
 line_t ri(uint16_t opcode, const char* regA, uint16_t immB)

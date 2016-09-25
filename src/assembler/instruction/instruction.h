@@ -8,10 +8,10 @@ class Line;
 #include <vector>
 #include "../utilities/utilities.h"
 
-#define A_SHIFT       13
-#define B_SHIFT       10
-#define IMM7_MASK     0x007f
-#define IMM10_MASK    0x03ff
+constexpr inst_t a_shift    = 13;
+constexpr inst_t b_shift    = 10;
+constexpr inst_t imm7_mask  = 0x007f;
+constexpr inst_t imm10_mask = 0x03ff;
 
 typedef uint16_t inst_t;
 typedef std::vector<inst_t> line_t;
