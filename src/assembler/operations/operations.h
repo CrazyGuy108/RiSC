@@ -8,41 +8,27 @@
 #define IMM10_MIN 0
 #define IMM10_MAX 1023
 
-// prototype to resolve circular inclusion
-
-class Line;
+#define op(name) Line name(size_t argc, const char** argv, uint16_t line)
 
 // opcodes
 
-Line add(size_t argc, const char** argv, uint16_t line);
-
-Line addi(size_t argc, const char** argv, uint16_t line);
-
-Line nand(size_t argc, const char** argv, uint16_t line);
-
-Line lui(size_t argc, const char** argv, uint16_t line);
-
-Line sw(size_t argc, const char** argv, uint16_t line);
-
-Line lw(size_t argc, const char** argv, uint16_t line);
-
-Line beq(size_t argc, const char** argv, uint16_t line);
-
-Line jalr(size_t argc, const char** argv, uint16_t line);
+op(add);
+op(addi);
+op(nand);
+op(lui);
+op(sw);
+op(lw);
+op(beq);
+op(jalr);
 
 // pseudo ops
 
-Line nop(size_t argc, const char** argv, uint16_t line);
-
-Line halt(size_t argc, const char** argv, uint16_t line);
-
-Line lli(size_t argc, const char** argv, uint16_t line);
-
-Line movi(size_t argc, const char** argv, uint16_t line);
-
-Line fill(size_t argc, const char** argv, uint16_t line);
-
-Line space(size_t argc, const char** argv, uint16_t line);
+op(nop);
+op(halt);
+op(lli);
+op(movi);
+op(fill);
+op(space);
 
 #include "../instruction/instruction.h"
 
