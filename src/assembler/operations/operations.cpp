@@ -1,6 +1,6 @@
 #include "operations.h"
 
-Line add(size_t argc, const char** argv, uint16_t line)
+op(add)
 {
 	if (argc == 4)
 	{
@@ -10,7 +10,7 @@ Line add(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line addi(size_t argc, const char** argv, uint16_t line)
+op(addi)
 {
 	if (argc == 4)
 	{
@@ -25,7 +25,7 @@ Line addi(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line nand(size_t argc, const char** argv, uint16_t line)
+op(nand)
 {
 	if (argc == 4)
 	{
@@ -35,7 +35,7 @@ Line nand(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line lui(size_t argc, const char** argv, uint16_t line)
+op(lui)
 {
 	if (argc == 3)
 	{
@@ -50,7 +50,7 @@ Line lui(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line sw(size_t argc, const char** argv, uint16_t line)
+op(sw)
 {
 	if (argc == 4)
 	{
@@ -65,7 +65,7 @@ Line sw(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line lw(size_t argc, const char** argv, uint16_t line)
+op(lw)
 {
 	if (argc == 4)
 	{
@@ -80,7 +80,7 @@ Line lw(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line beq(size_t argc, const char** argv, uint16_t line)
+op(beq)
 {
 	if (argc == 4)
 	{
@@ -95,7 +95,7 @@ Line beq(size_t argc, const char** argv, uint16_t line)
 		; // error: operand count does not match
 }
 
-Line jalr(size_t argc, const char** argv, uint16_t line)
+op(jalr)
 {
 	if (argc == 4)
 	{
@@ -109,33 +109,33 @@ Line jalr(size_t argc, const char** argv, uint16_t line)
 	else
 		; // error: operand count does not match
 }
-/***** implement after everything else works *****/
-Line nop(size_t argc, const char** argv, uint16_t line)
+/***** implement after everything else works *****
+op(nop)
 {
 	return Line(); // placeholder
 }
 
-Line halt(size_t argc, const char** argv, uint16_t line)
+op(halt)
 {
 	return Line(); // placeholder
 }
 
-Line lli(size_t argc, const char** argv, uint16_t line)
+op(lli)
 {
 	return Line(); // placeholder
 }
 
-Line movi(size_t argc, const char** argv, uint16_t line)
+op(movi)
 {
 	return Line(); // placeholder
 }
 
-Line fill(size_t argc, const char** argv, uint16_t line)
+op(fill)
 {
 	return Line(); // placeholder
 }
 
-Line space(size_t argc, const char** argv, uint16_t line)
+op(space)
 {
 	return Line(); // placeholder
-}
+}*/
