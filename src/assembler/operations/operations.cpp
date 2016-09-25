@@ -4,7 +4,7 @@ op(add)
 {
 	if (argc == 4)
 	{
-		return Line{ new RRR[1]{ { ADD, argv[1], argv[2], argv[3] } }, 1 };
+		return rrr(ADD, argv[1], argv[2], argv[3]);
 	}
 	else
 		; // error: operand count does not match
@@ -17,7 +17,7 @@ op(addi)
 		uint16_t immed{ imm(argv[3]) };
 
 		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
-			return Line{ new RRI[1]{ RRI{ ADDI, argv[1], argv[2], immed } }, 1 };
+			return rri(ADDI, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
 	}
@@ -29,7 +29,7 @@ op(nand)
 {
 	if (argc == 4)
 	{
-		return Line{ new RRR[1]{ { NAND, argv[1], argv[2], argv[3] } }, 1 };
+		return rrr(NAND, argv[1], argv[2], argv[3]);
 	}
 	else
 		; // error: operand count does not match
@@ -42,7 +42,7 @@ op(lui)
 		uint16_t immed{ imm(argv[2]) };
 
 		if (immed >= IMM10_MIN && immed <= IMM10_MAX)
-			return Line{ new RI[1]{ { LUI, argv[1], immed } }, 1 };
+			return ri(LUI, argv[1], immed);
 		else
 			; // error: immediate too big
 	}
@@ -57,7 +57,7 @@ op(sw)
 		uint16_t immed{ imm(argv[3]) };
 
 		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
-			return Line{ new RRI[1]{ RRI{ SW, argv[1], argv[2], immed } }, 1 };
+			return rri(SW, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
 	}
@@ -72,7 +72,7 @@ op(lw)
 		uint16_t immed{ imm(argv[3]) };
 
 		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
-			return Line{ new RRI[1]{ RRI{ LW, argv[1], argv[2], immed } }, 1 };
+			return rri(LW, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
 	}
@@ -87,7 +87,7 @@ op(beq)
 		uint16_t immed{ imm(argv[3], line) };
 
 		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
-			return Line{ new RRI[1]{ RRI{ BEQ, argv[1], argv[2], immed } }, 1 };
+			return rri(BEQ, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
 	}
@@ -102,7 +102,7 @@ op(jalr)
 		uint16_t immed{ imm(argv[3]) };
 
 		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
-			return Line{ new RRI[1]{ RRI{ JALR, argv[1], argv[2], immed } }, 1 };
+			return rri(JALR, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
 	}
