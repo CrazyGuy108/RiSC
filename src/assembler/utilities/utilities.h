@@ -5,14 +5,14 @@
 #include "../operations/operations.h"
 #include "../table/table.h"
 
-#define ADD 0x0000
-#define ADDI 0x2000
-#define NAND 0x4000
-#define LUI 0x6000
-#define SW 0x8000
-#define LW 0xA000
-#define BEQ 0xC000
-#define JALR 0xE000
+constexpr uint16_t ADD  = 0x0000;
+constexpr uint16_t ADDI = 0x2000;
+constexpr uint16_t NAND = 0x4000;
+constexpr uint16_t LUI  = 0x6000;
+constexpr uint16_t SW   = 0x8000;
+constexpr uint16_t LW   = 0xA000;
+constexpr uint16_t BEQ  = 0xC000;
+constexpr uint16_t JALR = 0xE000;
 
 typedef op((*operation_t));
 
