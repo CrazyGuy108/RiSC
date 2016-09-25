@@ -13,48 +13,20 @@ class Line;
 #define IMM7_MASK     0x007f
 #define IMM10_MASK    0x03ff
 
-class Instruction
-{
-public:
-	Instruction();
-	Instruction(uint16_t value);
+typedef uint16_t inst_t;
+typedef std::vector<inst_t> line_t;
 
-	uint16_t value;
-};
+line_t rrr(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
+line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC);
 
-class RRR
-	: public Instruction
-{
-public:
-	RRR(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
-	RRR(uint16_t opcode, const char* regA, const char* regB, const char* regC);
-};
+line_t rri(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC);
+line_t rri(uint16_t opcode, const char* regA, const char* regB, uint16_t immC);
 
-class RRI
-	: public Instruction
-{
-public:
-	RRI(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC);
-	RRI(uint16_t opcode, const char* regA, const char* regB, uint16_t immC);
-};
+line_t ri(uint16_t opcode, uint16_t regA, uint16_t immB);
+line_t ri(uint16_t opcode, const char* regA, uint16_t immB);
 
-class RI
-	: public Instruction
-{
-public:
-	RI(uint16_t opcode, uint16_t regA, uint16_t immB);
-	RI(uint16_t opcode, const char* regA, uint16_t immB);
-};
-
-class Line
-{
-public:
-	Line();
-
-	std::vector<Instruction> instructions;
-};
 
 // takes in a parsed line of code to produce a series of bytecode instructions
-Line compile(size_t argc, const char** argv, uint16_t line);
+line_t compile(size_t argc, const char** argv, uint16_t line);
 
 #endif // INSTRUCTION_H
