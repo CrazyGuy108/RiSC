@@ -14,7 +14,7 @@
 #define BEQ 0xC000
 #define JALR 0xE000
 
-typedef Line(*operation_t)(size_t argc, const char** argv, uint16_t line);
+typedef op((*operation_t));
 
 extern Table<operation_t> ops;
 extern Table<uint16_t> regs;
