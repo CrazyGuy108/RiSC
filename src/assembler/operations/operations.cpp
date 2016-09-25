@@ -16,7 +16,7 @@ op(addi)
 	{
 		uint16_t immed{ imm(argv[3]) };
 
-		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
+		if (immed >= imm7_min && immed <= imm7_max)
 			return rri(ADDI, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
@@ -41,7 +41,7 @@ op(lui)
 	{
 		uint16_t immed{ imm(argv[2]) };
 
-		if (immed >= IMM10_MIN && immed <= IMM10_MAX)
+		if (immed >= imm10_min && immed <= imm10_max)
 			return ri(LUI, argv[1], immed);
 		else
 			; // error: immediate too big
@@ -56,7 +56,7 @@ op(sw)
 	{
 		uint16_t immed{ imm(argv[3]) };
 
-		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
+		if (immed >= imm7_min && immed <= imm7_max)
 			return rri(SW, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
@@ -71,7 +71,7 @@ op(lw)
 	{
 		uint16_t immed{ imm(argv[3]) };
 
-		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
+		if (immed >= imm7_min && immed <= imm7_max)
 			return rri(LW, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
@@ -86,7 +86,7 @@ op(beq)
 	{
 		uint16_t immed{ imm(argv[3], line) };
 
-		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
+		if (immed >= imm7_min && immed <= imm7_max)
 			return rri(BEQ, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
@@ -101,7 +101,7 @@ op(jalr)
 	{
 		uint16_t immed{ imm(argv[3]) };
 
-		if (immed >= IMM7_MIN && immed <= IMM7_MAX)
+		if (immed >= imm7_min && immed <= imm7_max)
 			return rri(JALR, argv[1], argv[2], immed);
 		else
 			; // either pseudo op or error: immediate too big
