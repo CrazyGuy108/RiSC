@@ -6,7 +6,7 @@
 
 #define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
-typedef inst_t inst_t;
+typedef uint16_t inst_t;
 typedef std::vector<inst_t> line_t;
 typedef OP((*operation_t));
 
