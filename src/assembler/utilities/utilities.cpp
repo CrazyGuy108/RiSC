@@ -1,6 +1,6 @@
 #include "utilities.h"
 
-Table<operation_t> ops
+const Table<operation_t> ops
 {
 	{ ".fill",  &fill },
 	{ ".space", &space },
@@ -18,7 +18,7 @@ Table<operation_t> ops
 	{ "sw",	    &sw }
 };
 
-Table<inst_t> regs
+const Table<inst_t> regs
 {
 	{ "0",	0x0000 },
 	{ "1",	0x0001 },

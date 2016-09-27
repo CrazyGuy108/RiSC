@@ -30,9 +30,9 @@ constexpr inst_t imm10_max  = 1023;
 template<typename T>
 class Table;
 
-extern Table<operation_t> ops;
-extern Table<inst_t> regs;
-extern Table<inst_t> symbols;
+extern const Table<operation_t> ops;
+extern const Table<inst_t>      regs;
+extern       Table<inst_t>      symbols;
 
 // string comparison that includes the null character unlike strcmp
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
