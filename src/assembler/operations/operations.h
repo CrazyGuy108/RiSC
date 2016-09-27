@@ -2,6 +2,7 @@
 #define OPERATIONS_H
 
 #include <cstdint>
+#include "../instruction/instruction.h"
 
 constexpr uint16_t imm7_min  = -64;
 constexpr uint16_t imm7_max  = 63;
@@ -29,7 +30,5 @@ OP(lli);
 OP(movi);
 OP(fill);
 OP(space);
-
-#include "../instruction/instruction.h"
 
 #endif // OPERATIONS_H
