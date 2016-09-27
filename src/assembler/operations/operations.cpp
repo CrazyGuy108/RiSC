@@ -109,33 +109,33 @@ OP(jalr)
 	else
 		; // error: operand count does not match
 }
-/***** implement after everything else works *****
+/***** implement after everything else works *****/
 OP(nop)
 {
-	return Line(); // placeholder
+	return line_t(); // placeholder
 }
 
 OP(halt)
 {
-	return Line(); // placeholder
+	return line_t(); // placeholder
 }
 
 OP(lli)
 {
-	return Line(); // placeholder
+	return line_t(); // placeholder
 }
 
 OP(movi)
 {
-	return Line(); // placeholder
+	return line_t(); // placeholder
 }
 
 OP(fill)
 {
-	return Line(); // placeholder
+	return line_t(); // placeholder
 }
 
 OP(space)
 {
-	return Line(); // placeholder
-}*/
+	return line_t(); // placeholder
+}
