@@ -102,6 +102,11 @@ void assemble(int argc, char** argv)
 
 		// compile into bytecode
 
+		for (uint16_t i{ 0 }; i < words.size(); ++i)
+		{
+			compile(words[i].size(), const_cast<const char**>(words[i].data()), i); // placeholder
+		}
+
 		/*
 		// write to file
 		std::ofstream outfile{ argv[2] };
