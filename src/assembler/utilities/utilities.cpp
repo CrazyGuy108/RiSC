@@ -18,7 +18,7 @@ Table<operation_t> ops
 	{ "sw",	    &sw }
 };
 
-Table<uint16_t> regs
+Table<inst_t> regs
 {
 	{ "0",	0x0000 },
 	{ "1",	0x0001 },
@@ -38,7 +38,7 @@ Table<uint16_t> regs
 	{ "r7", 0x0007 }
 };
 
-Table<uint16_t> symbols;
+Table<inst_t> symbols;
 
 int cmp(const char* a, const char* b)
 {
@@ -57,13 +57,13 @@ int cmp(const char* a, const char* b)
 	return 0;
 }
 
-uint16_t imm(const char* name, uint16_t line /* = 0 */)
+inst_t imm(const char* name, uint16_t line /* = 0 */)
 {
 	int index{ symbols.search(name) };
 
 	// check if not in symbol table first
 	if (index < 0)
-		return (uint16_t)strtoul(name, nullptr, 0); /***** add error checking later *****/
+		return (inst_t)strtoul(name, nullptr, 0); /***** add error checking later *****/
 	else
 		return symbols[index] - line; // generates offset
 }
