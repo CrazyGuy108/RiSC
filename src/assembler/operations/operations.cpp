@@ -1,6 +1,6 @@
 #include "operations.h"
 
-op(add)
+OP(add)
 {
 	if (argc == 4)
 	{
@@ -10,7 +10,7 @@ op(add)
 		; // error: operand count does not match
 }
 
-op(addi)
+OP(addi)
 {
 	if (argc == 4)
 	{
@@ -25,7 +25,7 @@ op(addi)
 		; // error: operand count does not match
 }
 
-op(nand)
+OP(nand)
 {
 	if (argc == 4)
 	{
@@ -35,7 +35,7 @@ op(nand)
 		; // error: operand count does not match
 }
 
-op(lui)
+OP(lui)
 {
 	if (argc == 3)
 	{
@@ -50,7 +50,7 @@ op(lui)
 		; // error: operand count does not match
 }
 
-op(sw)
+OP(sw)
 {
 	if (argc == 4)
 	{
@@ -65,7 +65,7 @@ op(sw)
 		; // error: operand count does not match
 }
 
-op(lw)
+OP(lw)
 {
 	if (argc == 4)
 	{
@@ -80,7 +80,7 @@ op(lw)
 		; // error: operand count does not match
 }
 
-op(beq)
+OP(beq)
 {
 	if (argc == 4)
 	{
@@ -95,7 +95,7 @@ op(beq)
 		; // error: operand count does not match
 }
 
-op(jalr)
+OP(jalr)
 {
 	if (argc == 4)
 	{
@@ -110,32 +110,32 @@ op(jalr)
 		; // error: operand count does not match
 }
 /***** implement after everything else works *****
-op(nop)
+OP(nop)
 {
 	return Line(); // placeholder
 }
 
-op(halt)
+OP(halt)
 {
 	return Line(); // placeholder
 }
 
-op(lli)
+OP(lli)
 {
 	return Line(); // placeholder
 }
 
-op(movi)
+OP(movi)
 {
 	return Line(); // placeholder
 }
 
-op(fill)
+OP(fill)
 {
 	return Line(); // placeholder
 }
 
-op(space)
+OP(space)
 {
 	return Line(); // placeholder
 }*/

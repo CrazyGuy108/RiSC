@@ -14,7 +14,7 @@ constexpr uint16_t LW   = 0xA000;
 constexpr uint16_t BEQ  = 0xC000;
 constexpr uint16_t JALR = 0xE000;
 
-typedef op((*operation_t));
+typedef OP((*operation_t));
 
 extern Table<operation_t> ops;
 extern Table<uint16_t> regs;

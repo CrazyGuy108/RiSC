@@ -8,27 +8,27 @@ constexpr uint16_t imm7_max  = 63;
 constexpr uint16_t imm10_min = 0;
 constexpr uint16_t imm10_max = 1023;
 
-#define op(name) line_t name##(size_t argc, const char** argv, uint16_t line)
+#define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
 // opcodes
 
-op(add);
-op(addi);
-op(nand);
-op(lui);
-op(sw);
-op(lw);
-op(beq);
-op(jalr);
+OP(add);
+OP(addi);
+OP(nand);
+OP(lui);
+OP(sw);
+OP(lw);
+OP(beq);
+OP(jalr);
 
 // pseudo ops
 
-op(nop);
-op(halt);
-op(lli);
-op(movi);
-op(fill);
-op(space);
+OP(nop);
+OP(halt);
+OP(lli);
+OP(movi);
+OP(fill);
+OP(space);
 
 #include "../instruction/instruction.h"
 
