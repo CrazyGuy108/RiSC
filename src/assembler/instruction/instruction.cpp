@@ -60,7 +60,7 @@ line_t ri(inst_t opcode, const char* regA, inst_t immB)
 		; // error: undefined operand
 }
 
-line_t compile(size_t argc, char** argv, uint16_t line)
+line_t compile(size_t argc, const char** argv, uint16_t line)
 {
 	if (argc > 0)
 	{
