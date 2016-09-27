@@ -5,14 +5,6 @@
 #include <vector>
 #include "../utilities/utilities.h"
 
-typedef uint16_t inst_t;
-typedef std::vector<inst_t> line_t;
-
-constexpr inst_t a_shift = 13;
-constexpr inst_t b_shift = 10;
-constexpr inst_t imm7_mask = 0x007f;
-constexpr inst_t imm10_mask = 0x03ff;
-
 line_t rrr(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC);
 line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC);
 

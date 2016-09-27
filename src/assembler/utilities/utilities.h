@@ -5,16 +5,22 @@
 #include "../operations/operations.h"
 #include "../table/table.h"
 
-constexpr uint16_t ADD  = 0x0000;
-constexpr uint16_t ADDI = 0x2000;
-constexpr uint16_t NAND = 0x4000;
-constexpr uint16_t LUI  = 0x6000;
-constexpr uint16_t SW   = 0x8000;
-constexpr uint16_t LW   = 0xA000;
-constexpr uint16_t BEQ  = 0xC000;
-constexpr uint16_t JALR = 0xE000;
-
+typedef uint16_t inst_t;
+typedef std::vector<inst_t> line_t;
 typedef OP((*operation_t));
+
+constexpr uint16_t ADD      = 0x0000;
+constexpr uint16_t ADDI     = 0x2000;
+constexpr uint16_t NAND     = 0x4000;
+constexpr uint16_t LUI      = 0x6000;
+constexpr uint16_t SW       = 0x8000;
+constexpr uint16_t LW       = 0xA000;
+constexpr uint16_t BEQ      = 0xC000;
+constexpr uint16_t JALR     = 0xE000;
+constexpr inst_t a_shift    = 13;
+constexpr inst_t b_shift    = 10;
+constexpr inst_t imm7_mask  = 0x007f;
+constexpr inst_t imm10_mask = 0x03ff;
 
 extern Table<operation_t> ops;
 extern Table<uint16_t> regs;
