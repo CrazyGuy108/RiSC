@@ -1,9 +1,6 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-// prototypes
-class Line;
-
 #include <cstdint>
 #include <vector>
 #include "../utilities/utilities.h"
