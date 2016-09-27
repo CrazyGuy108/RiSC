@@ -77,7 +77,7 @@ void assemble(int argc, char** argv)
 			}
 		}
 
-		// resolve labels
+		// resolve labels and clean up the code
 		
 		for (uint16_t i{ 0 }; i < words.size(); ++i)
 		{
@@ -94,7 +94,7 @@ void assemble(int argc, char** argv)
 				{
 					words[i].erase(words[i].begin()); // remove first word because it's a label
 
-					symbols.insert(words[i][0], i); // the value in this case would be i, the current line
+					symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
 					words[i][0][len - 1] = '\0'; // overwrite colon with null character
 				}
 			}
