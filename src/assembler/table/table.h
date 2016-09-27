@@ -30,22 +30,22 @@ public:
 	Table(std::initializer_list<item_type> data)
 		: data{ data } {}
 
-	size_t size()
+	size_t size() const
 	{
 		return data.size();
 	}
 
-	value_type& operator[](size_t index)
+	const value_type& operator[](size_t index) const
 	{
 		return data[index].value;
 	}
 
-	value_type& operator[](const char* token)
+	const value_type& operator[](const char* token) const
 	{
 		return at(token);
 	}
 
-	value_type& at(size_t index)
+	const value_type& at(size_t index) const
 	{
 		if (index < size())
 			return operator[](index);
@@ -53,7 +53,7 @@ public:
 			abort();
 	}
 
-	value_type& at(const char* token)
+	const value_type& at(const char* token) const
 	{
 		int index{ search(token) };
 		if (index > 0)
@@ -63,7 +63,7 @@ public:
 	}
 
 	// binary search for a Symbol's index
-	int search(const char* token)
+	int search(const char* token) const
 	{
 		int index{ closestMatch(token) };
 		if (index != -1 && cmp(data[index].name, token) != -1)
@@ -89,7 +89,7 @@ private:
 
 	// binary search for the closest match to an item
 	// used by insert and search
-	int closestMatch(const char* token)
+	int closestMatch(const char* token) const
 	{
 		// prevent out of bounds errors
 		if (data.empty())
