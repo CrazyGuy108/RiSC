@@ -4,8 +4,6 @@
 #include <cstdint>
 #include "../instruction/instruction.h"
 
-
-
 // opcodes
 
 OP(add);
