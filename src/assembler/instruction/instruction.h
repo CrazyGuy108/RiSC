@@ -12,9 +12,7 @@ line_t rri(inst_t opcode, const char* regA, const char* regB, inst_t immC);
 line_t ri(inst_t opcode, inst_t regA, inst_t immB);
 line_t ri(inst_t opcode, const char* regA, inst_t immB);
 
-
 // takes in a parsed line of code to produce a series of bytecode instructions
 line_t compile(size_t argc, char** argv, inst_t line);
-
 
 #endif // INSTRUCTION_H
