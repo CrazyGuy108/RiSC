@@ -1,11 +1,11 @@
 #include "instruction.h"
 
-line_t rrr(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t regC)
+line_t rrr(inst_t opcode, inst_t regA, inst_t regB, inst_t regC)
 {
-	return line_t{ opcode | (regA << a_shift) | (regB << b_shift) | regC };
+	return line_t{ (inst_t)(opcode | (regA << a_shift) | (regB << b_shift) | regC) };
 }
 
-line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC)
+line_t rrr(inst_t opcode, const char* regA, const char* regB, const char* regC)
 {
 	int operands[3]
 	{
@@ -23,12 +23,12 @@ line_t rrr(uint16_t opcode, const char* regA, const char* regB, const char* regC
 	return rrr(opcode, regs[operands[0]], regs[operands[1]], regs[operands[2]]);
 }
 
-line_t rri(uint16_t opcode, uint16_t regA, uint16_t regB, uint16_t immC)
+line_t rri(inst_t opcode, inst_t regA, inst_t regB, inst_t immC)
 {
-	return line_t{ opcode | (regA << a_shift) | (regB << b_shift) | (immC & imm7_mask) };
+	return line_t{ (inst_t)(opcode | (regA << a_shift) | (regB << b_shift) | (immC & imm7_mask)) };
 }
 
-line_t rri(uint16_t opcode, const char* regA, const char* regB, uint16_t immC)
+line_t rri(inst_t opcode, const char* regA, const char* regB, inst_t immC)
 {
 	int operands[2]
 	{
@@ -45,12 +45,12 @@ line_t rri(uint16_t opcode, const char* regA, const char* regB, uint16_t immC)
 	return rri(opcode, regs[operands[0]], regs[operands[1]], immC);
 }
 
-line_t ri(uint16_t opcode, uint16_t regA, uint16_t immB)
+line_t ri(inst_t opcode, inst_t regA, inst_t immB)
 {
-	return line_t{ opcode | (regA << a_shift) + (immB & imm10_mask) };
+	return line_t{ (inst_t)(opcode | (regA << a_shift) + (immB & imm10_mask)) };
 }
 
-line_t ri(uint16_t opcode, const char* regA, uint16_t immB)
+line_t ri(inst_t opcode, const char* regA, inst_t immB)
 {
 	int operand{ regs.search(regA) };
 
@@ -60,7 +60,7 @@ line_t ri(uint16_t opcode, const char* regA, uint16_t immB)
 		; // error: undefined operand
 }
 
-line_t compile(size_t argc, const char** argv, uint16_t line)
+line_t compile(size_t argc, const char** argv, inst_t line)
 {
 	if (argc > 0)
 	{
