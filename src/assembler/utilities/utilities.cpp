@@ -90,11 +90,30 @@ inst_t reg(char* name)
 
 inst_t imm(const char* name, uint16_t line /* = 0 */)
 {
+	char* endp;
+	long value{ strtol(name, &endp, 0) };
+
+	if (endp != name) // is a number
+	{
+		if (value <= std::numeric_limits<inst_t>::max())
+			return (inst_t)value;
+		else
+			; // error: immediate too big
+	}
+	else // not a number but could be a symbol
+	{
+		int index{ symbols.search(name) };
+		if (index >= 0)
+			return symbols[index];
+		else
+			; // error: unresolved symbol
+	}
+	/*
 	int index{ symbols.search(name) };
 
 	// check if not in symbol table first
 	if (index < 0)
-		return (inst_t)strtoul(name, nullptr, 0); /***** add error checking later *****/
+		return (inst_t)strtoul(name, nullptr, 0); // add error checking later
 	else
-		return symbols[index] - line; // generates offset
+		return symbols[index] - line; // generates offset*/
 }
