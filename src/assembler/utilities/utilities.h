@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <vector>
+#include "../table/table.h"
 
 #define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
@@ -27,9 +28,6 @@ constexpr inst_t imm7_max   = 63;
 constexpr inst_t imm10_min  = 0;
 constexpr inst_t imm10_max  = 1023;
 
-template<typename T>
-class Table;
-
 extern const Table<operation_t> ops;
 extern const Table<inst_t>      regs;
 extern       Table<inst_t>      symbols;
@@ -46,6 +44,6 @@ inst_t imm(const char* name, uint16_t line = 0);
 
 #include "../instruction/instruction.h"
 #include "../operations/operations.h"
-#include "../table/table.h"
+
 
 #endif // UTILITIES_H
