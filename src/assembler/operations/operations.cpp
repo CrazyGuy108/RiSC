@@ -31,14 +31,7 @@ OP(nand)
 OP(lui)
 {
 	if (argc == 3)
-	{
-		uint16_t immed{ imm(argv[2]) };
-
-		if (immed >= imm10_min && immed <= imm10_max)
-			return ri(LUI, argv[1], immed);
-		else
-			; // error: immediate too big
-	}
+		return ri(LUI, argv[1], imm(argv[2], 0, imm10_mask));
 	else
 		; // error: operand count does not match
 }
@@ -46,14 +39,7 @@ OP(lui)
 OP(sw)
 {
 	if (argc == 4)
-	{
-		uint16_t immed{ imm(argv[3]) };
-
-		if (immed >= imm7_min && immed <= imm7_max)
-			return rri(SW, argv[1], argv[2], immed);
-		else
-			; // either pseudo op or error: immediate too big
-	}
+		return rri(SW, argv[1], argv[2], imm(argv[3], 0, imm7_mask));
 	else
 		; // error: operand count does not match
 }
@@ -62,12 +48,7 @@ OP(lw)
 {
 	if (argc == 4)
 	{
-		uint16_t immed{ imm(argv[3]) };
-
-		if (immed >= imm7_min && immed <= imm7_max)
-			return rri(LW, argv[1], argv[2], immed);
-		else
-			; // either pseudo op or error: immediate too big
+		return rri(LW, argv[1], argv[2], imm(argv[3], 0, imm7_mask));
 	}
 	else
 		; // error: operand count does not match
@@ -76,14 +57,7 @@ OP(lw)
 OP(beq)
 {
 	if (argc == 4)
-	{
-		uint16_t immed{ imm(argv[3], line) };
-
-		if (immed >= imm7_min && immed <= imm7_max)
-			return rri(BEQ, argv[1], argv[2], immed);
-		else
-			; // either pseudo op or error: immediate too big
-	}
+		return rri(BEQ, argv[1], argv[2], imm(argv[3], line, imm7_mask));
 	else
 		; // error: operand count does not match
 }
@@ -91,14 +65,7 @@ OP(beq)
 OP(jalr)
 {
 	if (argc == 4)
-	{
-		uint16_t immed{ imm(argv[3]) };
-
-		if (immed >= imm7_min && immed <= imm7_max)
-			return rri(JALR, argv[1], argv[2], immed);
-		else
-			; // either pseudo op or error: immediate too big
-	}
+		return rri(JALR, argv[1], argv[2], imm(argv[3], 0, imm7_mask));
 	else
 		; // error: operand count does not match
 }
