@@ -104,7 +104,7 @@ void assemble(int argc, char** argv)
 
 		for (uint16_t i{ 0 }; i < words.size(); ++i)
 		{
-			compile(words[i].size(), const_cast<const char**>(words[i].data()), i); // placeholder
+			compile(words[i].size(), (const char**)(words[i].data()), i); // placeholder
 		}
 
 		/*
