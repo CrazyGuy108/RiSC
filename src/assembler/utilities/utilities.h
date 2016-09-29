@@ -40,7 +40,7 @@ int cmp(const char* a, const char* b);
 inst_t reg(char* name);
 
 // parses and converts a word into an immediate
-inst_t imm(const char* name, uint16_t line = 0);
+inst_t imm(const char* name, uint16_t line = 0, inst_t mask = 0xffff);
 
 #include "../instruction/instruction.h"
 #include "../operations/operations.h"

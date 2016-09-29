@@ -88,14 +88,14 @@ inst_t reg(char* name)
 		; // error: unknown register name
 }
 
-inst_t imm(const char* name, uint16_t line /* = 0 */)
+inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
 {
 	char* endp;
 	long value{ strtol(name, &endp, 0) };
 
 	if (endp != name) // is a number
 	{
-		if (value <= std::numeric_limits<inst_t>::max())
+		if (value & mask == value)
 			return (inst_t)value;
 		else
 			; // error: immediate too big
