@@ -3,9 +3,7 @@
 OP(add)
 {
 	if (argc == 4)
-	{
 		return line_t{ rrr(ADD, argv[1], argv[2], argv[3]) };
-	}
 	else
 		; // error: operand count does not match
 }
@@ -21,9 +19,7 @@ OP(addi)
 OP(nand)
 {
 	if (argc == 4)
-	{
 		return line_t{ rrr(NAND, argv[1], argv[2], argv[3]) };
-	}
 	else
 		; // error: operand count does not match
 }
@@ -47,9 +43,7 @@ OP(sw)
 OP(lw)
 {
 	if (argc == 4)
-	{
 		return line_t{ rri(LW, argv[1], argv[2], imm(argv[3], 0, imm7_mask)) };
-	}
 	else
 		; // error: operand count does not match
 }
