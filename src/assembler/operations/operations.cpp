@@ -9,18 +9,11 @@ OP(add)
 	else
 		; // error: operand count does not match
 }
-
+/***** add try/catch error handling once implemented *****/
 OP(addi)
 {
 	if (argc == 4)
-	{
-		uint16_t immed{ imm(argv[3]) };
-
-		if (immed >= imm7_min && immed <= imm7_max)
-			return rri(ADDI, argv[1], argv[2], immed);
-		else
-			; // either pseudo op or error: immediate too big
-	}
+		return rri(ADDI, argv[1], argv[2], imm(argv[3], 0, imm7_mask));
 	else
 		; // error: operand count does not match
 }
