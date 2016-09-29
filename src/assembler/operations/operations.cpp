@@ -57,7 +57,7 @@ OP(lw)
 OP(beq)
 {
 	if (argc == 4)
-		return line_t{ (BEQ, argv[1], argv[2], imm(argv[3], line, imm7_mask)) };
+		return line_t{ rri(BEQ, argv[1], argv[2], imm(argv[3], line, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }
