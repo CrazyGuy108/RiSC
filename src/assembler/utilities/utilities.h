@@ -30,14 +30,7 @@ extern Table<inst_t> symbols;
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
 
-// parses and converts a word into a register
-inst_t reg(const char* name);
-
-// parses and converts a word into an immediate
-inst_t imm(const char* name, uint16_t line = 0, inst_t mask = 0xffff);
-
 #include "../instruction/instruction.h"
 #include "../operations/operations.h"
-
 
 #endif // UTILITIES_H
