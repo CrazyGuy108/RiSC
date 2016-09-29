@@ -1,4 +1,4 @@
-#include "assembler/assembler.h"
+#include "../include/assembler.h"
 
 /***** move some stuff to a global utilities folder *****/
 typedef void(*extension_t)(int argc, char** argv);
@@ -10,10 +10,15 @@ Table<extension_t> extensions
 
 int main(int argc, char** argv)
 {
-	if (argc == 2)
+	// test
+	argc = 3;
+	argv = new char*[3];
+	argv[1] = "test.asm";
+
+	if (argc >= 2)
 	{
 		// get file extension
-
+		/*test
 		const char* extension{ strchr(argv[1], '/') };
 
 		if (extension == nullptr)
@@ -24,7 +29,7 @@ int main(int argc, char** argv)
 		// verify extension
 
 		int index{ extensions.search(extension) };
-
+		*/ int index{ 0 };
 		if (index >= 0)
 			extensions[index](argc, argv);
 		else
@@ -32,6 +37,6 @@ int main(int argc, char** argv)
 	}
 	else
 		; // error: no file
-	
+
 	return 0;
 }
