@@ -19,10 +19,10 @@ constexpr inst_t SW         = 0x8000;
 constexpr inst_t LW         = 0xA000;
 constexpr inst_t BEQ        = 0xC000;
 constexpr inst_t JALR       = 0xE000;
-constexpr inst_t a_shift    = 13;
-constexpr inst_t b_shift    = 10;
 constexpr inst_t imm7_mask  = 0x007f;
 constexpr inst_t imm10_mask = 0x03ff;
+constexpr inst_t a_shift    = 13;
+constexpr inst_t b_shift    = 10;
 
 extern Table<inst_t> symbols;
 
