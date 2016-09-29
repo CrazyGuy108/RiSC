@@ -32,6 +32,24 @@ inst_t ri(inst_t opcode, const char* regA, inst_t immB)
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
 {
+	const Table<operation_t> ops
+	{
+		{ ".fill",  &fill },
+		{ ".space", &space },
+		{ "add",    &add },
+		{ "addi",   &addi },
+		{ "beq",    &beq },
+		{ "halt",   &halt },
+		{ "jalr",   &jalr },
+		{ "lli",    &lli },
+		{ "lui",    &lui },
+		{ "lw",	    &lw },
+		{ "movi",   &movi },
+		{ "nand",   &nand },
+		{ "nop",    &nop },
+		{ "sw",	    &sw }
+	};
+
 	if (argc > 0)
 	{
 		int index{ ops.search(argv[0]) };

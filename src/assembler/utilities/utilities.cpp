@@ -1,23 +1,5 @@
 #include "utilities.h"
 
-const Table<operation_t> ops
-{
-	{ ".fill",  &fill },
-	{ ".space", &space },
-	{ "add",    &add },
-	{ "addi",   &addi },
-	{ "beq",    &beq },
-	{ "halt",   &halt },
-	{ "jalr",   &jalr },
-	{ "lli",    &lli },
-	{ "lui",    &lui },
-	{ "lw",	    &lw },
-	{ "movi",   &movi },
-	{ "nand",   &nand },
-	{ "nop",    &nop },
-	{ "sw",	    &sw }
-};
-
 Table<inst_t> symbols;
 
 int cmp(const char* a, const char* b)
