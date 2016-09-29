@@ -46,7 +46,7 @@ inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
 {
-	const Table<operation_t> ops
+	static const Table<operation_t> ops
 	{
 		{ ".fill",  &fill },
 		{ ".space", &space },
