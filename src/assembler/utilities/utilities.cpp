@@ -57,28 +57,19 @@ int cmp(const char* a, const char* b)
 	return 0;
 }
 
-inst_t reg(char* name)
+inst_t reg(const char* name)
 {
 	static const Table<inst_t> regs
 	{
-		{ "0",	0x0000 },
-		{ "1",	0x0001 },
-		{ "2",	0x0002 },
-		{ "3",	0x0003 },
-		{ "4",	0x0004 },
-		{ "5",	0x0005 },
-		{ "6",	0x0006 },
-		{ "7",	0x0007 }
+		{ "r0",	0x0000 },
+		{ "r1",	0x0001 },
+		{ "r2",	0x0002 },
+		{ "r3",	0x0003 },
+		{ "r4",	0x0004 },
+		{ "r5",	0x0005 },
+		{ "r6",	0x0006 },
+		{ "r7",	0x0007 }
 	};
-	/***** optimize later and apply this to imm() *****/
-	size_t len{ 0 }; // length of string
-	while (name[len] != '\0')
-		++len;
-	if (name[0] == 'r')
-		name += sizeof(char);
-
-	if (name[len - 1] == ',')
-		name[len - 1] = '\0';
 
 	int index{ regs.search(name) };
 
