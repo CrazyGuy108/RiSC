@@ -1,11 +1,11 @@
 #include "instruction.h"
 
-line_t rrr(inst_t opcode, inst_t regA, inst_t regB, inst_t regC)
+inst_t rrr(inst_t opcode, inst_t regA, inst_t regB, inst_t regC)
 {
-	return line_t{ (inst_t)(opcode | (regA << a_shift) | (regB << b_shift) | regC) };
+	return opcode | (regA << a_shift) | (regB << b_shift) | regC;
 }
 
-line_t rrr(inst_t opcode, const char* regA, const char* regB, const char* regC)
+inst_t rrr(inst_t opcode, const char* regA, const char* regB, const char* regC)
 {
 	int operands[3]
 	{
@@ -23,12 +23,12 @@ line_t rrr(inst_t opcode, const char* regA, const char* regB, const char* regC)
 	return rrr(opcode, regs[operands[0]], regs[operands[1]], regs[operands[2]]);
 }
 
-line_t rri(inst_t opcode, inst_t regA, inst_t regB, inst_t immC)
+inst_t rri(inst_t opcode, inst_t regA, inst_t regB, inst_t immC)
 {
-	return line_t{ (inst_t)(opcode | (regA << a_shift) | (regB << b_shift) | (immC & imm7_mask)) };
+	return opcode | (regA << a_shift) | (regB << b_shift) | (immC & imm7_mask);
 }
 
-line_t rri(inst_t opcode, const char* regA, const char* regB, inst_t immC)
+inst_t rri(inst_t opcode, const char* regA, const char* regB, inst_t immC)
 {
 	int operands[2]
 	{
@@ -45,12 +45,12 @@ line_t rri(inst_t opcode, const char* regA, const char* regB, inst_t immC)
 	return rri(opcode, regs[operands[0]], regs[operands[1]], immC);
 }
 
-line_t ri(inst_t opcode, inst_t regA, inst_t immB)
+inst_t ri(inst_t opcode, inst_t regA, inst_t immB)
 {
-	return line_t{ (inst_t)(opcode | (regA << a_shift) + (immB & imm10_mask)) };
+	return opcode | (regA << a_shift) + (immB & imm10_mask);
 }
 
-line_t ri(inst_t opcode, const char* regA, inst_t immB)
+inst_t ri(inst_t opcode, const char* regA, inst_t immB)
 {
 	int operand{ regs.search(regA) };
 
