@@ -25,7 +25,6 @@ constexpr inst_t imm7_mask  = 0x007f;
 constexpr inst_t imm10_mask = 0x03ff;
 
 extern const Table<operation_t> ops;
-extern const Table<inst_t>      regs;
 extern       Table<inst_t>      symbols;
 
 // string comparison that includes the null character unlike strcmp
