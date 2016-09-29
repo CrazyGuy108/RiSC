@@ -1,9 +1,9 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include <cstdint>
-#include <vector>
-#include "../table/table.h"
+#include <cstdint>          // for uint16_T
+#include <vector>           // for vector
+#include "../table/table.h" // for Table
 
 #define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
@@ -29,8 +29,5 @@ extern Table<inst_t> symbols;
 // string comparison that includes the null character unlike strcmp
 // e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
 int cmp(const char* a, const char* b);
-
-#include "../instruction/instruction.h"
-#include "../operations/operations.h"
 
 #endif // UTILITIES_H

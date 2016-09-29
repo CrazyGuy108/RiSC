@@ -1,8 +1,7 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <cstdint>	// for uint16_t
-#include <vector>	// for std::vector
+#include <vector>	// for vector
 
 template <typename T>
 class Item

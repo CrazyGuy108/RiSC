@@ -1,8 +1,9 @@
 #ifndef OPERATIONS_H
 #define OPERATIONS_H
 
-#include <cstdint>
-#include "../instruction/instruction.h"
+#include "../instruction/instruction.h" // for rrr/rri/ri
+#include "../parse/parse.h"             // for reg()/imm()
+#include "../utilities/utilities.h"     // for macros/constants
 
 // opcodes
 

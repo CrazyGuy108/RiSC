@@ -1,7 +1,10 @@
 #ifndef PARSE_H
 #define PARSE_H
 
-#include "../utilities/utilities.h"
+#include <cstdint>                    // for uint16_t
+#include "../operations/operations.h" // for opcode functions
+#include "../table/table.h"           // for Table
+#include "../utilities/utilities.h"   // for typedefs
 
 // converts a word into a register
 inst_t reg(const char* name);

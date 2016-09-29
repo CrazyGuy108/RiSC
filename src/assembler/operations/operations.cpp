@@ -3,7 +3,7 @@
 OP(add)
 {
 	if (argc == 4)
-		return line_t{ rrr(ADD, argv[1], argv[2], argv[3]) };
+		return line_t{ rrr(ADD, reg(argv[1]), reg(argv[2]), reg(argv[3])) };
 	else
 		; // error: operand count does not match
 }
@@ -11,7 +11,7 @@ OP(add)
 OP(addi)
 {
 	if (argc == 4)
-		return line_t{ rri(ADDI, argv[1], argv[2], imm(argv[3], 0, imm7_mask)) };
+		return line_t{ rri(ADDI, reg(argv[1]), reg(argv[2]), imm(argv[3], 0, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }
@@ -19,7 +19,7 @@ OP(addi)
 OP(nand)
 {
 	if (argc == 4)
-		return line_t{ rrr(NAND, argv[1], argv[2], argv[3]) };
+		return line_t{ rrr(NAND, reg(argv[1]), reg(argv[2]), reg(argv[3])) };
 	else
 		; // error: operand count does not match
 }
@@ -27,7 +27,7 @@ OP(nand)
 OP(lui)
 {
 	if (argc == 3)
-		return line_t{ ri(LUI, argv[1], imm(argv[2], 0, imm10_mask)) };
+		return line_t{ ri(LUI, reg(argv[1]), imm(argv[2], 0, imm10_mask)) };
 	else
 		; // error: operand count does not match
 }
@@ -35,7 +35,7 @@ OP(lui)
 OP(sw)
 {
 	if (argc == 4)
-		return line_t{ rri(SW, argv[1], argv[2], imm(argv[3], 0, imm7_mask)) };
+		return line_t{ rri(SW, reg(argv[1]), reg(argv[2]), imm(argv[3], 0, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }
@@ -43,7 +43,7 @@ OP(sw)
 OP(lw)
 {
 	if (argc == 4)
-		return line_t{ rri(LW, argv[1], argv[2], imm(argv[3], 0, imm7_mask)) };
+		return line_t{ rri(LW, reg(argv[1]), reg(argv[2]), imm(argv[3], 0, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }
@@ -51,7 +51,7 @@ OP(lw)
 OP(beq)
 {
 	if (argc == 4)
-		return line_t{ rri(BEQ, argv[1], argv[2], imm(argv[3], line, imm7_mask)) };
+		return line_t{ rri(BEQ, reg(argv[1]), reg(argv[2]), imm(argv[3], line, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }
@@ -59,7 +59,7 @@ OP(beq)
 OP(jalr)
 {
 	if (argc == 4)
-		return line_t{ rri(JALR, argv[1], argv[2], imm(argv[3], 0, imm7_mask)) };
+		return line_t{ rri(JALR, reg(argv[1]), reg(argv[2]), imm(argv[3], 0, imm7_mask)) };
 	else
 		; // error: operand count does not match
 }

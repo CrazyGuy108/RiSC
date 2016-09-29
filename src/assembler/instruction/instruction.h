@@ -1,7 +1,8 @@
 #ifndef INSTRUCTION_H
 #define INSTRUCTION_H
 
-#include "../utilities/utilities.h"
+#include "../utilities/utilities.h" // for shift/mask constants
+#include "../parse/parse.h"         // for reg()
 
 inst_t rrr(inst_t opcode, inst_t regA, inst_t regB, inst_t regC);
 inst_t rrr(inst_t opcode, const char* regA, const char* regB, const char* regC);
