@@ -23,10 +23,6 @@ constexpr inst_t a_shift    = 13;
 constexpr inst_t b_shift    = 10;
 constexpr inst_t imm7_mask  = 0x007f;
 constexpr inst_t imm10_mask = 0x03ff;
-constexpr inst_t imm7_min   = -64;
-constexpr inst_t imm7_max   = 63;
-constexpr inst_t imm10_min  = 0;
-constexpr inst_t imm10_max  = 1023;
 
 extern const Table<operation_t> ops;
 extern const Table<inst_t>      regs;
