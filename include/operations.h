@@ -1,9 +1,9 @@
 #ifndef OPERATIONS_H
 #define OPERATIONS_H
 
-#include "../instruction/instruction.h" // for rrr/rri/ri
-#include "../parse/parse.h"             // for reg()/imm()
-#include "../utilities/utilities.h"     // for macros/constants
+#include "instruction.h" // for rrr/rri/ri
+#include "parse.h"       // for reg()/imm()
+#include "utilities.h"   // for macros/constants
 
 // opcodes
 

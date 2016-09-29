@@ -1,7 +1,7 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <vector>	// for vector
+#include <vector> // for vector
 
 template <typename T>
 class Item

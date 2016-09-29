@@ -1,4 +1,4 @@
-#include "instruction.h"
+#include "../include/instruction.h"
 
 inst_t rrr(inst_t opcode, inst_t regA, inst_t regB, inst_t regC)
 {

@@ -1,4 +1,4 @@
-#include "assembler.h"
+#include "../include/assembler.h"
 
 void assemble(int argc, char** argv)
 {

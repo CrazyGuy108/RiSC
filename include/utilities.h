@@ -1,9 +1,9 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include <cstdint>          // for uint16_T
-#include <vector>           // for vector
-#include "../table/table.h" // for Table
+#include <cstdint> // for uint16_T
+#include <vector>  // for vector
+#include "table.h" // for Table
 
 #define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
