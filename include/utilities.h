@@ -26,8 +26,4 @@ constexpr inst_t b_shift    = 7;
 
 extern Table<inst_t> symbols;
 
-// string comparison that includes the null character unlike strcmp
-// e.g. strcmp("a","ab")=0, cmp("a","ab")=-1
-int cmp(const char* a, const char* b);
-
 #endif // UTILITIES_H

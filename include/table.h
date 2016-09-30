@@ -66,7 +66,7 @@ public:
 	int search(const char* token) const
 	{
 		int index{ closestMatch(token) };
-		if (index != -1 && cmp(data[index].name, token) != -1)
+		if (index != -1 && strcmp(data[index].name, token) != -1)
 			return index;
 		else
 			return -1;
@@ -78,7 +78,7 @@ public:
 		int index{ closestMatch(name) };
 		if (index == -1) // check if invalid
 			data.insert(data.begin(), item_type{ name, value }); // insert at start
-		else if (cmp(data[index].name, name) != -1) // check if item already defined
+		else if (strcmp(data[index].name, name) != -1) // check if item already defined
 			throw SymbolException{ name };
 		else
 			data.insert(data.begin() + index, item_type{ name, value });
@@ -103,7 +103,7 @@ private:
 		do
 		{
 			middle = (start + end) >> 1;
-			comparison = cmp(data[middle].name, token);
+			comparison = strcmp(data[middle].name, token);
 
 			if (comparison < 0)      // <
 				start = middle + 1;
