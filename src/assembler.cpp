@@ -117,7 +117,10 @@ void assemble(int argc, char** argv)
 			catch (TokenException e)
 			{
 				std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
-				return; // stop compilation
+
+				// try to continue
+				++i;
+				++errors;
 			}
 		}
 
