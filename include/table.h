@@ -35,16 +35,11 @@ public:
 		return data.size();
 	}
 
-	const value_type& operator[](size_t index) const
-	{
-		return data[index].value;
-	}
-
 	const value_type& operator[](const char* token) const
 	{
 		int index{ closestMatch(token) };
 		if (strcmp(data[index].name, token) == 0)
-			return operator[](index);
+			return data[index].value;
 		else
 			throw TokenException{ token };
 	}
@@ -83,9 +78,9 @@ private:
 			comparison = strcmp(data[middle].name, token);
 
 			if (comparison < 0)      // <
-				start = middle + 1;
+				start = middle;
 			else if (comparison > 0) // >
-				end = middle - 1;
+				end = middle;
 			else                     // =
 				return middle;
 		}
