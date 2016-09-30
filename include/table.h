@@ -79,7 +79,7 @@ public:
 		if (index == -1) // check if invalid
 			data.insert(data.begin(), item_type{ name, value }); // insert at start
 		else if (cmp(data[index].name, name) != -1) // check if item already defined
-			; // error: already defined
+			throw SymbolException{ name };
 		else
 			data.insert(data.begin() + index, item_type{ name, value });
 	}
