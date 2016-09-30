@@ -100,7 +100,7 @@ private:
 		size_t middle;
 		int comparison;
 
-		do
+		while (start <= end)
 		{
 			middle = (start + end) >> 1;
 			comparison = strcmp(data[middle].name, token);
@@ -111,7 +111,7 @@ private:
 				end = middle - 1;
 			else                     // =
 				return middle;
-		} while (start <= end);
+		}
 
 		return middle;
 	}
