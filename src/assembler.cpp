@@ -104,7 +104,15 @@ void assemble(int argc, char** argv)
 
 		for (uint16_t i{ 0 }; i < words.size(); ++i)
 		{
-			compile(words[i].size(), (const char**)(words[i].data()), i); // placeholder
+			try
+			{
+				compile(words[i].size(), (const char**)(words[i].data()), i); // placeholder
+			}
+			catch (TokenException e)
+			{
+				std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
+				return; // stop compilation
+			}
 		}
 
 		/*
