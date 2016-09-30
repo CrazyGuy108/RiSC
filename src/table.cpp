@@ -3,5 +3,5 @@
 TokenException::TokenException()
 	: RiscException{} {}
 
-TokenException::TokenException(const char* msg, const char* token)
-	: RiscException{ msg }, token{ token } {}
+TokenException::TokenException(const char* msg)
+	: RiscException{ msg } {}

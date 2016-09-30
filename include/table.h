@@ -1,21 +1,15 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <vector> // for vector
-#include "exception.h"
+#include <vector>      // for vector
+#include "exception.h" // for RiscException
 
 class TokenException
 	: public RiscException
 {
 public:
-	TokenException()
-		: RiscException{} {}
-
-	TokenException(const char* msg, const char* token)
-		: RiscException{ msg }, token{ token } {}
-
-protected:
-	const char* token;
+	TokenException();
+	TokenException(const char* msg);
 };
 
 template <typename T>
@@ -73,7 +67,7 @@ public:
 		if (index > 0)
 			return operator[](index);
 		else
-			throw TableException{ "unresolved token", token };
+			throw TableException{ token };
 	}
 
 	// binary search for a Symbol's index
