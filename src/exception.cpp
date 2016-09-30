@@ -22,3 +22,9 @@ SymbolException::SymbolException()
 
 SymbolException::SymbolException(const char* msg)
 	: RiscException{ msg } {}
+
+OperandException::OperandException()
+	: RiscException{}, expected{ 0 }, given{ 0 } {}
+
+OperandException::OperandException(const char* opcode, size_t expected, size_t given)
+	: RiscException{ opcode }, expected{ expected }, given{ given } {}

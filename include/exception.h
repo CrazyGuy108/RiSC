@@ -32,4 +32,17 @@ public:
 	SymbolException(const char* msg);
 };
 
+// operand count does not match exception
+class OperandException
+	: public RiscException
+{
+public:
+	OperandException();
+	OperandException(const char* opcode, size_t expected, size_t given);
+	
+protected:
+	size_t expected; // amount of operands expected
+	size_t given;    // amount of operands given
+};
+
 #endif // EXCEPTION_H
