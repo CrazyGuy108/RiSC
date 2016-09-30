@@ -59,7 +59,7 @@ public:
 		if (index > 0)
 			return operator[](index);
 		else
-			throw TableException{ token };
+			throw TokenException{ token };
 	}
 
 	// binary search for a Symbol's index
