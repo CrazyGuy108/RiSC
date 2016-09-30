@@ -14,4 +14,13 @@ protected:
 	const char* msg; // details about the exception
 };
 
+// unresolved symbols/tokens exception
+class TokenException
+	: public RiscException
+{
+public:
+	TokenException();
+	TokenException(const char* msg);
+};
+
 #endif // EXCEPTION_H

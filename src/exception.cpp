@@ -10,3 +10,9 @@ const char* RiscException::what() const
 {
 	return msg;
 }
+
+TokenException::TokenException()
+	: RiscException{} {}
+
+TokenException::TokenException(const char* msg)
+	: RiscException{ msg } {}

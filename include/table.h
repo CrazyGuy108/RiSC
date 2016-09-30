@@ -2,15 +2,7 @@
 #define SYMBOLTABLE_H
 
 #include <vector>      // for vector
-#include "exception.h" // for RiscException
-
-class TokenException
-	: public RiscException
-{
-public:
-	TokenException();
-	TokenException(const char* msg);
-};
+#include "exception.h" // for TokenException
 
 template <typename T>
 class Item
