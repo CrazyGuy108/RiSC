@@ -42,21 +42,11 @@ public:
 
 	const value_type& operator[](const char* token) const
 	{
-		int index{ search(token) };
-		if (index > 0)
+		int index{ closestMatch(token) };
+		if (strcmp(data[index].name, token) == 0)
 			return operator[](index);
 		else
 			throw TokenException{ token };
-	}
-
-	// binary search for a Symbol's index
-	int search(const char* token) const
-	{
-		int index{ closestMatch(token) };
-		if (strcmp(data[index].name, token) == 0)
-			return index;
-		else
-			return -1;
 	}
 
 	// insert a value in order
@@ -75,7 +65,7 @@ private:
 	std::vector<item_type> data;
 
 	// binary search for the closest match to an item
-	// used by insert and search
+	// used by insert and operator[]
 	int closestMatch(const char* token) const
 	{
 		// prevent out of bounds errors
