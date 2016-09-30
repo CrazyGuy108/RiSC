@@ -29,14 +29,8 @@ inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
 		else
 			; // error: immediate too big
 	}
-	else // not a number but could be a symbol
-	{
-		int index{ symbols.search(name) };
-		if (index >= 0)
-			return symbols[index];
-		else
-			; // error: unresolved symbol
-	}
+	else // not a number so must be a symbol
+		return symbols[name];
 }
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
