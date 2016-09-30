@@ -102,11 +102,16 @@ void assemble(int argc, char** argv)
 
 		// compile into bytecode
 
-		for (uint16_t i{ 0 }; i < words.size(); ++i)
+		line_t bytecode;
+		line_t tmp;
+
+		for (size_t i{ 0 }; i < words.size();)
 		{
 			try
 			{
-				compile(words[i].size(), (const char**)(words[i].data()), i); // placeholder
+				tmp = compile(words[i].size(), (const char**)(words[i].data()), i);
+				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
+				i += tmp.size(); // some instructions take multiple instruction words when compiled
 			}
 			catch (TokenException e)
 			{
