@@ -13,6 +13,11 @@ public:
 	Item(const char* name, value_type value)
 		: name{ name }, value{ value } {}
 
+	bool operator<(Item<T> a) const
+	{
+		return strcmp(name, a.name) < 0;
+	}
+
 	const char* name;
 	value_type value;
 };
