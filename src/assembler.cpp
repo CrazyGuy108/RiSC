@@ -34,6 +34,8 @@ void assemble(int argc, char** argv)
 		uint16_t lineIndex{ 0 };
 		bool foundSpace{ false };
 		size_t index{ 0 };
+		unsigned int errors{ 0 };
+
 		while (iterator[index] != '\0')
 		{
 			switch (iterator[index])
@@ -94,8 +96,16 @@ void assemble(int argc, char** argv)
 				{
 					words[i].erase(words[i].begin()); // remove first word because it's a label
 
-					symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
-					words[i][0][len - 1] = '\0'; // overwrite colon with null character
+					try
+					{
+						symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
+						words[i][0][len - 1] = '\0'; // overwrite colon with null character
+					}
+					catch (SymbolException e)
+					{
+						std::cout << "error in line " << i << ": redefinition of label \"" << e.what() << "\"\n";
+						++errors;
+					}
 				}
 			}
 		}
@@ -104,7 +114,6 @@ void assemble(int argc, char** argv)
 
 		line_t bytecode;
 		line_t tmp;
-		int errors{ 0 };
 
 		for (size_t i{ 0 }; i < words.size();)
 		{
