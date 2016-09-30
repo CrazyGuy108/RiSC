@@ -153,7 +153,9 @@ void assemble(int argc, char** argv)
 		
 		*/
 		
-		
+		// test
+
+		std::cout << "source:\n";
 
 		// iterate through lines
 		for (size_t i{ 0 }; i < words.size(); ++i)
@@ -166,13 +168,21 @@ void assemble(int argc, char** argv)
 			std::cout << '\n';
 		}
 
+		std::cout << "symbol values:\n";
+
 		// iterate through symbols
 		for (size_t i{ 0 }; i < symbols.size(); ++i)
 		{
 			std::cout << symbols[i] << '\n';
 		}
 
-		delete contents;
+		std::cout << "bytecode:\n";
+
+		// iterate through bytecode
+		for (size_t i{ 0 }; i < bytecode.size(); ++i)
+			std::cout << std::hex << bytecode[i] << '\n';
+
+		delete[] contents;
 	}
 	else
 		; // error: no dest file specified
