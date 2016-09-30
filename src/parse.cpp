@@ -14,12 +14,7 @@ inst_t reg(const char* name)
 		{ "r7",	0x0007 }
 	};
 
-	int index{ regs.search(name) };
-
-	if (index > 0)
-		return regs[index];
-	else
-		; // error: unknown register name
+	return regs[name];
 }
 
 inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
