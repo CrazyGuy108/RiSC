@@ -169,14 +169,6 @@ void assemble(int argc, char** argv)
 			std::cout << '\n';
 		}
 
-		std::cout << "symbol values:\n";
-
-		// iterate through symbols
-		for (size_t i{ 0 }; i < symbols.size(); ++i)
-		{
-			std::cout << symbols[i] << '\n';
-		}
-
 		std::cout << "bytecode:\n";
 
 		// iterate through bytecode
