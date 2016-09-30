@@ -114,25 +114,26 @@ void assemble(int argc, char** argv)
 
 		line_t bytecode;
 		line_t tmp;
+		size_t line{ 0 };
 
-		for (size_t i{ 0 }; i < words.size();)
+		for (size_t i{ 0 }; i < words.size(); ++i)
 		{
 			try
 			{
-				tmp = compile(words[i].size(), (const char**)(words[i].data()), i);
+				tmp = compile(words[i].size(), (const char**)(words[i].data()), line);
 				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
-				i += tmp.size(); // some instructions take multiple instruction words when compiled
+				line += tmp.size(); // some instructions take multiple instruction words when compiled
 			}
 			catch (TokenException e)
 			{
 				std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
-				++i;
+				++line;
 				++errors;
 			}
 			catch (OperandException e)
 			{
 				std::cout << "error in line " << i << ": opcode \"" << e.what() << "\" expected " << e.getExpected() << " operands but was given " << e.getGiven() << " instead\n";
-				++i;
+				++line;
 				++errors;
 			}
 		}
