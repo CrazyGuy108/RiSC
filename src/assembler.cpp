@@ -126,8 +126,12 @@ void assemble(int argc, char** argv)
 			catch (TokenException e)
 			{
 				std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
-
-				// try to continue
+				++i;
+				++errors;
+			}
+			catch (OperandException e)
+			{
+				std::cout << "error in line " << i << ": opcode \"" << e.what() << "\" expected " << e.getExpected() << " operands but was given " << e.getGiven() << " instead\n";
 				++i;
 				++errors;
 			}
