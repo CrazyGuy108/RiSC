@@ -2,6 +2,21 @@
 #define SYMBOLTABLE_H
 
 #include <vector> // for vector
+#include "exception.h"
+
+class TokenException
+	: public RiscException
+{
+public:
+	TokenException()
+		: RiscException{} {}
+
+	TokenException(const char* msg, const char* token)
+		: RiscException{ msg }, token{ token } {}
+
+protected:
+	const char* token;
+};
 
 template <typename T>
 class Item
@@ -58,7 +73,7 @@ public:
 		if (index > 0)
 			return operator[](index);
 		else
-			abort();
+			throw TableException{ "unresolved token", token };
 	}
 
 	// binary search for a Symbol's index
