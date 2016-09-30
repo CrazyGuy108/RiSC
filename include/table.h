@@ -66,7 +66,7 @@ public:
 	int search(const char* token) const
 	{
 		int index{ closestMatch(token) };
-		if (index != -1 && strcmp(data[index].name, token) != -1)
+		if (strcmp(data[index].name, token) == 0)
 			return index;
 		else
 			return -1;
