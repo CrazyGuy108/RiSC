@@ -8,7 +8,7 @@ RiscException::RiscException(const char* msg)
 
 const char* RiscException::what() const
 {
-	return msg;
+	return (msg == nullptr) ? "unknown error!" : msg;
 }
 
 TokenException::TokenException()
