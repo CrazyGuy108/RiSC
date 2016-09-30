@@ -30,7 +30,7 @@ inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
 			; // error: immediate too big
 	}
 	else // not a number so must be a symbol
-		return symbols[name];
+		return symbols[name] - line; // generates offset
 }
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
