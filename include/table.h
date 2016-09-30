@@ -42,19 +42,6 @@ public:
 
 	const value_type& operator[](const char* token) const
 	{
-		return at(token);
-	}
-
-	const value_type& at(size_t index) const
-	{
-		if (index < size())
-			return operator[](index);
-		else
-			abort();
-	}
-
-	const value_type& at(const char* token) const
-	{
 		int index{ search(token) };
 		if (index > 0)
 			return operator[](index);
