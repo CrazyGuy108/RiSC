@@ -23,4 +23,13 @@ public:
 	TokenException(const char* msg);
 };
 
+// symbol already defined exception
+class SymbolException
+	: public RiscException
+{
+public:
+	SymbolException();
+	SymbolException(const char* msg);
+};
+
 #endif // EXCEPTION_H

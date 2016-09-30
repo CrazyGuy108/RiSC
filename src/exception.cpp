@@ -16,3 +16,9 @@ TokenException::TokenException()
 
 TokenException::TokenException(const char* msg)
 	: RiscException{ msg } {}
+
+SymbolException::SymbolException()
+	: RiscException{} {}
+
+SymbolException::SymbolException(const char* msg)
+	: RiscException{ msg } {}
