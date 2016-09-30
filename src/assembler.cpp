@@ -104,6 +104,7 @@ void assemble(int argc, char** argv)
 
 		line_t bytecode;
 		line_t tmp;
+		int errors{ 0 };
 
 		for (size_t i{ 0 }; i < words.size();)
 		{
@@ -122,12 +123,18 @@ void assemble(int argc, char** argv)
 
 		/*
 		// write to file
-		std::ofstream outfile{ argv[2] };
-
-		if (outfile.fail())
+		if(errors)
+			std::cout << "exited with " << errors << " errors\n";
+		else
+		{
+			std::ofstream outfile{ argv[2] };
+			
+			if (outfile.fail())
 			return; // error: file open failed
-
-		outfile.close();
+			
+			outfile.close();
+		}
+		
 		*/
 		
 		
