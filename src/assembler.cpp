@@ -163,7 +163,7 @@ void assemble(int argc, char** argv)
 			// iterator through words
 			for (size_t j{ 0 }; j < words[i].size(); ++j)
 			{
-				std::cout << words[i][j] << ",";
+				std::cout << words[i][j] << " ";
 			}
 			std::cout << '\n';
 		}
