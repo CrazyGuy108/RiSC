@@ -104,11 +104,11 @@ private:
 			middle = (start + end) >> 1;
 			comparison = cmp(data[middle].name, token);
 
-			if (comparison < 0)			// <
+			if (comparison < 0)      // <
 				start = middle + 1;
-			else if (comparison > 0)	// >
+			else if (comparison > 0) // >
 				end = middle - 1;
-			else						// =
+			else                     // =
 				return middle;
 		} while (start <= end);
 
