@@ -54,13 +54,7 @@ line_t compile(size_t argc, const char** argv, uint16_t line)
 	};
 
 	if (argc > 0)
-	{
-		int index{ ops.search(argv[0]) };
-		if (index != -1)
-			return ops[index](argc, argv, line);
-		else
-			; // error: undefined opcode
-	}
+		return ops[argv[0]](argc, argv, line);
 	else
-		return line_t(); // disregard as a blank line
+		return line_t{}; // disregard as a blank line
 }
