@@ -56,5 +56,5 @@ line_t compile(size_t argc, const char** argv, uint16_t line)
 	if (argc > 0)
 		return ops[argv[0]](argc, argv, line);
 	else
-		return line_t{}; // disregard as a blank line
+		; // error: undetected blank line (could be a label on a blank line)
 }
