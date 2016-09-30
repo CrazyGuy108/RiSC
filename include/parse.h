@@ -10,7 +10,7 @@
 inst_t reg(const char* name);
 
 // converts a word into an immediate
-inst_t imm(const char* name, uint16_t line = 0, inst_t mask = 0xffff);
+inst_t imm(const char* name, uint16_t line = 0);
 
 // takes in a parsed line of code to produce a series of bytecode instructions
 line_t compile(size_t argc, const char** argv, uint16_t line);

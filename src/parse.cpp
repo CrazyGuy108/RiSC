@@ -17,20 +17,12 @@ inst_t reg(const char* name)
 	return regs[name];
 }
 
-inst_t imm(const char* name, uint16_t line /* = 0 */, inst_t mask /*= 0xffff*/)
+inst_t imm(const char* name, uint16_t line /* = 0 */)
 {
 	char* endp;
 	long value{ strtol(name, &endp, 0) };
 
-	if (endp != name) // is a number
-	{
-		if (value & mask == value)
-			return (inst_t)value;
-		else
-			; // error: immediate too big
-	}
-	else // not a number so must be a symbol
-		return symbols[name] - line; // generates offset
+	return endp == name ? symbols[name] - line : (inst_t)value;
 }
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
