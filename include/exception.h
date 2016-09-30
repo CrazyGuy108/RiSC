@@ -40,6 +40,9 @@ public:
 	OperandException();
 	OperandException(const char* opcode, size_t expected, size_t given);
 	
+	size_t getExpected() const; // gets expected operand count
+	size_t getGiven() const;    // gets given operand count
+
 protected:
 	size_t expected; // amount of operands expected
 	size_t given;    // amount of operands given

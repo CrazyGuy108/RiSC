@@ -28,3 +28,13 @@ OperandException::OperandException()
 
 OperandException::OperandException(const char* opcode, size_t expected, size_t given)
 	: RiscException{ opcode }, expected{ expected }, given{ given } {}
+
+size_t OperandException::getExpected() const
+{
+	return expected;
+}
+
+size_t OperandException::getGiven() const
+{
+	return given;
+}
