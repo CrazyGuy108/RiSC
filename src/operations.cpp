@@ -5,7 +5,7 @@ OP(add)
 	if (argc == 4)
 		return line_t{ rrr(ADD, reg(argv[1]), reg(argv[2]), reg(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "add", 3, argc - 1 };
 }
 /***** add try/catch error handling once implemented *****/
 OP(addi)
@@ -13,7 +13,7 @@ OP(addi)
 	if (argc == 4)
 		return line_t{ rri(ADDI, reg(argv[1]), reg(argv[2]), imm(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "addi", 3, argc - 1 };
 }
 
 OP(nand)
@@ -21,7 +21,7 @@ OP(nand)
 	if (argc == 4)
 		return line_t{ rrr(NAND, reg(argv[1]), reg(argv[2]), reg(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "nand", 3, argc - 1 };
 }
 
 OP(lui)
@@ -29,7 +29,7 @@ OP(lui)
 	if (argc == 3)
 		return line_t{ ri(LUI, reg(argv[1]), imm(argv[2])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "lui", 2, argc - 1 };
 }
 
 OP(sw)
@@ -37,7 +37,7 @@ OP(sw)
 	if (argc == 4)
 		return line_t{ rri(SW, reg(argv[1]), reg(argv[2]), imm(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "sw", 3, argc - 1 };
 }
 
 OP(lw)
@@ -45,7 +45,7 @@ OP(lw)
 	if (argc == 4)
 		return line_t{ rri(LW, reg(argv[1]), reg(argv[2]), imm(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "lw", 3, argc - 1 };
 }
 
 OP(beq)
@@ -53,7 +53,7 @@ OP(beq)
 	if (argc == 4)
 		return line_t{ rri(BEQ, reg(argv[1]), reg(argv[2]), imm(argv[3], line)) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "beq", 3, argc - 1 };
 }
 
 OP(jalr)
@@ -61,7 +61,7 @@ OP(jalr)
 	if (argc == 4)
 		return line_t{ rri(JALR, reg(argv[1]), reg(argv[2]), imm(argv[3])) };
 	else
-		; // error: operand count does not match
+		throw OperandException{ "jalr", 3, argc - 1 };
 }
 /***** implement after everything else works *****/
 OP(nop)
