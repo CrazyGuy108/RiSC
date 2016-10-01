@@ -25,7 +25,7 @@ inst_t imm(const char* name)
 	return endp == name ? symbols[name] : (inst_t)value;
 }
 
-line_t compile(size_t argc, const char** argv, uint16_t line)
+line_t compile(size_t argc, char** argv, uint16_t line)
 {
 	static const Table<operation_t> ops
 	{

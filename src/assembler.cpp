@@ -124,7 +124,7 @@ void assemble(int argc, char** argv)
 		{
 			try
 			{
-				tmp = compile(words[i].size(), (const char**)(words[i].data()), line);
+				tmp = compile(words[i].size(), words[i].data(), line);
 				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
 				line += tmp.size(); // some instructions take multiple instruction words when compiled
 			}

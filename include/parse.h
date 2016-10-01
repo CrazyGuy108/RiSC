@@ -13,6 +13,6 @@ inst_t reg(const char* name);
 inst_t imm(const char* name);
 
 // takes in a parsed line of code to produce a series of bytecode instructions
-line_t compile(size_t argc, const char** argv, uint16_t line);
+line_t compile(size_t argc, char** argv, uint16_t line);
 
 #endif // PARSE_H
