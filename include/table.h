@@ -45,6 +45,26 @@ public:
 			throw SymbolException{ name };
 	}
 
+	typename map_type::iterator begin() noexcept
+	{
+		return data.begin();
+	}
+
+	typename map_type::const_iterator begin() const noexcept
+	{
+		return data.begin();
+	}
+
+	typename map_type::iterator end() noexcept
+	{
+		return data.end();
+	}
+
+	typename map_type::const_iterator end() const noexcept
+	{
+		return data.end();
+	}
+
 private:
 	map_type data;
 };
