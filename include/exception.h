@@ -14,25 +14,25 @@ protected:
 	const char* msg; // details about the exception
 };
 
-// unresolved symbols/tokens exception
+// unresolved token exception
 class TokenException
 	: public RiscException
 {
 public:
 	TokenException();
-	TokenException(const char* msg);
+	TokenException(const char* token);
 };
 
-// symbol already defined exception
+// redefined symbol exception
 class SymbolException
 	: public RiscException
 {
 public:
 	SymbolException();
-	SymbolException(const char* msg);
+	SymbolException(const char* symbol);
 };
 
-// operand count does not match exception
+// unexpected operand amount exception
 class OperandException
 	: public RiscException
 {

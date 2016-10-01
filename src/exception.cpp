@@ -14,14 +14,14 @@ const char* RiscException::what() const
 TokenException::TokenException()
 	: RiscException{} {}
 
-TokenException::TokenException(const char* msg)
-	: RiscException{ msg } {}
+TokenException::TokenException(const char* token)
+	: RiscException{ token } {}
 
 SymbolException::SymbolException()
 	: RiscException{} {}
 
-SymbolException::SymbolException(const char* msg)
-	: RiscException{ msg } {}
+SymbolException::SymbolException(const char* symbol)
+	: RiscException{ symbol } {}
 
 OperandException::OperandException()
 	: RiscException{}, expected{ 0 }, given{ 0 } {}
