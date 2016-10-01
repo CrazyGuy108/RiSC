@@ -169,6 +169,12 @@ void assemble(int argc, char** argv)
 			std::cout << '\n';
 		}
 
+		std::cout << "labels:\n";
+
+		// iterate through labels
+		for (const auto& i : symbols)
+			std::cout << i.first << ": " << i.second << "\n";
+
 		std::cout << "bytecode:\n";
 
 		// iterate through bytecode
