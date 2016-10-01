@@ -32,7 +32,7 @@ void assemble(int argc, char** argv)
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
 		size_t wordIndex{ 0 };
 		uint16_t lineIndex{ 0 };
-		bool foundSpace{ false };
+		bool foundSpace{ true };
 		size_t index{ 0 };
 		unsigned int errors{ 0 };
 
@@ -48,7 +48,7 @@ void assemble(int argc, char** argv)
 
 			case '\n': // new line
 				words.push_back(std::vector<char*>{}); // construct new line
-
+				foundSpace = true;
 				// reset line
 				++lineIndex;
 				wordIndex = 0;
@@ -60,7 +60,11 @@ void assemble(int argc, char** argv)
 			case ' ':
 				// skip multiple spaces/tabs
 				if (foundSpace)
+				{
+					iterator += index + 1; // sets iterator to just after the space
+					index = 0;
 					break;
+				}
 
 				foundSpace = true;
 
