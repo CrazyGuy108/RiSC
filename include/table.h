@@ -43,7 +43,7 @@ public:
 	// insert a value in order
 	void insert(const char* name, value_type& value)
 	{
-		if(!data.insert(map_type::value_type{ name, value }).second) // couldn't insert, already defined
+		if(!data.insert({ name, value }).second) // couldn't insert, already defined
 			throw SymbolException{ name };
 	}
 
