@@ -84,7 +84,7 @@ void assemble(int argc, char** argv)
 		}
 
 		// resolve labels and clean up the code
-		
+		/*
 		for (uint16_t i{ 0 }; i < words.size(); ++i)
 		{
 			if (words[i].empty()) // blank line should be removed
@@ -112,7 +112,7 @@ void assemble(int argc, char** argv)
 					words[i].erase(words[i].begin()); // remove first word because it's a label
 				}
 			}
-		}
+		}*/
 
 		// compile into bytecode
 

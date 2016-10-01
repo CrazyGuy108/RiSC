@@ -46,7 +46,21 @@ line_t compile(size_t argc, const char** argv, uint16_t line)
 	};
 
 	if (argc > 0)
-		return ops[argv[0]](argc, argv, line);
+	{
+		size_t index{ 0 };
+		size_t len{ 0 };
+		while (argv[0][len] != '\0')
+			++len;
+
+		if (argv[0][len - 1] == ':')
+		{
+			argv[0][len - 1] = '\0'; // overwrite colon with null character
+			symbols.insert(argv[0], line); // the value in this case would be i, the current line number
+			index = 1;
+		}
+
+		return ops[argv[index]](argc, argv, line);
+	}
 	else
 		; // error: undetected blank line (could be a label on a blank line)
 }
