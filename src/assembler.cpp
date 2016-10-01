@@ -96,8 +96,8 @@ void assemble(int argc, char** argv)
 				{
 					try
 					{
-						symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
 						words[i][0][len - 1] = '\0'; // overwrite colon with null character
+						symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
 					}
 					catch (SymbolException e)
 					{
