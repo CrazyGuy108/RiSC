@@ -17,12 +17,12 @@ inst_t reg(const char* name)
 	return regs[name];
 }
 
-inst_t imm(const char* name, uint16_t line /* = 0 */)
+inst_t imm(const char* name)
 {
 	char* endp;
 	long value{ strtol(name, &endp, 0) };
 
-	return endp == name ? symbols[name] - line : (inst_t)value;
+	return endp == name ? symbols[name] : (inst_t)value;
 }
 
 line_t compile(size_t argc, const char** argv, uint16_t line)
