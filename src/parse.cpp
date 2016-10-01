@@ -59,7 +59,7 @@ line_t compile(size_t argc, char** argv, uint16_t line)
 			index = 1;
 		}
 
-		return ops[argv[index]](argc, argv, line);
+		return ops[argv[index]](argc, (const char**)argv, line);
 	}
 	else
 		; // error: undetected blank line (could be a label on a blank line)
