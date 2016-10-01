@@ -94,8 +94,6 @@ void assemble(int argc, char** argv)
 
 				if (words[i][0][len - 1] == ':') // check last character
 				{
-					words[i].erase(words[i].begin()); // remove first word because it's a label
-
 					try
 					{
 						symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
@@ -106,6 +104,8 @@ void assemble(int argc, char** argv)
 						std::cout << "error in line " << i << ": redefinition of label \"" << e.what() << "\"\n";
 						++errors;
 					}
+
+					words[i].erase(words[i].begin()); // remove first word because it's a label
 				}
 			}
 		}
