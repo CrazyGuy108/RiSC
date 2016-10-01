@@ -8,7 +8,7 @@ public:
 	RiscException();
 	RiscException(const char* msg);
 
-	virtual const char* what() const; // gets the message
+	const char* what() const; // gets the message
 
 protected:
 	const char* msg; // details about the exception
