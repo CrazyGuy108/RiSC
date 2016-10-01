@@ -47,19 +47,18 @@ line_t compile(size_t argc, char** argv, uint16_t line)
 
 	if (argc > 0)
 	{
-		size_t index{ 0 };
 		size_t len{ 0 };
-		while (argv[0][len] != '\0')
+		while (argv[0][len] != '\0') // get length of string
 			++len;
 
-		if (argv[0][len - 1] == ':')
-		{
-			argv[0][len - 1] = '\0'; // overwrite colon with null character
-			symbols.insert(argv[0], line); // the value in this case would be i, the current line number
-			index = 1;
+		if (argv[0][len - 1] == ':') // words ending in a colon are considered labels
+		{                            // technically, the label can contain a colon in this method
+			argv[0][len - 1] = '\0';
+			symbols.insert(argv[0], line);
+			argv = &argv[1]; // remove label from argv
 		}
 
-		return ops[argv[index]](argc, (const char**)argv, line);
+		return ops[argv[0]](argc, (const char**)argv, line);
 	}
 	else
 		; // error: undetected blank line (could be a label on a blank line)
