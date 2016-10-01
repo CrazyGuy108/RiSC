@@ -51,7 +51,7 @@ OP(lw)
 OP(beq)
 {
 	if (argc == 4)
-		return line_t{ rri(BEQ, reg(argv[1]), reg(argv[2]), imm(argv[3]) + 1 - line) };
+		return line_t{ rri(BEQ, reg(argv[1]), reg(argv[2]), imm(argv[3]) - 1 - line) };
 	else
 		throw OperandException{ "beq", 3, argc - 1 };
 }
