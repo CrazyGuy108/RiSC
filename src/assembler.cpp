@@ -122,6 +122,8 @@ void assemble(int argc, char** argv)
 
 		for (size_t i{ 0 }; i < words.size(); ++i)
 		{
+			std::cout << "compiling line " << line << "...\n";
+
 			try
 			{
 				tmp = compile(words[i].size(), words[i].data(), line);
