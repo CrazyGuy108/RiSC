@@ -156,7 +156,7 @@ void assemble(int argc, char** argv)
 		
 		// test
 
-		std::cout << "source:\n";
+		std::cout << "\nsource:\n";
 
 		// iterate through lines
 		for (size_t i{ 0 }; i < words.size(); ++i)
@@ -169,17 +169,19 @@ void assemble(int argc, char** argv)
 			std::cout << '\n';
 		}
 
-		std::cout << "labels:\n";
+		std::cout << "\nlabels:\n";
 
 		// iterate through labels
 		for (const auto& i : symbols)
 			std::cout << i.first << ": " << i.second << "\n";
 
-		std::cout << "bytecode:\n";
+		std::cout << "\nbytecode:\n";
 
 		// iterate through bytecode
 		for (size_t i{ 0 }; i < bytecode.size(); ++i)
 			std::cout << std::hex << bytecode[i] << '\n';
+
+		std::cout << "\n";
 
 		delete[] contents;
 	}
