@@ -1,38 +1,29 @@
 #ifndef SYMBOLTABLE_H
 #define SYMBOLTABLE_H
 
-#include <vector>      // for vector
+#include <map>         // for map
 #include "exception.h" // for TokenException
 
-template <typename T>
-class Item
+class StrLess
 {
 public:
-	typedef T value_type;
-
-	Item(const char* name, value_type value)
-		: name{ name }, value{ value } {}
-
-	bool operator<(Item<T> a) const
+	bool operator()(const char* a, const char* b) const
 	{
-		return strcmp(name, a.name) < 0;
+		return strcmp(a, b) < 0;
 	}
-
-	const char* name;
-	value_type value;
 };
 
 template <typename T>
 class Table
 {
 public:
-	typedef Item<T> item_type;
 	typedef T value_type;
+	typedef std::map<const char*, value_type, StrLess> map_type;
 
 	Table()
 		: data{} {}
 
-	Table(std::initializer_list<item_type> data)
+	Table(std::initializer_list<typename map_type::value_type> data)
 		: data{ data } {}
 
 	size_t size() const
@@ -42,56 +33,25 @@ public:
 
 	const value_type& operator[](const char* token) const
 	{
-		int index{ closestMatch(token) };
-		if (strcmp(data[index].name, token) == 0)
-			return data[index].value;
-		else
+		try
+		{
+			return data.at(token);
+		}
+		catch (...) // if the map access wasn't successful
+		{
 			throw TokenException{ token };
+		}
 	}
 
 	// insert a value in order
 	void insert(const char* name, value_type& value)
 	{
-		int index{ closestMatch(name) };
-		if (index == -1) // check if invalid
-			data.insert(data.begin(), item_type{ name, value }); // insert at start
-		else if (strcmp(data[index].name, name) != -1) // check if item already defined
+		if(!data.insert(map_type::value_type{ name, value }).second) // couldn't insert, already defined
 			throw SymbolException{ name };
-		else
-			data.insert(data.begin() + index, item_type{ name, value });
 	}
 
 private:
-	std::vector<item_type> data;
-
-	// binary search for the closest match to an item
-	// used by insert and operator[]
-	int closestMatch(const char* token) const
-	{
-		// prevent out of bounds errors
-		if (data.empty())
-			return -1;
-
-		size_t start{ 0 };
-		size_t end{ size() };
-		size_t middle;
-		int comparison;
-
-		while (start < end)
-		{
-			middle = (start + end) >> 1;
-			comparison = strcmp(data[middle].name, token);
-
-			if (comparison < 0)      // <
-				start = middle;
-			else if (comparison > 0) // >
-				end = middle;
-			else                     // =
-				return middle;
-		}
-
-		return middle;
-	}
+	map_type data;
 };
 
 #endif // SYMBOLTABLE_H
