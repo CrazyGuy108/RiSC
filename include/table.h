@@ -17,8 +17,10 @@ template <typename T>
 class Table
 {
 public:
-	typedef T value_type;
-	typedef std::map<const char*, value_type, StrLess> map_type;
+	typedef std::map<const char*, T, StrLess> map_type;
+	typedef typename map_type::mapped_type    value_type;
+	typedef typename map_type::iterator       iterator;
+	typedef typename map_type::const_iterator const_iterator;
 
 	Table()
 		: data{} {}
@@ -45,22 +47,22 @@ public:
 			throw SymbolException{ name };
 	}
 
-	typename map_type::iterator begin() noexcept
+	iterator begin() noexcept
 	{
 		return data.begin();
 	}
 
-	typename map_type::const_iterator begin() const noexcept
+	const_iterator begin() const noexcept
 	{
 		return data.begin();
 	}
 
-	typename map_type::iterator end() noexcept
+	iterator end() noexcept
 	{
 		return data.end();
 	}
 
-	typename map_type::const_iterator end() const noexcept
+	const_iterator end() const noexcept
 	{
 		return data.end();
 	}
