@@ -26,11 +26,6 @@ public:
 	Table(std::initializer_list<typename map_type::value_type> data)
 		: data{ data } {}
 
-	size_t size() const
-	{
-		return data.size();
-	}
-
 	const value_type& operator[](const char* token) const
 	{
 		try
