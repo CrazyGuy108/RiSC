@@ -55,7 +55,8 @@ line_t compile(size_t argc, char** argv, uint16_t line)
 		{                            // technically, the label can contain a colon in this method
 			argv[0][len - 1] = '\0';
 			symbols.insert(argv[0], line);
-			argv = &argv[1]; // remove label from argv
+			argv = &argv[1]; // ignore label
+			--argc;
 		}
 
 		return ops[argv[0]](argc, (const char**)argv, line);
