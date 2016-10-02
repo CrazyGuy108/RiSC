@@ -27,7 +27,7 @@ OP(nand)
 OP(lui)
 {
 	if (argc == 3)
-		return line_t{ ri(LUI, reg(argv[1]), imm(argv[2])) };
+		return line_t{ ri(LUI, reg(argv[1]), imm(argv[2]) >> lui_shift) };
 	else
 		throw OperandException{ "lui", 2, argc - 1 };
 }
