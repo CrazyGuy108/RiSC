@@ -1,8 +1,25 @@
 #include "../include/assembler.h"
 
-std::vector<std::vector<char*>> preprocess(char* program)
+std::vector<OP((*))> preprocess(char* program)
 {
+	static const Table<Opcode> ops
+	{
+		{ "add",  { &add,  1 } },
+		{ "addi", { &addi, 1 } },
+		{ "beq",  { &beq,  1 } },
+		{ "halt", { &halt, 1 } },
+		{ "jalr", { &jalr, 1 } },
+		{ "lli",  { &lli,  1 } },
+		{ "lui",  { &lui,  1 } },
+		{ "lw",   { &lw,   1 } },
+		{ "movi", { &movi, 2 } },
+		{ "nand", { &nand, 1 } },
+		{ "nop",  { &nop,  1 } },
+		{ "sw",   { &sw,   1 } }
+	};
+
 	std::vector<std::vector<char*>> words{ std::vector<char*>{} };
+	std::vector<OP((*))> opcodes;
 	char* iterator{ program };
 	size_t charIndex{ 0 };
 	size_t wordIndex{ 0 };
@@ -29,6 +46,13 @@ std::vector<std::vector<char*>> preprocess(char* program)
 			wordIndex = 0;
 			iterator += charIndex + 1; // sets iterator to just after the newline
 			charIndex = 0;
+
+			// parse/cleanup line
+			if (words[lineIndex].empty()) // blank lines should be removed
+				words.erase(words.begin() + lineIndex);
+			else
+				opcodes.push_back(ops[words[lineIndex][0]].getFunc());
+				
 			break;
 
 		case '\t': // new word/label
@@ -63,7 +87,7 @@ std::vector<std::vector<char*>> preprocess(char* program)
 		}
 	}
 
-	return words;
+	return opcodes;
 }
 
 void assemble(int argc, char** argv)
@@ -94,7 +118,7 @@ void assemble(int argc, char** argv)
 		infile.close();
 
 		/***** PASS ONE: preprocessor *****/
-		std::vector<std::vector<char*>> words{ preprocess(contents) };
+		std::vector<OP((*))> opcodes{ preprocess(contents) };
 
 		unsigned int errors{ 0 };
 
@@ -130,11 +154,11 @@ void assemble(int argc, char** argv)
 		}*/
 
 		// compile into bytecode
-
+		/*
 		line_t bytecode;
 		line_t tmp;
 		size_t line{ 0 };
-
+		
 		for (size_t i{ 0 }; i < words.size(); ++i)
 		{
 			std::cout << "compiling line " << i << "...\n";
@@ -157,7 +181,7 @@ void assemble(int argc, char** argv)
 				++line;
 				++errors;
 			}
-		}
+		}*/
 
 		/*
 		// write to file
@@ -176,7 +200,7 @@ void assemble(int argc, char** argv)
 		*/
 		
 		// test
-
+		/*
 		std::cout << "\nsource:\n";
 
 		// iterate through lines
@@ -202,8 +226,8 @@ void assemble(int argc, char** argv)
 		for (size_t i{ 0 }; i < bytecode.size(); ++i)
 			std::cout << std::hex << bytecode[i] << '\n';
 
-		std::cout << "\n";
-
+		std::cout << "\n";*/
+		
 		delete[] contents;
 	}
 	else

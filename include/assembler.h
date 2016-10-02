@@ -8,7 +8,7 @@
 
 // preprocessor for assembler
 // resolves directives and labels similar to the C preprocessor
-std::vector<std::vector<char*>> preprocess(char* program);
+std::vector<OP((*))> preprocess(char* program);
 
 void assemble(int argc, char** argv);
 
