@@ -38,21 +38,21 @@ std::vector<OP((*))> preprocess(char* program)
 			// next case will obviously be a newline so don't break
 
 		case '\n': // new line
-			words.push_back(std::vector<char*>{}); // construct new line
-			foundSpace = true;
-
-			// reset line
-			++lineIndex;
-			wordIndex = 0;
-			iterator += charIndex + 1; // sets iterator to just after the newline
-			charIndex = 0;
-
 			// parse/cleanup line
 			if (words[lineIndex].empty()) // blank lines should be removed
 				words.erase(words.begin() + lineIndex);
 			else
+			{
 				opcodes.push_back(ops[words[lineIndex][0]].getFunc());
-				
+				words.push_back(std::vector<char*>{}); // construct new line
+				foundSpace = true; // allows spaces/tabs before the first word of the next line
+				++lineIndex;
+			}
+
+			// reset line
+			wordIndex = 0;
+			iterator += charIndex + 1; // sets iterator to just after the newline
+			charIndex = 0;
 			break;
 
 		case '\t': // new word/label
