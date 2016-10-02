@@ -29,8 +29,6 @@ line_t compile(size_t argc, char** argv, uint16_t line)
 {
 	static const Table<operation_t> ops
 	{
-		{ ".fill",  &fill },
-		{ ".space", &space },
 		{ "add",    &add },
 		{ "addi",   &addi },
 		{ "beq",    &beq },

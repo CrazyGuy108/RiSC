@@ -83,13 +83,3 @@ OP(movi)
 {
 	return line_t(); // placeholder
 }
-
-OP(fill)
-{
-	return line_t(); // placeholder
-}
-
-OP(space)
-{
-	return line_t(); // placeholder
-}

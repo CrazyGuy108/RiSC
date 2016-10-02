@@ -22,7 +22,5 @@ OP(nop);
 OP(halt);
 OP(lli);
 OP(movi);
-OP(fill);
-OP(space);
 
 #endif // OPERATIONS_H
