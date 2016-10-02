@@ -1,5 +1,64 @@
 #include "../include/assembler.h"
 
+std::vector<std::vector<char*>> preprocess(char* program)
+{
+	std::vector<std::vector<char*>> words{ std::vector<char*>{} };
+	char* iterator{ program };
+	size_t charIndex{ 0 };
+	size_t wordIndex{ 0 };
+	size_t lineIndex{ 0 };
+	bool foundSpace{ true };
+
+	while (iterator[charIndex] != '\0')
+	{
+		switch (iterator[charIndex])
+		{
+		case '#': // comment
+				  // ignore everything until newline
+			while (iterator[charIndex] != '\n')
+				++charIndex;
+			// next case will obviously be a newline so don't break
+
+		case '\n': // new line
+			words.push_back(std::vector<char*>{}); // construct new line
+			foundSpace = true;
+			// reset line
+			++lineIndex;
+			wordIndex = 0;
+			iterator += charIndex + 1; // sets iterator to just after the newline
+			charIndex = 0;
+			break;
+
+		case '\t': // new word/label
+		case ' ':
+			// skip multiple spaces/tabs
+			if (foundSpace)
+			{
+				iterator += charIndex + 1; // sets iterator to just after the space
+				charIndex = 0;
+				break;
+			}
+
+			foundSpace = true;
+
+			words[lineIndex].push_back(iterator); // iterator holds base pointer of string
+			iterator[charIndex] = '\0'; // terminate the new substring
+
+										// reset word
+			++wordIndex;
+			iterator += charIndex + 1;
+			charIndex = 0;
+			break;
+
+		default: // nonspecial character
+			foundSpace = false;
+			++charIndex;
+		}
+	}
+
+	return words;
+}
+
 void assemble(int argc, char** argv)
 {
 	if (argc == 3)
@@ -27,62 +86,10 @@ void assemble(int argc, char** argv)
 		// no need to read from it anymore
 		infile.close();
 
-		// split into words and ignore comments
-		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
-		char* iterator{ contents };
-		size_t charIndex{ 0 };
-		size_t wordIndex{ 0 };
-		size_t lineIndex{ 0 };
-		bool foundSpace{ true };
-		
+		/***** PASS ONE: preprocessor *****/
+		std::vector<std::vector<char*>> words{ preprocess(contents) };
+
 		unsigned int errors{ 0 };
-
-		while (iterator[charIndex] != '\0')
-		{
-			switch (iterator[charIndex])
-			{
-			case '#': // comment
-				// ignore everything until newline
-				while (iterator[charIndex] != '\n')
-					++charIndex;
-				// next case will obviously be a newline so don't break
-
-			case '\n': // new line
-				words.push_back(std::vector<char*>{}); // construct new line
-				foundSpace = true;
-				// reset line
-				++lineIndex;
-				wordIndex = 0;
-				iterator += charIndex + 1; // sets iterator to just after the newline
-				charIndex = 0;
-				break;
-
-			case '\t': // new word/label
-			case ' ':
-				// skip multiple spaces/tabs
-				if (foundSpace)
-				{
-					iterator += charIndex + 1; // sets iterator to just after the space
-					charIndex = 0;
-					break;
-				}
-
-				foundSpace = true;
-
-				words[lineIndex].push_back(iterator); // iterator holds base pointer of string
-				iterator[charIndex] = '\0'; // terminate the new substring
-
-				// reset word
-				++wordIndex;
-				iterator += charIndex + 1;
-				charIndex = 0;
-				break;
-
-			default: // nonspecial character
-				foundSpace = false;
-				++charIndex;
-			}
-		}
 
 		// resolve labels and clean up the code
 		/*

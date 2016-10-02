@@ -6,6 +6,10 @@
 #include <vector>   // for vector
 #include "parse.h"  // for compile()
 
+// preprocessor for assembler
+// resolves directives and labels similar to the C preprocessor
+std::vector<std::vector<char*>> preprocess(char* program);
+
 void assemble(int argc, char** argv);
 
 #endif // ASSEMBLER_H
