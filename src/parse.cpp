@@ -57,7 +57,7 @@ line_t compile(size_t argc, char** argv, uint16_t line)
 			--argc;
 		}
 
-		return ops[argv[0]](argc, (const char**)argv, line);
+		return ops[argv[0]].getFunc()(argc, (const char**)argv, line);
 	}
 	else
 		; // error: undetected blank line (could be a label on a blank line)
