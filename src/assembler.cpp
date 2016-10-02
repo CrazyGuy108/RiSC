@@ -8,6 +8,7 @@ std::vector<std::vector<char*>> preprocess(char* program)
 	size_t wordIndex{ 0 };
 	size_t lineIndex{ 0 };
 	bool foundSpace{ true };
+	inst_t lineAddr{ 0 };
 
 	while (iterator[charIndex] != '\0')
 	{
@@ -22,6 +23,7 @@ std::vector<std::vector<char*>> preprocess(char* program)
 		case '\n': // new line
 			words.push_back(std::vector<char*>{}); // construct new line
 			foundSpace = true;
+
 			// reset line
 			++lineIndex;
 			wordIndex = 0;
@@ -41,10 +43,15 @@ std::vector<std::vector<char*>> preprocess(char* program)
 
 			foundSpace = true;
 
-			words[lineIndex].push_back(iterator); // iterator holds base pointer of string
 			iterator[charIndex] = '\0'; // terminate the new substring
 
-										// reset word
+			// add to words vector or symbol table
+			if (iterator[charIndex - 1] == ':')
+				symbols.insert(iterator, lineAddr);
+			else
+				words[lineIndex].push_back(iterator);
+
+			// reset word
 			++wordIndex;
 			iterator += charIndex + 1;
 			charIndex = 0;
