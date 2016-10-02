@@ -1,5 +1,18 @@
 #include "../include/operations.h"
 
+Opcode::Opcode(OP((*func)), inst_t len)
+	: func{ func }, len{ len } {}
+
+OP(Opcode::operator()) const
+{
+	return func(argc, argv, line);
+}
+
+inst_t Opcode::length() const
+{
+	return len;
+}
+
 OP(add)
 {
 	if (argc == 4)

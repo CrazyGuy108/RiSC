@@ -5,6 +5,19 @@
 #include "parse.h"       // for reg()/imm()
 #include "utilities.h"   // for macros/constants
 
+class Opcode
+{
+public:
+	Opcode(OP((*func)), inst_t len);
+
+	OP(operator())  const;
+	inst_t length() const;
+
+private:
+	OP((*func)); // opcode function to call
+	inst_t len;  // amount of instruction words it will take
+};
+
 // opcodes
 
 OP(add);
