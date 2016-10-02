@@ -9,7 +9,6 @@
 
 typedef uint16_t inst_t;
 typedef std::vector<inst_t> line_t;
-typedef OP((*operation_t));
 
 constexpr inst_t ADD        = 0x0000;
 constexpr inst_t ADDI       = 0x2000;
