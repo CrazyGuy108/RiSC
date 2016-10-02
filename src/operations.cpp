@@ -3,11 +3,6 @@
 Opcode::Opcode(OP((*func)), inst_t len)
 	: func{ func }, len{ len } {}
 
-OP(Opcode::operator()) const
-{
-	return func(argc, argv, line);
-}
-
 OP((*Opcode::getFunc() const))
 {
 	return func;
