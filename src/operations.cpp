@@ -8,6 +8,11 @@ OP(Opcode::operator()) const
 	return func(argc, argv, line);
 }
 
+OP((*Opcode::getFunc() const))
+{
+	return func;
+}
+
 inst_t Opcode::length() const
 {
 	return len;

@@ -10,7 +10,7 @@ class Opcode
 public:
 	Opcode(OP((*func)), inst_t len);
 
-	OP(operator())  const;
+	OP((*getFunc()  const));
 	inst_t length() const;
 
 private:
