@@ -129,39 +129,8 @@ void assemble(int argc, char** argv)
 
 		unsigned int errors{ 0 };
 
-		// resolve labels and clean up the code
-		/*
-		for (uint16_t i{ 0 }; i < words.size(); ++i)
-		{
-			if (words[i].empty()) // blank line should be removed
-				words.erase(words.begin() + i--);
-			else // check if label
-			{
-				size_t len{ 0 };
-
-				while (words[i][0][len] != '\0')
-					++len;
-
-				if (words[i][0][len - 1] == ':') // check last character
-				{
-					try
-					{
-						words[i][0][len - 1] = '\0'; // overwrite colon with null character
-						symbols.insert(words[i][0], i); // the value in this case would be i, the current line number
-					}
-					catch (SymbolException e)
-					{
-						std::cout << "error in line " << i << ": redefinition of label \"" << e.what() << "\"\n";
-						++errors;
-					}
-
-					words[i].erase(words[i].begin()); // remove first word because it's a label
-				}
-			}
-		}*/
-
 		// compile into bytecode
-		/*
+		
 		line_t bytecode;
 		line_t tmp;
 		size_t line{ 0 };
@@ -172,7 +141,7 @@ void assemble(int argc, char** argv)
 
 			try
 			{
-				tmp = compile(words[i].size(), words[i].data(), line);
+				tmp = opcodes[i](words[i].size(), (const char**)words[i].data(), line);
 				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
 				line += tmp.size(); // some instructions take multiple instruction words when compiled
 			}
@@ -188,7 +157,8 @@ void assemble(int argc, char** argv)
 				++line;
 				++errors;
 			}
-		}*/
+		
+		}
 
 		/*
 		// write to file
