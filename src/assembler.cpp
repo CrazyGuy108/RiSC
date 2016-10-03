@@ -31,18 +31,18 @@ void assemble(int argc, char** argv)
 
 		static const Table<Opcode> ops
 		{
-			{ "add",{ &add,  1 } },
-			{ "addi",{ &addi, 1 } },
-			{ "beq",{ &beq,  1 } },
-			{ "halt",{ &halt, 1 } },
-			{ "jalr",{ &jalr, 1 } },
-			{ "lli",{ &lli,  1 } },
-			{ "lui",{ &lui,  1 } },
-			{ "lw",{ &lw,   1 } },
-			{ "movi",{ &movi, 2 } },
-			{ "nand",{ &nand, 1 } },
-			{ "nop",{ &nop,  1 } },
-			{ "sw",{ &sw,   1 } }
+			{ "add",  { &add,  1 } },
+			{ "addi", { &addi, 1 } },
+			{ "beq",  { &beq,  1 } },
+			{ "halt", { &halt, 1 } },
+			{ "jalr", { &jalr, 1 } },
+			{ "lli",  { &lli,  1 } },
+			{ "lui",  { &lui,  1 } },
+			{ "lw",   { &lw,   1 } },
+			{ "movi", { &movi, 2 } },
+			{ "nand", { &nand, 1 } },
+			{ "nop",  { &nop,  1 } },
+			{ "sw",   { &sw,   1 } }
 		};
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
