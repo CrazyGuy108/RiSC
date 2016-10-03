@@ -25,26 +25,36 @@ inst_t imm(const char* name)
 	return endp == name ? symbols[name] : (inst_t)value;
 }
 
-line_t compile(size_t argc, char** argv, uint16_t line)
+void compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
 {
-	static const Table<Opcode> ops
-	{
-		{ "add",  { &add,  1 } },
-		{ "addi", { &addi, 1 } },
-		{ "beq",  { &beq,  1 } },
-		{ "halt", { &halt, 1 } },
-		{ "jalr", { &jalr, 1 } },
-		{ "lli",  { &lli,  1 } },
-		{ "lui",  { &lui,  1 } },
-		{ "lw",   { &lw,   1 } },
-		{ "movi", { &movi, 2 } },
-		{ "nand", { &nand, 1 } },
-		{ "nop",  { &nop,  1 } },
-		{ "sw",   { &sw,   1 } }
-	};
+	unsigned int errors{ 0 };
 
-	if (argc > 0)
-		return ops[argv[0]].getFunc()(argc, (const char**)argv, line);
-	else
-		; // error: undetected blank line (could be a label on a blank line)
+	line_t bytecode;
+	line_t tmp;
+	size_t line{ 0 };
+
+	for (size_t i{ 0 }; i < words.size(); ++i)
+	{
+		std::cout << "compiling line " << i << "...\n";
+
+		try
+		{
+			tmp = opcodes[i].getFunc()(words[i].size(), (const char**)words[i].data(), line);
+			bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
+			line += opcodes[i].length(); // some instructions take multiple instruction words when compiled
+		}
+		catch (TokenException e)
+		{
+			std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
+			++line;
+			++errors;
+		}
+		catch (OperandException e)
+		{
+			std::cout << "error in line " << i << ": opcode \"" << e.what() << "\" expected " << e.getExpected() << " operands but was given " << e.getGiven() << " instead\n";
+			++line;
+			++errors;
+		}
+
+	}
 }

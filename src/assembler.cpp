@@ -124,45 +124,16 @@ void assemble(int argc, char** argv)
 		// no need to read from it anymore
 		infile.close();
 
-		/***** PASS ONE: preprocessor *****/
+		/***** PASS ONE: preprocessor/parser *****/
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing
 		std::vector<Opcode> opcodes; // array of opcode functions to be called
 
 		preprocess(words, opcodes, contents);
 
-		unsigned int errors{ 0 };
+		/***** PASS TWO: compiler *****/
 
-		// compile into bytecode
 		
-		line_t bytecode;
-		line_t tmp;
-		size_t line{ 0 };
-		
-		for (size_t i{ 0 }; i < words.size(); ++i)
-		{
-			std::cout << "compiling line " << i << "...\n";
-
-			try
-			{
-				tmp = opcodes[i].getFunc()(words[i].size(), (const char**)words[i].data(), line);
-				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
-				line += opcodes[i].length(); // some instructions take multiple instruction words when compiled
-			}
-			catch (TokenException e)
-			{
-				std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
-				++line;
-				++errors;
-			}
-			catch (OperandException e)
-			{
-				std::cout << "error in line " << i << ": opcode \"" << e.what() << "\" expected " << e.getExpected() << " operands but was given " << e.getGiven() << " instead\n";
-				++line;
-				++errors;
-			}
-		
-		}
 
 		/*
 		// write to file
