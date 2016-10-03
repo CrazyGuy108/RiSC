@@ -9,6 +9,8 @@
 
 void preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator);
 
+void compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes);
+
 void assemble(int argc, char** argv);
 
 #endif // ASSEMBLER_H

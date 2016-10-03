@@ -97,6 +97,40 @@ void preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opc
 	}
 }
 
+void compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
+{
+	unsigned int errors{ 0 };
+
+	line_t bytecode;
+	line_t tmp;
+	size_t line{ 0 };
+
+	for (size_t i{ 0 }; i < words.size(); ++i)
+	{
+		std::cout << "compiling line " << i << "...\n";
+
+		try
+		{
+			tmp = opcodes[i].getFunc()(words[i].size(), (const char**)words[i].data(), line);
+			bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
+			line += opcodes[i].length(); // some instructions take multiple instruction words when compiled
+		}
+		catch (TokenException e)
+		{
+			std::cout << "error in line " << i << ": unresolved symbol \"" << e.what() << "\"\n";
+			++line;
+			++errors;
+		}
+		catch (OperandException e)
+		{
+			std::cout << "error in line " << i << ": opcode \"" << e.what() << "\" expected " << e.getExpected() << " operands but was given " << e.getGiven() << " instead\n";
+			++line;
+			++errors;
+		}
+
+	}
+}
+
 void assemble(int argc, char** argv)
 {
 	if (argc == 3)
@@ -133,7 +167,7 @@ void assemble(int argc, char** argv)
 
 		/***** PASS TWO: compiler *****/
 
-		
+		compile(words, opcodes);
 
 		/*
 		// write to file
