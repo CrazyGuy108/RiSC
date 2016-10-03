@@ -102,7 +102,16 @@ void assemble(int argc, char** argv)
 
 				// add to words vector or symbol table
 				if (iterator[charIndex - 1] == ':')
-					symbols.insert(iterator, lineAddr);
+				{
+					try
+					{
+						symbols.insert(iterator, lineAddr);
+					}
+					catch (SymbolException e)
+					{
+						std::cout << "error in line " << lineIndex << ": redefinition of label \"" << e.what() << "\"\n";
+					}
+				}
 				else
 					words[lineIndex].push_back(iterator);
 
