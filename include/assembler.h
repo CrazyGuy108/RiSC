@@ -6,6 +6,8 @@
 #include <vector>   // for vector
 #include "parse.h"  // for compile()
 
+void preprocess(std::vector<std::vector<char*>>& words, std::vector<OP((*))>& opcodes, char* iterator);
+
 void assemble(int argc, char** argv);
 
 #endif // ASSEMBLER_H
