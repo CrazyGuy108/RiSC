@@ -7,7 +7,7 @@
 #include "operations.h" // for Opcode
 #include "parse.h"      // for compile()
 
-void preprocess(std::vector<std::vector<char*>>& words, std::vector<OP((*))>& opcodes, char* iterator);
+void preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator);
 
 void assemble(int argc, char** argv);
 

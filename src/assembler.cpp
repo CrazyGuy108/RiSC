@@ -1,6 +1,6 @@
 #include "../include/assembler.h"
 
-void preprocess(std::vector<std::vector<char*>>& words, std::vector<OP((*))>& opcodes, char* iterator)
+void preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
 {
 	static const Table<Opcode> ops
 	{
@@ -41,13 +41,12 @@ void preprocess(std::vector<std::vector<char*>>& words, std::vector<OP((*))>& op
 				words.erase(words.begin() + lineIndex);
 			else
 			{
-				Opcode opcode{ ops[words[lineIndex][0]] }; // temp storage for Opcode object
-				opcodes.push_back(opcode.getFunc());
+				opcodes.push_back(ops[words[lineIndex][0]]);
 				words.push_back(std::vector<char*>{});
 
 				foundSpace = true; // allows spaces/tabs before the first word of the next line
+				lineAddr += opcodes[lineIndex].length();
 				++lineIndex;
-				lineAddr += opcode.length();
 			}
 
 			// reset line
@@ -128,7 +127,7 @@ void assemble(int argc, char** argv)
 		/***** PASS ONE: preprocessor *****/
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing
-		std::vector<OP((*))> opcodes; // array of opcode functions to be called
+		std::vector<Opcode> opcodes; // array of opcode functions to be called
 
 		preprocess(words, opcodes, contents);
 
@@ -146,9 +145,9 @@ void assemble(int argc, char** argv)
 
 			try
 			{
-				tmp = opcodes[i](words[i].size(), (const char**)words[i].data(), line);
+				tmp = opcodes[i].getFunc()(words[i].size(), (const char**)words[i].data(), line);
 				bytecode.insert(bytecode.end(), tmp.begin(), tmp.end());
-				line += tmp.size(); // some instructions take multiple instruction words when compiled
+				line += opcodes[i].length(); // some instructions take multiple instruction words when compiled
 			}
 			catch (TokenException e)
 			{
