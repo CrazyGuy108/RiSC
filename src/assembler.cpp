@@ -127,8 +127,8 @@ void assemble(int argc, char** argv)
 
 		/***** PASS ONE: preprocessor *****/
 
-		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
-		std::vector<OP((*))> opcodes;
+		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing
+		std::vector<OP((*))> opcodes; // array of opcode functions to be called
 
 		preprocess(words, opcodes, contents);
 
