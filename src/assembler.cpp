@@ -43,10 +43,13 @@ std::vector<OP((*))> preprocess(char* program)
 				words.erase(words.begin() + lineIndex);
 			else
 			{
-				opcodes.push_back(ops[words[lineIndex][0]].getFunc());
-				words.push_back(std::vector<char*>{}); // construct new line
+				Opcode opcode{ ops[words[lineIndex][0]] }; // temp storage for Opcode object
+				opcodes.push_back(opcode.getFunc());
+				words.push_back(std::vector<char*>{});
+
 				foundSpace = true; // allows spaces/tabs before the first word of the next line
 				++lineIndex;
+				lineAddr += opcode.length();
 			}
 
 			// reset line
