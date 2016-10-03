@@ -1,98 +1,5 @@
 #include "../include/assembler.h"
 
-std::vector<OP((*))> preprocess(char* program)
-{
-	static const Table<Opcode> ops
-	{
-		{ "add",  { &add,  1 } },
-		{ "addi", { &addi, 1 } },
-		{ "beq",  { &beq,  1 } },
-		{ "halt", { &halt, 1 } },
-		{ "jalr", { &jalr, 1 } },
-		{ "lli",  { &lli,  1 } },
-		{ "lui",  { &lui,  1 } },
-		{ "lw",   { &lw,   1 } },
-		{ "movi", { &movi, 2 } },
-		{ "nand", { &nand, 1 } },
-		{ "nop",  { &nop,  1 } },
-		{ "sw",   { &sw,   1 } }
-	};
-
-	std::vector<std::vector<char*>> words{ std::vector<char*>{} };
-	std::vector<OP((*))> opcodes;
-	char* iterator{ program };
-	size_t charIndex{ 0 };
-	size_t wordIndex{ 0 };
-	size_t lineIndex{ 0 };
-	bool foundSpace{ true };
-	inst_t lineAddr{ 0 };
-
-	while (iterator[charIndex] != '\0')
-	{
-		switch (iterator[charIndex])
-		{
-		case '#': // comment
-				  // ignore everything until newline
-			while (iterator[charIndex] != '\n')
-				++charIndex;
-			// next case will obviously be a newline so don't break
-
-		case '\n': // new line
-			// parse/cleanup line
-			if (words[lineIndex].empty()) // blank lines should be removed
-				words.erase(words.begin() + lineIndex);
-			else
-			{
-				Opcode opcode{ ops[words[lineIndex][0]] }; // temp storage for Opcode object
-				opcodes.push_back(opcode.getFunc());
-				words.push_back(std::vector<char*>{});
-
-				foundSpace = true; // allows spaces/tabs before the first word of the next line
-				++lineIndex;
-				lineAddr += opcode.length();
-			}
-
-			// reset line
-			wordIndex = 0;
-			iterator += charIndex + 1; // sets iterator to just after the newline
-			charIndex = 0;
-			break;
-
-		case '\t': // new word/label
-		case ' ':
-			// skip multiple spaces/tabs
-			if (foundSpace)
-			{
-				iterator += charIndex + 1; // sets iterator to just after the space
-				charIndex = 0;
-				break;
-			}
-
-			foundSpace = true;
-
-			iterator[charIndex] = '\0'; // terminate the new substring
-
-			// add to words vector or symbol table
-			if (iterator[charIndex - 1] == ':')
-				symbols.insert(iterator, lineAddr);
-			else
-				words[lineIndex].push_back(iterator);
-
-			// reset word
-			++wordIndex;
-			iterator += charIndex + 1;
-			charIndex = 0;
-			break;
-
-		default: // nonspecial character
-			foundSpace = false;
-			++charIndex;
-		}
-	}
-
-	return opcodes;
-}
-
 void assemble(int argc, char** argv)
 {
 	if (argc == 3)
@@ -121,7 +28,95 @@ void assemble(int argc, char** argv)
 		infile.close();
 
 		/***** PASS ONE: preprocessor *****/
-		std::vector<OP((*))> opcodes{ preprocess(contents) };
+
+		static const Table<Opcode> ops
+		{
+			{ "add",{ &add,  1 } },
+			{ "addi",{ &addi, 1 } },
+			{ "beq",{ &beq,  1 } },
+			{ "halt",{ &halt, 1 } },
+			{ "jalr",{ &jalr, 1 } },
+			{ "lli",{ &lli,  1 } },
+			{ "lui",{ &lui,  1 } },
+			{ "lw",{ &lw,   1 } },
+			{ "movi",{ &movi, 2 } },
+			{ "nand",{ &nand, 1 } },
+			{ "nop",{ &nop,  1 } },
+			{ "sw",{ &sw,   1 } }
+		};
+
+		std::vector<std::vector<char*>> words{ std::vector<char*>{} };
+		std::vector<OP((*))> opcodes;
+		char* iterator{ contents };
+		size_t charIndex{ 0 };
+		size_t wordIndex{ 0 };
+		size_t lineIndex{ 0 };
+		bool foundSpace{ true };
+		inst_t lineAddr{ 0 };
+
+		while (iterator[charIndex] != '\0')
+		{
+			switch (iterator[charIndex])
+			{
+			case '#': // comment
+				// ignore everything until newline
+				while (iterator[charIndex] != '\n')
+					++charIndex;
+
+				// next case will obviously be a newline so don't break
+
+			case '\n': // new line
+				// parse/cleanup line
+				if (words[lineIndex].empty()) // blank lines should be removed
+					words.erase(words.begin() + lineIndex);
+				else
+				{
+					Opcode opcode{ ops[words[lineIndex][0]] }; // temp storage for Opcode object
+					opcodes.push_back(opcode.getFunc());
+					words.push_back(std::vector<char*>{});
+
+					foundSpace = true; // allows spaces/tabs before the first word of the next line
+					++lineIndex;
+					lineAddr += opcode.length();
+				}
+
+				// reset line
+				wordIndex = 0;
+				iterator += charIndex + 1; // sets iterator to just after the newline
+				charIndex = 0;
+				break;
+
+			case '\t': // new word/label
+			case ' ':
+				// skip multiple spaces/tabs
+				if (foundSpace)
+				{
+					iterator += charIndex + 1; // sets iterator to just after the space
+					charIndex = 0;
+					break;
+				}
+
+				foundSpace = true;
+
+				iterator[charIndex] = '\0'; // terminate the new substring
+
+				// add to words vector or symbol table
+				if (iterator[charIndex - 1] == ':')
+					symbols.insert(iterator, lineAddr);
+				else
+					words[lineIndex].push_back(iterator);
+
+				// reset word
+				++wordIndex;
+				iterator += charIndex + 1;
+				charIndex = 0;
+				break;
+
+			default: // nonspecial character
+				foundSpace = false;
+				++charIndex;
+			}
+		}
 
 		unsigned int errors{ 0 };
 
