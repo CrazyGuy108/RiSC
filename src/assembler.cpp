@@ -1,6 +1,6 @@
 #include "../include/assembler.h"
 
-size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
+size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
 {
 	static const Table<Opcode> ops
 	{
@@ -112,7 +112,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 	return errors;
 }
 
-size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
+size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
 {
 	size_t errors{ 0 };
 	line_t bytecode;
@@ -213,8 +213,8 @@ void assemble(int argc, char** argv)
 
 		// 2 passes
 
-		errors =  preprocess(words, opcodes, contents);
-		errors += compile(words, opcodes);
+		errors =  preprocessor(words, opcodes, contents);
+		errors += compiler(words, opcodes);
 
 #ifndef DEBUG
 

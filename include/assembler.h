@@ -9,9 +9,9 @@
 
 #define DEBUG
 
-size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator);
+size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator);
 
-size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes);
+size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes);
 
 void assemble(int argc, char** argv);
 
