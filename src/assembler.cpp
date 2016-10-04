@@ -42,12 +42,20 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 				words.erase(words.begin() + lineIndex);
 			else
 			{
-				opcodes.push_back(ops[words[lineIndex][0]]);
-				words.push_back(std::vector<char*>{});
+				try
+				{
+					opcodes.push_back(ops[words[lineIndex][0]]);
+					lineAddr += opcodes[lineIndex].length();
+				}
+				catch (TokenException e)
+				{
+					std::cout << "error in line " << lineIndex << ": undefined opcode \"" << e.what() << "\"\n";
+					++errors;
+				}
 
-				foundSpace = true; // allows spaces/tabs before the first word of the next line
-				lineAddr += opcodes[lineIndex].length();
+				words.push_back(std::vector<char*>{});
 				++lineIndex;
+				foundSpace = true; // allows spaces/tabs before the first word of the next line
 			}
 
 			// reset line
