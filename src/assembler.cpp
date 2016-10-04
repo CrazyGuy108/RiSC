@@ -165,9 +165,9 @@ void assemble(int argc, char** argv)
 		infile.seekg(0, infile.beg);
 
 		// put into char array
-		char* contents = new char[length + 1];
-		infile.read(contents, length);
-		contents[length] = '\0'; // null character to prevent reading garbage data
+		char* contents = new char[length];
+		infile.read(contents, length - 1);
+		contents[length - 1] = '\0'; // null character to prevent reading garbage data
 
 		// no need to read from it anymore
 		infile.close();
