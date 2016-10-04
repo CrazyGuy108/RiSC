@@ -113,7 +113,23 @@ OP(lli) // translates to "addi rA rA imm"
 		throw OperandException{ "lli", 2, argc - 1 };
 }
 
-OP(movi)
+OP(movi) // translates to "lui rA imm" + "lli rA imm"
 {
-	return line_t(); // placeholder
+	if (argc == 3)
+	{
+		const char* translation[4]{ "lui", argv[1], argv[2] };
+		line_t ret;
+		ret.reserve(2);
+
+		line_t tmp{ lui(3, translation, line) }; // lui rA imm
+		ret.insert(ret.end(), tmp.begin(), tmp.end());
+
+		translation[0] = "lli";
+		tmp = lli(3, translation, line); // lli rA imm
+		ret.insert(ret.end(), tmp.begin(), tmp.end());
+
+		return ret;
+	}
+	else
+		throw OperandException{ "movi", 2, argc - 1 };
 }
