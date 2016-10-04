@@ -121,7 +121,12 @@ size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<
 
 	for (size_t i{ 0 }; i < words.size(); ++i)
 	{
+
+#ifdef DEBUG
+
 		std::cout << "compiling line " << i << "...\n";
+
+#endif
 
 		try
 		{
