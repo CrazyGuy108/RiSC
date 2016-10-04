@@ -26,12 +26,6 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 	inst_t lineAddr{ 0 };
 	size_t errors{ 0 };
 
-#ifdef DEBUG
-
-	std::cout << "preprocessing line 0...\n";
-
-#endif
-
 	while (iterator[charIndex] != '\0')
 	{
 		switch (iterator[charIndex])
