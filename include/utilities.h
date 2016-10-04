@@ -20,6 +20,7 @@ constexpr inst_t BEQ        = 0xC000;
 constexpr inst_t JALR       = 0xE000;
 constexpr inst_t imm7_mask  = 0x007f;
 constexpr inst_t imm10_mask = 0x03ff;
+constexpr inst_t movi_mask  = 0xFFBF;
 constexpr inst_t a_shift    = 10;
 constexpr inst_t b_shift    = 7;
 constexpr inst_t lui_shift  = 6;

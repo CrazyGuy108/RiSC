@@ -125,7 +125,8 @@ OP(movi) // translates to "lui rA imm" + "lli rA imm"
 		ret.insert(ret.end(), tmp.begin(), tmp.end());
 
 		translation[0] = "lli";
-		tmp = lli(3, translation, line); // lli rA imm
+		tmp = lli(3, translation, line); // lli rA, imm
+		tmp[0] &= movi_mask; // imm{5:0}
 		ret.insert(ret.end(), tmp.begin(), tmp.end());
 
 		return ret;
