@@ -134,3 +134,8 @@ OP(movi) // translates to "lui rA imm" + "lli rA imm"
 	else
 		throw OperandException{ "movi", 2, argc - 1 };
 }
+
+OP(unknown)
+{
+	return line_t{};
+}

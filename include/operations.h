@@ -36,4 +36,8 @@ OP(halt);
 OP(lli);
 OP(movi);
 
+// default op
+
+OP(unknown);
+
 #endif // OPERATIONS_H
