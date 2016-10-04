@@ -76,10 +76,20 @@ OP(jalr)
 	else
 		throw OperandException{ "jalr", 3, argc - 1 };
 }
-/***** implement after everything else works *****/
-OP(nop)
+
+OP(nop) // translates to "add r0 r0 r0"
 {
-	return line_t(); // placeholder
+	if (argc == 1)
+	{
+		argv = new const char*[4]; // reassign argv
+		argv[0] = "add";
+		for(size_t i{ 1 }; i < 4; ++i)
+			argv[i] = "r0";
+
+		return add(4, argv, line);
+	}
+	else
+		throw OperandException{ "nop", 0, argc - 1 };
 }
 
 OP(halt)
