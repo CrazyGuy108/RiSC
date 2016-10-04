@@ -83,6 +83,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 			{
 				try
 				{
+					iterator[charIndex - 1] = '\0'; // remove the colon
 					symbols.insert(iterator, lineAddr);
 				}
 				catch (SymbolException e)
