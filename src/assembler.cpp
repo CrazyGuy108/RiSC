@@ -1,6 +1,6 @@
 #include "../include/assembler.h"
 
-bool preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
+size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
 {
 	static const Table<Opcode> ops
 	{
@@ -23,7 +23,7 @@ bool preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opc
 	size_t lineIndex{ 0 };
 	bool foundSpace{ true };
 	inst_t lineAddr{ 0 };
-	bool error{ false };
+	size_t errors{ 0 };
 
 	while (iterator[charIndex] != '\0')
 	{
@@ -80,7 +80,7 @@ bool preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opc
 				catch (SymbolException e)
 				{
 					std::cout << "error in line " << lineIndex << ": redefinition of label \"" << e.what() << "\"\n";
-					error = true;
+					++errors;
 				}
 			}
 			else
@@ -98,7 +98,7 @@ bool preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opc
 		}
 	}
 
-	return error;
+	return errors;
 }
 
 void compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
@@ -166,11 +166,11 @@ void assemble(int argc, char** argv)
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing
 		std::vector<Opcode> opcodes; // array of opcode functions to be called
-		bool error; // true if there is an error
+		size_t errors; // keeps track of how many errors there are
 
 		/***** PASS ONE: preprocessor/parser *****/
 
-		error = preprocess(words, opcodes, contents);
+		errors = preprocess(words, opcodes, contents);
 
 		/***** PASS TWO: compiler *****/
 
