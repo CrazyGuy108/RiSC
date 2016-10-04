@@ -101,7 +101,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 	return errors;
 }
 
-void compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
+size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
 {
 	unsigned int errors{ 0 };
 
@@ -168,13 +168,10 @@ void assemble(int argc, char** argv)
 		std::vector<Opcode> opcodes; // array of opcode functions to be called
 		size_t errors; // keeps track of how many errors there are
 
-		/***** PASS ONE: preprocessor/parser *****/
+		// 2 passes
 
-		errors = preprocess(words, opcodes, contents);
-
-		/***** PASS TWO: compiler *****/
-
-		compile(words, opcodes);
+		errors =  preprocess(words, opcodes, contents);
+		errors += compile(words, opcodes);
 
 		/*
 		// write to file
