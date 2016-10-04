@@ -107,6 +107,8 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 		}
 	}
 
+	words.pop_back(); // close last line (should be a blank/commented line)
+
 	return errors;
 }
 
