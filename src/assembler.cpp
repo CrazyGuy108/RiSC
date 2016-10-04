@@ -60,7 +60,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 
 			// reset line
 			wordIndex = 0;
-			iterator += charIndex + 1; // sets iterator to just after the newline
+			iterator = &iterator[charIndex + 1]; // sets iterator to just after the newline
 			charIndex = 0;
 			break;
 
@@ -69,7 +69,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 			// skip multiple spaces/tabs
 			if (foundSpace)
 			{
-				iterator += charIndex + 1; // sets iterator to just after the space
+				iterator = &iterator[charIndex + 1]; // sets iterator to just after the space
 				charIndex = 0;
 				break;
 			}
@@ -97,7 +97,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 
 			// reset word
 			++wordIndex;
-			iterator += charIndex + 1;
+			iterator = &iterator[charIndex + 1];
 			charIndex = 0;
 			break;
 
