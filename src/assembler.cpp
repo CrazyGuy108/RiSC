@@ -22,6 +22,7 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 	size_t wordIndex{ 0 };
 	size_t lineIndex{ 0 };
 	bool foundSpace{ true };
+	bool foundComment{ false };
 	inst_t lineAddr{ 0 };
 	size_t errors{ 0 };
 
@@ -36,11 +37,8 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 		switch (iterator[charIndex])
 		{
 		case '#': // comment
-			// ignore everything until newline
-			while (iterator[charIndex] != '\n')
-				++charIndex;
-
-			// next case will obviously be a newline so don't break
+			foundComment = true;
+			break;
 
 		case '\n': // new line
 			// parse/cleanup line
@@ -72,6 +70,7 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 			}
 
 			// reset line
+			foundComment = false;
 			wordIndex = 0;
 			iterator = &iterator[charIndex + 1]; // sets iterator to just after the newline
 			charIndex = 0;
@@ -80,7 +79,7 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 		case '\t': // new word/label
 		case ' ':
 			// skip multiple spaces/tabs
-			if (foundSpace)
+			if (foundSpace || foundComment)
 			{
 				iterator = &iterator[charIndex + 1]; // sets iterator to just after the space
 				charIndex = 0;
