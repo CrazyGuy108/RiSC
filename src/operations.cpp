@@ -101,9 +101,16 @@ OP(halt) // translates to "jalr r0 r0 <halt syscall id>"
 		throw OperandException{ "halt", 0, argc - 1 };
 }
 
-OP(lli)
+OP(lli) // translates to "addi rA rA imm"
 {
-	return line_t(); // placeholder
+	if (argc == 3)
+	{
+		const char* translation[4]{ "addi", argv[1], argv[1], argv[2] };
+
+		return addi(4, translation, line);
+	}
+	else
+		throw OperandException{ "lli", 2, argc - 1 };
 }
 
 OP(movi)
