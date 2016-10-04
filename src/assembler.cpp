@@ -144,6 +144,37 @@ size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<O
 
 	}
 
+#ifdef DEBUG
+
+	std::cout << "\nsource:\n";
+
+	// iterate through lines
+	for (size_t i{ 0 }; i < words.size(); ++i)
+	{
+		// iterator through words
+		for (size_t j{ 0 }; j < words[i].size(); ++j)
+		{
+			std::cout << words[i][j] << " ";
+		}
+		std::cout << '\n';
+	}
+
+	std::cout << "\nlabels:\n";
+
+	// iterate through labels
+	for (const auto& i : symbols)
+		std::cout << i.first << ": " << i.second << "\n";
+
+	std::cout << "\nbytecode:\n";
+
+	// iterate through bytecode
+	for (size_t i{ 0 }; i < bytecode.size(); ++i)
+		std::cout << std::hex << bytecode[i] << '\n';
+
+	std::cout << "\n";
+
+#endif // DEBUG
+
 	return errors;
 }
 
@@ -185,7 +216,8 @@ void assemble(int argc, char** argv)
 		errors =  preprocess(words, opcodes, contents);
 		errors += compile(words, opcodes);
 
-		/*
+#ifndef DEBUG
+
 		// write to file
 		if(errors)
 			std::cout << "exited with " << errors << " errors\n";
@@ -198,37 +230,8 @@ void assemble(int argc, char** argv)
 			
 			outfile.close();
 		}
-		
-		*/
-		
-		// test
-		/*
-		std::cout << "\nsource:\n";
 
-		// iterate through lines
-		for (size_t i{ 0 }; i < words.size(); ++i)
-		{
-			// iterator through words
-			for (size_t j{ 0 }; j < words[i].size(); ++j)
-			{
-				std::cout << words[i][j] << " ";
-			}
-			std::cout << '\n';
-		}
-
-		std::cout << "\nlabels:\n";
-
-		// iterate through labels
-		for (const auto& i : symbols)
-			std::cout << i.first << ": " << i.second << "\n";
-
-		std::cout << "\nbytecode:\n";
-
-		// iterate through bytecode
-		for (size_t i{ 0 }; i < bytecode.size(); ++i)
-			std::cout << std::hex << bytecode[i] << '\n';
-
-		std::cout << "\n";*/
+#endif // DEBUG
 		
 		delete[] contents;
 	}
