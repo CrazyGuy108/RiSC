@@ -89,9 +89,16 @@ OP(nop) // translates to "add r0 r0 r0"
 		throw OperandException{ "nop", 0, argc - 1 };
 }
 
-OP(halt)
+OP(halt) // translates to "jalr r0 r0 <halt syscall id>"
 {
-	return line_t(); // placeholder
+	if (argc == 1)
+	{
+		const char* translation[4]{ "jalr", "r0", "r0", "1" }; // syscall id for halt will probably be 1
+
+		return jalr(4, translation, line);
+	}
+	else
+		throw OperandException{ "halt", 0, argc - 1 };
 }
 
 OP(lli)
