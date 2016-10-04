@@ -103,8 +103,7 @@ size_t preprocess(std::vector<std::vector<char*>>& words, std::vector<Opcode>& o
 
 size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
 {
-	unsigned int errors{ 0 };
-
+	size_t errors{ 0 };
 	line_t bytecode;
 	line_t tmp;
 	size_t line{ 0 };
@@ -133,6 +132,8 @@ size_t compile(const std::vector<std::vector<char*>>& words, const std::vector<O
 		}
 
 	}
+
+	return errors;
 }
 
 void assemble(int argc, char** argv)
