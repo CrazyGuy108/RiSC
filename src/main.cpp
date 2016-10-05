@@ -6,13 +6,13 @@ int main(int argc, char** argv)
 	{
 		std::ifstream ifile;
 		std::ofstream ofile;
-		const char* iname{ strrchr(argv[1], '.') };
-		const char* oname{ strrchr(argv[2], '.') };
+		const char* iext{ strrchr(argv[1], '.') };
+		const char* oext{ strrchr(argv[2], '.') };
 
-		if (!strcmp(iname, ".asm"))
-			ifile.open(iname);
-		if(!strcmp(oname, ".risc"))
-			ofile.open(oname, std::ios::binary);
+		if (!strcmp(iext, ".asm"))
+			ifile.open(argv[1]);
+		if(!strcmp(oext, ".risc"))
+			ofile.open(argv[2], std::ios::binary);
 
 		if (ifile.fail())
 			std::cout << "error: input file failed to open\n";
