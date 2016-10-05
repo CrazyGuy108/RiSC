@@ -232,6 +232,7 @@ void assemble(int argc, char** argv)
 #ifndef DEBUG
 
 		// write to file
+
 		if(errors)
 			std::cout << "exited with " << errors << " errors\n";
 		else
@@ -239,7 +240,15 @@ void assemble(int argc, char** argv)
 			std::ofstream outfile{ argv[2] };
 			
 			if (outfile.fail())
-			return; // error: file open failed
+			{
+				std::cout << "error: output file failed to open\n";
+				return;
+			}
+
+			std::cout << "output file opened\n";
+
+			for (size_t i{ 0 }; i < bytecode.size(); ++i)
+				outfile << bytecode[i];
 			
 			outfile.close();
 		}
