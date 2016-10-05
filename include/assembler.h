@@ -7,7 +7,8 @@
 #include "operations.h" // for Opcode
 #include "parse.h"      // for compile()
 
-#define DEBUG
+// enables debug messages
+//#define DEBUG
 
 size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator);
 
