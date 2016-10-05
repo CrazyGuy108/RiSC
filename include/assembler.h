@@ -14,6 +14,6 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 
 size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes, line_t& bytecode);
 
-void assemble(int argc, char** argv);
+void assemble(std::ifstream ifile, std::ostream ofile);
 
 #endif // ASSEMBLER_H

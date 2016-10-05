@@ -190,32 +190,20 @@ size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<
 	return errors;
 }
 
-void assemble(int argc, char** argv)
+void assemble(std::ifstream ifile, std::ostream ofile)
 {
-	if (argc == 3)
-	{
-		std::ifstream infile{ argv[1] };
-		
-		if (!infile.is_open()) // failed to open
-		{
-			std::cout << "error: input file failed to open\n";
-			return;
-		}
-
-		std::cout << "input file opened\n";
-
 		// get file length
-		infile.seekg(0, infile.end);
-		size_t length{ (size_t)infile.tellg() };
-		infile.seekg(0, infile.beg);
+		ifile.seekg(0, ifile.end);
+		size_t length{ (size_t)ifile.tellg() };
+		ifile.seekg(0, ifile.beg);
 
 		// put into char array
 		char* contents = new char[length];
-		infile.read(contents, length - 1);
+		ifile.read(contents, length - 1);
 		contents[length - 1] = '\0'; // null character to prevent reading garbage data
 
 		// no need to read from it anymore
-		infile.close();
+		ifile.close();
 
 		// setup
 
@@ -237,26 +225,11 @@ void assemble(int argc, char** argv)
 			std::cout << "exited with " << errors << " errors\n";
 		else
 		{
-			std::ofstream outfile{ argv[2] };
-			
-			if (outfile.fail())
-			{
-				std::cout << "error: output file failed to open\n";
-				return;
-			}
-
-			std::cout << "output file opened\n";
-
 			for (size_t i{ 0 }; i < bytecode.size(); ++i)
-				outfile << bytecode[i];
-			
-			outfile.close();
+				ofile << bytecode[i];
 		}
 
 #endif // DEBUG
 		
 		delete[] contents;
-	}
-	else
-		; // error: no dest file specified
 }
