@@ -223,7 +223,7 @@ void assemble(std::ifstream& ifile, std::ostream& ofile)
 		else
 		{
 			for (size_t i{ 0 }; i < bytecode.size(); ++i)
-				ofile << bytecode[i];
+				ofile.write(reinterpret_cast<const char*>(&bytecode[i]), sizeof(inst_t));
 		}
 
 #endif // DEBUG
