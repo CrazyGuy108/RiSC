@@ -202,9 +202,6 @@ void assemble(std::ifstream& ifile, std::ostream& ofile)
 		ifile.read(contents, length - 1);
 		contents[length - 1] = '\0'; // null character to prevent reading garbage data
 
-		// no need to read from it anymore
-		ifile.close();
-
 		// setup
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing

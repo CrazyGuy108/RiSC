@@ -19,7 +19,12 @@ int main(int argc, char** argv)
 		else if (ofile.fail())
 			std::cout << "error: output file failed to open\n";
 		else
+		{
 			assemble(ifile, ofile);
+
+			ifile.close();
+			ofile.close();
+		}
 	}
 
 	return 0;
