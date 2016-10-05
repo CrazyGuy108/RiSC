@@ -1,5 +1,5 @@
-#ifndef SYMBOLTABLE_H
-#define SYMBOLTABLE_H
+#ifndef TABLE_H
+#define TABLE_H
 
 #include <map>         // for map
 #include "exception.h" // for TokenException
@@ -71,4 +71,4 @@ private:
 	map_type data;
 };
 
-#endif // SYMBOLTABLE_H
+#endif // TABLE_H
