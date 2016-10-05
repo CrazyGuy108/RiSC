@@ -120,10 +120,9 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 	return errors;
 }
 
-size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes)
+size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<Opcode>& opcodes, line_t& bytecode)
 {
 	size_t errors{ 0 };
-	line_t bytecode;
 	line_t tmp;
 	size_t line{ 0 };
 
@@ -222,12 +221,13 @@ void assemble(int argc, char** argv)
 
 		std::vector<std::vector<char*>> words{ std::vector<char*>{} }; // [lines][words] vector for parsing
 		std::vector<Opcode> opcodes; // array of opcode functions to be called
+		line_t bytecode; // array containing the bytecode
 		size_t errors; // keeps track of how many errors there are
 
 		// 2 passes
 
 		errors =  preprocessor(words, opcodes, contents);
-		errors += compiler(words, opcodes);
+		errors += compiler(words, opcodes, bytecode);
 
 #ifndef DEBUG
 
