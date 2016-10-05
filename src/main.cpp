@@ -23,7 +23,7 @@ int main(int argc, char** argv)
 
 		if (ext && !strcmp(ext, ".risc"))
 		{
-			ofile.open(argv[2], std::ios::binary);
+			ofile.open(argv[2], std::ofstream::binary);
 			if (ofile.fail())
 			{
 				std::cout << "error: output file failed to open\n";
