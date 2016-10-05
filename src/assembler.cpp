@@ -26,6 +26,10 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 	inst_t lineAddr{ 0 };
 	size_t errors{ 0 };
 
+#ifdef DEBUG
+	std::cout << "preprocessing line 0...\n";
+#endif
+
 	while (iterator[charIndex] != '\0')
 	{
 		switch (iterator[charIndex])
@@ -40,13 +44,6 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 				words.erase(words.begin() + lineIndex);
 			else
 			{
-
-#ifdef DEBUG
-
-				std::cout << "preprocessing line " << lineIndex << "...\n";
-
-#endif
-
 				try
 				{
 					opcodes.push_back(ops[words[lineIndex][0]]);
@@ -61,6 +58,11 @@ size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>&
 				words.push_back(std::vector<char*>{});
 				++lineIndex;
 				foundSpace = true; // allows spaces/tabs before the first word of the next line
+
+#ifdef DEBUG
+				std::cout << "preprocessing line " << lineIndex << "...\n";
+#endif
+
 			}
 
 			// reset line
