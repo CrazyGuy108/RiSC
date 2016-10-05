@@ -190,7 +190,7 @@ size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<
 	return errors;
 }
 
-void assemble(std::ifstream ifile, std::ostream ofile)
+void assemble(std::ifstream& ifile, std::ostream& ofile)
 {
 		// get file length
 		ifile.seekg(0, ifile.end);
