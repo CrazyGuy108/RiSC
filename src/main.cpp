@@ -6,27 +6,35 @@ int main(int argc, char** argv)
 	{
 		std::ifstream ifile;
 		std::ofstream ofile;
+
 		const char* ext{ strrchr(argv[1], '.') };
 
-		if (!strcmp(ext, ".asm"))
+		if (ext && !strcmp(ext, ".asm"))
+		{
 			ifile.open(argv[1]);
+			if (ifile.fail())
+			{
+				std::cout << "error: input file failed to open\n";
+				return 0;
+			}
+		}
 
 		ext = strrchr(argv[2], '.');
 
-		if(!strcmp(ext, ".risc"))
-			ofile.open(argv[2], std::ios::binary);
-
-		if (ifile.fail())
-			std::cout << "error: input file failed to open\n";
-		else if (ofile.fail())
-			std::cout << "error: output file failed to open\n";
-		else
+		if (ext && !strcmp(ext, ".risc"))
 		{
-			assemble(ifile, ofile);
-
-			ifile.close();
-			ofile.close();
+			ofile.open(argv[2], std::ios::binary);
+			if (ofile.fail())
+			{
+				std::cout << "error: output file failed to open\n";
+				return 0;
+			}
 		}
+
+		assemble(ifile, ofile);
+
+		ifile.close();
+		ofile.close();
 	}
 
 	return 0;
