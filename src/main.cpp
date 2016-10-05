@@ -6,12 +6,14 @@ int main(int argc, char** argv)
 	{
 		std::ifstream ifile;
 		std::ofstream ofile;
-		const char* iext{ strrchr(argv[1], '.') };
-		const char* oext{ strrchr(argv[2], '.') };
+		const char* ext{ strrchr(argv[1], '.') };
 
-		if (!strcmp(iext, ".asm"))
+		if (!strcmp(ext, ".asm"))
 			ifile.open(argv[1]);
-		if(!strcmp(oext, ".risc"))
+
+		ext = strrchr(argv[2], '.');
+
+		if(!strcmp(ext, ".risc"))
 			ofile.open(argv[2], std::ios::binary);
 
 		if (ifile.fail())
