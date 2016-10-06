@@ -23,6 +23,8 @@ int main(int argc, char** argv)
 				// copy file
 				contents = new char[length];
 				ifile.read(contents, length);
+
+				emulator(contents, length);
 			}
 			else
 				std::cout << "error: input file failed to open\n";
