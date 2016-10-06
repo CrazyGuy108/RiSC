@@ -4,6 +4,6 @@
 #include <fstream>  // for ifstream
 #include <iostream> // for cout
 
-void emulator(std::ifstream& ifile);
+void emulator(char* contents, size_t length);
 
 #endif // EMULATOR_H

@@ -1,6 +1,6 @@
 #include "../include/emulator.h"
 
-void emulator(std::ifstream& ifile)
+void emulator(char* contents, size_t length)
 {
 	
 }
