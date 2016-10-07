@@ -6,13 +6,13 @@
 typedef uint16_t inst_t;
 
 // opcodes
-constexpr inst_t add  = 0x0000;
-constexpr inst_t addi = 0x2000;
-constexpr inst_t nand = 0x4000;
-constexpr inst_t lui  = 0x6000;
-constexpr inst_t sw   = 0x8000;
-constexpr inst_t lw   = 0xA000;
-constexpr inst_t beq  = 0xC000;
-constexpr inst_t jalr = 0xE000;
+constexpr inst_t ADD  = 0x0000;
+constexpr inst_t ADDI = 0x2000;
+constexpr inst_t NAND = 0x4000;
+constexpr inst_t LUI  = 0x6000;
+constexpr inst_t SW   = 0x8000;
+constexpr inst_t LW   = 0xA000;
+constexpr inst_t BEQ  = 0xC000;
+constexpr inst_t JALR = 0xE000;
 
 #endif // UTILITIES_H
