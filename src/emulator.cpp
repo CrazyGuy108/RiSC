@@ -2,10 +2,6 @@
 
 void emulator(char* contents, size_t length)
 {
-	// if unaligned number of bytes, truncate
-	if (length % 2)
-		length -= 1;
-
 	uint16_t inst;
 
 	for (size_t i{ 0 }; i < length >> 1; ++i)
