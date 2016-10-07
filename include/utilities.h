@@ -15,4 +15,7 @@ constexpr inst_t LW   = 0xA000;
 constexpr inst_t BEQ  = 0xC000;
 constexpr inst_t JALR = 0xE000;
 
+// length of mem
+constexpr size_t MEM = 0x10000;
+
 #endif // UTILITIES_H
