@@ -2,6 +2,8 @@
 
 void emulator(char* contents, size_t length)
 {
+	static OPCODE((*ops[8])){ &add, &addi, &nand, &lui, &sw, &lw, &beq, &jalr };
+
 	uint16_t inst;
 
 	for (size_t i{ 0 }; i < length >> 1; ++i)
