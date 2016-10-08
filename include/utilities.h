@@ -18,4 +18,6 @@ constexpr inst_t JALR = 0xE000;
 // length of mem
 constexpr size_t MEM = 0x10000;
 
+extern uint16_t mem[MEM];
+
 #endif // UTILITIES_H
