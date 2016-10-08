@@ -28,9 +28,8 @@ constexpr inst_t OP_SHIFT = 13;
 constexpr inst_t RA_SHIFT = 10;
 constexpr inst_t RB_SHIFT = 7;
 
-// length of mem
-constexpr size_t MEM = 0x10000;
-
-extern uint16_t mem[MEM];
+// memory
+constexpr size_t MEM_LENGTH = 0x10000;
+extern uint16_t mem[MEM_LENGTH];
 
 #endif // UTILITIES_H
