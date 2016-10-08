@@ -15,6 +15,14 @@ constexpr inst_t LW   = 0xA000;
 constexpr inst_t BEQ  = 0xC000;
 constexpr inst_t JALR = 0xE000;
 
+// operand masks
+constexpr inst_t OP_MASK  = 0xE000;
+constexpr inst_t RA_MASK  = 0x1C00;
+constexpr inst_t RB_MASK  = 0x0380;
+constexpr inst_t RC_MASK  = 0x0007;
+constexpr inst_t I7_MASK  = 0x003F;
+constexpr inst_t I10_MASK = 0x03FF;
+
 // length of mem
 constexpr size_t MEM = 0x10000;
 
