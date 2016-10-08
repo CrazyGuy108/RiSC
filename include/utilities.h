@@ -3,7 +3,8 @@
 
 #include <cstdint>
 
-typedef uint16_t inst_t;
+typedef uint16_t inst_t; // instruction word
+typedef uint16_t data_t; // data word
 
 // operand masks
 constexpr inst_t OP_MASK  = 0xE000;
@@ -23,7 +24,7 @@ constexpr size_t MEM_LENGTH = 65536;
 constexpr size_t REGS_COUNT = 8;
 
 // corresponding arrays
-extern uint16_t mem[MEM_LENGTH];
-extern uint16_t regs[REGS_COUNT];
+extern data_t mem[MEM_LENGTH];
+extern data_t regs[REGS_COUNT];
 
 #endif // UTILITIES_H
