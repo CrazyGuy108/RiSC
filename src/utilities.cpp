@@ -1,4 +1,4 @@
 #include "../include/utilities.h"
 
-data_t mem[MEM_LENGTH] = {};
-data_t regs[REGS_COUNT] = {};
+data_t mem[mem_length] = {};
+data_t regs[regs_count] = {};
