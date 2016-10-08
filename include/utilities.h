@@ -28,12 +28,12 @@ constexpr inst_t OP_SHIFT = 13;
 constexpr inst_t RA_SHIFT = 10;
 constexpr inst_t RB_SHIFT = 7;
 
-// memory
-constexpr size_t MEM_LENGTH = 0x10000;
-extern uint16_t mem[MEM_LENGTH];
-
-// registers
+// length of various arrays
+constexpr size_t MEM_LENGTH  = 65536;
 constexpr size_t REGS_LENGTH = 8;
+
+// corresponding arrays
+extern uint16_t mem[MEM_LENGTH];
 extern uint16_t regs[REGS_LENGTH];
 
 #endif // UTILITIES_H
