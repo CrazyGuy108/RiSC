@@ -23,8 +23,4 @@ constexpr inst_t rb_shift = 7;
 constexpr size_t mem_length = 65536;
 constexpr size_t regs_count = 8;
 
-// corresponding arrays
-extern data_t mem[mem_length];
-extern data_t regs[regs_count];
-
 #endif // UTILITIES_H
