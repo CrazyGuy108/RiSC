@@ -4,7 +4,7 @@
 #include "result.h"
 #include "utilities.h"
 
-#define OPCODE(name) Result name##(inst_t inst, uint16_t* mem)
+#define OPCODE(name) Result name##(inst_t inst)
 
 OPCODE(add);
 OPCODE(addi);
