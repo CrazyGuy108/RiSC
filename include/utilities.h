@@ -23,6 +23,11 @@ constexpr inst_t RC_MASK  = 0x0007;
 constexpr inst_t I7_MASK  = 0x003F;
 constexpr inst_t I10_MASK = 0x03FF;
 
+// operand shifts
+constexpr inst_t OP_SHIFT = 13;
+constexpr inst_t RA_SHIFT = 10;
+constexpr inst_t RB_SHIFT = 7;
+
 // length of mem
 constexpr size_t MEM = 0x10000;
 
