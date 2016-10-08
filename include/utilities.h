@@ -32,4 +32,8 @@ constexpr inst_t RB_SHIFT = 7;
 constexpr size_t MEM_LENGTH = 0x10000;
 extern uint16_t mem[MEM_LENGTH];
 
+// registers
+constexpr size_t REGS_LENGTH = 8;
+extern uint16_t regs[REGS_LENGTH];
+
 #endif // UTILITIES_H
