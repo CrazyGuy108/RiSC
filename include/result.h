@@ -7,9 +7,9 @@
 class Result
 {
 public:
-	Result(uint16_t regID, uint16_t value);
+	Result(uint16_t id, uint16_t value);
 
-	uint16_t regID, value;
+	uint16_t id, value;
 };
 
 #endif // RESULT_H
