@@ -9,5 +9,6 @@ void emulator(char* contents, size_t length)
 	for (size_t i{ 0 }; i < length >> 1; ++i)
 	{
 		inst = reinterpret_cast<uint16_t*>(contents)[i];
+		ops[inst & OP_MASK >> OP_SHIFT](inst);
 	}
 }
