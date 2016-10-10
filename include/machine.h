@@ -8,12 +8,12 @@
 class Machine
 {
 public:
-	uint16_t read(Read& r);
+	uword_t read(Read& r);
 	void write(Write& w);
 
 private:
-	data_t ram[ram_length]  = {};
-	data_t regs[regs_count] = {};
+	uword_t ram[ram_length]  = {};
+	uword_t regs[regs_count] = {};
 };
 
 #endif // MACHINE_H

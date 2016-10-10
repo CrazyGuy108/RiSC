@@ -1,6 +1,6 @@
 #include "../include/machine.h"
 
-uint16_t Machine::read(Read& r)
+uword_t Machine::read(Read& r)
 {
 	switch (r.unit)
 	{
