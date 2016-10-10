@@ -1,6 +1,6 @@
 #include "../include/machine.h"
 
-void Machine::commit(Write& w)
+void Machine::write(Write& w)
 {
 	switch (w.unit)
 	{
