@@ -7,6 +7,7 @@
 class Machine
 {
 public:
+	// commits a Result to memory
 	void commit(Result& r);
 
 private:
