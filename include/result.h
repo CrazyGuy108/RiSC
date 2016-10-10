@@ -1,22 +1,17 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-#include <cstdint> // for uint16_t
+#include <cstdint>  // for uint16_t
+#include "memory.h" // for Memory
 
-// stores data on what should be committed to registers
+// stores data on what should be committed to memory
 class Result
+	: public Memory
 {
 public:
-	// specifies what memory unit to write to
-	enum Dest
-	{
-		REGISTERS, MEMORY
-	};
+	Result(MemUnit unit, size_t addr, uint16_t value);
 
-	Result(uint16_t id, uint16_t value, Dest dest);
-
-	uint16_t id, value;
-	Dest dest;
+	uint16_t value; // value to be written
 };
 
 #endif // RESULT_H
