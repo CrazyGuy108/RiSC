@@ -3,8 +3,9 @@
 
 #include <cstdint>
 
-typedef uint16_t inst_t; // instruction word
-typedef uint16_t data_t; // data word
+typedef uint16_t inst_t;  // instruction word
+typedef uint16_t uword_t; // unsigned data word
+typedef int16_t  sword_t; // signed data word
 
 // operand masks
 constexpr inst_t op_mask  = 0xE000;
