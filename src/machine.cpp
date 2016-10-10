@@ -1,19 +1,19 @@
 #include "../include/machine.h"
 
-void Machine::commit(Result& r)
+void Machine::commit(Write& w)
 {
-	switch (r.unit)
+	switch (w.unit)
 	{
 	case Memory::REGISTERS:
-		if (r.addr < regs_count)
-			regs[r.addr] = r.value;
+		if (w.addr < regs_count)
+			regs[w.addr] = w.value;
 		else
 			; // error: reg index out of range
 		break;
 
 	case Memory::RAM:
-		if (r.addr < ram_length)
-			ram[r.addr] = r.value;
+		if (w.addr < ram_length)
+			ram[w.addr] = w.value;
 		else
 			; // error: mem index out of range
 		break;

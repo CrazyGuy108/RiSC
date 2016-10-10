@@ -1,14 +1,14 @@
 #ifndef MACHINE_H
 #define MACHINE_H
 
-#include "result.h"    // for Result
+#include "write.h"     // for Write
 #include "utilities.h" // for typedefs
 
 class Machine
 {
 public:
 	// commits a Result to memory
-	void commit(Result& r);
+	void commit(Write& r);
 
 private:
 	data_t ram[ram_length]  = {};
