@@ -1,6 +1,7 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
+// stores data to be used when accessing memory
 class Memory
 {
 public:
