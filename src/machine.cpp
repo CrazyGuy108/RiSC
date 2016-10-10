@@ -1,5 +1,10 @@
 #include "../include/machine.h"
 
+void Machine::execute(inst_t inst)
+{
+
+}
+
 uword_t Machine::read(Read& r)
 {
 	return access(r);
@@ -28,4 +33,44 @@ uword_t& Machine::access(Memory& m)
 			; // error: mem index out of range
 		break;
 	}
+}
+
+OPCODE(Machine::add)
+{
+
+}
+
+OPCODE(Machine::addi)
+{
+
+}
+
+OPCODE(Machine::nand)
+{
+
+}
+
+OPCODE(Machine::lui)
+{
+
+}
+
+OPCODE(Machine::sw)
+{
+
+}
+
+OPCODE(Machine::lw)
+{
+
+}
+
+OPCODE(Machine::beq)
+{
+
+}
+
+OPCODE(Machine::jalr)
+{
+
 }
