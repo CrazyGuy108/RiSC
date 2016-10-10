@@ -1,10 +1,10 @@
 #ifndef OPCODES_H
 #define OPCODES_H
 
-#include "result.h"
-#include "utilities.h"
+#include "write.h"     // for Write
+#include "utilities.h" // for typedefs
 
-#define OPCODE(name) Result name##(inst_t inst)
+#define OPCODE(name) Write name##(inst_t inst)
 
 OPCODE(add);
 OPCODE(addi);
