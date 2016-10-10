@@ -1,7 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 
-#include <cstdint>
+#include <cstdint> // for int16_t and uint16_t
 
 typedef uint16_t inst_t;  // instruction word
 typedef uint16_t uword_t; // unsigned data word
