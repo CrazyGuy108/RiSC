@@ -7,7 +7,7 @@ public:
 	// specifies which memory unit should be accessed
 	enum MemUnit
 	{
-		REGISTERS, MEMORY
+		REGISTERS, RAM
 	};
 
 	Memory(MemUnit unit, size_t addr);

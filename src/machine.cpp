@@ -2,18 +2,18 @@
 
 void Machine::commit(Result& r)
 {
-	switch (r.dest)
+	switch (r.unit)
 	{
-	case Result::REGISTERS:
-		if (r.id < regs_count)
-			regs[r.id] = r.value;
+	case Memory::REGISTERS:
+		if (r.addr < regs_count)
+			regs[r.addr] = r.value;
 		else
 			; // error: reg index out of range
 		break;
 
-	case Result::MEMORY:
-		if (r.id < mem_length)
-			mem[r.id] = r.value;
+	case Memory::RAM:
+		if (r.addr < ram_length)
+			ram[r.addr] = r.value;
 		else
 			; // error: mem index out of range
 		break;

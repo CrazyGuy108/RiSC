@@ -20,7 +20,7 @@ constexpr inst_t ra_shift = 10;
 constexpr inst_t rb_shift = 7;
 
 // length of various arrays
-constexpr size_t mem_length = 65536;
+constexpr size_t ram_length = 65536;
 constexpr size_t regs_count = 8;
 
 #endif // UTILITIES_H

@@ -11,7 +11,7 @@ public:
 	void commit(Result& r);
 
 private:
-	data_t mem[mem_length]  = {};
+	data_t ram[ram_length]  = {};
 	data_t regs[regs_count] = {};
 };
 
