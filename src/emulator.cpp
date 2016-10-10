@@ -2,7 +2,7 @@
 
 void emulator(char* contents, size_t length)
 {
-	static OPCODE((*ops[8])){ &add, &addi, &nand, &lui, &sw, &lw, &beq, &jalr };
+	static OPCODE((*const ops[8])){ &add, &addi, &nand, &lui, &sw, &lw, &beq, &jalr };
 
 	uint16_t inst;
 
