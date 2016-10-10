@@ -12,6 +12,8 @@ public:
 	void write(Write& w);
 
 private:
+	uword_t& access(Memory& m);
+
 	uword_t ram[ram_length]  = {};
 	uword_t regs[regs_count] = {};
 };
