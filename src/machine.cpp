@@ -12,6 +12,7 @@ void Machine::execute(inst_t inst)
 		break;
 
 	case nand:
+		access(REGISTERS, (inst & ra_mask) >> ra_shift) = ~(access(REGISTERS, (inst & rb_mask) >> rb_shift) & access(REGISTERS, inst & rc_mask));
 		break;
 
 	case lui:
