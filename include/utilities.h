@@ -35,11 +35,13 @@ constexpr size_t ram_length = 65536;
 constexpr size_t regs_count = 8;
 
 // gets operands by masking and shifting
-inst_t op(inst_t inst);
-inst_t ra(inst_t inst);
-inst_t rb(inst_t inst);
-inst_t rc(inst_t inst);
-inst_t i7(inst_t inst);
-inst_t i10(inst_t inst);
+#define OPERAND(name) inst_t name (inst_t inst)
+
+OPERAND(op);
+OPERAND(ra);
+OPERAND(rb);
+OPERAND(rc);
+OPERAND(i7);
+OPERAND(i10);
 
 #endif // UTILITIES_H

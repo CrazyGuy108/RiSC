@@ -1,31 +1,31 @@
 #include "../include/utilities.h"
 
-inst_t op(inst_t inst)
+OPERAND(op)
 {
 
 }
 
-inst_t ra(inst_t inst)
+OPERAND(ra)
 {
 
 }
 
-inst_t rb(inst_t inst)
+OPERAND(rb)
 {
 
 }
 
-inst_t rc(inst_t inst)
+OPERAND(rc)
 {
 
 }
 
-inst_t i7(inst_t inst)
+OPERAND(i7)
 {
 
 }
 
-inst_t i10(inst_t inst)
+OPERAND(i10)
 {
 
 }
