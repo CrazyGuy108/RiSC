@@ -5,14 +5,14 @@ void Machine::execute(inst_t inst)
 	switch (inst & op_mask)
 	{
 	case add:
-		access(REGISTERS, (inst & ra_mask) >> ra_shift) = access(REGISTERS, (inst & rb_mask) >> rb_shift) + access(REGISTERS, inst & rc_mask);
+		access(REGISTERS, ra(inst)) = access(REGISTERS, rb(inst)) + access(REGISTERS, rc(inst));
 		break;
 
 	case addi:
 		break;
 
 	case nand:
-		access(REGISTERS, (inst & ra_mask) >> ra_shift) = ~(access(REGISTERS, (inst & rb_mask) >> rb_shift) & access(REGISTERS, inst & rc_mask));
+		access(REGISTERS, ra(inst)) = ~(access(REGISTERS, rb(inst)) & access(REGISTERS, rc(inst)));
 		break;
 
 	case lui:
