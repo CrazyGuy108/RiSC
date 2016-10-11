@@ -2,9 +2,34 @@
 
 void Machine::execute(inst_t inst)
 {
-	switch (inst & op_mask >> op_shift)
+	switch (inst & op_mask)
 	{
+	case add:
+		break;
 
+	case addi:
+		break;
+
+	case nand:
+		break;
+
+	case lui:
+		break;
+		
+	case sw:
+		break;
+
+	case lw:
+		break;
+
+	case beq:
+		break;
+
+	case jalr:
+		break;
+
+	default:
+		; // error: undefined opcode (should never happen)
 	}
 }
 
