@@ -2,17 +2,17 @@
 
 void Machine::execute(inst_t inst)
 {
-	switch (inst & op_mask)
+	switch (op(inst))
 	{
 	case add:
-		access(REGISTERS, ra(inst)) = access(REGISTERS, rb(inst)) + access(REGISTERS, rc(inst));
+		reg(ra(inst)) = reg(rb(inst)) + reg(rc(inst));
 		break;
 
 	case addi:
 		break;
 
 	case nand:
-		access(REGISTERS, ra(inst)) = ~(access(REGISTERS, rb(inst)) & access(REGISTERS, rc(inst)));
+		reg(ra(inst)) = ~(reg(rb(inst)) & reg(rc(inst)));
 		break;
 
 	case lui:
@@ -35,22 +35,18 @@ void Machine::execute(inst_t inst)
 	}
 }
 
-uword_t& Machine::access(MemUnit unit, uword_t addr)
+uword_t& Machine::mem(uword_t addr)
 {
-	switch (unit)
-	{
-	case REGISTERS:
-		if (addr < regs_count)
-			return regs[addr];
-		else
-			; // error: reg index out of range
-		break;
+	if (addr < ram_length)
+		return ram[addr];
+	else
+		; // error: mem index out of range
+}
 
-	case RAM:
-		if (addr < ram_length)
-			return ram[addr];
-		else
-			; // error: mem index out of range
-		break;
-	}
+uword_t& Machine::reg(uword_t addr)
+{
+	if (addr < regs_count)
+		return regs[addr];
+	else
+		; // error: reg index out of range
 }

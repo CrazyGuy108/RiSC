@@ -15,7 +15,8 @@ public:
 	void execute(inst_t inst);
 
 private:
-	uword_t& access(MemUnit unit, uword_t addr);
+	uword_t& mem(uword_t addr);
+	uword_t& reg(uword_t addr);
 
 	uword_t ram[ram_length]  = {};
 	uword_t regs[regs_count] = {};
