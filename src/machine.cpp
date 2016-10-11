@@ -34,16 +34,6 @@ void Machine::execute(inst_t inst)
 	}
 }
 
-uword_t Machine::read(MemUnit unit, uword_t addr)
-{
-	return access(unit, addr);
-}
-
-void Machine::write(MemUnit unit, uword_t addr, uword_t value)
-{
-	access(unit, addr) = value;
-}
-
 uword_t& Machine::access(MemUnit unit, uword_t addr)
 {
 	switch (unit)
