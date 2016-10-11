@@ -9,6 +9,7 @@ void Machine::execute(inst_t inst)
 		break;
 
 	case addi:
+		reg(ra(inst)) = reg(rb(inst)) + i7(inst);
 		break;
 
 	case nand:
@@ -16,12 +17,15 @@ void Machine::execute(inst_t inst)
 		break;
 
 	case lui:
+		reg(ra(inst)) = i10(inst);
 		break;
 		
 	case sw:
+		mem(reg(rb(inst)) + i7(inst)) = reg(ra(inst));
 		break;
 
 	case lw:
+		reg(ra(inst)) = mem(reg(rb(inst)) + i7(inst));
 		break;
 
 	case beq:
