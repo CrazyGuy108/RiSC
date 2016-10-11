@@ -34,4 +34,12 @@ constexpr inst_t rb_shift = 7;
 constexpr size_t ram_length = 65536;
 constexpr size_t regs_count = 8;
 
+// gets operands by masking and shifting
+inst_t op(inst_t inst);
+inst_t ra(inst_t inst);
+inst_t rb(inst_t inst);
+inst_t rc(inst_t inst);
+inst_t i7(inst_t inst);
+inst_t i10(inst_t inst);
+
 #endif // UTILITIES_H
