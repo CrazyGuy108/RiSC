@@ -5,6 +5,7 @@ void Machine::execute(inst_t inst)
 	switch (inst & op_mask)
 	{
 	case add:
+		write(Write{ Memory::REGISTERS, (size_t)((inst & ra_mask) >> ra_shift), (uword_t)(read(Read{ Memory::REGISTERS, (size_t)((inst & rb_mask) >> rb_shift) }) + read(Read{ Memory::REGISTERS, (size_t)(inst & rc_mask) })) });
 		break;
 
 	case addi:
