@@ -2,7 +2,7 @@
 
 void Machine::execute(inst_t inst)
 {
-
+	static OPCODE((Machine::* const ops[8])){ &Machine::add, &Machine::addi, &Machine::nand, &Machine::lui, &Machine::sw, &Machine::lw, &Machine::beq, &Machine::jalr };
 }
 
 uword_t Machine::read(Read& r)
