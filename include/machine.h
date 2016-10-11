@@ -11,8 +11,8 @@ public:
 	void execute(inst_t inst);
 
 private:
-	uword_t read(Read& r);
-	void write(Write& w);
+	uword_t read(Read r);
+	void write(Write w);
 	uword_t& access(Memory& m);
 
 	uword_t ram[ram_length]  = {};

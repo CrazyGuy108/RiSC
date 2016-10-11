@@ -33,12 +33,12 @@ void Machine::execute(inst_t inst)
 	}
 }
 
-uword_t Machine::read(Read& r)
+uword_t Machine::read(Read r)
 {
 	return access(r);
 }
 
-void Machine::write(Write& w)
+void Machine::write(Write w)
 {
 	access(w) = w.value;
 }
