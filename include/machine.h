@@ -8,12 +8,18 @@
 class Machine
 {
 public:
+	// specifies which memory unit should be accessed
+	enum MemUnit
+	{
+		REGISTERS, RAM
+	};
+
 	void execute(inst_t inst);
 
 private:
-	uword_t read(Read r);
-	void write(Write w);
-	uword_t& access(Memory& m);
+	uword_t read(MemUnit unit, uword_t addr);
+	void write(MemUnit unit, uword_t addr, uword_t value);
+	uword_t& access(MemUnit unit, uword_t addr);
 
 	uword_t ram[ram_length]  = {};
 	uword_t regs[regs_count] = {};
