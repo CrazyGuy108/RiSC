@@ -1,9 +1,7 @@
 #ifndef MACHINE_H
 #define MACHINE_H
 
-#include "read.h"      // for Read
 #include "utilities.h" // for typedefs
-#include "write.h"     // for Write
 
 class Machine
 {
