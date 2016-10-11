@@ -2,7 +2,10 @@
 
 void Machine::execute(inst_t inst)
 {
-	static OPCODE((Machine::* const ops[8])){ &Machine::add, &Machine::addi, &Machine::nand, &Machine::lui, &Machine::sw, &Machine::lw, &Machine::beq, &Machine::jalr };
+	switch (inst & op_mask >> op_shift)
+	{
+
+	}
 }
 
 uword_t Machine::read(Read& r)
@@ -33,44 +36,4 @@ uword_t& Machine::access(Memory& m)
 			; // error: mem index out of range
 		break;
 	}
-}
-
-OPCODE(Machine::add)
-{
-
-}
-
-OPCODE(Machine::addi)
-{
-
-}
-
-OPCODE(Machine::nand)
-{
-
-}
-
-OPCODE(Machine::lui)
-{
-
-}
-
-OPCODE(Machine::sw)
-{
-
-}
-
-OPCODE(Machine::lw)
-{
-
-}
-
-OPCODE(Machine::beq)
-{
-
-}
-
-OPCODE(Machine::jalr)
-{
-
 }
