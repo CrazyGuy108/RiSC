@@ -2,7 +2,7 @@
 
 void emulator(char* contents, size_t length)
 {
-	Machine machine;
+	RiSC machine;
 
 	for (size_t i{ 0 }; i < length >> 1; ++i)
 	{

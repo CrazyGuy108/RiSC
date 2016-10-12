@@ -1,13 +1,12 @@
 #ifndef RISC_H
 #define RISC_H
 
-#include "machine.h"
+#include "utilities.h" // for typedefs
 
 class RiSC
-	: public Machine
 {
 public:
-	virtual void execute(inst_t inst) override final;
+	void execute(inst_t inst);
 
 private:
 	uword_t& mem(uword_t addr);
