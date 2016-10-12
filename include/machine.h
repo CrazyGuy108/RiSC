@@ -12,7 +12,7 @@ public:
 		REGISTERS, RAM
 	};
 
-	void execute(inst_t inst);
+	virtual void execute(inst_t inst) = 0;
 
 private:
 	uword_t& mem(uword_t addr);
