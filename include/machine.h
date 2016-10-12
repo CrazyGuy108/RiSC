@@ -7,13 +7,6 @@ class Machine
 {
 public:
 	virtual void execute(inst_t inst) = 0;
-
-protected:
-	uword_t& mem(uword_t addr);
-	uword_t& reg(uword_t addr);
-
-	uword_t ram[ram_length]  = {};
-	uword_t regs[regs_count] = {};
 };
 
 #endif // MACHINE_H
