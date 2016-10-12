@@ -14,7 +14,7 @@ public:
 
 	virtual void execute(inst_t inst) = 0;
 
-private:
+protected:
 	uword_t& mem(uword_t addr);
 	uword_t& reg(uword_t addr);
 
