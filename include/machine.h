@@ -6,12 +6,6 @@
 class Machine
 {
 public:
-	// specifies which memory unit should be accessed
-	enum MemUnit
-	{
-		REGISTERS, RAM
-	};
-
 	virtual void execute(inst_t inst) = 0;
 
 protected:
