@@ -1,5 +1,8 @@
 #include "../include/risc.h"
 
+RiSC::RiSC()
+	: ram{}, regs{} {}
+
 void RiSC::execute(inst_t inst)
 {
 	switch (op(inst))
