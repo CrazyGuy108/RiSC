@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 		const char* ext{ strrchr(argv[1], '.') };
 		if (ext && !strcmp(ext, ".risc"))
 		{
-			std::ifstream ifile{ argv[1] };
+			std::ifstream ifile{ argv[1], std::ifstream::binary };
 			if (ifile.is_open())
 			{
 				char* contents;
