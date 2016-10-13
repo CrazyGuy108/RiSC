@@ -37,6 +37,15 @@ uword_t RiSC::execute(inst_t inst)
 		break;
 
 	case jalr:
+		inst_t imm{ i7(inst) };
+		if (imm)
+			; // syscall
+		else
+		{
+			reg(ra(inst)) = pc + 1;
+			pc = reg(rb(inst)) - 1; // counterracts the ++pc
+		}
+
 		break;
 
 	default:
