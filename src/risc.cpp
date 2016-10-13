@@ -32,6 +32,8 @@ uword_t RiSC::execute(inst_t inst)
 		break;
 
 	case beq:
+		if (reg(ra(inst)) == reg(rb(inst)))
+			pc += i7(inst);
 		break;
 
 	case jalr:
