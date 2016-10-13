@@ -3,7 +3,7 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
-void RiSC::execute(inst_t inst)
+uword_t RiSC::execute(inst_t inst)
 {
 	switch (op(inst))
 	{
@@ -40,6 +40,8 @@ void RiSC::execute(inst_t inst)
 	default:
 		; // error: undefined opcode (should never happen)
 	}
+
+	return ++pc;
 }
 
 uword_t RiSC::getRam(uword_t addr)
