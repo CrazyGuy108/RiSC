@@ -19,6 +19,8 @@ private:
 
 	uword_t ram[ram_length];
 	uword_t regs[regs_count];
+
+	uword_t pc;
 };
 
 #endif // RISC_H

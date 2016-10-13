@@ -1,7 +1,7 @@
 #include "../include/risc.h"
 
 RiSC::RiSC()
-	: ram{}, regs{} {}
+	: ram{}, regs{}, pc{ 0 } {}
 
 void RiSC::execute(inst_t inst)
 {
