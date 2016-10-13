@@ -5,7 +5,6 @@
 
 typedef uint16_t inst_t;  // instruction word
 typedef uint16_t uword_t; // unsigned data word
-typedef int16_t  sword_t; // signed data word
 
 // opcodes
 constexpr inst_t add  = 0x0000;
