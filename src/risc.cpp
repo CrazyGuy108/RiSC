@@ -42,6 +42,16 @@ void RiSC::execute(inst_t inst)
 	}
 }
 
+uword_t RiSC::getRam(uword_t addr)
+{
+	return mem(addr);
+}
+
+uword_t RiSC::getReg(uword_t addr)
+{
+	return reg(addr);
+}
+
 uword_t& RiSC::mem(uword_t addr)
 {
 	if (addr < ram_length)
