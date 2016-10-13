@@ -25,7 +25,6 @@ constexpr inst_t rc_mask  = 0x0007;
 constexpr inst_t i7_mask  = 0x003F;
 constexpr inst_t i7_sign  = 0x0020;
 constexpr inst_t i10_mask = 0x03FF;
-constexpr inst_t i10_sign = 0x0200;
 
 // operand shifts
 constexpr inst_t op_shift = 13;
