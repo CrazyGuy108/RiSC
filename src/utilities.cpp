@@ -2,7 +2,7 @@
 
 OPERAND(op)
 {
-	return (inst & op_mask) >> op_shift;
+	return inst & op_mask;
 }
 
 OPERAND(ra)

@@ -26,7 +26,6 @@ constexpr inst_t i7_sign  = 0x0020;
 constexpr inst_t i10_mask = 0x03FF;
 
 // operand shifts
-constexpr inst_t op_shift  = 13;
 constexpr inst_t ra_shift  = 10;
 constexpr inst_t rb_shift  = 7;
 constexpr inst_t i10_shift = 6;
