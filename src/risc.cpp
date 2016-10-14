@@ -3,53 +3,60 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
-void RiSC::execute(uword_t startAddr)
+void RiSC::execute(uword_t start, uword_t end)
 {
-	inst_t inst{}; // placeholder
-	switch (op(inst))
+	pc = start;
+	inst_t inst;
+	while (pc < end)
 	{
-	case add:
-		reg(ra(inst)) = reg(rb(inst)) + reg(rc(inst));
-		break;
-
-	case addi:
-		reg(ra(inst)) = reg(rb(inst)) + i7(inst);
-		break;
-
-	case nand:
-		reg(ra(inst)) = ~(reg(rb(inst)) & reg(rc(inst)));
-		break;
-
-	case lui:
-		reg(ra(inst)) = i10(inst);
-		break;
-
-	case sw:
-		mem(reg(rb(inst)) + i7(inst)) = reg(ra(inst));
-		break;
-
-	case lw:
-		reg(ra(inst)) = mem(reg(rb(inst)) + i7(inst));
-		break;
-
-	case beq:
-		if (reg(ra(inst)) == reg(rb(inst)))
-			pc += i7(inst);
-		break;
-
-	case jalr:
-		if (i7(inst))
-			; // syscall
-		else
+		inst = mem(pc);
+		switch (op(inst))
 		{
-			reg(ra(inst)) = pc + 1;
-			pc = reg(rb(inst)) - 1; // counterracts the ++pc
+		case add:
+			reg(ra(inst)) = reg(rb(inst)) + reg(rc(inst));
+			break;
+
+		case addi:
+			reg(ra(inst)) = reg(rb(inst)) + i7(inst);
+			break;
+
+		case nand:
+			reg(ra(inst)) = ~(reg(rb(inst)) & reg(rc(inst)));
+			break;
+
+		case lui:
+			reg(ra(inst)) = i10(inst);
+			break;
+
+		case sw:
+			mem(reg(rb(inst)) + i7(inst)) = reg(ra(inst));
+			break;
+
+		case lw:
+			reg(ra(inst)) = mem(reg(rb(inst)) + i7(inst));
+			break;
+
+		case beq:
+			if (reg(ra(inst)) == reg(rb(inst)))
+				pc += i7(inst);
+			break;
+
+		case jalr:
+			if (i7(inst))
+				; // syscall
+			else
+			{
+				reg(ra(inst)) = pc + 1;
+				pc = reg(rb(inst)) - 1; // counterracts the ++pc
+			}
+
+			break;
+
+		default:
+			; // error: undefined opcode (should never happen)
 		}
 
-		break;
-
-	default:
-		; // error: undefined opcode (should never happen)
+		++pc;
 	}
 }
 
