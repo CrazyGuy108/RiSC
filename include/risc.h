@@ -8,6 +8,7 @@ class RiSC
 public:
 	RiSC();
 
+	void load(uword_t* program, uword_t length); // load a program into memory
 	void execute(uword_t start, uword_t end);
 
 	uword_t getRam(uword_t addr);

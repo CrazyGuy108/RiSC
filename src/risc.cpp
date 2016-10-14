@@ -3,6 +3,12 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
+void RiSC::load(uword_t* program, uword_t length)
+{
+	for (uword_t i{ 0 }; i < length; ++i)
+		mem(i) = program[i];
+}
+
 void RiSC::execute(uword_t start, uword_t end)
 {
 	pc = start;
