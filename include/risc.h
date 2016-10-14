@@ -8,7 +8,7 @@ class RiSC
 public:
 	RiSC();
 
-	uword_t execute(inst_t inst);
+	void execute(uword_t startAddr);
 
 	uword_t getRam(uword_t addr);
 	uword_t getReg(uword_t addr);

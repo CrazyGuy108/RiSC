@@ -3,8 +3,9 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
-uword_t RiSC::execute(inst_t inst)
+void RiSC::execute(uword_t startAddr)
 {
+	inst_t inst{}; // placeholder
 	switch (op(inst))
 	{
 	case add:
@@ -50,8 +51,6 @@ uword_t RiSC::execute(inst_t inst)
 	default:
 		; // error: undefined opcode (should never happen)
 	}
-
-	return ++pc;
 }
 
 uword_t RiSC::getRam(uword_t addr)
