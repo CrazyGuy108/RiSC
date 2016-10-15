@@ -4,12 +4,12 @@ Written by me, based almost entirely off of MIPS.
 ## Register Usage
 | Name  | Usage           |
 |:----  |:--------------- |
-| r0    | always zero     |
-| r1    | return value    |
-| r2-r4 | general purpose |
-| r5    | stack pointer   |
-| r6    | frame pointer   |
-| r7    | return address  |
+| r0    | Always zero     |
+| r1    | Return value    |
+| r2-r4 | General purpose |
+| r5    | Stack pointer   |
+| r6    | Frame pointer   |
+| r7    | Return address  |
 
 ## Syscalls
 Unlike MIPS, syscalls are done by a `jalr` opcode with a nonzero immediate field as opposed to a separate opcode with various implementation-defined results.
