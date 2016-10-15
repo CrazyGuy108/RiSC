@@ -48,12 +48,18 @@ void RiSC::execute(uword_t start, uword_t end)
 			break;
 
 		case jalr:
-			if (i7(inst))
-				; // syscall
-			else
+			if (!i7(inst))
 			{
 				reg(ra(inst)) = pc + 1;
 				pc = reg(rb(inst)) - 1; // counterracts the ++pc
+			}
+			else // syscall
+			{
+				switch (i7(inst))
+				{
+				case 1: // halt
+					return;
+				}
 			}
 
 			break;
