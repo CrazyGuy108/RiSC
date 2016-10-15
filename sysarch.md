@@ -12,7 +12,7 @@ Written by me, based almost entirely off of MIPS.
 | r7    | return address  |
 
 ## Syscalls
-Syscalls are done by a `jalr` opcode with a nonzero immediate field.
+Unlike MIPS, syscalls are done by a `jalr` opcode with a nonzero immediate field as opposed to a separate opcode with various implementation-defined results.
 The two registers given to the `jalr` instruction are also used as the syscall operands.
 There can only be up to 127 different syscalls because of the size of the immediate field.
 Invalid syscalls will throw an exception.
