@@ -3,9 +3,9 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
-void RiSC::load(uword_t* program, uword_t length)
+void RiSC::load(data_t* program, data_t length)
 {
-	for (uword_t i{ 0 }; i < length; ++i)
+	for (data_t i{ 0 }; i < length; ++i)
 		mem(i) = program[i];
 }
 
@@ -71,17 +71,17 @@ void RiSC::execute()
 	}
 }
 
-uword_t RiSC::getRam(uword_t addr)
+data_t RiSC::getRam(data_t addr)
 {
 	return mem(addr);
 }
 
-uword_t RiSC::getReg(uword_t addr)
+data_t RiSC::getReg(data_t addr)
 {
 	return reg(addr);
 }
 
-uword_t& RiSC::mem(uword_t addr)
+data_t& RiSC::mem(data_t addr)
 {
 	if (addr < ram_length)
 		return ram[addr];
@@ -89,7 +89,7 @@ uword_t& RiSC::mem(uword_t addr)
 		; // error: mem index out of range
 }
 
-uword_t& RiSC::reg(uword_t addr)
+data_t& RiSC::reg(data_t addr)
 {
 	if (addr < regs_count)
 	{

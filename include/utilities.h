@@ -4,7 +4,7 @@
 #include <cstdint> // for int16_t and uint16_t
 
 typedef uint16_t inst_t;  // instruction word
-typedef uint16_t uword_t; // unsigned data word
+typedef uint16_t data_t; // data word
 
 // opcodes
 constexpr inst_t add  = 0x0000;
