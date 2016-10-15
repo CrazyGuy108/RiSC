@@ -57,6 +57,9 @@ void RiSC::execute()
 				switch (i7(inst))
 				{
 				case 1: // halt
+					// print register contents
+					for (size_t i{ 1 }; i < regs_count; ++i)
+						std::cout << "r" << i << ": " << reg(i) << '\n';
 					return;
 				}
 			}

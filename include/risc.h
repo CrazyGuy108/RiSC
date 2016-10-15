@@ -1,6 +1,7 @@
 #ifndef RISC_H
 #define RISC_H
 
+#include <iostream>    // for cout
 #include "utilities.h" // for typedefs
 
 class RiSC
