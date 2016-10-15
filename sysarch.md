@@ -2,6 +2,8 @@
 Written by me, based almost entirely off of MIPS.
 
 ## Register Usage
+The only difference here is that there is no argument, global pointer, or saved register(s).
+The same caller-preserved vs callee-preserved conventions apply here.
 | Name  | Usage           |
 |:----  |:--------------- |
 | r0    | Always zero     |
