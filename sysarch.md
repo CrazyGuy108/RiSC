@@ -21,3 +21,4 @@ Invalid syscalls will throw an exception.
 | ID | Name | Description                  |
 |:-- |:---- |:---------------------------- |
 | 1  | Halt | Stop machine and print state |
+| 2  | Exit | Stop machine                 |
