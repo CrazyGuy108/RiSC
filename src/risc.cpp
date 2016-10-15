@@ -9,11 +9,10 @@ void RiSC::load(uword_t* program, uword_t length)
 		mem(i) = program[i];
 }
 
-void RiSC::execute(uword_t start, uword_t end)
+void RiSC::execute()
 {
-	pc = start;
 	inst_t inst;
-	while (pc < end)
+	while (true)
 	{
 		inst = mem(pc);
 		switch (op(inst))
