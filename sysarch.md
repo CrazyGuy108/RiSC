@@ -3,7 +3,7 @@ Written by me, based almost entirely off of MIPS.
 
 ## Register Usage
 The only difference here is that there is no argument, global pointer, or saved register(s).
-The same caller-preserved vs callee-preserved conventions apply here.
+The same register preservation conventions are applied here.
 | Name  | Usage          | Preserved by call? |
 |:----  |:-------------- |:------------------ |
 | r0    | Always zero    | n.a.               |
