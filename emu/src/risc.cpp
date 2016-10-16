@@ -60,6 +60,8 @@ void RiSC::execute()
 					for (size_t i{ 1 }; i < regs_count; ++i)
 						std::cout << "r" << i << ": " << reg(i) << '\n';
 
+					std::cout << "pc: " << pc << std::endl;
+
 				case 2: // Exit - Stop machine
 					return;
 				}
