@@ -1,4 +1,4 @@
-# System Architecture for RiSC
+# System Architecture
 Written by me, based almost entirely off of MIPS.
 
 ## Register Usage
