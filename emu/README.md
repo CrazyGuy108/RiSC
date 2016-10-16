@@ -1,2 +1,2 @@
-# RiSC16-Emulator
-Emulator built in C++, for a very simple but practical 16-bit computer architecture
+# Emulator
+The emulator won't be specifically simulating the hardware here, but close enough to where it's a fully working system on its own.
