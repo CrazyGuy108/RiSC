@@ -26,6 +26,11 @@ std::vector<Lexeme> lexer(char* program)
 
 Lexeme tokenizer(char* name)
 {
-	if (name[strlen(name) - 1] == ':') // label
+	size_t len{ strlen(name) };
+	if (name[len - 1] == ':') // label
 		return Lexeme{ name, Lexeme::LABEL };
+	else if (len <= 3) // could be a register name
+	{
+		
+	}
 }
