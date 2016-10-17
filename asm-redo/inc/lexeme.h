@@ -7,10 +7,10 @@ class Lexeme
 public:
 	enum Category
 	{
-
+		UNDEFINED
 	};
 
-	Lexeme(char* name, Category category);
+	Lexeme(char* name, Category category = UNDEFINED);
 
 private:
 	char* name;
