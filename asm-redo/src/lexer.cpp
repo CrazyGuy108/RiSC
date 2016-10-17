@@ -28,7 +28,10 @@ Lexeme tokenizer(char* name)
 {
 	size_t len{ strlen(name) };
 	if (name[len - 1] == ':') // label
+	{
+		name[len - 1] = '\0'; // remove the colon at the end
 		return Lexeme{ name, Lexeme::LABEL };
+	}
 	else if (len <= 3) // could be a register name
 	{
 		
