@@ -32,8 +32,8 @@ Lexeme tokenizer(char* name)
 		name[len - 1] = '\0'; // remove the colon at the end
 		return Lexeme{ name, name[0] == '.' ? Lexeme::LOCAL_LABEL : Lexeme::LABEL };
 	}
-	else if (len <= 3) // could be a register name
+	else if (/*check for opcode*/) // opcode
 	{
-		
+		return Lexeme{ name, Lexeme::OPCODE };
 	}
 }

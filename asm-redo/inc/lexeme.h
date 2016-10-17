@@ -7,7 +7,7 @@ class Lexeme
 public:
 	enum Category
 	{
-		UNDEFINED, LABEL, LOCAL_LABEL
+		UNDEFINED, LABEL, LOCAL_LABEL, OPCODE
 	};
 
 	Lexeme(char* name, Category category = UNDEFINED);
