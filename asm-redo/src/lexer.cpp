@@ -26,5 +26,6 @@ std::vector<Lexeme> lexer(char* program)
 
 Lexeme tokenizer(char* name)
 {
-
+	if (name[strlen(name) - 1] == ':') // label
+		return Lexeme{ name, Lexeme::LABEL };
 }
