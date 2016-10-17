@@ -8,6 +8,6 @@
 std::vector<Lexeme> lexer(char* program);
 
 // tokenizes a particular token
-Lexeme tokenize(char* name);
+Lexeme tokenizer(char* name);
 
 #endif // LEXER_H
