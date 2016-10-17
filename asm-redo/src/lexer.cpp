@@ -11,3 +11,8 @@ std::vector<Lexeme> lexer(char* program)
 			; // tokenize
 	}
 }
+
+Lexeme tokenize(char* name)
+{
+
+}
