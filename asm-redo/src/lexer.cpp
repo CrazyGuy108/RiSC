@@ -53,13 +53,14 @@ Lexeme tokenizer(char* name)
 	           name[2] == ',')) // r+digit+comma end
 	        ) // register
 	{
+		// that's right, I got the register name check to work...
+		// ...without regex...
+		// equivalent: ^(r)?[0-7]{1}(,)?\b
+
 		if (name[0] == 'r')
 			name = &name[1]; // remove optional r
 		if (name[2] == ',')
 			name[2] = '\0'; // remove optional comma
-
-		// that's right, I got the register name check to work...
-		// ...without regex...
 
 		return Lexeme{ name, Lexeme::REGISTER };
 	}
