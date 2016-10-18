@@ -17,6 +17,7 @@ std::vector<Lexeme> lexer(char* program)
 			if (foundSpace) // skips multiple spaces/tabs
 				break;
 
+			foundSpace = true;                      // just found a space
 			iterator[i] = '\0';                     // terminate new substring,
 			lexemes.push_back(tokenizer(iterator)); // tokenize it,
 			iterator = &iterator[i + 1];            // then reset the base pointer
