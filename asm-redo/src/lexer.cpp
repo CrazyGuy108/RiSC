@@ -25,6 +25,9 @@ std::vector<Lexeme> lexer(char* program)
 		case '#': // comment
 			foundComment = true;
 			break;
+
+		default: // nonspecial character, probably part of an identifier/word
+			foundSpace = false;
 		}
 	}
 }
