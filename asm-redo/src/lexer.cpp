@@ -14,9 +14,7 @@ std::vector<Lexeme> lexer(char* program)
 		case '\n': // new line
 			foundComment = false;
 			foundSpace = true;
-			program = &program[i]; // single token containing a newline,
-			program[i + 1] = '\0'; // just a newline
-			lexemes.push_back(Lexeme{ program, Lexeme::NEWLINE });
+			lexemes.push_back(Lexeme{ nullptr, Lexeme::NEWLINE });
 			program = &program[i + 1]; // reset the base pointer
 			break;
 
