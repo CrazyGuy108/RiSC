@@ -44,4 +44,8 @@ Lexeme tokenizer(char* name)
 	{
 		return Lexeme{ name, Lexeme::IMMEDIATE };
 	}
+	else
+	{
+		return Lexeme{ name, Lexeme::IDENTIFIER };
+	}
 }
