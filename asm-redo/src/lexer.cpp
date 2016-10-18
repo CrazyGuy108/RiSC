@@ -7,7 +7,8 @@ std::vector<Lexeme> lexer(char* program)
 	bool foundComment{ false };  // if the lexer has found a comment, this will be true
 
 	// iterate through characters
-	for (size_t i{ 0 }; program[i] != '\0'; ++i)
+	size_t i{ 0 };
+	while (program[i] != '\0')
 	{
 		switch (program[i])
 		{
@@ -16,6 +17,7 @@ std::vector<Lexeme> lexer(char* program)
 			foundSpace = true;
 			lexemes.push_back(Lexeme{ nullptr, Lexeme::NEWLINE });
 			program = &program[i + 1]; // reset the base pointer
+			i = 0; // reset iterator
 			break;
 
 		case ' ': // space/tab means a new word
@@ -27,14 +29,17 @@ std::vector<Lexeme> lexer(char* program)
 			program[i] = '\0';                     // terminate new substring,
 			lexemes.push_back(tokenizer(program)); // tokenize it,
 			program = &program[i + 1];             // then reset the base pointer
+			i = 0;                                 // and the iterator
 			break;
 
 		case '#': // comment
 			foundComment = true;
+			++i;
 			break;
 
 		default: // nonspecial character, probably part of an identifier/word
 			foundSpace = false;
+			++i;
 		}
 	}
 }
