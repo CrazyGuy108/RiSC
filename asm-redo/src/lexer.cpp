@@ -22,7 +22,7 @@ std::vector<Lexeme> lexer(char* program)
 
 		case ' ': // space/tab means a new word
 		case '\t':
-			if (foundSpace) // skips multiple spaces/tabs
+			if (foundSpace || foundComment) // skips comments and multiple spaces/tabs
 				break;
 
 			foundSpace = true;                     // just found a space
