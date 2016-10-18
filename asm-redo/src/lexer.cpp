@@ -12,7 +12,7 @@ std::vector<Lexeme> lexer(char* program)
 	{
 		switch (program[i])
 		{
-		case ' ':
+		case ' ': // space/tab means a new word
 		case '\t':
 			if (foundSpace) // skips multiple spaces/tabs
 				break;
@@ -22,7 +22,7 @@ std::vector<Lexeme> lexer(char* program)
 			iterator = &iterator[i + 1];            // then reset the base pointer
 			break;
 
-		case '#':
+		case '#': // comment
 			foundComment = true;
 			break;
 		}
