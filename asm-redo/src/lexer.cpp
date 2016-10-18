@@ -3,7 +3,6 @@
 std::vector<Lexeme> lexer(char* program)
 {
 	std::vector<Lexeme> lexemes; // keeps track of all the Lexemes the lexer creates
-	char* iterator{ program };   // base pointer for tokens
 	bool foundSpace{ true };     // if the lexer has found a space, this will be true
 	bool foundComment{ false };  // if the lexer has found a comment, this will be true
 
@@ -17,10 +16,10 @@ std::vector<Lexeme> lexer(char* program)
 			if (foundSpace) // skips multiple spaces/tabs
 				break;
 
-			foundSpace = true;                      // just found a space
-			iterator[i] = '\0';                     // terminate new substring,
-			lexemes.push_back(tokenizer(iterator)); // tokenize it,
-			iterator = &iterator[i + 1];            // then reset the base pointer
+			foundSpace = true;                     // just found a space
+			program[i] = '\0';                     // terminate new substring,
+			lexemes.push_back(tokenizer(program)); // tokenize it,
+			program = &program[i + 1];             // then reset the base pointer
 			break;
 
 		case '#': // comment
