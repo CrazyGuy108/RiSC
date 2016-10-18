@@ -36,4 +36,8 @@ Lexeme tokenizer(char* name)
 	{
 		return Lexeme{ name, Lexeme::OPCODE };
 	}
+	else if (/*check for reg*/) // register
+	{
+		return Lexeme{ name, Lexeme::REGISTER };
+	}
 }
