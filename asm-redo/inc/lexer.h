@@ -21,4 +21,7 @@ bool isImmName(char* name);
 // regex equivalent (without formatting the input): ^(r)?[0-7]{1}(,)?\b
 bool isRegName(char* name);
 
+// checks if the given token is a label and formats it
+bool isLabelName(char* name);
+
 #endif // LEXER_H

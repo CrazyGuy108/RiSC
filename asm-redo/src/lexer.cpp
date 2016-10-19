@@ -53,9 +53,8 @@ std::vector<Lexeme> lexer(char* program)
 Lexeme tokenizer(char* name)
 {
 	size_t len{ strlen(name) };
-	if (name[len - 1] == ':') // label
+	if (isLabelName(name)) // label
 	{
-		name[len - 1] = '\0'; // remove the colon at the end
 		return Lexeme{ name, name[0] == '.' ? Lexeme::LOCAL_LABEL : Lexeme::LABEL };
 	}
 	else if (isRegName(name)) // register
@@ -128,6 +127,18 @@ bool isRegName(char* name)
 		else if (len == 3 && name[2] == ',')
 			name[2] = '\0';
 		
+		return true;
+	}
+	else
+		return false;
+}
+
+bool isLabelName(char* name)
+{
+	size_t len{ strlen(name) };
+	if (name[len - 1] == ':')
+	{
+		name[len - 1] = '\0'; // remove colon
 		return true;
 	}
 	else
