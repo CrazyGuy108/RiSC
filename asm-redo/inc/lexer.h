@@ -10,4 +10,10 @@ std::vector<Lexeme> lexer(char* program);
 // tokenizes a particular token
 Lexeme tokenizer(char* name);
 
+// hand-compiled regex for checking if a given token name is a register name
+// that's right, I got the register name check to work...
+// ...without regex...
+// equivalent: ^(r)?[0-7]{1}(,)?\b
+bool isRegName(char* name);
+
 #endif // LEXER_H

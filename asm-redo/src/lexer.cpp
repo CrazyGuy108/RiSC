@@ -62,32 +62,13 @@ Lexeme tokenizer(char* name)
 	{
 		return Lexeme{ name, Lexeme::OPCODE };
 	}
-	else if ((len == 1 && // digit start
-	          (name[0] >= '0' &&
-	           name[0] <= '7')) || // digit end
-	         (len == 2 && // r+digit start or digit+comma start
-	          (name[0] == 'r' &&
-	           name[1] >= '0' &&
-	           name[1] <= '7') || // r+digit end
-	          (name[0] >= '0' &&
-	           name[0] <= '7' &&
-	           name[1] == ',')) || // digit+comma end
-	         (len == 3 && // r+digit+comma start
-	          (name[0] == 'r' &&
-	           name[1] >= '0' &&
-	           name[1] <= '7' &&
-	           name[2] == ',')) // r+digit+comma end
-	        ) // register
+	else if (isRegName(name)) // register
 	{
-		// that's right, I got the register name check to work...
-		// ...without regex...
-		// equivalent: ^(r)?[0-7]{1}(,)?\b
-
 		if (name[0] == 'r')
 			name = &name[1]; // remove optional r
 		if (name[2] == ',')
 			name[2] = '\0'; // remove optional comma
-
+		
 		return Lexeme{ name, Lexeme::REGISTER };
 	}
 	else if (/*check for imm*/) // immediate
@@ -98,4 +79,24 @@ Lexeme tokenizer(char* name)
 	{
 		return Lexeme{ name, Lexeme::IDENTIFIER };
 	}
+}
+
+bool isRegName(char* name)
+{
+	size_t len{ strlen(name) };
+	return (len == 1 && // digit start
+	        (name[0] >= '0' &&
+	         name[0] <= '7')) || // digit end
+	       (len == 2 && // r+digit start or digit+comma start
+	        (name[0] == 'r' &&
+	         name[1] >= '0' &&
+	         name[1] <= '7') || // r+digit end
+	        (name[0] >= '0' &&
+	         name[0] <= '7' &&
+	         name[1] == ',')) || // digit+comma end
+	       (len == 3 && // r+digit+comma start
+	        (name[0] == 'r' &&
+	         name[1] >= '0' &&
+	         name[1] <= '7' &&
+	         name[2] == ',')); // r+digit+comma end
 }
