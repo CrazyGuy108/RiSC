@@ -1,6 +1,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include <map>      // for map
 #include <vector>   // for vector
 #include "lexeme.h" // for Lexeme
 
@@ -9,6 +10,9 @@ std::vector<Lexeme> lexer(char* program);
 
 // tokenizes a particular token
 Lexeme tokenizer(char* name);
+
+// checks if the given token is an opcode name
+bool isOpcodeName(char* name);
 
 // hand-compiled regex for checking if a given token name is a register name
 // that's right, I got the register name check to work...

@@ -81,6 +81,29 @@ Lexeme tokenizer(char* name)
 	}
 }
 
+bool isOpcodeName(char* name)
+{
+	class StrLessThan
+	{
+		bool operator()(char* a, char* b)
+		{
+			return strcmp(a, b) < 0;
+		}
+	};
+
+	static const std::map<char*, Lexeme::Category, StrLessThan> opcodes
+	{
+		{ "add",  Lexeme::OPCODE },
+		{ "addi", Lexeme::OPCODE },
+		{ "nand", Lexeme::OPCODE },
+		{ "lui",  Lexeme::OPCODE },
+		{ "sw",   Lexeme::OPCODE },
+		{ "lw",   Lexeme::OPCODE },
+		{ "beq",  Lexeme::OPCODE },
+		{ "jalr", Lexeme::OPCODE },
+	};
+}
+
 bool isRegName(char* name)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
