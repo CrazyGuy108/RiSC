@@ -14,10 +14,8 @@ Lexeme tokenizer(char* name);
 // resolves a token into either a reserved word/opcode or an identifier
 Lexeme::Category resolve(char* name);
 
-// hand-compiled regex for checking if a given token name is a register name
-// that's right, I got the register name check to work...
-// ...without regex...
-// equivalent: ^(r)?[0-7]{1}(,)?\b
+// checks if the given token is a register and formats it
+// regex equivalent (without formatting the input): ^(r)?[0-7]{1}(,)?\b
 bool isRegName(char* name);
 
 #endif // LEXER_H
