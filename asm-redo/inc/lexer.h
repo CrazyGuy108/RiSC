@@ -11,8 +11,8 @@ std::vector<Lexeme> lexer(char* program);
 // tokenizes a particular token
 Lexeme tokenizer(char* name);
 
-// checks if the given token is an opcode name
-bool isOpcodeName(char* name);
+// resolves a token into either a reserved word/opcode or an identifier
+Lexeme::Category resolve(char* name);
 
 // hand-compiled regex for checking if a given token name is a register name
 // that's right, I got the register name check to work...

@@ -58,10 +58,6 @@ Lexeme tokenizer(char* name)
 		name[len - 1] = '\0'; // remove the colon at the end
 		return Lexeme{ name, name[0] == '.' ? Lexeme::LOCAL_LABEL : Lexeme::LABEL };
 	}
-	else if (/*check for opcode*/) // opcode
-	{
-		return Lexeme{ name, Lexeme::OPCODE };
-	}
 	else if (isRegName(name)) // register
 	{
 		if (name[0] == 'r')
@@ -75,33 +71,15 @@ Lexeme tokenizer(char* name)
 	{
 		return Lexeme{ name, Lexeme::IMMEDIATE };
 	}
-	else
+	else // either reserved word/opcode or identifier
 	{
-		return Lexeme{ name, Lexeme::IDENTIFIER };
+		return Lexeme{ name, resolve(name) };
 	}
 }
 
-bool isOpcodeName(char* name)
+Lexeme::Category resolve(char* name)
 {
-	class StrLessThan
-	{
-		bool operator()(char* a, char* b)
-		{
-			return strcmp(a, b) < 0;
-		}
-	};
-
-	static const std::map<char*, Lexeme::Category, StrLessThan> opcodes
-	{
-		{ "add",  Lexeme::OPCODE },
-		{ "addi", Lexeme::OPCODE },
-		{ "nand", Lexeme::OPCODE },
-		{ "lui",  Lexeme::OPCODE },
-		{ "sw",   Lexeme::OPCODE },
-		{ "lw",   Lexeme::OPCODE },
-		{ "beq",  Lexeme::OPCODE },
-		{ "jalr", Lexeme::OPCODE },
-	};
+	
 }
 
 bool isRegName(char* name)
