@@ -83,6 +83,8 @@ Lexeme tokenizer(char* name)
 
 bool isRegName(char* name)
 {
+	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
+	// now with spaces and comments so it doesn't hurt your eyes as much
 	size_t len{ strlen(name) };
 	return (len == 1 && // digit start
 	        (name[0] >= '0' &&
