@@ -95,7 +95,7 @@ bool isRegName(char* name)
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
 	size_t len{ strlen(name) };
-	return (len == 1 && // digit start
+	if ((len == 1 && // digit start
 	        (name[0] >= '0' &&
 	         name[0] <= '7')) || // digit end
 	       (len == 2 && // r+digit start or digit+comma start
@@ -109,5 +109,14 @@ bool isRegName(char* name)
 	        (name[0] == 'r' &&
 	         name[1] >= '0' &&
 	         name[1] <= '7' &&
-	         name[2] == ',')); // r+digit+comma end
+	         name[2] == ','))) // r+digit+comma end
+	{
+		if (name[0] == 'r')
+			name = &name[1]; // remove optional r
+		if (name[2] == ',')
+			name[2] = '\0'; // remove optional comma
+		return true;
+	}
+	else
+		return false;
 }
