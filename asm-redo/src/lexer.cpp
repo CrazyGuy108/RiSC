@@ -67,7 +67,7 @@ Lexeme tokenizer(char* name)
 		
 		return Lexeme{ name, Lexeme::REGISTER };
 	}
-	else if (/*check for imm*/) // immediate
+	else if (isImmName(name)) // immediate
 	{
 		return Lexeme{ name, Lexeme::IMMEDIATE };
 	}
