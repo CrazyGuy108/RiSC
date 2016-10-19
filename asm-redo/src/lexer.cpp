@@ -60,11 +60,6 @@ Lexeme tokenizer(char* name)
 	}
 	else if (isRegName(name)) // register
 	{
-		if (name[0] == 'r')
-			name = &name[1]; // remove optional r
-		if (name[2] == ',')
-			name[2] = '\0'; // remove optional comma
-		
 		return Lexeme{ name, Lexeme::REGISTER };
 	}
 	else if (isImmName(name)) // immediate
