@@ -90,6 +90,18 @@ Lexeme::Category resolve(char* name)
 	                             : Lexeme::IDENTIFIER;
 }
 
+bool isImmName(char* name)
+{
+	size_t len{ strlen(name) };
+	return (len >= 1 && // digit start
+	        (name[0] >= '0' &&
+	         name[0] <='9')) || // digit end
+	       (len >= 2 && // sign+digit start
+	        (name[0] == '-' &&
+	         name[1] >= '0' &&
+	         name[2] <= '9')); // sign+digit end
+}
+
 bool isRegName(char* name)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
