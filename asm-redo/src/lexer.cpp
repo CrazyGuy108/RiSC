@@ -52,23 +52,13 @@ std::vector<Lexeme> lexer(char* program)
 
 Lexeme tokenizer(char* name)
 {
-	size_t len{ strlen(name) };
-	if (isLabelName(name)) // label
-	{
-		return Lexeme{ name, name[0] == '.' ? Lexeme::LOCAL_LABEL : Lexeme::LABEL };
-	}
-	else if (isRegName(name)) // register
-	{
-		return Lexeme{ name, Lexeme::REGISTER };
-	}
-	else if (isImmName(name)) // immediate
-	{
-		return Lexeme{ name, Lexeme::IMMEDIATE };
-	}
-	else // either reserved word/opcode or identifier
-	{
-		return Lexeme{ name, resolve(name) };
-	}
+	return Lexeme{ name,
+		isLabelName(name) ? 
+		   name[0] == '.' ? Lexeme::LOCAL_LABEL
+		                  : Lexeme::LABEL
+		: isRegName(name) ? Lexeme::REGISTER
+		: isImmName(name) ? Lexeme::IMMEDIATE
+		                  : resolve(name) };
 }
 
 Lexeme::Category resolve(char* name)
