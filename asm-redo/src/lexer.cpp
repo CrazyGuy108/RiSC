@@ -79,7 +79,15 @@ Lexeme tokenizer(char* name)
 
 Lexeme::Category resolve(char* name)
 {
-	
+	return !strcmp(name, "add")  ? Lexeme::ADD
+	     : !strcmp(name, "addi") ? Lexeme::ADDI
+	     : !strcmp(name, "nand") ? Lexeme::NAND
+	     : !strcmp(name, "lui")  ? Lexeme::LUI
+	     : !strcmp(name, "sw")   ? Lexeme::SW
+	     : !strcmp(name, "lw")   ? Lexeme::LW
+	     : !strcmp(name, "beq")  ? Lexeme::BEQ
+	     : !strcmp(name, "jalr") ? Lexeme::JALR
+	                             : Lexeme::IDENTIFIER;
 }
 
 bool isRegName(char* name)

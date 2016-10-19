@@ -7,7 +7,8 @@ class Lexeme
 public:
 	enum Category
 	{
-		IDENTIFIER, LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, NEWLINE
+		IDENTIFIER, LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, NEWLINE,
+		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR
 	};
 
 	Lexeme(char* name, Category category);
