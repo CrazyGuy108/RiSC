@@ -6,6 +6,7 @@
 #include "lexeme.h" // for Lexeme
 
 #define TOKEN_CHECK(type) bool type ## (const char* name)
+#define TOKEN_FORMAT(type) Lexeme::Category type ## (char* name)
 
 // performs lexical analysis on the source code
 std::vector<Lexeme> lexer(char* program);
@@ -21,9 +22,9 @@ TOKEN_CHECK(isImmName);
 
 // token name formatters
 
-Lexeme::Category label(char* name);
-Lexeme::Category reg(char* name);
-Lexeme::Category imm(char* name);
-Lexeme::Category resolve(char* name);
+TOKEN_FORMAT(label);
+TOKEN_FORMAT(reg);
+TOKEN_FORMAT(imm);
+TOKEN_FORMAT(resolve);
 
 #endif // LEXER_H

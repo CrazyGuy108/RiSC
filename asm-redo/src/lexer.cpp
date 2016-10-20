@@ -100,14 +100,14 @@ TOKEN_CHECK(isImmName)
 	         name[2] <= '9')); // sign+digit end
 }
 
-Lexeme::Category label(char* name)
+TOKEN_FORMAT(label)
 {
 	name[strlen(name) - 1] = '\0'; // remove colon
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
 }
 
-Lexeme::Category reg(char* name)
+TOKEN_FORMAT(reg)
 {
 	if (name[0] == 'r') // remove optional r
 	{
@@ -120,12 +120,12 @@ Lexeme::Category reg(char* name)
 	return Lexeme::REGISTER;
 }
 
-Lexeme::Category imm(char* name)
+TOKEN_FORMAT(imm)
 {
 	return Lexeme::IMMEDIATE;
 }
 
-Lexeme::Category resolve(char* name)
+TOKEN_FORMAT(resolve)
 {
 	return !strcmp(name, "add")  ? Lexeme::ADD
 	     : !strcmp(name, "addi") ? Lexeme::ADDI
