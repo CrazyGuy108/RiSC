@@ -63,7 +63,7 @@ Lexeme tokenizer(char* name)
 		                  : resolve(name) };
 }
 
-Lexeme::Category resolve(char* name)
+Lexeme::Category resolve(const char* name)
 {
 	return !strcmp(name, "add")  ? Lexeme::ADD
 	     : !strcmp(name, "addi") ? Lexeme::ADDI
@@ -76,7 +76,7 @@ Lexeme::Category resolve(char* name)
 	                             : Lexeme::IDENTIFIER;
 }
 
-bool isImmName(char* name)
+bool isImmName(const char* name)
 {
 	size_t len{ strlen(name) };
 	return (len >= 1 && // digit start

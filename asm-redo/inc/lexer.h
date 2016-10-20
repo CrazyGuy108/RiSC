@@ -12,10 +12,10 @@ std::vector<Lexeme> lexer(char* program);
 Lexeme tokenizer(char* name);
 
 // resolves a token into either a reserved word/opcode or an identifier
-Lexeme::Category resolve(char* name);
+Lexeme::Category resolve(const char* name);
 
 // checks if the given token is an immediate
-bool isImmName(char* name);
+bool isImmName(const char* name);
 
 // checks if the given token is a register and formats it
 // regex equivalent (without formatting the input): ^(r)?[0-7]{1}(,)?\b
