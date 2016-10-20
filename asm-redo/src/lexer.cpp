@@ -55,9 +55,7 @@ std::vector<Lexeme> lexer(char* program)
 Lexeme tokenizer(char* name)
 {
 	return Lexeme{ name,
-		isLabelName(name) ? 
-		   name[0] == '.' ? Lexeme::LOCAL_LABEL
-		                  : Lexeme::LABEL
+		isLabelName(name) ? label(name)
 		: isRegName(name) ? Lexeme::REGISTER
 		: isImmName(name) ? Lexeme::IMMEDIATE
 		                  : resolve(name) };
@@ -120,6 +118,12 @@ bool isImmName(const char* name)
 	        (name[0] == '-' &&
 	         name[1] >= '0' &&
 	         name[2] <= '9')); // sign+digit end
+}
+
+Lexeme::Category label(const char* name)
+{
+	return name[0] == '.' ? Lexeme::LOCAL_LABEL
+	                      : Lexeme::LABEL;
 }
 
 Lexeme::Category resolve(const char* name)
