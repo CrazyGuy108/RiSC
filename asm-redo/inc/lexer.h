@@ -31,22 +31,25 @@ TOKEN_FORMAT(resolve);
 class Lexer
 {
 public:
+	Lexer(char* iterator);
+	Lexer(char* iterator, size_t index) = delete;
+	
 	Lexeme next(); // tokenizes the next lexeme
 	
 private:
 	// token name checkers
-
+	
 	static TOKEN_CHECK(isLabelName);
 	static TOKEN_CHECK(isRegName);
 	static TOKEN_CHECK(isImmName);
-
+	
 	// token name formatters
-
+	
 	static TOKEN_FORMAT(formatLabel);
 	static TOKEN_FORMAT(formatReg);
 	static TOKEN_FORMAT(formatImm);
 	static TOKEN_FORMAT(formatKeyword);
-
+	
 	char* iterator; // pointer that iterates through the program
 	size_t index;   // index of the character relative to iterator currently being analyzed
 };

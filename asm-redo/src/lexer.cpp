@@ -139,3 +139,6 @@ TOKEN_FORMAT(resolve)
 	     : !strcmp(name, "jalr") ? Lexeme::JALR
 	                             : Lexeme::IDENTIFIER;
 }
+
+Lexer::Lexer(char* iterator)
+	: iterator{ iterator }, index{ 0 } {}
