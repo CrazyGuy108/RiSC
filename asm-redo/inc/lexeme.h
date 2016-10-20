@@ -13,6 +13,9 @@ public:
 
 	Lexeme(char* name, Category category);
 
+	const char* getName();
+	Category getCategory();
+
 private:
 	char* name;
 	Category category;
