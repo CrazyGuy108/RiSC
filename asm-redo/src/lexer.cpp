@@ -57,6 +57,16 @@ std::vector<Lexeme> lexer(char* program)
 Lexer::Lexer(char* iterator)
 	: iterator{ iterator }, index{ 0 }, end{ false } {}
 
+Lexeme Lexer::next()
+{
+	if(end)
+		return Lexeme{ nullptr, Lexeme::END };
+	else
+	{
+		// process the next token and return a new Lexeme
+	}
+}
+
 Lexeme Lexer::tokenize(char* name)
 {
 	return Lexeme{ name,
