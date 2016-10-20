@@ -109,15 +109,15 @@ bool isRegName(char* name)
 	      name[1] <= '7' &&
 	      name[2] == ',')))   // r+digit+comma end
 	{
-		// remove optional r
-		if (name[0] == 'r')
-			name = &name[1];
-		
 		// remove optional comma
-		if(len == 2 && name[1] == ',')
+		if (len == 2 && name[1] == ',')
 			name[1] = '\0';
 		else if (len == 3 && name[2] == ',')
 			name[2] = '\0';
+		
+		// remove optional r
+		if (name[0] == 'r')
+			name = &name[1];
 		
 		return true;
 	}
