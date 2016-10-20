@@ -2,6 +2,7 @@
 #include <iostream>       // for cout
 #include "../inc/lexer.h" // for lexer
 
+#define READ_TEST
 #define LEXER_TEST
 
 int main()
@@ -20,7 +21,11 @@ int main()
 		char* contents{ new char[length] };
 		ifile.read(contents, length - 1);
 		contents[length - 1] = '\0'; // null character to prevent reading garbage data
-
+		
+#ifdef READ_TEST
+		std::cout << "Read:\n" << contents << '\n';
+#endif // READ_TEST
+		
 #ifdef LEXER_TEST
 		std::vector<Lexeme> lexemes{ lexer(contents) };
 		std::cout << "Lexer:\n";
