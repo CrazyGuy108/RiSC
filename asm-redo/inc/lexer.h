@@ -19,9 +19,9 @@ bool isImmName(const char* name);
 
 // token name formatters
 
-Lexeme::Category label(const char* name);
+Lexeme::Category label(char* name);
 Lexeme::Category reg(char* name);
-Lexeme::Category imm(const char* name);
-Lexeme::Category resolve(const char* name);
+Lexeme::Category imm(char* name);
+Lexeme::Category resolve(char* name);
 
 #endif // LEXER_H

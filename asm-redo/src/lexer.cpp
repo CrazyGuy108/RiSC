@@ -112,7 +112,7 @@ bool isImmName(const char* name)
 	         name[2] <= '9')); // sign+digit end
 }
 
-Lexeme::Category label(const char* name)
+Lexeme::Category label(char* name)
 {
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
@@ -131,12 +131,12 @@ Lexeme::Category reg(char* name)
 	return Lexeme::REGISTER;
 }
 
-Lexeme::Category imm(const char* name)
+Lexeme::Category imm(char* name)
 {
 	return Lexeme::IMMEDIATE;
 }
 
-Lexeme::Category resolve(const char* name)
+Lexeme::Category resolve(char* name)
 {
 	return !strcmp(name, "add") ? Lexeme::ADD
 		: !strcmp(name, "addi") ? Lexeme::ADDI
