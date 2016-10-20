@@ -49,6 +49,8 @@ std::vector<Lexeme> lexer(char* program)
 		}
 	}
 
+	lexemes.push_back(Lexeme{ nullptr, Lexeme::END }); // end of file
+
 	return lexemes;
 }
 

@@ -18,6 +18,10 @@ const char* Lexeme::getCategoryName()
 {
 	switch (category)
 	{
+	case END:
+		return "end";
+		break;
+
 	case IDENTIFIER:
 		return "identifier";
 		break;
