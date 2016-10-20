@@ -54,6 +54,7 @@ private:
 	
 	char* iterator; // pointer that iterates through the program
 	size_t index;   // index of the character relative to iterator currently being analyzed
+	bool end;       // this will be true if the lexer has reached the end of the program
 };
 
 #endif // LEXER_H
