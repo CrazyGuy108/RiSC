@@ -32,7 +32,6 @@ class Lexer
 {
 public:
 	Lexer(char* iterator);
-	Lexer(char* iterator, size_t index) = delete;
 	
 	Lexeme next(); // tokenizes the next lexeme
 	
