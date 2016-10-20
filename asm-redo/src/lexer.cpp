@@ -55,7 +55,8 @@ std::vector<Lexeme> lexer(char* program)
 }
 
 Lexer::Lexer(char* iterator)
-	: iterator{ iterator }, index{ 0 }, end{ false } {}
+	: iterator{ iterator }, index{ 0 },
+	  end{ false }, space{ true }, comment{ false } {}
 
 Lexeme Lexer::next()
 {
