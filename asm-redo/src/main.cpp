@@ -26,6 +26,7 @@ int main()
 		std::cout << "Lexer:\n";
 		for(Lexeme& lexeme : lexemes)
 			std::cout << (lexeme.getName() != nullptr ? lexeme.getName() : "NULL") << ": " << lexeme.getCategory() << "\n";
+		std::cout << '\n';
 #endif // LEXER_TEST
 	}
 	else
