@@ -14,7 +14,7 @@ int main()
 
 		// get file length
 		ifile.seekg(0, ifile.end);
-		size_t length{ (size_t)ifile.tellg() };
+		size_t length{ (size_t)ifile.tellg() - 1 };
 		ifile.seekg(0, ifile.beg);
 
 		// put into char array
