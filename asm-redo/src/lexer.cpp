@@ -48,6 +48,8 @@ std::vector<Lexeme> lexer(char* program)
 			++i;
 		}
 	}
+
+	return lexemes;
 }
 
 Lexeme tokenizer(char* name)
