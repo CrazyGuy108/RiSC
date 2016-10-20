@@ -13,7 +13,7 @@ Lexeme tokenizer(char* name);
 
 // token name checkers
 
-bool isLabelName(char* name);
+bool isLabelName(const char* name);
 bool isRegName(const char* name);
 bool isImmName(const char* name);
 

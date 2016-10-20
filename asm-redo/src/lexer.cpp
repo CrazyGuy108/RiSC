@@ -61,7 +61,7 @@ Lexeme tokenizer(char* name)
 		                  : resolve(name) };
 }
 
-bool isLabelName(char* name)
+bool isLabelName(const char* name)
 {
 	size_t len{ strlen(name) };
 	if (name[len - 1] == ':')
