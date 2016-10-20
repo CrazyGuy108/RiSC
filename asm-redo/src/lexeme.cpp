@@ -5,7 +5,8 @@ Lexeme::Lexeme(char* name, Category category)
 
 const char* Lexeme::getName()
 {
-	return name;
+	return name != nullptr ? name
+	                       : "NULL";
 }
 
 Lexeme::Category Lexeme::getCategory()
