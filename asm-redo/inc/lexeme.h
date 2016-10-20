@@ -15,6 +15,7 @@ public:
 
 	const char* getName();
 	Category getCategory();
+	const char* getCategoryName();
 
 private:
 	char* name;
