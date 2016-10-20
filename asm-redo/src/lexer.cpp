@@ -63,13 +63,7 @@ Lexeme tokenizer(char* name)
 
 bool isLabelName(const char* name)
 {
-	size_t len{ strlen(name) };
-	if (name[len - 1] == ':')
-	{
-		return true;
-	}
-	else
-		return false;
+	return name[strlen(name) - 1] == ':';
 }
 
 bool isRegName(const char* name)
