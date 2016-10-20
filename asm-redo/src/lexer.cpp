@@ -66,7 +66,6 @@ bool isLabelName(const char* name)
 	size_t len{ strlen(name) };
 	if (name[len - 1] == ':')
 	{
-		name[len - 1] = '\0'; // remove colon
 		return true;
 	}
 	else
@@ -114,6 +113,7 @@ bool isImmName(const char* name)
 
 Lexeme::Category label(char* name)
 {
+	name[strlen(name) - 1] = '\0'; // remove colon
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
 }
