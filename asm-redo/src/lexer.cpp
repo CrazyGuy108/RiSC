@@ -63,12 +63,15 @@ Lexeme tokenizer(char* name)
 		                  : resolve(name) };
 }
 
-TOKEN_CHECK(isLabelName)
+Lexer::Lexer(char* iterator)
+	: iterator{ iterator }, index{ 0 } {}
+
+TOKEN_CHECK(Lexer::isLabelName)
 {
 	return name[strlen(name) - 1] == ':';
 }
 
-TOKEN_CHECK(isRegName)
+TOKEN_CHECK(Lexer::isRegName)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
@@ -90,7 +93,7 @@ TOKEN_CHECK(isRegName)
 	         name[2] == ','));   // r+digit+comma end
 }
 
-TOKEN_CHECK(isImmName)
+TOKEN_CHECK(Lexer::isImmName)
 {
 	size_t len{ strlen(name) };
 	return (len >= 1 && // digit start
@@ -102,14 +105,14 @@ TOKEN_CHECK(isImmName)
 	         name[2] <= '9')); // sign+digit end
 }
 
-TOKEN_FORMAT(label)
+TOKEN_FORMAT(Lexer::formatLabel)
 {
 	name[strlen(name) - 1] = '\0'; // remove colon
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
 }
 
-TOKEN_FORMAT(reg)
+TOKEN_FORMAT(Lexer::formatReg)
 {
 	if (name[0] == 'r') // remove optional r
 	{
@@ -122,12 +125,12 @@ TOKEN_FORMAT(reg)
 	return Lexeme::REGISTER;
 }
 
-TOKEN_FORMAT(imm)
+TOKEN_FORMAT(Lexer::formatImm)
 {
 	return Lexeme::IMMEDIATE;
 }
 
-TOKEN_FORMAT(resolve)
+TOKEN_FORMAT(Lexer::formatKeyword)
 {
 	return !strcmp(name, "add")  ? Lexeme::ADD
 	     : !strcmp(name, "addi") ? Lexeme::ADDI
@@ -139,6 +142,3 @@ TOKEN_FORMAT(resolve)
 	     : !strcmp(name, "jalr") ? Lexeme::JALR
 	                             : Lexeme::IDENTIFIER;
 }
-
-Lexer::Lexer(char* iterator)
-	: iterator{ iterator }, index{ 0 } {}
