@@ -54,17 +54,17 @@ std::vector<Lexeme> lexer(char* program)
 	return lexemes;
 }
 
-Lexeme tokenizer(char* name)
-{
-	return Lexeme{ name,
-		isLabelName(name) ? label(name)
-		: isRegName(name) ? reg(name)
-		: isImmName(name) ? imm(name)
-		                  : resolve(name) };
-}
-
 Lexer::Lexer(char* iterator)
 	: iterator{ iterator }, index{ 0 } {}
+
+Lexeme Lexer::tokenize(char* name)
+{
+	return Lexeme{ name,
+		isLabelName(name) ? formatLabel(name)
+		: isRegName(name) ? formatReg(name)
+		: isImmName(name) ? formatImm(name)
+		                  : formatKeyword(name) };
+}
 
 TOKEN_CHECK(Lexer::isLabelName)
 {

@@ -36,6 +36,9 @@ public:
 	Lexeme next(); // tokenizes the next lexeme
 	
 private:
+	// creates a Lexeme of a token name
+	static Lexeme tokenize(char* name);
+	
 	// token name checkers
 	
 	static TOKEN_CHECK(isLabelName);
