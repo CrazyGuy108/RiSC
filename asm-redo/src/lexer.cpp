@@ -61,12 +61,12 @@ Lexeme tokenizer(char* name)
 		                  : resolve(name) };
 }
 
-bool isLabelName(const char* name)
+TOKEN_CHECK(isLabelName)
 {
 	return name[strlen(name) - 1] == ':';
 }
 
-bool isRegName(const char* name)
+TOKEN_CHECK(isRegName)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
@@ -88,7 +88,7 @@ bool isRegName(const char* name)
 	         name[2] == ','));   // r+digit+comma end
 }
 
-bool isImmName(const char* name)
+TOKEN_CHECK(isImmName)
 {
 	size_t len{ strlen(name) };
 	return (len >= 1 && // digit start

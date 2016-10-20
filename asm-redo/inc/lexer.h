@@ -5,6 +5,8 @@
 #include <vector>   // for vector
 #include "lexeme.h" // for Lexeme
 
+#define TOKEN_CHECK(type) bool type ## (const char* name)
+
 // performs lexical analysis on the source code
 std::vector<Lexeme> lexer(char* program);
 
@@ -13,9 +15,9 @@ Lexeme tokenizer(char* name);
 
 // token name checkers
 
-bool isLabelName(const char* name);
-bool isRegName(const char* name);
-bool isImmName(const char* name);
+TOKEN_CHECK(isLabelName);
+TOKEN_CHECK(isRegName);
+TOKEN_CHECK(isImmName);
 
 // token name formatters
 
