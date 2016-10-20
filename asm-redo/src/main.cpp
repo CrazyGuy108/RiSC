@@ -23,6 +23,7 @@ int main()
 
 #ifdef LEXER_TEST
 		std::vector<Lexeme> lexemes{ lexer(contents) };
+		std::cout << "Lexer:\n";
 		for(Lexeme& lexeme : lexemes)
 			std::cout << (lexeme.getName() != nullptr ? lexeme.getName() : "NULL") << ": " << lexeme.getCategory() << "\n";
 #endif // LEXER_TEST
