@@ -56,7 +56,7 @@ Lexeme tokenizer(char* name)
 {
 	return Lexeme{ name,
 		isLabelName(name) ? label(name)
-		: isRegName(name) ? Lexeme::REGISTER
+		: isRegName(name) ? reg(name)
 		: isImmName(name) ? Lexeme::IMMEDIATE
 		                  : resolve(name) };
 }
@@ -73,7 +73,7 @@ bool isLabelName(char* name)
 		return false;
 }
 
-bool isRegName(char* name)
+bool isRegName(const char* name)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
@@ -94,14 +94,6 @@ bool isRegName(char* name)
 	      name[1] <= '7' &&
 	      name[2] == ',')))   // r+digit+comma end
 	{
-		if (name[0] == 'r') // remove optional r
-		{
-			name[0] = name[1];
-			name[1] = '\0'; // implicitly also ignores the comma
-		}
-		else if (len == 2 && name[1] == ',') // remove optional comma
-			name[1] = '\0';
-		
 		return true;
 	}
 	else
@@ -124,6 +116,19 @@ Lexeme::Category label(const char* name)
 {
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
+}
+
+Lexeme::Category reg(char* name)
+{
+	if (name[0] == 'r') // remove optional r
+	{
+		name[0] = name[1];
+		name[1] = '\0'; // implicitly also ignores the comma
+	}
+	else if (name[1] == ',') // remove optional comma
+		name[1] = '\0';
+	
+	return Lexeme::REGISTER;
 }
 
 Lexeme::Category resolve(const char* name)
