@@ -77,26 +77,21 @@ bool isRegName(const char* name)
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
 	size_t len{ strlen(name) };
-	if ((len == 1 &&          // digit start
-	     (name[0] >= '0' &&
-	      name[0] <= '7')) || // digit end
-	    (len == 2 &&          // r+digit start or digit+comma start
-	     (name[0] == 'r' &&
-	      name[1] >= '0' &&
-	      name[1] <= '7') ||  // r+digit end
-	     (name[0] >= '0' &&
-	      name[0] <= '7' &&
-	      name[1] == ',')) || // digit+comma end
-	    (len == 3 &&          // r+digit+comma start
-	     (name[0] == 'r' &&
-	      name[1] >= '0' &&
-	      name[1] <= '7' &&
-	      name[2] == ',')))   // r+digit+comma end
-	{
-		return true;
-	}
-	else
-		return false;
+	return (len == 1 &&          // digit start
+	        (name[0] >= '0' &&
+	         name[0] <= '7')) || // digit end
+	       (len == 2 &&          // r+digit start or digit+comma start
+	        (name[0] == 'r' &&
+	         name[1] >= '0' &&
+	         name[1] <= '7') ||  // r+digit end
+	        (name[0] >= '0' &&
+	         name[0] <= '7' &&
+	         name[1] == ',')) || // digit+comma end
+	       (len == 3 &&          // r+digit+comma start
+	        (name[0] == 'r' &&
+	         name[1] >= '0' &&
+	         name[1] <= '7' &&
+	         name[2] == ','));   // r+digit+comma end
 }
 
 bool isImmName(const char* name)
