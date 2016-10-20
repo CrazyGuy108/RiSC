@@ -63,29 +63,16 @@ Lexeme tokenizer(char* name)
 		                  : resolve(name) };
 }
 
-Lexeme::Category resolve(const char* name)
-{
-	return !strcmp(name, "add")  ? Lexeme::ADD
-	     : !strcmp(name, "addi") ? Lexeme::ADDI
-	     : !strcmp(name, "nand") ? Lexeme::NAND
-	     : !strcmp(name, "lui")  ? Lexeme::LUI
-	     : !strcmp(name, "sw")   ? Lexeme::SW
-	     : !strcmp(name, "lw")   ? Lexeme::LW
-	     : !strcmp(name, "beq")  ? Lexeme::BEQ
-	     : !strcmp(name, "jalr") ? Lexeme::JALR
-	                             : Lexeme::IDENTIFIER;
-}
-
-bool isImmName(const char* name)
+bool isLabelName(char* name)
 {
 	size_t len{ strlen(name) };
-	return (len >= 1 && // digit start
-	        (name[0] >= '0' &&
-	         name[0] <='9')) || // digit end
-	       (len >= 2 && // sign+digit start
-	        (name[0] == '-' &&
-	         name[1] >= '0' &&
-	         name[2] <= '9')); // sign+digit end
+	if (name[len - 1] == ':')
+	{
+		name[len - 1] = '\0'; // remove colon
+		return true;
+	}
+	else
+		return false;
 }
 
 bool isRegName(char* name)
@@ -123,14 +110,27 @@ bool isRegName(char* name)
 		return false;
 }
 
-bool isLabelName(char* name)
+bool isImmName(const char* name)
 {
 	size_t len{ strlen(name) };
-	if (name[len - 1] == ':')
-	{
-		name[len - 1] = '\0'; // remove colon
-		return true;
-	}
-	else
-		return false;
+	return (len >= 1 && // digit start
+	        (name[0] >= '0' &&
+	         name[0] <= '9')) || // digit end
+	       (len >= 2 && // sign+digit start
+	        (name[0] == '-' &&
+	         name[1] >= '0' &&
+	         name[2] <= '9')); // sign+digit end
+}
+
+Lexeme::Category resolve(const char* name)
+{
+	return !strcmp(name, "add") ? Lexeme::ADD
+		: !strcmp(name, "addi") ? Lexeme::ADDI
+		: !strcmp(name, "nand") ? Lexeme::NAND
+		: !strcmp(name, "lui") ? Lexeme::LUI
+		: !strcmp(name, "sw") ? Lexeme::SW
+		: !strcmp(name, "lw") ? Lexeme::LW
+		: !strcmp(name, "beq") ? Lexeme::BEQ
+		: !strcmp(name, "jalr") ? Lexeme::JALR
+		: Lexeme::IDENTIFIER;
 }
