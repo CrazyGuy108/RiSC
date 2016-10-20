@@ -27,4 +27,15 @@ TOKEN_FORMAT(reg);
 TOKEN_FORMAT(imm);
 TOKEN_FORMAT(resolve);
 
+// state machine that lexically parses a program line by line
+class Lexer
+{
+public:
+	Lexeme next(); // tokenizes the next lexeme
+
+private:
+	char* iterator; // pointer that iterates through the program
+	size_t index;   // index of the character relative to iterator currently being analyzed
+};
+
 #endif // LEXER_H
