@@ -27,6 +27,9 @@ Lexeme::Category label(const char* name);
 // resolves and formats a register name
 Lexeme::Category reg(char* name);
 
+// resolves an immediate name
+Lexeme::Category imm(const char* name);
+
 // resolves a token into either a reserved word/opcode or an identifier
 Lexeme::Category resolve(const char* name);
 

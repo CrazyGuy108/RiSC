@@ -57,7 +57,7 @@ Lexeme tokenizer(char* name)
 	return Lexeme{ name,
 		isLabelName(name) ? label(name)
 		: isRegName(name) ? reg(name)
-		: isImmName(name) ? Lexeme::IMMEDIATE
+		: isImmName(name) ? imm(name)
 		                  : resolve(name) };
 }
 
@@ -129,6 +129,11 @@ Lexeme::Category reg(char* name)
 		name[1] = '\0';
 	
 	return Lexeme::REGISTER;
+}
+
+Lexeme::Category imm(const char* name)
+{
+	return Lexeme::IMMEDIATE;
 }
 
 Lexeme::Category resolve(const char* name)
