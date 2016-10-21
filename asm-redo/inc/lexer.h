@@ -54,9 +54,13 @@ private:
 	
 	char* iterator; // pointer that iterates through the program
 	size_t index;   // index of the character relative to iterator currently being analyzed
+
 	bool end;       // found end of program
 	bool space;     // found a space/tab
 	bool comment;   // found a comment
+
+	Lexeme current; // the Lexeme that was just created by next()
+	Lexeme before;  // the Lexeme before the current one
 };
 
 #endif // LEXER_H
