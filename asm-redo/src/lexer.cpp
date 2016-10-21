@@ -70,6 +70,16 @@ Lexeme Lexer::next()
 	}
 }
 
+Lexeme Lexer::getCurrent()
+{
+	return current;
+}
+
+Lexeme Lexer::getBefore()
+{
+	return before;
+}
+
 Lexeme Lexer::tokenize(char* name)
 {
 	return Lexeme{ name,

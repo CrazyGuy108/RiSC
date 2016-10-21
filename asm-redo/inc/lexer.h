@@ -35,6 +35,9 @@ public:
 	
 	Lexeme next(); // tokenizes the next lexeme
 	
+	Lexeme getCurrent(); // getter for current
+	Lexeme getBefore();  // getter for before
+
 private:
 	// creates a Lexeme of a token name
 	static Lexeme tokenize(char* name);
