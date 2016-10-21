@@ -35,7 +35,7 @@ public:
 	
 	Lexeme next(); // tokenizes the next lexeme
 	
-	Lexeme getCurrent(); // getter for current
+	Lexeme getLast(); // gets the last Lexeme that was created
 
 private:
 	// creates a Lexeme of a token name
@@ -61,7 +61,7 @@ private:
 	bool space;     // found a space/tab
 	bool comment;   // found a comment
 
-	Lexeme current; // the Lexeme that was just created by next()
+	Lexeme last; // the Lexeme that was just created by next()
 };
 
 #endif // LEXER_H

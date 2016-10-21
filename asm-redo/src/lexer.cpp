@@ -57,7 +57,7 @@ std::vector<Lexeme> lexer(char* program)
 Lexer::Lexer(char* iterator)
 	: iterator{ iterator }, index{ 0 },
 	  end{ false }, space{ true }, comment{ false },
-	  current{ nullptr, Lexeme::BEGIN } {}
+	  last{ nullptr, Lexeme::BEGIN } {}
 
 Lexeme Lexer::next()
 {
@@ -69,9 +69,9 @@ Lexeme Lexer::next()
 	}
 }
 
-Lexeme Lexer::getCurrent()
+Lexeme Lexer::getLast()
 {
-	return current;
+	return last;
 }
 
 Lexeme Lexer::tokenize(char* name)
