@@ -18,12 +18,16 @@ const char* Lexeme::getCategoryName()
 {
 	switch (category)
 	{
+	case BEGIN:
+		return "begin";
+		break;
+
 	case END:
 		return "end";
 		break;
 
-	case IDENTIFIER:
-		return "identifier";
+	case NEWLINE:
+		return "newline";
 		break;
 
 	case LABEL:
@@ -42,8 +46,8 @@ const char* Lexeme::getCategoryName()
 		return "immediate";
 		break;
 
-	case NEWLINE:
-		return "newline";
+	case IDENTIFIER:
+		return "identifier";
 		break;
 
 	case ADD:
