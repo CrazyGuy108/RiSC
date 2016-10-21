@@ -36,7 +36,6 @@ public:
 	Lexeme next(); // tokenizes the next lexeme
 	
 	Lexeme getCurrent(); // getter for current
-	Lexeme getBefore();  // getter for before
 
 private:
 	// creates a Lexeme of a token name
@@ -63,7 +62,6 @@ private:
 	bool comment;   // found a comment
 
 	Lexeme current; // the Lexeme that was just created by next()
-	Lexeme before;  // the Lexeme before the current one
 };
 
 #endif // LEXER_H
