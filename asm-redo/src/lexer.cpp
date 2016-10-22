@@ -18,7 +18,7 @@ Lexer::Lexer(char* iterator)
 			if(!space && !comment) // act as if a space just happened
 			{
 				iterator[index] = '\0'; // terminate substring
-				lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
+				lexemes.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
 			}
 
 			space = true;    // allow spaces before the next token
@@ -38,7 +38,7 @@ Lexer::Lexer(char* iterator)
 				space = true; // just found a space
 
 				iterator[index] = '\0'; // terminate substring
-				lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
+				lexemes.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
 			}
 
 			// reset iterator and index
