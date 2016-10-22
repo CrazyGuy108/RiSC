@@ -33,10 +33,6 @@ private:
 	char* iterator; // pointer that iterates through the program
 	size_t index;   // index of the character relative to iterator currently being analyzed
 
-	bool end;       // found end of program
-	bool space;     // found a space/tab
-	bool comment;   // found a comment
-
 	std::queue<Lexeme> lexemes; // queue containing the Lexemes created by constructor
 };
 

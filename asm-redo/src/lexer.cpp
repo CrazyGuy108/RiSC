@@ -1,9 +1,7 @@
 #include "../inc/lexer.h"
 
 Lexer::Lexer(char* iterator)
-	: iterator{ iterator }, index{ 0 },
-	  end{ false }, space{ true }, comment{ false },
-	  lexemes{}
+	: iterator{ iterator }, index{ 0 }, lexemes{}
 {
 	lexemes.emplace(nullptr, Lexeme::BEGIN); // begin
 
