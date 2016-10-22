@@ -5,9 +5,6 @@
 #include <vector>   // for vector
 #include "lexeme.h" // for Lexeme
 
-#define TOKEN_CHECK(type) bool type ## (const char* name)
-#define TOKEN_FORMAT(type) Lexeme::Category type ## (char* name)
-
 // state machine that lexically parses a program line by line
 class Lexer
 {
@@ -22,16 +19,16 @@ private:
 	
 	// token name checkers
 	
-	static TOKEN_CHECK(isLabelName);
-	static TOKEN_CHECK(isRegName);
-	static TOKEN_CHECK(isImmName);
+	static bool isLabelName(const char* name);
+	static bool isRegName(const char* name);
+	static bool isImmName(const char* name);
 	
 	// token name formatters
 	
-	static TOKEN_FORMAT(formatLabel);
-	static TOKEN_FORMAT(formatReg);
-	static TOKEN_FORMAT(formatImm);
-	static TOKEN_FORMAT(formatKeyword);
+	static Lexeme::Category formatLabel(char* name);
+	static Lexeme::Category formatReg(char* name);
+	static Lexeme::Category formatImm(char* name);
+	static Lexeme::Category formatKeyword(char* name);
 	
 	char* iterator; // pointer that iterates through the program
 	size_t index;   // index of the character relative to iterator currently being analyzed

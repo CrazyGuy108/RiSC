@@ -27,12 +27,12 @@ Lexeme Lexer::tokenize(char* name)
 		                  : formatKeyword(name) };
 }
 
-TOKEN_CHECK(Lexer::isLabelName)
+bool Lexer::isLabelName(const char* name)
 {
 	return name[strlen(name) - 1] == ':';
 }
 
-TOKEN_CHECK(Lexer::isRegName)
+bool Lexer::isRegName(const char* name)
 {
 	// BEHOLD the almighty unmaintainable short-circuit evaluation behemoth!
 	// now with spaces and comments so it doesn't hurt your eyes as much
@@ -54,7 +54,7 @@ TOKEN_CHECK(Lexer::isRegName)
 	         name[2] == ','));   // r+digit+comma end
 }
 
-TOKEN_CHECK(Lexer::isImmName)
+bool Lexer::isImmName(const char* name)
 {
 	size_t len{ strlen(name) };
 	return (len >= 1 && // digit start
@@ -66,14 +66,14 @@ TOKEN_CHECK(Lexer::isImmName)
 	         name[2] <= '9')); // sign+digit end
 }
 
-TOKEN_FORMAT(Lexer::formatLabel)
+Lexeme::Category Lexer::formatLabel(char* name)
 {
 	name[strlen(name) - 1] = '\0'; // remove colon
 	return name[0] == '.' ? Lexeme::LOCAL_LABEL
 	                      : Lexeme::LABEL;
 }
 
-TOKEN_FORMAT(Lexer::formatReg)
+Lexeme::Category Lexer::formatReg(char* name)
 {
 	if (name[0] == 'r') // remove optional r
 	{
@@ -86,12 +86,12 @@ TOKEN_FORMAT(Lexer::formatReg)
 	return Lexeme::REGISTER;
 }
 
-TOKEN_FORMAT(Lexer::formatImm)
+Lexeme::Category Lexer::formatImm(char* name)
 {
 	return Lexeme::IMMEDIATE;
 }
 
-TOKEN_FORMAT(Lexer::formatKeyword)
+Lexeme::Category Lexer::formatKeyword(char* name)
 {
 	return !strcmp(name, "add")  ? Lexeme::ADD
 	     : !strcmp(name, "addi") ? Lexeme::ADDI
