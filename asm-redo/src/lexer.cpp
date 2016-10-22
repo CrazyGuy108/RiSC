@@ -5,7 +5,17 @@ Lexer::Lexer(char* iterator)
 	  end{ false }, space{ true }, comment{ false },
 	  lexemes{}
 {
-	lexemes.emplace(nullptr, Lexeme::BEGIN);
+	lexemes.emplace(nullptr, Lexeme::BEGIN); // begin
+
+	while (iterator[index] != '\0')
+	{
+		switch (iterator[index])
+		{
+			// a bunch of parsing stuff here
+		}
+	}
+
+	lexemes.emplace(nullptr, Lexeme::END); // end
 }
 
 Lexeme Lexer::next()
