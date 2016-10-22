@@ -29,9 +29,6 @@ private:
 	static Lexeme::Category formatReg(char* name);
 	static Lexeme::Category formatImm(char* name);
 	static Lexeme::Category formatKeyword(char* name);
-	
-	char* iterator; // pointer that iterates through the program
-	size_t index;   // index of the character relative to iterator currently being analyzed
 
 	std::queue<Lexeme> lexemes; // queue containing the Lexemes created by constructor
 };

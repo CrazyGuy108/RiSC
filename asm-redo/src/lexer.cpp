@@ -1,8 +1,10 @@
 #include "../inc/lexer.h"
 
 Lexer::Lexer(char* iterator)
-	: iterator{ iterator }, index{ 0 }, lexemes{}
+	: lexemes{}
 {
+	size_t index{ 0 }; // index of current character relative to iterator
+
 	lexemes.emplace(nullptr, Lexeme::BEGIN); // begin
 
 	while (iterator[index] != '\0')
