@@ -1,59 +1,5 @@
 #include "../inc/lexer.h"
 
-std::vector<Lexeme> lexer(char* program)
-{
-	std::vector<Lexeme> lexemes; // keeps track of all the Lexemes the lexer creates
-	bool foundSpace{ true };     // if the lexer has found a space, this will be true
-	bool foundComment{ false };  // if the lexer has found a comment, this will be true
-
-	// iterate through characters
-	size_t i{ 0 };
-	while (program[i] != '\0')
-	{
-		switch (program[i])
-		{
-		case '\n': // new line
-			if (!(foundComment || foundSpace)) // tokenize last word
-			{
-				program[i] = '\0';
-				lexemes.push_back(tokenizer(program));
-			}
-
-			foundComment = false; // terminate comment
-			foundSpace = true;    // allows ignoring space/tab from beginning of line
-			lexemes.push_back(Lexeme{ nullptr, Lexeme::NEWLINE }); // basically semicolon insertion here
-			program = &program[i + 1]; // reset the base pointer
-			i = 0; // reset iterator
-			break;
-
-		case ' ': // space/tab means a new word
-		case '\t':
-			if (foundSpace || foundComment) // skips comments and multiple spaces/tabs
-				break;
-
-			foundSpace = true;                     // just found a space
-			program[i] = '\0';                     // terminate new substring,
-			lexemes.push_back(tokenizer(program)); // tokenize it,
-			program = &program[i + 1];             // then reset the base pointer
-			i = 0;                                 // and the iterator
-			break;
-
-		case '#': // comment
-			foundComment = true;
-			++i;
-			break;
-
-		default: // nonspecial character, probably part of an identifier/word
-			foundSpace = false;
-			++i;
-		}
-	}
-
-	lexemes.push_back(Lexeme{ nullptr, Lexeme::END }); // end of file
-
-	return lexemes;
-}
-
 Lexer::Lexer(char* iterator)
 	: iterator{ iterator }, index{ 0 },
 	  end{ false }, space{ true }, comment{ false },
