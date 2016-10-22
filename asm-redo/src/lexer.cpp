@@ -11,7 +11,7 @@ Lexer::Lexer(char* iterator)
 		{
 		case ' ':  // space
 		case '\t': // tab
-			iterator[index] = 0; // terminate substring
+			iterator[index] = '\0'; // terminate substring
 			lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
 
 			// reset iterator and index
