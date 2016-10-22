@@ -53,6 +53,10 @@ Lexer::Lexer(char* iterator)
 			comment = true;
 			++index;
 			break;
+
+		default: // nonspecial character
+			space = false;
+			++index;
 		}
 	}
 
