@@ -10,11 +10,13 @@ Lexer::Lexer(char* iterator)
 
 Lexeme Lexer::next()
 {
-	if(end)
+	if(lexemes.empty())
 		return Lexeme{ nullptr, Lexeme::END };
 	else
 	{
-		// process the next token and return a new Lexeme
+		Lexeme tmp{ lexemes.front() };
+		lexemes.pop();
+		return tmp;
 	}
 }
 
