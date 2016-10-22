@@ -31,10 +31,10 @@ int main()
 		Lexer lexer{ contents };
 		Token lexeme;
 
-		while (lexeme.getCategory() != Token::END)
+		while (lexeme.getType() != Token::END)
 		{
 			lexeme = lexer.next();
-			std::cout << lexeme.getName() << ": " << lexeme.getCategoryName() << '\n';
+			std::cout << lexeme.getName() << ": " << lexeme.getTypeName() << '\n';
 		}
 
 		std::cout << '\n';

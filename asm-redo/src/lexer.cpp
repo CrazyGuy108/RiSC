@@ -120,14 +120,14 @@ bool Lexer::isImmName(const char* name)
 	         name[2] <= '9')); // sign+digit end
 }
 
-Token::Category Lexer::formatLabel(char* name)
+Token::Type Lexer::formatLabel(char* name)
 {
 	name[strlen(name) - 1] = '\0'; // remove colon
 	return name[0] == '.' ? Token::LOCAL_LABEL
 	                      : Token::LABEL;
 }
 
-Token::Category Lexer::formatReg(char* name)
+Token::Type Lexer::formatReg(char* name)
 {
 	if (name[0] == 'r') // remove optional r
 	{
@@ -140,12 +140,12 @@ Token::Category Lexer::formatReg(char* name)
 	return Token::REGISTER;
 }
 
-Token::Category Lexer::formatImm(char* name)
+Token::Type Lexer::formatImm(char* name)
 {
 	return Token::IMMEDIATE;
 }
 
-Token::Category Lexer::formatKeyword(char* name)
+Token::Type Lexer::formatKeyword(char* name)
 {
 	return !strcmp(name, "add")  ? Token::ADD
 	     : !strcmp(name, "addi") ? Token::ADDI

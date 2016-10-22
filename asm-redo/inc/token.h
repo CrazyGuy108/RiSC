@@ -5,7 +5,7 @@
 class Token
 {
 public:
-	enum Category
+	enum Type
 	{
 		BEGIN, END, NEWLINE, // signals to the parser
 		LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // types of tokens
@@ -13,15 +13,15 @@ public:
 	};
 
 	Token() = default;
-	Token(char* name, Category category);
+	Token(char* name, Type type);
 
 	const char* getName();
-	Category getCategory();
-	const char* getCategoryName();
+	Type getType();
+	const char* getTypeName();
 
 private:
 	char* name;
-	Category category;
+	Type type;
 };
 
 #endif // LEXEME_H

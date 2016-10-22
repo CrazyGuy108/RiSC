@@ -1,7 +1,7 @@
 #include "../inc/token.h"
 
-Token::Token(char* name, Category category)
-	: name{ name }, category{ category } {}
+Token::Token(char* name, Type type)
+	: name{ name }, type{ type } {}
 
 const char* Token::getName()
 {
@@ -9,14 +9,14 @@ const char* Token::getName()
 	                       : "NULL";
 }
 
-Token::Category Token::getCategory()
+Token::Type Token::getType()
 {
-	return category;
+	return type;
 }
 
-const char* Token::getCategoryName()
+const char* Token::getTypeName()
 {
-	switch (category)
+	switch (type)
 	{
 	case BEGIN:
 		return "begin";

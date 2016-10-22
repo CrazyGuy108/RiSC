@@ -25,10 +25,10 @@ private:
 	
 	// token name formatters
 	
-	static Token::Category formatLabel(char* name);
-	static Token::Category formatReg(char* name);
-	static Token::Category formatImm(char* name);
-	static Token::Category formatKeyword(char* name);
+	static Token::Type formatLabel(char* name);
+	static Token::Type formatReg(char* name);
+	static Token::Type formatImm(char* name);
+	static Token::Type formatKeyword(char* name);
 
 	std::queue<Token> tokens; // queue containing the Tokens created by constructor
 };
