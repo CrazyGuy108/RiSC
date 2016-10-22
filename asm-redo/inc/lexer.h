@@ -37,7 +37,7 @@ private:
 	bool space;     // found a space/tab
 	bool comment;   // found a comment
 
-	std::queue<Lexeme> lexemes;
+	std::queue<Lexeme> lexemes; // queue containing the Lexemes created by constructor
 };
 
 #endif // LEXER_H
