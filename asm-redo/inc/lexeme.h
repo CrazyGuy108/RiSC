@@ -12,6 +12,7 @@ public:
 		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // opcodes
 	};
 
+	Lexeme() = default;
 	Lexeme(char* name, Category category);
 
 	const char* getName();
