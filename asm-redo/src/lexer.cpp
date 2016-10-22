@@ -9,7 +9,15 @@ Lexer::Lexer(char* iterator)
 	{
 		switch (iterator[index])
 		{
-			// a bunch of parsing stuff here
+		case ' ':  // space
+		case '\t': // tab
+			iterator[index] = 0; // terminate substring
+			lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
+
+			// reset iterator and index
+			iterator = &iterator[index + 1];
+			index = 0;
+			break;
 		}
 	}
 
