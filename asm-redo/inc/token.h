@@ -1,15 +1,15 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
-// defines a token containing a name and a category
+// defines a token containing a name and a type
 class Token
 {
 public:
 	enum Type
 	{
-		BEGIN, END, NEWLINE, // signals to the parser
-		LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // types of tokens
-		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // opcodes
+		BEGIN, END, NEWLINE, // punctuation
+		LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
+		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // reserved word
 	};
 
 	Token() = default;
@@ -20,7 +20,7 @@ public:
 	const char* getTypeName();
 
 private:
-	char* name;
+	char* name; // aka lexeme
 	Type type;
 };
 
