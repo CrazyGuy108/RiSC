@@ -33,16 +33,13 @@ Lexer::Lexer(char* iterator)
 
 		case ' ':  // space
 		case '\t': // tab
-			if (space || comment) // ignore comments/multiple spaces
+			if (!space && !comment) // ignore comments/multiple spaces
 			{
-				++index;
-				break;
+				space = true; // just found a space
+
+				iterator[index] = '\0'; // terminate substring
+				lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
 			}
-
-			space = true; // just found a space
-
-			iterator[index] = '\0'; // terminate substring
-			lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
 
 			// reset iterator and index
 			iterator = &iterator[index + 1];
