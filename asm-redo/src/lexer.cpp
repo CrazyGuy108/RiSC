@@ -5,6 +5,9 @@ Lexer::Lexer(char* iterator)
 {
 	size_t index{ 0 }; // index of current character relative to iterator
 
+	bool space{ true };    // found a space/tab
+	bool comment{ false }; // found a comment
+
 	lexemes.emplace(nullptr, Lexeme::BEGIN); // begin
 
 	while (iterator[index] != '\0')
