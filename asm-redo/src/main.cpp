@@ -27,10 +27,16 @@ int main()
 #endif // READ_TEST
 		
 #ifdef LEXER_TEST
-		std::vector<Lexeme> lexemes{ lexer(contents) };
 		std::cout << "Lexer:\n";
-		for(Lexeme& lexeme : lexemes)
+		Lexer lexer{ contents };
+		Lexeme lexeme;
+
+		while (lexeme.getCategory() != Lexeme::END)
+		{
+			lexeme = lexer.next();
 			std::cout << lexeme.getName() << ": " << lexeme.getCategoryName() << '\n';
+		}
+
 		std::cout << '\n';
 #endif // LEXER_TEST
 	}
