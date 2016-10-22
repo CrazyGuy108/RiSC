@@ -29,9 +29,9 @@ int main()
 #ifdef LEXER_TEST
 		std::cout << "Lexer:\n";
 		Lexer lexer{ contents };
-		Lexeme lexeme;
+		Token lexeme;
 
-		while (lexeme.getCategory() != Lexeme::END)
+		while (lexeme.getCategory() != Token::END)
 		{
 			lexeme = lexer.next();
 			std::cout << lexeme.getName() << ": " << lexeme.getCategoryName() << '\n';

@@ -1,9 +1,9 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include <queue>    // for queue
-#include <vector>   // for vector
-#include "lexeme.h" // for Lexeme
+#include <queue>   // for queue
+#include <vector>  // for vector
+#include "token.h" // for Token
 
 // state machine that lexically parses a program line by line
 class Lexer
@@ -11,11 +11,11 @@ class Lexer
 public:
 	Lexer(char* iterator);
 	
-	Lexeme next(); // gets the next lexeme
+	Token next(); // gets the next lexeme
 
 private:
 	// creates a Lexeme of a token name
-	static Lexeme tokenize(char* name);
+	static Token tokenize(char* name);
 	
 	// token name checkers
 	
@@ -25,12 +25,12 @@ private:
 	
 	// token name formatters
 	
-	static Lexeme::Category formatLabel(char* name);
-	static Lexeme::Category formatReg(char* name);
-	static Lexeme::Category formatImm(char* name);
-	static Lexeme::Category formatKeyword(char* name);
+	static Token::Category formatLabel(char* name);
+	static Token::Category formatReg(char* name);
+	static Token::Category formatImm(char* name);
+	static Token::Category formatKeyword(char* name);
 
-	std::queue<Lexeme> lexemes; // queue containing the Lexemes created by constructor
+	std::queue<Token> tokens; // queue containing the Tokens created by constructor
 };
 
 #endif // LEXER_H

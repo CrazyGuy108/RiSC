@@ -1,8 +1,8 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
-// defines a lexeme containing a token name and a token category
-class Lexeme
+// defines a token containing a name and a category
+class Token
 {
 public:
 	enum Category
@@ -12,8 +12,8 @@ public:
 		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // opcodes
 	};
 
-	Lexeme() = default;
-	Lexeme(char* name, Category category);
+	Token() = default;
+	Token(char* name, Category category);
 
 	const char* getName();
 	Category getCategory();

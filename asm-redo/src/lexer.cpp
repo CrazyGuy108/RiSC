@@ -1,14 +1,14 @@
 #include "../inc/lexer.h"
 
 Lexer::Lexer(char* iterator)
-	: lexemes{}
+	: tokens{}
 {
 	size_t index{ 0 }; // index of current character relative to iterator
 
 	bool space{ true };    // found a space/tab
 	bool comment{ false }; // found a comment
 
-	lexemes.emplace(nullptr, Lexeme::BEGIN); // begin
+	tokens.emplace(nullptr, Token::BEGIN); // begin
 
 	while (iterator[index] != '\0')
 	{
@@ -18,13 +18,13 @@ Lexer::Lexer(char* iterator)
 			if(!space && !comment) // act as if a space just happened
 			{
 				iterator[index] = '\0'; // terminate substring
-				lexemes.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
+				tokens.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
 			}
 
 			space = true;    // allow spaces before the next token
 			comment = false; // terminate comment (if there was one)
 
-			lexemes.emplace(nullptr, Lexeme::NEWLINE); // terminate line
+			tokens.emplace(nullptr, Token::NEWLINE); // terminate line
 
 			// reset iterator and index
 			iterator = &iterator[index + 1];
@@ -38,7 +38,7 @@ Lexer::Lexer(char* iterator)
 				space = true; // just found a space
 
 				iterator[index] = '\0'; // terminate substring
-				lexemes.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
+				tokens.emplace(tokenize(iterator)); // tokenize and add as a Lexeme
 			}
 
 			// reset iterator and index
@@ -57,24 +57,24 @@ Lexer::Lexer(char* iterator)
 		}
 	}
 
-	lexemes.emplace(nullptr, Lexeme::END); // end
+	tokens.emplace(nullptr, Token::END); // end
 }
 
-Lexeme Lexer::next()
+Token Lexer::next()
 {
-	if(lexemes.empty())
-		return Lexeme{ nullptr, Lexeme::END };
+	if(tokens.empty())
+		return Token{ nullptr, Token::END };
 	else
 	{
-		Lexeme tmp{ lexemes.front() };
-		lexemes.pop();
+		Token tmp{ tokens.front() };
+		tokens.pop();
 		return tmp;
 	}
 }
 
-Lexeme Lexer::tokenize(char* name)
+Token Lexer::tokenize(char* name)
 {
-	return Lexeme{ name,
+	return Token{ name,
 		isLabelName(name) ? formatLabel(name)
 		: isRegName(name) ? formatReg(name)
 		: isImmName(name) ? formatImm(name)
@@ -120,14 +120,14 @@ bool Lexer::isImmName(const char* name)
 	         name[2] <= '9')); // sign+digit end
 }
 
-Lexeme::Category Lexer::formatLabel(char* name)
+Token::Category Lexer::formatLabel(char* name)
 {
 	name[strlen(name) - 1] = '\0'; // remove colon
-	return name[0] == '.' ? Lexeme::LOCAL_LABEL
-	                      : Lexeme::LABEL;
+	return name[0] == '.' ? Token::LOCAL_LABEL
+	                      : Token::LABEL;
 }
 
-Lexeme::Category Lexer::formatReg(char* name)
+Token::Category Lexer::formatReg(char* name)
 {
 	if (name[0] == 'r') // remove optional r
 	{
@@ -137,23 +137,23 @@ Lexeme::Category Lexer::formatReg(char* name)
 	else if (name[1] == ',') // remove optional comma
 		name[1] = '\0';
 	
-	return Lexeme::REGISTER;
+	return Token::REGISTER;
 }
 
-Lexeme::Category Lexer::formatImm(char* name)
+Token::Category Lexer::formatImm(char* name)
 {
-	return Lexeme::IMMEDIATE;
+	return Token::IMMEDIATE;
 }
 
-Lexeme::Category Lexer::formatKeyword(char* name)
+Token::Category Lexer::formatKeyword(char* name)
 {
-	return !strcmp(name, "add")  ? Lexeme::ADD
-	     : !strcmp(name, "addi") ? Lexeme::ADDI
-	     : !strcmp(name, "nand") ? Lexeme::NAND
-	     : !strcmp(name, "lui")  ? Lexeme::LUI
-	     : !strcmp(name, "sw")   ? Lexeme::SW
-	     : !strcmp(name, "lw")   ? Lexeme::LW
-	     : !strcmp(name, "beq")  ? Lexeme::BEQ
-	     : !strcmp(name, "jalr") ? Lexeme::JALR
-	                             : Lexeme::IDENTIFIER;
+	return !strcmp(name, "add")  ? Token::ADD
+	     : !strcmp(name, "addi") ? Token::ADDI
+	     : !strcmp(name, "nand") ? Token::NAND
+	     : !strcmp(name, "lui")  ? Token::LUI
+	     : !strcmp(name, "sw")   ? Token::SW
+	     : !strcmp(name, "lw")   ? Token::LW
+	     : !strcmp(name, "beq")  ? Token::BEQ
+	     : !strcmp(name, "jalr") ? Token::JALR
+	                             : Token::IDENTIFIER;
 }

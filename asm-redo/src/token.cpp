@@ -1,20 +1,20 @@
-#include "../inc/lexeme.h"
+#include "../inc/token.h"
 
-Lexeme::Lexeme(char* name, Category category)
+Token::Token(char* name, Category category)
 	: name{ name }, category{ category } {}
 
-const char* Lexeme::getName()
+const char* Token::getName()
 {
 	return name != nullptr ? name
 	                       : "NULL";
 }
 
-Lexeme::Category Lexeme::getCategory()
+Token::Category Token::getCategory()
 {
 	return category;
 }
 
-const char* Lexeme::getCategoryName()
+const char* Token::getCategoryName()
 {
 	switch (category)
 	{
