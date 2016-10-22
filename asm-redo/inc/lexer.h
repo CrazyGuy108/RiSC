@@ -1,6 +1,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include <queue>    // for queue
 #include <vector>   // for vector
 #include "lexeme.h" // for Lexeme
 
@@ -33,8 +34,6 @@ public:
 	Lexer(char* iterator);
 	
 	Lexeme next(); // tokenizes the next lexeme
-	
-	Lexeme getLast(); // gets the last Lexeme that was created
 
 private:
 	// creates a Lexeme of a token name
@@ -60,7 +59,7 @@ private:
 	bool space;     // found a space/tab
 	bool comment;   // found a comment
 
-	Lexeme last; // the Lexeme that was just created by next()
+	std::queue<Lexeme> lexemes;
 };
 
 #endif // LEXER_H
