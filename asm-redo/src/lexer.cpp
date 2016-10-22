@@ -14,6 +14,23 @@ Lexer::Lexer(char* iterator)
 	{
 		switch (iterator[index])
 		{
+		case '\n': // newline
+			if(!space && !comment) // act as if a space just happened
+			{
+				iterator[index] = '\0'; // terminate substring
+				lexemes.push(tokenize(iterator)); // tokenize and add as a Lexeme
+			}
+
+			space = true;    // allow spaces before the next token
+			comment = false; // terminate comment (if there was one)
+
+			lexemes.emplace(nullptr, Lexeme::NEWLINE);
+
+			// reset iterator and index
+			iterator = &iterator[index + 1];
+			index = 0;
+			break;
+
 		case ' ':  // space
 		case '\t': // tab
 			if (space || comment) // ignore comments/multiple spaces
