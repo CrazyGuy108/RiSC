@@ -11,7 +11,7 @@ class Lexer
 public:
 	Lexer(char* iterator);
 	
-	Lexeme next(); // tokenizes the next lexeme
+	Lexeme next(); // gets the next lexeme
 
 private:
 	// creates a Lexeme of a token name
