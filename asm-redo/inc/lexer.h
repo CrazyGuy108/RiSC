@@ -1,7 +1,6 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include <map>      // for map
 #include <vector>   // for vector
 #include "lexeme.h" // for Lexeme
 
