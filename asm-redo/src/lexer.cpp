@@ -24,7 +24,7 @@ Lexer::Lexer(char* iterator)
 			space = true;    // allow spaces before the next token
 			comment = false; // terminate comment (if there was one)
 
-			lexemes.emplace(nullptr, Lexeme::NEWLINE);
+			lexemes.emplace(nullptr, Lexeme::NEWLINE); // terminate line
 
 			// reset iterator and index
 			iterator = &iterator[index + 1];
