@@ -48,6 +48,11 @@ Lexer::Lexer(char* iterator)
 			iterator = &iterator[index + 1];
 			index = 0;
 			break;
+
+		case '#': // comment
+			comment = true;
+			++index;
+			break;
 		}
 	}
 
