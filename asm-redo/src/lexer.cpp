@@ -92,42 +92,57 @@ bool Lexer::isKeyword(const char* name)
 bool Lexer::isImmediate(const char* name)
 {
 	// ecma regex equivalent:
-	// imm = ^(\-)?(0x)?[0-9]+\b
+	// imm = ^(\-)?(0x[0-9|A-F]+)|([0-9]+)\b
 
 	enum State
 	{
-		A, B, C, D, E
+		A, B, C, D, E, F, G
 	};
 
-	static const State states[5][4] // state table
+	static const State states[7][5] // state table
 	{
-		// 0 1-9 - x
-		{ B, C, D, E }, // A
-		{ C, C, E, D }, // B
-		{ C, C, E, E }, // C (accepting state)
-		{ C, C, E, E }, // D
-		{ E, E, E, E }  // E (default rejecting state)
+		// 1-9 A-F 0 x -
+		{ F, G, B, G, C }, // A
+		{ F, G, F, D, G }, // B
+		{ F, G, B, G, G }, // C
+		{ E, E, E, G, G }, // D
+		{ E, E, E, G, G }, // E (accepting state)
+		{ F, G, F, G, G }, // F (accepting state)
+		{ G, G, G, G, G }, // G (default rejecting state)
 	};
 
 	State state{ A };
 	size_t i{ 0 };
 	while (name[i] != '\0')
 	{
-		if(name[i] == '0')
+		if(name[i] >= '1' && name[i] <= '9')
 			state = states[state][0];
-		else if(name[i] >= '1' && name[i] <= '9')
+		else if(name[i] >= 'A' && name[i] <= 'F')
 			state = states[state][1];
-		else if(name[i] == '-')
-			state = states[state][2];
-		else if(name[i] == 'x')
-			state = states[state][3];
 		else
-			return false; // outside of state table
+		{
+			switch (name[i])
+			{
+			case '0':
+				state = states[state][2];
+				break;
+
+			case 'x':
+				state = states[state][3];
+				break;
+			case '-':
+				state = states[state][4];
+				break;
+			
+			default:
+				return false; // outside of state table
+			}
+		}
 
 		++i;
 	}
 
-	return state == 2;
+	return state == E || state == F;
 }
 
 bool Lexer::isRegister(const char* name)
