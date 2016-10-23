@@ -139,6 +139,9 @@ bool Lexer::isImmediate(const char* name)
 			}
 		}
 
+		if(state == G)
+			return false; // in rejecting state, so shouldn't continue
+
 		++i;
 	}
 
