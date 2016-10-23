@@ -112,7 +112,21 @@ Token Lexer::tokenize(char* name)
 
 bool Lexer::isKeyword(const char* name)
 {
-	return false; // placeholder
+	class StrLess
+	{
+	public:
+		bool operator()(const char* a, const char* b)
+		{
+			return strcmp(a, b) < 0;
+		}
+	};
+
+	static const std::set<const char*, StrLess> keywords
+	{
+		"add", "addi", "nand", "lui", "sw", "lw", "beq", "jalr"
+	};
+
+	return keywords.find(name) != keywords.end();
 }
 
 bool Lexer::isImmediate(const char* name)

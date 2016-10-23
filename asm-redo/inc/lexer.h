@@ -1,6 +1,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
+#include <set>     // for set
 #include <queue>   // for queue
 #include "token.h" // for Token
 
