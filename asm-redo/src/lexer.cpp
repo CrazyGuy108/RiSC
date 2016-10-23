@@ -114,7 +114,7 @@ bool Lexer::isKeyword(const char* name)
 	class StrLess
 	{
 	public:
-		bool operator()(const char* a, const char* b)
+		bool operator()(const char* a, const char* b) const
 		{
 			return strcmp(a, b) < 0;
 		}
