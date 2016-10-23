@@ -150,7 +150,41 @@ bool Lexer::isImmediate(const char* name)
 
 bool Lexer::isRegister(const char* name)
 {
-	return false; // placeholder
+	// ecma regex equivalent:
+	// reg = ^r[0-7]\b
+
+	enum State
+	{
+		A, B, C, D
+	};
+
+	static const State states[4][2] // state table
+	{
+		// r 0-7
+		{ B, D }, // A
+		{ D, C }, // B
+		{ D, D }, // C (accepting state)
+		{ D, D }  // D (default rejecting state)
+	};
+
+	State state{ A };
+	size_t i{ 0 };
+	while (name[i] != '\0')
+	{
+		if(name[i] == 'r')
+			state = states[state][0];
+		else if(name[i] >= '0' && name[i] <= '7')
+			state = states[state][1];
+		else
+			return false; // outside of state table
+
+		if(state == D) // in rejecting state
+			return false;
+
+		++i;
+	}
+
+	return state == C;
 }
 
 bool Lexer::isIdentifier(const char* name)
