@@ -60,6 +60,16 @@ Lexer::Lexer(char* iterator)
 	tokens.emplace(nullptr, Token::END); // end
 }
 
+void Lexer::analyze(char* iterator)
+{
+	tokens.emplace(nullptr, Token::BEGIN);
+
+	// state machine stuff here, combining everything in tokenize()
+	//  as well as some other special functions
+
+	tokens.emplace(nullptr, Token::END);
+}
+
 Token Lexer::next()
 {
 	if(tokens.empty())

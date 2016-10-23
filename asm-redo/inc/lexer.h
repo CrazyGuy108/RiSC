@@ -10,7 +10,8 @@ class Lexer
 public:
 	Lexer(char* iterator);
 	
-	Token next(); // gets the next lexeme
+	void analyze(char* iterator); // lexically analyze the given program
+	Token next();                 // gets the next lexeme from tokens queue
 
 private:
 	// creates a Lexeme of a token name
