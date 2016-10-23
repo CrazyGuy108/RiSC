@@ -2,7 +2,6 @@
 #define LEXER_H
 
 #include <queue>   // for queue
-#include <vector>  // for vector
 #include "token.h" // for Token
 
 // state machine that lexically parses a program line by line
