@@ -24,6 +24,11 @@ private:
 	static bool isIdentifier(const char* name);
 	static bool isLabel(const char* name);
 
+	// state machine helpers
+
+	static bool letter(char c);
+	static bool digit(char c);
+
 	std::queue<Token> tokens; // queue containing the Tokens created by constructor
 };
 

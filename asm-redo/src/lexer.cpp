@@ -229,3 +229,14 @@ bool Lexer::isLabel(const char* name)
 {
 	return false; // placeholder
 }
+
+bool Lexer::letter(char c)
+{
+	return c >= 'a' && c <= 'z' ||
+	       c >= 'A' && c <= 'Z';
+}
+
+bool Lexer::digit(char c)
+{
+	return c >= '0' && c <= '9';
+}
