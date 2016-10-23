@@ -16,19 +16,6 @@ public:
 private:
 	// creates a Lexeme of a token name
 	static Token tokenize(char* name);
-	
-	// token name checkers
-	
-	static bool isLabelName(const char* name);
-	static bool isRegName(const char* name);
-	static bool isImmName(const char* name);
-	
-	// token name formatters
-	
-	static Token::Type formatLabel(char* name);
-	static Token::Type formatReg(char* name);
-	static Token::Type formatImm(char* name);
-	static Token::Type formatKeyword(char* name);
 
 	// state machines
 
