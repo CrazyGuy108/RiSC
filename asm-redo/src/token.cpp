@@ -54,7 +54,11 @@ const char* Token::getTypeName()
 		return "identifier";
 		break;
 
-	default:
+	case ERROR:
 		return "error";
+		break;
+
+	default:
+		return "NULL";
 	}
 }
