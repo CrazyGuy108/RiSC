@@ -264,11 +264,13 @@ bool Lexer::isLabel(const char* name)
 
 bool Lexer::letter(char c)
 {
+	// regex: [a-z|A-Z]
 	return c >= 'a' && c <= 'z' ||
 	       c >= 'A' && c <= 'Z';
 }
 
 bool Lexer::digit(char c)
 {
+	// regex: [0-9]
 	return c >= '0' && c <= '9';
 }
