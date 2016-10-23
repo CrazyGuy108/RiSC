@@ -157,3 +157,37 @@ Token::Type Lexer::formatKeyword(char* name)
 	     : !strcmp(name, "jalr") ? Token::JALR
 	                             : Token::IDENTIFIER;
 }
+
+bool Lexer::isImmediate(const char* name)
+{
+	// ecma regex equivalent:
+	// imm = ^(0x)?[0-9]+\b
+
+	static const size_t states[5][3] // state table
+	{
+		// 0 1-9 x
+		{ 2, 1, 4 }, // A
+		{ 1, 1, 4 }, // B (accepting state)
+		{ 1, 1, 3 }, // C
+		{ 1, 1, 4 }, // D
+		{ 4, 4, 4 }  // E
+	};
+
+	size_t state{ 0 };
+	size_t i{ 0 };
+	while (name[i] != '\0')
+	{
+		if(name[i] == '0')
+			state = states[state][0];
+		else if(name[i] >= '1' && name[i] <= '9')
+			state = states[state][1];
+		else if(name[i] == 'x')
+			state = states[state][2];
+		else
+			return false; // outside of state table
+
+		++i;
+	}
+
+	return state == 1;
+}
