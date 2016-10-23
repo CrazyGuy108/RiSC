@@ -9,7 +9,8 @@ public:
 	{
 		BEGIN, END, NEWLINE, // punctuation
 		LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
-		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // reserved word
+		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR, // reserved word
+		ERROR // lexical error
 	};
 
 	Token() = default;
