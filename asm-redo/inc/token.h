@@ -8,7 +8,7 @@ public:
 	enum Type
 	{
 		BEGIN, END, NEWLINE, // punctuation
-		KEYWORD, LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
+		KEYWORD, LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
 		ERROR // lexical error
 	};
 

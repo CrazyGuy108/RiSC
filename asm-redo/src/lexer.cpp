@@ -79,7 +79,6 @@ Token Lexer::tokenize(char* name)
 		: isImmediate(name)  ? Token::IMMEDIATE
 		: isRegister(name)   ? Token::REGISTER
 		: isIdentifier(name) ? Token::IDENTIFIER
-		: isLocalLabel(name) ? Token::LOCAL_LABEL
 		: isLabel(name)      ? Token::LABEL
 		                     : Token::ERROR };
 }
@@ -188,11 +187,6 @@ bool Lexer::isRegister(const char* name)
 }
 
 bool Lexer::isIdentifier(const char* name)
-{
-	return false; // placeholder
-}
-
-bool Lexer::isLocalLabel(const char* name)
 {
 	return false; // placeholder
 }

@@ -38,10 +38,6 @@ const char* Token::getTypeName()
 		return "label";
 		break;
 
-	case LOCAL_LABEL:
-		return "local label";
-		break;
-
 	case REGISTER:
 		return "register";
 		break;
