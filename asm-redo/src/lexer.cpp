@@ -92,16 +92,18 @@ bool Lexer::isKeyword(const char* name)
 bool Lexer::isImmediate(const char* name)
 {
 	// ecma regex equivalent:
-	// imm = ^(-)?(0x)?[0-9]+\b
+	// imm = ^(\-)?(0x)?[0-9]+\b
+
+	static constexpr size_t A = 0, B = 1, C = 2, D = 3, E = 4; // state id
 
 	static const size_t states[5][4] // state table
 	{
 		// 0 1-9 - x
-		{ 1, 2, 3, 4 }, // A
-		{ 2, 2, 4, 3 }, // B
-		{ 2, 2, 4, 4 }, // C (accepting state)
-		{ 2, 2, 4, 4 }, // D
-		{ 4, 4, 4, 4 }  // E (default rejecting state)
+		{ B, C, D, E }, // A
+		{ C, C, E, D }, // B
+		{ C, C, E, E }, // C (accepting state)
+		{ C, C, E, E }, // D
+		{ E, E, E, E }  // E (default rejecting state)
 	};
 
 	size_t state{ 0 };
