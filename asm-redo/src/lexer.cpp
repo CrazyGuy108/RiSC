@@ -62,6 +62,23 @@ Lexer::Lexer(char* iterator)
 
 void Lexer::analyze(char* iterator)
 {
+	enum State
+	{
+		A
+	};
+
+	static const State states[][] // state table
+	{
+		{}, // A
+		{}, // ...
+		{}, // (keyword accepting state)
+		{}, // (immediate accepting state)
+		{}, // (register accepting state)
+		{}, // (identifier accepting state)
+		{}, // (label accepting state)
+		{}  // (error accepting state)
+	};
+
 	tokens.emplace(nullptr, Token::BEGIN);
 
 	// state machine stuff here, combining everything in tokenize()
