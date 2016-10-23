@@ -71,10 +71,9 @@ void Lexer::analyze(char* iterator)
 	{
 		{}, // A
 		{}, // ...
-		{}, // (keyword accepting state)
 		{}, // (immediate accepting state)
 		{}, // (register accepting state)
-		{}, // (identifier accepting state)
+		{}, // (keyword/identifier accepting state)
 		{}, // (label accepting state)
 		{}  // (error accepting state)
 	};
