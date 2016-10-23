@@ -188,7 +188,41 @@ bool Lexer::isRegister(const char* name)
 
 bool Lexer::isIdentifier(const char* name)
 {
-	return false; // placeholder
+	// ecma regex equivalent:
+	// letter = [a-z|A-Z]
+	// digit = [0-9]
+	// id = ^[letter][letter|digit]*\b
+
+	enum State
+	{
+		A, B, C
+	};
+
+	static const State states[3][2] // state table
+	{
+		// letter digit
+		{ B, C }, // A
+		{ B, B }, // B (accepting state)
+		{ C, C }  // C (default rejecting state)
+	};
+
+	State state{ A };
+	size_t i{ 0 };
+	while (name[i] != '\0')
+	{
+		if(name[i] >= 'a' && name[i] <= 'z' ||
+		   name[i] >= 'A' && name[i] <= 'Z')
+		   state = states[state][0];
+		else if(name[i] >= '0' && name[i] <= '9')
+			state = states[state][1];
+		else
+			return false; // outside of state table
+
+		if(state == C) // in rejecting state
+			return false;
+	}
+
+	return state == B;
 }
 
 bool Lexer::isLabel(const char* name)
