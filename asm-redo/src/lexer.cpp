@@ -158,6 +158,11 @@ Token::Type Lexer::formatKeyword(char* name)
 	                             : Token::IDENTIFIER;
 }
 
+bool Lexer::isKeyword(const char* name)
+{
+	return false; // placeholder
+}
+
 bool Lexer::isImmediate(const char* name)
 {
 	// ecma regex equivalent:
@@ -190,4 +195,24 @@ bool Lexer::isImmediate(const char* name)
 	}
 
 	return state == 1;
+}
+
+bool Lexer::isRegister(const char* name)
+{
+	return false; // placeholder
+}
+
+bool Lexer::isIdentifier(const char* name)
+{
+	return false; // placeholder
+}
+
+bool Lexer::isLocalLabel(const char* name)
+{
+	return false; // placeholder
+}
+
+bool Lexer::isLabel(const char* name)
+{
+	return false; // placeholder
 }
