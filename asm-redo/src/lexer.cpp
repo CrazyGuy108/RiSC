@@ -94,9 +94,12 @@ bool Lexer::isImmediate(const char* name)
 	// ecma regex equivalent:
 	// imm = ^(\-)?(0x)?[0-9]+\b
 
-	static constexpr size_t A = 0, B = 1, C = 2, D = 3, E = 4; // state id
+	enum State
+	{
+		A, B, C, D, E
+	};
 
-	static const size_t states[5][4] // state table
+	static const State states[5][4] // state table
 	{
 		// 0 1-9 - x
 		{ B, C, D, E }, // A
@@ -106,7 +109,7 @@ bool Lexer::isImmediate(const char* name)
 		{ E, E, E, E }  // E (default rejecting state)
 	};
 
-	size_t state{ 0 };
+	State state{ A };
 	size_t i{ 0 };
 	while (name[i] != '\0')
 	{
