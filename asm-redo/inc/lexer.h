@@ -22,7 +22,6 @@ private:
 	static bool isImmediate(const char* name);
 	static bool isRegister(const char* name);
 	static bool isIdentifier(const char* name);
-	static bool isLocalLabel(const char* name);
 	static bool isLabel(const char* name);
 
 	std::queue<Token> tokens; // queue containing the Tokens created by constructor
