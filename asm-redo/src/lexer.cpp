@@ -90,8 +90,7 @@ bool Lexer::isKeyword(const char* name)
 
 bool Lexer::isImmediate(const char* name)
 {
-	// ecma regex equivalent:
-	// imm = ^(\-)?(0x[0-9|A-F]+)|([0-9]+)\b
+	// regex: (\-)?('0x'[digit|A-F]+)|([digit]+)
 
 	enum State
 	{
@@ -149,8 +148,7 @@ bool Lexer::isImmediate(const char* name)
 
 bool Lexer::isRegister(const char* name)
 {
-	// ecma regex equivalent:
-	// reg = ^r[0-7]\b
+	// regex: 'r'[0-7]
 
 	enum State
 	{
@@ -188,8 +186,7 @@ bool Lexer::isRegister(const char* name)
 
 bool Lexer::isIdentifier(const char* name)
 {
-	// ecma regex equivalent:
-	// id = ^[letter][letter|digit]*\b
+	// regex: [letter][letter|digit]*
 
 	enum State
 	{
