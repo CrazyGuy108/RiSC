@@ -122,7 +122,7 @@ bool Lexer::isImmediate(const char* name)
 		++i;
 	}
 
-	return state == 1;
+	return state == 2;
 }
 
 bool Lexer::isRegister(const char* name)
