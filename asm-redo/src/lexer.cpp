@@ -189,8 +189,6 @@ bool Lexer::isRegister(const char* name)
 bool Lexer::isIdentifier(const char* name)
 {
 	// ecma regex equivalent:
-	// letter = [a-z|A-Z]
-	// digit = [0-9]
 	// id = ^[letter][letter|digit]*\b
 
 	enum State
@@ -210,10 +208,9 @@ bool Lexer::isIdentifier(const char* name)
 	size_t i{ 0 };
 	while (name[i] != '\0')
 	{
-		if(name[i] >= 'a' && name[i] <= 'z' ||
-		   name[i] >= 'A' && name[i] <= 'Z')
+		if(letter(name[i]))
 		   state = states[state][0];
-		else if(name[i] >= '0' && name[i] <= '9')
+		else if(digit(name[i]))
 			state = states[state][1];
 		else
 			return false; // outside of state table
@@ -227,7 +224,42 @@ bool Lexer::isIdentifier(const char* name)
 
 bool Lexer::isLabel(const char* name)
 {
-	return false; // placeholder
+	// regex: [letter][letter|digit]*':'
+
+	enum State
+	{
+		A, B, C, D
+	};
+
+	static const State states[4][3]
+	{
+		// letter digit ':'
+		{ B, D, D }, // A
+		{ B, B, C }, // B
+		{ D, D, D }, // C (accepting state)
+		{ D, D, D }  // D (default rejecting state)
+	};
+
+	State state{ A };
+	size_t i{ 0 };
+	while (name[i] != '\0')
+	{
+		if(letter(name[i]))
+			state = states[state][0];
+		else if(digit(name[i]))
+			state = states[state][1];
+		else if(name[i] == ':')
+			state = states[state][2];
+		else
+			return false; // outside of state table
+
+		if(state == D) // in rejecting state
+			return false;
+
+		++i;
+	}
+
+	return state == C;
 }
 
 bool Lexer::letter(char c)
