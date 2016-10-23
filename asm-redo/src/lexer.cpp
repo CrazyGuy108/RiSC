@@ -75,10 +75,13 @@ Token Lexer::next()
 Token Lexer::tokenize(char* name)
 {
 	return Token{ name,
-		isLabelName(name) ? formatLabel(name)
-		: isRegName(name) ? formatReg(name)
-		: isImmName(name) ? formatImm(name)
-		                  : formatKeyword(name) };
+		  isKeyword(name)    ? Token::KEYWORD
+		: isImmediate(name)  ? Token::IMMEDIATE
+		: isRegister(name)   ? Token::REGISTER
+		: isIdentifier(name) ? Token::IDENTIFIER
+		: isLocalLabel(name) ? Token::LOCAL_LABEL
+		: isLabel(name)      ? Token::LABEL
+		                     : Token::ERROR };
 }
 
 bool Lexer::isKeyword(const char* name)
