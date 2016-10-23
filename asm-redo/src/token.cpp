@@ -30,6 +30,10 @@ const char* Token::getTypeName()
 		return "newline";
 		break;
 
+	case KEYWORD:
+		return "keyword";
+		break;
+
 	case LABEL:
 		return "label";
 		break;
@@ -48,38 +52,6 @@ const char* Token::getTypeName()
 
 	case IDENTIFIER:
 		return "identifier";
-		break;
-
-	case ADD:
-		return "add";
-		break;
-
-	case ADDI:
-		return "addi";
-		break;
-
-	case NAND:
-		return "nand";
-		break;
-
-	case LUI:
-		return "lui";
-		break;
-
-	case SW:
-		return "sw";
-		break;
-
-	case LW:
-		return "lw";
-		break;
-
-	case BEQ:
-		return "beq";
-		break;
-
-	case JALR:
-		return "jalr";
 		break;
 
 	default:

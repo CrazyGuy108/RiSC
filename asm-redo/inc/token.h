@@ -8,8 +8,7 @@ public:
 	enum Type
 	{
 		BEGIN, END, NEWLINE, // punctuation
-		LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
-		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR, // reserved word
+		KEYWORD, LABEL, LOCAL_LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
 		ERROR // lexical error
 	};
 
