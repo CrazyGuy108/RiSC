@@ -77,7 +77,7 @@ void Lexer::analyze(char* iterator)
 		{ F, F }, // E (label accepting state)
 		{ F, F }, // F (error accepting state)
 		{ G, G }, // G (comment state, entered by a special case)
-		{}, // H (imm digit check, entered by a special case)
+		{ B, B }, // H (imm digit check, entered by a special case)
 		{}, // I (reg digit check, entered by a special case)
 		{}  // ...
 	};
