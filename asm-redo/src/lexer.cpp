@@ -128,12 +128,16 @@ void Lexer::analyze(char* iterator)
 			break;
 
 		default:
-			if (digit(iterator[i]))
-				; // change state
-			else if (letter(iterator[i]))
-				; // change state
+			lastState = currState;
+			if (letter(iterator[i]))
+				currState = states[currState][0];
+			else if (digit(iterator[i]))
+				currState = states[currState][1]; 
 			else
-				; // error: invalid character
+			{
+				// error: invalid character
+				currState = G; // error state
+			}
 		}
 	}
 
