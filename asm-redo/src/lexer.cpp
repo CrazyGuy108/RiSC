@@ -64,7 +64,7 @@ void Lexer::analyze(char* iterator)
 {
 	enum State
 	{
-		A, B, C, D, E, F, G
+		A, B, C, D, E, F, G, H, I
 	};
 
 	static const State states[][6] // state table
@@ -77,6 +77,8 @@ void Lexer::analyze(char* iterator)
 		{}, // E (label accepting state)
 		{}, // F (error accepting state)
 		{}, // G (comment state)
+		{}, // H (imm minus check)
+		{}, // I (imm digit check)
 		{}  // ...
 	};
 
