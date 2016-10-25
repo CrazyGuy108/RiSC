@@ -93,7 +93,25 @@ void Lexer::analyze(char* iterator)
 			; // change state
 		else switch (iterator[i])
 		{
+		case '-': // minus (for immediates)
+			; // change state
+			break;
 
+		case '\t':
+		case ' ': // space/tab
+			; // change state
+			break;
+
+		case '\n': // newline
+			; // change state
+			break;
+
+		case '#': // line comment
+			; // change statet
+			break;
+
+		default:
+			; // error: invalid character
 		}
 	}
 
