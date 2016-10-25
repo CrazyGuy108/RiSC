@@ -84,7 +84,8 @@ void Lexer::analyze(char* iterator)
 	// state machine stuff here, combining everything in tokenize()
 	//  as well as some other special functions
 
-	State state{ A };
+	State currState{ A };
+	State lastState{ A };
 	size_t i{ 0 };
 	while (iterator[i] != '\0')
 	{
