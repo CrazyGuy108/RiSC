@@ -64,18 +64,18 @@ void Lexer::analyze(char* iterator)
 {
 	enum State
 	{
-		A
+		A, B, C, D, E, F
 	};
 
 	static const State states[][] // state table
 	{
-		{}, // A
-		{}, // ...
-		{}, // (immediate accepting state)
-		{}, // (register accepting state)
-		{}, // (keyword/identifier accepting state)
-		{}, // (label accepting state)
-		{}  // (error accepting state)
+		{}, // A (start state)
+		{}, // B (immediate accepting state)
+		{}, // C (register accepting state)
+		{}, // D (keyword/identifier accepting state)
+		{}, // E (label accepting state)
+		{}, // F (error accepting state)
+		{}  // ...
 	};
 
 	tokens.emplace(nullptr, Token::BEGIN);
