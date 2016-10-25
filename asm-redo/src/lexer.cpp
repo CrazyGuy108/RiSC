@@ -74,11 +74,11 @@ void Lexer::analyze(char* iterator)
 		{ B, B }, // B (immediate accepting state)
 		{ D, D }, // C (register accepting state)
 		{ D, D }, // D (keyword/identifier accepting state)
-		{ F, F }, // E (label accepting state)
+		{ F, F }, // E (label accepting state, entered by a ':' while in id state)
 		{ F, F }, // F (error accepting state)
-		{ G, G }, // G (comment state, entered by a special case)
-		{ B, B }, // H (imm digit check, entered by a special case)
-		{ D, C }, // I (reg digit check, entered by a special case)
+		{ G, G }, // G (comment state, entered by a '#')
+		{ B, B }, // H (imm digit check, entered by a start-of-word '-')
+		{ D, C }, // I (reg digit check, entered by a start-of-word 'r' )
 		{}  // ...
 	};
 
