@@ -118,11 +118,13 @@ void Lexer::analyze(char* iterator)
 			break;
 
 		case '\n': // newline
-			; // change state
+			lastState = currState;
+			currState = F; // newline state
 			break;
 
 		case '#': // line comment
-			; // change statet
+			lastState = currState;
+			currState = H;
 			break;
 
 		default:
