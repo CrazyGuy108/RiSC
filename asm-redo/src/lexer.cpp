@@ -102,8 +102,12 @@ void Lexer::analyze(char* iterator)
 			}
 			break;
 
-		case '-': // minus (for immediates)
-			; // change state
+		case '-': // could be immediate name
+			if (currState == A) // start of word
+			{
+				lastState = currState;
+				currState = H; // imm digit check
+			}
 			break;
 
 		case '\t':
