@@ -92,11 +92,7 @@ void Lexer::analyze(char* iterator)
 	size_t i{ 0 };
 	while (iterator[i] != '\0')
 	{
-		if(digit(iterator[i]))
-			; // change state
-		else if(letter(iterator[i]))
-			; // change state
-		else switch (iterator[i])
+		switch (iterator[i])
 		{
 		case '-': // minus (for immediates)
 			; // change state
@@ -116,7 +112,12 @@ void Lexer::analyze(char* iterator)
 			break;
 
 		default:
-			; // error: invalid character
+			if (digit(iterator[i]))
+				; // change state
+			else if (letter(iterator[i]))
+				; // change state
+			else
+				; // error: invalid character
 		}
 	}
 
