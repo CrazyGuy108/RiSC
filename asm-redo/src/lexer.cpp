@@ -112,7 +112,8 @@ void Lexer::analyze(char* iterator)
 
 		case '\t':
 		case ' ': // space/tab
-			; // change state
+			lastState = currState;
+			currState = A; // back to start
 			break;
 
 		case '\n': // newline
