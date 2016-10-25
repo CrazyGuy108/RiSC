@@ -72,7 +72,7 @@ void Lexer::analyze(char* iterator)
 		// # \n - space/tab letter digit
 		{}, // A (start state)
 		{}, // B (immediate accepting state)
-		{}, // C (register accepting state)
+		{}, // C (register accepting state, entered by a special case)
 		{}, // D (keyword/identifier accepting state)
 		{}, // E (label accepting state)
 		{}, // F (error accepting state)
