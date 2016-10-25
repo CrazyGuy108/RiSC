@@ -67,8 +67,9 @@ void Lexer::analyze(char* iterator)
 		A, B, C, D, E, F
 	};
 
-	static const State states[][] // state table
+	static const State states[][6] // state table
 	{
+		// # \n - space/tab letter digit
 		{}, // A (start state)
 		{}, // B (immediate accepting state)
 		{}, // C (register accepting state)
