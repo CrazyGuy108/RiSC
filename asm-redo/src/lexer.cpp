@@ -64,7 +64,7 @@ void Lexer::analyze(char* iterator)
 {
 	enum State
 	{
-		A, B, C, D, E, F, G, H, I, J
+		A, B, C, D, E, F, G, H, I, J, K
 	};
 
 	static const State states[][6] // state table
@@ -72,7 +72,7 @@ void Lexer::analyze(char* iterator)
 		// # \n - space/tab letter digit
 		{}, // A (start state)
 		{}, // B (immediate accepting state)
-		{}, // C (register accepting state, entered by a special case)
+		{}, // C (register accepting state)
 		{}, // D (keyword/identifier accepting state)
 		{}, // E (label accepting state)
 		{}, // F (error accepting state)
@@ -80,6 +80,7 @@ void Lexer::analyze(char* iterator)
 		{}, // H (space/tab state)
 		{}, // I (imm minus check)
 		{}, // J (imm digit check)
+		{}, // K (reg digit check, entered by a special case)
 		{}  // ...
 	};
 
