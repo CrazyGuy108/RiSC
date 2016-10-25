@@ -69,16 +69,16 @@ void Lexer::analyze(char* iterator)
 
 	static const State states[][6] // state table
 	{
-		// - space/tab letter digit
-		{ I, H, D, B }, // A (start state)
-		{ F, H, B, B }, // B (immediate accepting state)
-		{ F, H, D, D }, // C (register accepting state)
-		{ F, H, D, D }, // D (keyword/identifier accepting state)
-		{ F, H, F, F }, // E (label accepting state)
-		{ F, F, F, F }, // F (error accepting state)
+		// letter digit
+		{ D, B }, // A (start state)
+		{ B, B }, // B (immediate accepting state)
+		{ D, D }, // C (register accepting state)
+		{ D, D }, // D (keyword/identifier accepting state)
+		{ F, F }, // E (label accepting state)
+		{ F, F }, // F (error accepting state)
 		{}, // G (comment state, entered by a special case)
 		{}, // H (space/tab state)
-		{}, // I (imm digit check)
+		{}, // I (imm digit check, entered by a special case)
 		{}, // J (reg digit check, entered by a special case)
 		{}  // ...
 	};
