@@ -64,7 +64,7 @@ void Lexer::analyze(char* iterator)
 {
 	enum State
 	{
-		A, B, C, D, E, F, G, H, I
+		A, B, C, D, E, F, G, H, I, J
 	};
 
 	static const State states[][2] // state table
@@ -74,11 +74,12 @@ void Lexer::analyze(char* iterator)
 		{ B, B }, // B (immediate accepting state)
 		{ D, D }, // C (register accepting state)
 		{ D, D }, // D (keyword/identifier accepting state)
-		{ F, F }, // E (label accepting state, entered by a ':' while in id state)
-		{ F, F }, // F (error accepting state)
-		{ G, G }, // G (comment state, entered by a '#')
-		{ B, B }, // H (imm digit check, entered by a start-of-word '-')
-		{ D, C }, // I (reg digit check, entered by a start-of-word 'r' )
+		{ G, G }, // E (label accepting state, entered by a ':' while in id state)
+		{ A, A }, // F (newline state, entered by a '\n')
+		{ G, G }, // G (error accepting state)
+		{ H, H }, // H (comment state, entered by a '#')
+		{ B, B }, // I (imm digit check, entered by a start-of-word '-')
+		{ D, C }, // J (reg digit check, entered by a start-of-word 'r' )
 		{}  // ...
 	};
 
@@ -98,7 +99,7 @@ void Lexer::analyze(char* iterator)
 			if (currState == A) // start of word
 			{
 				lastState = currState;
-				currState = I; // reg digit check
+				currState = J; // reg digit check
 			}
 			break;
 
@@ -106,7 +107,7 @@ void Lexer::analyze(char* iterator)
 			if (currState == A) // start of word
 			{
 				lastState = currState;
-				currState = H; // imm digit check
+				currState = I; // imm digit check
 			}
 			break;
 
