@@ -64,22 +64,21 @@ void Lexer::analyze(char* iterator)
 {
 	enum State
 	{
-		A, B, C, D, E, F, G, H, I, J
+		A, B, C, D, E, F, G, H, I
 	};
 
 	static const State states[][6] // state table
 	{
 		// letter digit
-		{ D, B }, // A (start state)
+		{ D, B }, // A (start/space/tab state)
 		{ B, B }, // B (immediate accepting state)
 		{ D, D }, // C (register accepting state)
 		{ D, D }, // D (keyword/identifier accepting state)
 		{ F, F }, // E (label accepting state)
 		{ F, F }, // F (error accepting state)
 		{ G, G }, // G (comment state, entered by a special case)
-		{ D, B }, // H (space/tab state)
-		{}, // I (imm digit check, entered by a special case)
-		{}, // J (reg digit check, entered by a special case)
+		{}, // H (imm digit check, entered by a special case)
+		{}, // I (reg digit check, entered by a special case)
 		{}  // ...
 	};
 
