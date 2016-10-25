@@ -94,6 +94,14 @@ void Lexer::analyze(char* iterator)
 	{
 		switch (iterator[i])
 		{
+		case 'r': // could be register name
+			if (currState == A) // start of word
+			{
+				lastState = currState;
+				currState = I; // reg digit check
+			}
+			break;
+
 		case '-': // minus (for immediates)
 			; // change state
 			break;
