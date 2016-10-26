@@ -62,11 +62,6 @@ Lexer::Lexer(char* iterator)
 
 void Lexer::analyze(char* iterator)
 {
-	enum State
-	{
-		A, B, C, D, E, F, G, H, I, J
-	};
-
 	static const State states[][2] // state table
 	{
 		// letter digit
@@ -190,11 +185,6 @@ bool Lexer::isImmediate(const char* name)
 {
 	// regex: (\-)?('0x'[digit|A-F]+)|([digit]+)
 
-	enum State
-	{
-		A, B, C, D, E, F, G
-	};
-
 	static const State states[7][5] // state table
 	{
 		// 1-9 A-F 0 x -
@@ -248,11 +238,6 @@ bool Lexer::isRegister(const char* name)
 {
 	// regex: 'r'[0-7]
 
-	enum State
-	{
-		A, B, C, D
-	};
-
 	static const State states[4][2] // state table
 	{
 		// r 0-7
@@ -286,11 +271,6 @@ bool Lexer::isIdentifier(const char* name)
 {
 	// regex: [letter][letter|digit]*
 
-	enum State
-	{
-		A, B, C
-	};
-
 	static const State states[3][2] // state table
 	{
 		// letter digit
@@ -320,11 +300,6 @@ bool Lexer::isIdentifier(const char* name)
 bool Lexer::isLabel(const char* name)
 {
 	// regex: [letter][letter|digit]*':'
-
-	enum State
-	{
-		A, B, C, D
-	};
 
 	static const State states[4][3]
 	{

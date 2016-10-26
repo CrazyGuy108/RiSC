@@ -5,6 +5,14 @@
 #include <queue>   // for queue
 #include "token.h" // for Token
 
+namespace
+{
+	enum State
+	{
+		A, B, C, D, E, F, G, H, I, J
+	};
+}
+
 // state machine that lexically parses a program line by line
 class Lexer
 {
