@@ -91,7 +91,7 @@ void Lexer::analyze(char* iterator)
 		State last; // last state
 	};
 
-	static const State states[][2] // state table
+	static const State states[10][2] // state table
 	{
 		// letter digit
 		{ D, B }, // A (start/space/tab state)
@@ -103,8 +103,7 @@ void Lexer::analyze(char* iterator)
 		{ G, G }, // G (error accepting state)
 		{ H, H }, // H (comment state, entered by a '#')
 		{ B, B }, // I (imm digit check, entered by a start-of-word '-')
-		{ D, C }, // J (reg digit check, entered by a start-of-word 'r' )
-		{}  // ...
+		{ D, C }  // J (reg digit check, entered by a start-of-word 'r' )
 	};
 
 	tokens.emplace(nullptr, Token::BEGIN);
