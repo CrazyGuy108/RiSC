@@ -9,17 +9,17 @@
 class Lexer
 {
 public:
+	enum State
+	{
+		A, B, C, D, E, F, G, H, I, J
+	};
+
 	Lexer(char* iterator);
 	
 	void analyze(char* iterator); // lexically analyze the given program
 	Token next();                 // gets the next lexeme from tokens queue
 
 private:
-	enum State
-	{
-		A, B, C, D, E, F, G, H, I, J
-	};
-
 	// creates a Lexeme of a token name
 	static Token tokenize(char* name);
 
