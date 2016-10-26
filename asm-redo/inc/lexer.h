@@ -30,18 +30,8 @@ public:
 	Token next();                 // gets the next lexeme from tokens queue
 
 private:
-	// creates a Lexeme of a token name
-	static Token tokenize(char* name);
 
-	// state machines
-
-	static bool isKeyword(const char* name);
-	static bool isImmediate(const char* name);
-	static bool isRegister(const char* name);
-	static bool isIdentifier(const char* name);
-	static bool isLabel(const char* name);
-
-	// state machine helpers
+	// helpers
 
 	static bool letter(char c);
 	static bool digit(char c);
