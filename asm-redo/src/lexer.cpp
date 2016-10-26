@@ -156,6 +156,17 @@ void Lexer::analyze(char* iterator)
 				state = ERROR;
 			}
 		}
+
+		if (state.getCurr() != START && state.getLast() == START) // start of word
+		{
+			// reset iterator
+			iterator = &iterator[i];
+			i = 1;
+		}
+		else if (state.getCurr() == START && state.getLast() != START) // end of word
+		{
+			// create token if in accepting state
+		}
 	}
 
 	tokens.emplace(nullptr, Token::END);
