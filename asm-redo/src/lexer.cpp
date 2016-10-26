@@ -71,16 +71,22 @@ void Lexer::analyze(char* iterator)
 		case 'r': // could be register name
 			if (state.getCurr() == START)
 				state = REG_CHECK;
+			else
+				state = states[state.getCurr()][0]; // treat as letter
 			break;
 
 		case '-': // could be immediate name
 			if (state.getCurr() == START)
 				state = IMM_CHECK;
+			else
+				state = states[state.getCurr()][0]; // treat as letter
 			break;
 
 		case ':': // could be label name
 			if(state.getCurr() == ID)
 				state = LABEL;
+			else
+				state = ERROR; // can't have a colon anywhere else
 			break;
 
 		case '\n': // newline
