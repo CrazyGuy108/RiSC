@@ -11,7 +11,17 @@ class Lexer
 public:
 	enum State
 	{
-		A, B, C, D, E, F, G, H, I, J
+		A, B, C, D, E, F, G, H, I, J,
+		START = A,
+		IMM_ACCEPT,
+		REG_ACCEPT,
+		ID_ACCEPT,
+		LABEL_ACCEPT,
+		NEWLINE_ACCEPT,
+		ERROR_ACCEPT,
+		COMMENT,
+		IMM_CHECK,
+		REG_CHECK
 	};
 
 	Lexer(char* iterator);
