@@ -67,7 +67,7 @@ void Lexer::analyze(char* iterator)
 	{
 	public:
 		StateTracker(State curr) // initializes state
-			: curr{ curr }, last{ A } {};
+			: curr{ curr }, last{ START } {};
 
 		State getCurr() const // gets current state
 		{
@@ -111,7 +111,7 @@ void Lexer::analyze(char* iterator)
 	// state machine stuff here, combining everything in tokenize()
 	//  as well as some other special functions
 
-	StateTracker state{ A };
+	StateTracker state{ START };
 	size_t i{ 0 };
 	while (iterator[i] != '\0')
 	{
@@ -119,30 +119,30 @@ void Lexer::analyze(char* iterator)
 		{
 		case '\t':
 		case ' ': // space/tab
-			state = A; // back to start
+			state = START;
 			break;
 
 		case 'r': // could be register name
-			if (state.getCurr() == A) // start of word
-				state = J; // reg digit check
+			if (state.getCurr() == START)
+				state = REG_CHECK;
 			break;
 
 		case '-': // could be immediate name
-			if (state.getCurr() == A) // start of word
-				state = I; // imm digit check
+			if (state.getCurr() == START)
+				state = IMM_CHECK;
 			break;
 
 		case ':': // could be label name
-			if(state.getCurr() == D) // id state
-				state = E; // label
+			if(state.getCurr() == ID)
+				state = LABEL;
 			break;
 
 		case '\n': // newline
-			state = F; // newline state
+			state = NEWLINE;
 			break;
 
 		case '#': // line comment
-			state = H; // comment state
+			state = COMMENT;
 			break;
 
 		default:
@@ -153,7 +153,7 @@ void Lexer::analyze(char* iterator)
 			else
 			{
 				// error: invalid character
-				state = G; // error state
+				state = ERROR;
 			}
 		}
 	}
