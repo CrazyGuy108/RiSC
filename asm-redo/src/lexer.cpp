@@ -117,6 +117,11 @@ void Lexer::analyze(char* iterator)
 	{
 		switch (iterator[i])
 		{
+		case '\t':
+		case ' ': // space/tab
+			state = A; // back to start
+			break;
+
 		case 'r': // could be register name
 			if (state.getCurr() == A) // start of word
 				state = J; // reg digit check
@@ -127,9 +132,9 @@ void Lexer::analyze(char* iterator)
 				state = I; // imm digit check
 			break;
 
-		case '\t':
-		case ' ': // space/tab
-			state = A; // back to start
+		case ':': // could be label name
+			if(state.getCurr() == D) // id state
+				state = E; // label
 			break;
 
 		case '\n': // newline
