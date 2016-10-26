@@ -111,55 +111,44 @@ void Lexer::analyze(char* iterator)
 	// state machine stuff here, combining everything in tokenize()
 	//  as well as some other special functions
 
-	State currState{ A };
-	State lastState{ A };
+	StateTracker state{ A };
 	size_t i{ 0 };
 	while (iterator[i] != '\0')
 	{
 		switch (iterator[i])
 		{
 		case 'r': // could be register name
-			if (currState == A) // start of word
-			{
-				lastState = currState;
-				currState = J; // reg digit check
-			}
+			if (state.getCurr() == A) // start of word
+				state = J; // reg digit check
 			break;
 
 		case '-': // could be immediate name
-			if (currState == A) // start of word
-			{
-				lastState = currState;
-				currState = I; // imm digit check
-			}
+			if (state.getCurr() == A) // start of word
+				state = I; // imm digit check
 			break;
 
 		case '\t':
 		case ' ': // space/tab
-			lastState = currState;
-			currState = A; // back to start
+			state = A; // back to start
 			break;
 
 		case '\n': // newline
-			lastState = currState;
-			currState = F; // newline state
+			state = F; // newline state
 			break;
 
 		case '#': // line comment
-			lastState = currState;
-			currState = H;
+			state = H; // comment state
 			break;
 
 		default:
-			lastState = currState;
 			if (letter(iterator[i]))
-				currState = states[currState][0];
+				state = states[state.getCurr()][0];
 			else if (digit(iterator[i]))
-				currState = states[currState][1]; 
+				state = states[state.getCurr()][1]; 
 			else
 			{
 				// error: invalid character
-				currState = G; // error state
+				state = G; // error state
 			}
 		}
 	}
