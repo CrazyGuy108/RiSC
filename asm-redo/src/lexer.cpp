@@ -79,10 +79,11 @@ void Lexer::analyze(char* iterator)
 			return last;
 		}
 
-		State operator=(State s) // sets current state and last state
+		StateTracker& operator=(State s) // sets current state and last state
 		{
 			last = curr;
 			curr = s;
+			return *this;
 		}
 
 	private:
