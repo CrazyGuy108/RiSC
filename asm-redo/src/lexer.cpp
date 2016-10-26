@@ -62,6 +62,34 @@ Lexer::Lexer(char* iterator)
 
 void Lexer::analyze(char* iterator)
 {
+	// keeps track of state and the state it just exited
+	class StateTracker
+	{
+	public:
+		StateTracker(State curr) // initializes state
+			: curr{ curr }, last{ A } {};
+
+		State getCurr() const // gets current state
+		{
+			return curr;
+		}
+
+		State getLast() const // gets last state
+		{
+			return last;
+		}
+
+		State operator=(State s) // sets current state and last state
+		{
+			last = curr;
+			curr = s;
+		}
+
+	private:
+		State curr; // current state
+		State last; // last state
+	};
+
 	static const State states[][2] // state table
 	{
 		// letter digit
