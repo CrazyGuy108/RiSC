@@ -142,6 +142,11 @@ size_t Lexer::getErrors()
 	return errors;
 }
 
+Token::Type Lexer::parseState(State s)
+{
+
+}
+
 bool Lexer::letter(char c)
 {
 	// regex: [a-z|A-Z]

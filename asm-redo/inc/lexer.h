@@ -33,6 +33,7 @@ private:
 
 	// helpers
 
+	static Token::Type parseState(State s);
 	static bool letter(char c);
 	static bool digit(char c);
 
