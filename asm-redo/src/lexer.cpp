@@ -114,12 +114,14 @@ void Lexer::analyze(char* iterator)
 		{
 			// reset iterator
 			iterator = &iterator[i];
-			i = 1;
+			i = 0;
 		}
 		else if (state.getCurr() == START && state.getLast() != START) // end of word
 		{
 			// create token if in accepting state
 		}
+
+		++i;
 	}
 
 	tokens.emplace(nullptr, Token::END);
