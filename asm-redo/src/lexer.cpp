@@ -1,7 +1,7 @@
 #include "../inc/lexer.h"
 
 Lexer::Lexer(char* iterator)
-	: tokens{}
+	: tokens{}, errors{ 0 }
 {
 	analyze(iterator);
 }
@@ -134,6 +134,11 @@ Token Lexer::next()
 		tokens.pop();
 		return tmp;
 	}
+}
+
+size_t Lexer::getErrors()
+{
+	return errors;
 }
 
 bool Lexer::letter(char c)
