@@ -106,6 +106,7 @@ void Lexer::analyze(char* iterator)
 			{
 				// error: invalid character
 				state = ERROR;
+				++errors;
 			}
 		}
 
