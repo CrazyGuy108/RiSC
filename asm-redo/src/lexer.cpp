@@ -119,8 +119,11 @@ void Lexer::analyze(char* iterator)
 		else if (state.getCurr() == START && state.getLast() != START) // end of word
 		{
 			Token::Type tmp{ parseState(state.getLast()) };
-			if(tmp == Token::ERROR)
+			if (tmp == Token::ERROR)
+			{
+				// error: invalid token
 				++errors;
+			}
 
 			iterator[i] = '\0'; // terminate lexeme
 			tokens.emplace(iterator, tmp);
@@ -151,7 +154,7 @@ size_t Lexer::getErrors()
 
 Token::Type Lexer::parseState(State s)
 {
-	// if in non-accepting state, display and return error
+	// if in non-accepting state, return error
 	// else, return the appropriate Type based on s
 }
 
