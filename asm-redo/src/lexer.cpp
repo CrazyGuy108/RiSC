@@ -118,7 +118,12 @@ void Lexer::analyze(char* iterator)
 		}
 		else if (state.getCurr() == START && state.getLast() != START) // end of word
 		{
-			// create token if in accepting state
+			Token::Type tmp{ parseState(state.getLast()) };
+			if(tmp == Token::ERROR)
+				++errors;
+
+			iterator[i] = '\0'; // terminate lexeme
+			tokens.emplace(iterator, tmp);
 		}
 
 		++i;
