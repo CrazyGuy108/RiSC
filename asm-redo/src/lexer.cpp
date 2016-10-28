@@ -132,10 +132,10 @@ void Lexer::analyze(char* iterator)
 
 			iterator[i] = '\0'; // terminate lexeme
 			tokens.emplace(iterator, tmp); // tokenize the lexeme
-
-			if(state.getCurr() == NEWLINE)
-				tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 		}
+
+		if (state.getCurr() == NEWLINE)
+			tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 
 		++i;
 	}
