@@ -5,6 +5,7 @@ class Parser
 {
 public:
 	Parser() = default;
+	Parser(char* program); // lex and parse program
 
 	void parse(char* program);
 };
