@@ -39,6 +39,8 @@ int main()
 
 		std::cout << '\n';
 #endif // LEXER_TEST
+
+		delete[] contents;
 	}
 	else
 		std::cout << "error: input file failed to open\n";
