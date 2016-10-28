@@ -118,17 +118,23 @@ void Lexer::analyze(char* iterator)
 			iterator = &iterator[i];
 			i = 0;
 		}
-		else if ((state.getCurr() == START ||
-		          state.getCurr() == NEWLINE) &&
-		         state.getLast() != START &&
-		         state.getLast() != COMMENT) // end of word
+		else if(state.getLast() != START &&
+		        state.getLast() != COMMENT) // end of word (possibly)
 		{
-			iterator[i] = '\0'; // terminate lexeme
-			tokenize(iterator, state.getLast()); // tokenize the lexeme
-		}
+			switch (state.getCurr())
+			{
+			case START: // end of word
+				iterator[i] = '\0'; // terminate lexeme
+				tokenize(iterator, state.getLast()); // tokenize the lexeme
+				break;
 
-		if (state.getCurr() == NEWLINE)
-			tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
+			case NEWLINE: // end of word and line
+				iterator[i] = '\0'; // terminate lexeme
+				tokenize(iterator, state.getLast()); // tokenize the lexeme
+				tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
+				break;
+			}
+		}
 
 		++i;
 	}
