@@ -154,8 +154,23 @@ size_t Lexer::getErrors()
 
 Token::Type Lexer::parseState(State s)
 {
-	// if in non-accepting state, return error
-	// else, return the appropriate Type based on s
+	switch (s)
+	{
+	case IMM:
+		return Token::IMMEDIATE;
+
+	case REG:
+		return Token::REGISTER;
+
+	case ID:
+		return Token::IDENTIFIER;
+
+	case LABEL:
+		return Token::LABEL;
+
+	default: // non-accepting state
+		return Token::ERROR;
+	}
 }
 
 bool Lexer::letter(char c)
