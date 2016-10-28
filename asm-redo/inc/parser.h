@@ -1,7 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "lexer.h" // for Lexer
+#include "lexer.h"      // for Lexer
+#include "syntaxtree.h" // for SyntaxTree
 
 class Parser
 {
@@ -12,6 +13,9 @@ public:
 
 	void parse(char* program); // lex and parse the given program
 	void parse(Lexer& lexer);  // parse program using the given lexer
+
+private:
+	SyntaxTree ast; // syntax tree to be generated
 };
 
 #endif // PARSER_H
