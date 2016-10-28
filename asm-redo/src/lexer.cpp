@@ -126,7 +126,7 @@ void Lexer::analyze(char* iterator)
 			}
 
 			iterator[i] = '\0'; // terminate lexeme
-			tokens.emplace(iterator, tmp);
+			tokens.emplace(iterator, tmp); // tokenize the lexeme
 		}
 
 		++i;
