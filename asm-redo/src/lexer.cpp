@@ -131,13 +131,11 @@ void Lexer::analyze(char* iterator)
 			switch (state.getCurr())
 			{
 			case START: // end of word
-				iterator[i] = '\0'; // terminate lexeme
-				tokenize(iterator, state.getLast()); // tokenize the lexeme
+				tokenize(iterator, i, state.getLast()); // tokenize the lexeme
 				break;
 
 			case NEWLINE: // end of word and line
-				iterator[i] = '\0'; // terminate lexeme
-				tokenize(iterator, state.getLast()); // tokenize the lexeme
+				tokenize(iterator, i, state.getLast()); // tokenize the lexeme
 				tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 				break;
 			}
@@ -166,7 +164,7 @@ size_t Lexer::getErrors()
 	return errors;
 }
 
-void Lexer::tokenize(char* name, State last)
+void Lexer::tokenize(char* name, size_t len, State last)
 {
 	Token::Type tmp{ parseState(last) };
 
@@ -177,6 +175,7 @@ void Lexer::tokenize(char* name, State last)
 		++errors;
 	}
 
+	name[len] = '\0'; // terminate lexeme
 	tokens.emplace(name, tmp); // create the token
 }
 
