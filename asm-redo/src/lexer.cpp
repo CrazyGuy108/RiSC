@@ -123,15 +123,8 @@ void Lexer::analyze(char* iterator)
 		         state.getLast() != START &&
 		         state.getLast() != COMMENT) // end of word
 		{
-			Token::Type tmp{ parseState(state.getLast()) };
-			if (tmp == Token::ERROR)
-			{
-				// error: invalid token
-				++errors;
-			}
-
 			iterator[i] = '\0'; // terminate lexeme
-			tokens.emplace(iterator, tmp); // tokenize the lexeme
+			tokenize(iterator, state.getLast()); // tokenize the lexeme
 		}
 
 		if (state.getCurr() == NEWLINE)
@@ -158,6 +151,20 @@ Token Lexer::next()
 size_t Lexer::getErrors()
 {
 	return errors;
+}
+
+void Lexer::tokenize(char* name, State last)
+{
+	Token::Type tmp{ parseState(last) };
+
+	// check for errors
+	if (tmp == Token::ERROR)
+	{
+		// error: invalid token
+		++errors;
+	}
+
+	tokens.emplace(name, tmp); // create the token
 }
 
 Token::Type Lexer::parseState(State s)

@@ -30,8 +30,13 @@ public:
 	size_t getErrors();           // gets the amount of errors the lexer encountered
 
 private:
-
 	// helpers
+
+	// creates a token out of the given string
+	// the given state s tells it how it should treat the token
+	void tokenize(char* name, State last);
+
+	// static helpers
 
 	static Token::Type parseState(State s);
 	static bool letter(char c);
