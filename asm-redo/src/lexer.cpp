@@ -65,7 +65,8 @@ void Lexer::analyze(char* iterator)
 		{
 		case '\t':
 		case ' ': // space/tab
-			state = START;
+			if(state.getCurr() != COMMENT)
+				state = START;
 			break;
 
 		case 'r': // could be register name
@@ -85,7 +86,7 @@ void Lexer::analyze(char* iterator)
 		case ':': // could be label name
 			if(state.getCurr() == ID)
 				state = LABEL;
-			else
+			else if(state.getCurr() != COMMENT)
 				state = ERROR; // can't have a colon anywhere else
 			break;
 
@@ -119,7 +120,8 @@ void Lexer::analyze(char* iterator)
 		}
 		else if ((state.getCurr() == START ||
 		          state.getCurr() == NEWLINE) &&
-		         state.getLast() != START) // end of word
+		         state.getLast() != START &&
+		         state.getLast() != COMMENT) // end of word
 		{
 			Token::Type tmp{ parseState(state.getLast()) };
 			if (tmp == Token::ERROR)
