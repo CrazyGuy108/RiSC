@@ -116,7 +116,7 @@ void Lexer::analyze(char* iterator)
 			iterator = &iterator[i];
 			i = 0;
 		}
-		else if (state.getCurr() == START && state.getLast() != START) // end of word
+		else if (state.getCurr() == START || state.getCurr() == NEWLINE && state.getLast() != START) // end of word
 		{
 			Token::Type tmp{ parseState(state.getLast()) };
 			if (tmp == Token::ERROR)
@@ -127,6 +127,9 @@ void Lexer::analyze(char* iterator)
 
 			iterator[i] = '\0'; // terminate lexeme
 			tokens.emplace(iterator, tmp); // tokenize the lexeme
+
+			if(state.getCurr() == NEWLINE)
+				tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 		}
 
 		++i;
