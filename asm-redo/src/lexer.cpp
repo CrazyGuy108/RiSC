@@ -110,13 +110,16 @@ void Lexer::analyze(char* iterator)
 			}
 		}
 
-		if (state.getCurr() != START && state.getLast() == START) // start of word
+		if (state.getCurr() != START &&
+		    state.getLast() == START) // start of word
 		{
 			// reset iterator
 			iterator = &iterator[i];
 			i = 0;
 		}
-		else if (state.getCurr() == START || state.getCurr() == NEWLINE && state.getLast() != START) // end of word
+		else if ((state.getCurr() == START ||
+		          state.getCurr() == NEWLINE) &&
+		         state.getLast() != START) // end of word
 		{
 			Token::Type tmp{ parseState(state.getLast()) };
 			if (tmp == Token::ERROR)
