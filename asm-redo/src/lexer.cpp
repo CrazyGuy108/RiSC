@@ -118,8 +118,15 @@ void Lexer::analyze(char* iterator)
 			iterator = &iterator[i];
 			i = 0;
 		}
-		else if(state.getLast() != START &&
-		        state.getLast() != COMMENT) // end of word (possibly)
+		else if (state.getLast() == COMMENT &&
+		         state.getCurr() == NEWLINE) // end of comment
+		{
+			// reset iterator
+			iterator = &iterator[i];
+			i = 0;
+			tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
+		}
+		else if(state.getLast() != START) // end of word (possibly)
 		{
 			switch (state.getCurr())
 			{
