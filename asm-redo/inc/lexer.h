@@ -24,11 +24,12 @@ public:
 		REG_CHECK
 	};
 
-	Lexer(char* iterator);
+	Lexer(const char* program);
 	
-	void analyze(char* iterator); // lexically analyze the given program
-	Token next();                 // gets the next lexeme from tokens queue
-	size_t getErrors();           // gets the amount of errors the lexer encountered
+	void analyze(const char* program); // lexically analyze the given program
+
+	Token next();       // gets the next lexeme from tokens queue
+	size_t getErrors(); // gets the amount of errors the lexer encountered
 
 private:
 	// helpers

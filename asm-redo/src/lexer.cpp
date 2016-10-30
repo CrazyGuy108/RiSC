@@ -1,13 +1,20 @@
 #include "../inc/lexer.h"
 
-Lexer::Lexer(char* iterator)
+Lexer::Lexer(const char* program)
 	: tokens{}, errors{ 0 }
 {
-	analyze(iterator);
+	analyze(program);
 }
 
-void Lexer::analyze(char* iterator)
+void Lexer::analyze(const char* program)
 {
+	size_t len{ strlen(program) };   // length of program
+	char* iterator{ new char[len] }; // copy of program
+
+	// initialize iterator with a copy of program
+	for(size_t i{ 0 }; i < len; ++i)
+		iterator[i] = program[i];
+
 	// keeps track of state and the state it just exited
 	class StateTracker
 	{
