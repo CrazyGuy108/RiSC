@@ -15,7 +15,9 @@ public:
 	bool operator()(const char* a, const char* b) const;
 };
 
+typedef std::map<const char*, Keyword, StrLess> keyword_map;
+
 // keywords mapped to the Keyword enum class
-extern const std::map<const char*, Keyword, StrLess> keywords;
+extern const keyword_map keywords;
 
 #endif // UTILITY_H

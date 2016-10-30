@@ -5,7 +5,7 @@ bool StrLess::operator()(const char* a, const char* b) const
 	return strcmp(a, b) < 0;
 }
 
-const std::map<const char*, Keyword, StrLess> keywords
+const keyword_map keywords
 {
 	{ "add",  Keyword::ADD },
 	{ "addi", Keyword::ADDI },
