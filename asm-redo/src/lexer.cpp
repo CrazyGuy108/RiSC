@@ -15,35 +15,6 @@ void Lexer::analyze(const char* program)
 	for(size_t i{ 0 }; i < len; ++i)
 		iterator[i] = program[i];
 
-	// keeps track of state and the state it just exited
-	class StateTracker
-	{
-	public:
-		StateTracker(State curr) // initializes state
-			: curr{ curr }, last{ START } {};
-
-		State getCurr() const // gets current state
-		{
-			return curr;
-		}
-
-		State getLast() const // gets last state
-		{
-			return last;
-		}
-
-		StateTracker& operator=(State s) // sets current state and last state
-		{
-			last = curr;
-			curr = s;
-			return *this;
-		}
-
-	private:
-		State curr; // current state
-		State last; // last state
-	};
-
 	static const State states[10][2] // state table
 	{
 		// letter digit

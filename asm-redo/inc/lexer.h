@@ -48,4 +48,33 @@ private:
 	std::queue<Token> tokens; // queue containing the Tokens created by constructor
 };
 
+// keeps track of state and the state it just exited
+class StateTracker
+{
+public:
+	StateTracker(Lexer::State curr) // initializes state
+		: curr{ curr }, last{ Lexer::START } {};
+
+	Lexer::State getCurr() const // gets current state
+	{
+		return curr;
+	}
+
+	Lexer::State getLast() const // gets last state
+	{
+		return last;
+	}
+
+	StateTracker& operator=(Lexer::State s) // sets current state and last state
+	{
+		last = curr;
+		curr = s;
+		return *this;
+	}
+
+private:
+	Lexer::State curr; // current state
+	Lexer::State last; // last state
+};
+
 #endif // LEXER_H
