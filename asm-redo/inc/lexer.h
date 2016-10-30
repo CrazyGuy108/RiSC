@@ -1,8 +1,9 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-#include <queue>   // for queue
-#include "token.h" // for Token
+#include <queue>     // for queue
+#include "token.h"   // for Token
+#include "utility.h" // for keywords and keyword_map
 
 // state machine that lexically parses a program line by line
 class Lexer

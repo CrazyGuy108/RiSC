@@ -166,16 +166,17 @@ size_t Lexer::getErrors()
 
 void Lexer::tokenize(char* name, size_t len, State last)
 {
+	name[len] = '\0'; // terminate lexeme
 	Token::Type tmp{ parseState(last) };
 
-	// check for errors
-	if (tmp == Token::ERROR)
+	if (keywords.count(name)) // could be a keyword
+		tmp = Token::KEYWORD;
+	else if (tmp == Token::ERROR) // check for errors
 	{
 		// error: invalid token
 		++errors;
 	}
 
-	name[len] = '\0'; // terminate lexeme
 	tokens.emplace(name, tmp); // create the token
 }
 
