@@ -12,3 +12,9 @@ const char* Lexeme::getEnd()
 {
 	return end;
 }
+
+size_t Lexeme::length()
+{
+	return beg < end ? end - beg
+	                 : beg - end;
+}

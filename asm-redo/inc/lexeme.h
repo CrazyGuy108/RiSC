@@ -9,6 +9,8 @@ class Lexeme
 	const char* getBeg(); // gets beg
 	const char* getEnd(); // gets end
 
+	size_t length(); // gets length of substring
+
 private:
 	const char* beg; // beginning of lexeme
 	const char* end; // end of lexeme
