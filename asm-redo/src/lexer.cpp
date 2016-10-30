@@ -191,3 +191,23 @@ bool Lexer::digit(char c)
 	// regex: [0-9]
 	return c >= '0' && c <= '9';
 }
+
+StateTracker::StateTracker(Lexer::State curr)
+	: curr{ curr }, last{ Lexer::START } {}
+
+Lexer::State StateTracker::getCurr() const
+{
+	return curr;
+}
+
+Lexer::State StateTracker::getLast() const
+{
+	return last;
+}
+
+StateTracker& StateTracker::operator=(Lexer::State s)
+{
+	last = curr;
+	curr = s;
+	return *this;
+}
