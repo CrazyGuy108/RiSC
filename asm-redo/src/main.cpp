@@ -1,5 +1,6 @@
 #include <fstream>        // for ifstream
 #include <iostream>       // for cout
+#include <string>         // for string
 #include "../inc/lexer.h" // for lexer
 
 #define READ_TEST
@@ -10,25 +11,16 @@ int main()
 	std::ifstream ifile{ "test.asm" };
 	if (ifile.is_open())
 	{
+		std::string contents{ std::istreambuf_iterator<char>{ ifile }, std::istreambuf_iterator<char>{} };
 		std::cout << "input file opened\n";
 
-		// get file length
-		ifile.seekg(0, ifile.end);
-		size_t length{ (size_t)ifile.tellg() };
-		ifile.seekg(0, ifile.beg);
-
-		// put into char array
-		char* contents{ new char[length] };
-		ifile.read(contents, length - 1);
-		contents[length - 1] = '\0'; // null character to prevent reading garbage data
-		
 #ifdef READ_TEST
 		std::cout << "Read:\n" << contents << '\n';
 #endif // READ_TEST
 		
 #ifdef LEXER_TEST
 		std::cout << "Lexer:\n";
-		Lexer lexer{ contents };
+		Lexer lexer{ contents.c_str() };
 		Token lexeme;
 
 		while (lexeme.getType() != Token::END)
@@ -39,8 +31,6 @@ int main()
 
 		std::cout << '\n';
 #endif // LEXER_TEST
-
-		delete[] contents;
 	}
 	else
 		std::cout << "error: input file failed to open\n";
