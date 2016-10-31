@@ -17,12 +17,11 @@ public:
 	};
 
 	Token() = default;
-	Token(char* name, Type type);
+	Token(const Lexeme& l, Type type);
 
 	const char* getTypeName() const;
 
 private:
-	char* name; // aka lexeme
 	Lexeme lexeme;
 	Type type;
 };
