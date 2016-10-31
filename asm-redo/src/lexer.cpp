@@ -142,6 +142,11 @@ size_t Lexer::getErrors()
 	return errors;
 }
 
+bool Lexer::empty()
+{
+	return tokens.empty();
+}
+
 void Lexer::tokenize(char* name, size_t len, State last)
 {
 	name[len] = '\0'; // terminate lexeme

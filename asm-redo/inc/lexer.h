@@ -30,6 +30,7 @@ public:
 
 	Token next();       // gets the next lexeme from tokens queue
 	size_t getErrors(); // gets the amount of errors the lexer encountered
+	bool empty();       // checks if the tokens queue is empty
 
 private:
 	// helpers
