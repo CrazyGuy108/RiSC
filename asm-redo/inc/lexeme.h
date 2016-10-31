@@ -11,10 +11,10 @@ public:
 
 	Lexeme(const char* beg, const char* end);
 
-	const char* getBeg(); // gets beg
-	const char* getEnd(); // gets end
+	const char* getBeg() const; // gets beg
+	const char* getEnd() const; // gets end
 
-	size_t length(); // gets length of substring
+	size_t length() const; // gets length of substring
 
 private:
 	const char* beg; // beginning of lexeme

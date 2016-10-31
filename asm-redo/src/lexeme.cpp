@@ -1,6 +1,6 @@
 #include "../inc/lexeme.h"
 
-std::ostream& operator<<(std::ostream& os, Lexeme& l)
+std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 {
 	size_t len{ l.length() };
 	char* str{ new char[len + 1] };
@@ -18,17 +18,17 @@ std::ostream& operator<<(std::ostream& os, Lexeme& l)
 Lexeme::Lexeme(const char* beg, const char* end)
 	: beg{ beg }, end{ end } {}
 
-const char* Lexeme::getBeg()
+const char* Lexeme::getBeg() const
 {
 	return beg;
 }
 
-const char* Lexeme::getEnd()
+const char* Lexeme::getEnd() const
 {
 	return end;
 }
 
-size_t Lexeme::length()
+size_t Lexeme::length() const
 {
 	return beg < end ? end - beg
 	                 : beg - end;
