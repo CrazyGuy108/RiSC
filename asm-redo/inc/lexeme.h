@@ -9,6 +9,7 @@ class Lexeme
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Lexeme& l);
 
+	Lexeme() = default;
 	Lexeme(const char* beg, const char* end);
 
 	const char* getBeg() const; // gets beg
