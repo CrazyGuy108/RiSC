@@ -7,6 +7,8 @@
 class Lexeme
 {
 public:
+	friend std::ostream& operator<<(std::ostream& os, Lexeme& l);
+
 	Lexeme(const char* beg, const char* end);
 
 	const char* getBeg(); // gets beg
@@ -17,8 +19,6 @@ public:
 private:
 	const char* beg; // beginning of lexeme
 	const char* end; // end of lexeme
-
-	friend std::ostream& operator<<(std::ostream& os, Lexeme& l);
 };
 
 #endif // LEXEME_H
