@@ -14,39 +14,30 @@ const char* Token::getTypeName() const
 	{
 	case BEGIN:
 		return "begin";
-		break;
 
 	case END:
 		return "end";
-		break;
 
 	case NEWLINE:
 		return "newline";
-		break;
 
 	case KEYWORD:
 		return "keyword";
-		break;
 
 	case LABEL:
 		return "label";
-		break;
 
 	case REGISTER:
 		return "register";
-		break;
 
 	case IMMEDIATE:
 		return "immediate";
-		break;
 
 	case IDENTIFIER:
 		return "identifier";
-		break;
 
 	case ERROR:
 		return "error";
-		break;
 
 	default:
 		return "NULL";
