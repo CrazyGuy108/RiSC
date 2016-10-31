@@ -14,6 +14,9 @@ public:
 	const char* getBeg() const; // gets beg
 	const char* getEnd() const; // gets end
 
+	void setBeg(const char* beg); // sets beg
+	void setEnd(const char* end); // sets end
+
 	size_t length() const; // gets length of substring
 
 private:

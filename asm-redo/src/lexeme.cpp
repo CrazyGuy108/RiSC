@@ -28,6 +28,16 @@ const char* Lexeme::getEnd() const
 	return end;
 }
 
+void Lexeme::setBeg(const char* beg)
+{
+	this->beg = beg;
+}
+
+void Lexeme::setEnd(const char* end)
+{
+	this->end = end;
+}
+
 size_t Lexeme::length() const
 {
 	return beg < end ? end - beg
