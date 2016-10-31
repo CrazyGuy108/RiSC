@@ -1,5 +1,10 @@
 #include "../inc/token.h"
 
+std::ostream& operator<<(std::ostream& os, const Token& t)
+{
+
+}
+
 Token::Token(char* name, Type type)
 	: name{ name }, type{ type } {}
 

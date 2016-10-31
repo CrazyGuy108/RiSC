@@ -7,6 +7,8 @@
 class Token
 {
 public:
+	friend std::ostream& operator<<(std::ostream& os, const Token& t);
+
 	enum Type
 	{
 		BEGIN, END, NEWLINE, // punctuation
