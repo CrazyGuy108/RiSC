@@ -6,6 +6,7 @@
 // non-terminated substring of the source code
 class Lexeme
 {
+public:
 	Lexeme(const char* beg, const char* end);
 
 	const char* getBeg(); // gets beg
