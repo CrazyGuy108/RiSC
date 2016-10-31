@@ -7,7 +7,7 @@
 class Lexeme
 {
 public:
-	friend std::ostream& operator<<(std::ostream& os, Lexeme& l);
+	friend std::ostream& operator<<(std::ostream& os, const Lexeme& l);
 
 	Lexeme(const char* beg, const char* end);
 
