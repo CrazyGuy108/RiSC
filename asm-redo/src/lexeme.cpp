@@ -40,6 +40,5 @@ void Lexeme::setEnd(const char* end)
 
 size_t Lexeme::length() const
 {
-	return beg < end ? end - beg
-	                 : beg - end;
+	return end - beg;
 }
