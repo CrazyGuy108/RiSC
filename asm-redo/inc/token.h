@@ -19,7 +19,7 @@ public:
 	Token() = default;
 	Token(char* name, Type type);
 
-	const char* getTypeName();
+	const char* getTypeName() const;
 
 private:
 	char* name; // aka lexeme
