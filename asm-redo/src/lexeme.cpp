@@ -15,6 +15,9 @@ std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 	return os;
 }
 
+Lexeme::Lexeme(const char* ptr)
+	: Lexeme{ ptr, ptr } {}
+
 Lexeme::Lexeme(const char* beg, const char* end)
 	: beg{ beg }, end{ end } {}
 
