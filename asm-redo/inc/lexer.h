@@ -37,7 +37,7 @@ private:
 
 	// creates a token out of the given string
 	// the given state s tells it how it should treat the token
-	void tokenize(char* name, size_t len, State last);
+	void tokenize(const Lexeme& l, State last);
 
 	// static helpers
 

@@ -138,12 +138,11 @@ bool Lexer::empty()
 	return tokens.empty();
 }
 
-void Lexer::tokenize(char* name, size_t len, State last)
+void Lexer::tokenize(const Lexeme& l, State last)
 {
-	name[len] = '\0'; // terminate lexeme
 	Token::Type tmp{ parseState(last) };
 
-	if (keywords.count(name)) // could be a keyword
+	if (keywords.count(l)) // could be a keyword
 		tmp = Token::KEYWORD;
 	else if (tmp == Token::ERROR) // check for errors
 	{
@@ -151,7 +150,7 @@ void Lexer::tokenize(char* name, size_t len, State last)
 		++errors;
 	}
 
-	tokens.emplace(name, tmp); // create the token
+	tokens.emplace(l, tmp); // create the token
 }
 
 Token::Type Lexer::parseState(State s)
