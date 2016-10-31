@@ -21,12 +21,12 @@ int main()
 #ifdef LEXER_TEST
 		std::cout << "Lexer:\n";
 		Lexer lexer{ contents.c_str() };
-		Token lexeme;
+		Token token;
 
-		while (lexeme.getType() != Token::END)
+		while (token.getType() != Token::END)
 		{
-			lexeme = lexer.next();
-			std::cout << lexeme.getName() << ": " << lexeme.getTypeName() << '\n';
+			token = lexer.next();
+			std::cout << token.getName() << ": " << token.getTypeName() << '\n';
 		}
 
 		std::cout << '\n';
