@@ -1,6 +1,8 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
+#include "lexeme.h" // for Lexeme
+
 // defines a token containing a name and a type
 class Token
 {
@@ -21,6 +23,7 @@ public:
 
 private:
 	char* name; // aka lexeme
+	//Lexeme lexeme;
 	Type type;
 };
 
