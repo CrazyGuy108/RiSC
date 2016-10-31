@@ -1,5 +1,5 @@
-#ifndef LEXEME_H
-#define LEXEME_H
+#ifndef TOKEN_H
+#define TOKEN_H
 
 #include "lexeme.h" // for Lexeme
 
@@ -27,4 +27,4 @@ private:
 	Type type;
 };
 
-#endif // LEXEME_H
+#endif // TOKEN_H
