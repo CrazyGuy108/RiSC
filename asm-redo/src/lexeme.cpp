@@ -7,7 +7,7 @@ std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 
 	// copy Lexeme into char array
 	for (size_t i{ 0 }; i < len; ++i)
-		str[i] = l.beg[i];
+		str[i] = l.getBeg()[i];
 	str[len] = '\0'; // terminate copy
 
 	os << str;
