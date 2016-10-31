@@ -2,6 +2,9 @@
 
 std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 {
+	if(l.beg == nullptr || l.end == nullptr)
+		return os << "NULL";
+
 	size_t len{ l.length() };
 	char* str{ new char[len + 1] };
 
