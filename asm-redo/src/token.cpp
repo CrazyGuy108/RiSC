@@ -2,7 +2,7 @@
 
 std::ostream& operator<<(std::ostream& os, const Token& t)
 {
-
+	return os << t.lexeme << ": " << t.getTypeName();
 }
 
 Token::Token(char* name, Type type)

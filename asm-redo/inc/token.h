@@ -25,7 +25,7 @@ public:
 
 private:
 	char* name; // aka lexeme
-	//Lexeme lexeme;
+	Lexeme lexeme;
 	Type type;
 };
 
