@@ -1,6 +1,8 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
+#include <iostream> // for ostream
+
 // non-terminated substring of the source code
 class Lexeme
 {
@@ -14,6 +16,8 @@ class Lexeme
 private:
 	const char* beg; // beginning of lexeme
 	const char* end; // end of lexeme
+
+	friend std::ostream& operator<<(std::ostream& os, Lexeme& l);
 };
 
 #endif // LEXEME_H
