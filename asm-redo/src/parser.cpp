@@ -1,6 +1,6 @@
 #include "../inc/parser.h"
 
-Parser::Parser(char* program)
+Parser::Parser(const char* program)
 {
 	parse(program);
 }
@@ -10,10 +10,9 @@ Parser::Parser(Lexer& lexer)
 	parse(lexer);
 }
 
-void Parser::parse(char* program)
+void Parser::parse(const char* program)
 {
-	Lexer lexer{ program };
-	parse(lexer);
+	parse({ program });
 }
 
 void Parser::parse(Lexer& lexer)
