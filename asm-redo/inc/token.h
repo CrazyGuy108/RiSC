@@ -19,8 +19,6 @@ public:
 	Token() = default;
 	Token(char* name, Type type);
 
-	const char* getName();
-	Type getType();
 	const char* getTypeName();
 
 private:

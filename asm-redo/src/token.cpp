@@ -8,17 +8,6 @@ std::ostream& operator<<(std::ostream& os, const Token& t)
 Token::Token(char* name, Type type)
 	: name{ name }, type{ type } {}
 
-const char* Token::getName()
-{
-	return name != nullptr ? name
-	                       : "NULL";
-}
-
-Token::Type Token::getType()
-{
-	return type;
-}
-
 const char* Token::getTypeName()
 {
 	switch (type)
