@@ -12,7 +12,7 @@ Parser::Parser(Lexer& lexer)
 
 void Parser::parse(const char* program)
 {
-	parse({ program });
+	parse(Lexer{ program });
 }
 
 void Parser::parse(Lexer& lexer)
