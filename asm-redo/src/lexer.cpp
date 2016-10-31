@@ -8,13 +8,6 @@ Lexer::Lexer(const char* program)
 
 void Lexer::analyze(const char* program)
 {
-	size_t len{ strlen(program) };   // length of program
-	char* iterator{ new char[len] }; // copy of program
-
-	// initialize iterator with a copy of program
-	for(size_t i{ 0 }; i < len; ++i)
-		iterator[i] = program[i];
-
 	static const State states[10][2] // state table
 	{
 		// letter digit
@@ -35,11 +28,11 @@ void Lexer::analyze(const char* program)
 	// state machine stuff here, combining everything in tokenize()
 	//  as well as some other special functions
 
+	Lexeme iterator{ program };
 	StateTracker state{ START };
-	size_t i{ 0 };
-	while (iterator[i] != '\0')
+	while (iterator.getEnd()[0] != '\0')
 	{
-		switch (iterator[i])
+		switch (iterator.getEnd()[0])
 		{
 		case '\t':
 		case ' ': // space/tab
@@ -77,9 +70,9 @@ void Lexer::analyze(const char* program)
 			break;
 
 		default:
-			if (letter(iterator[i]))
+			if (letter(iterator.getEnd()[0]))
 				state = states[state.getCurr()][0];
-			else if (digit(iterator[i]))
+			else if (digit(iterator.getEnd()[0]))
 				state = states[state.getCurr()][1]; 
 			else
 			{
@@ -93,15 +86,13 @@ void Lexer::analyze(const char* program)
 		    state.getLast() == START) // start of word
 		{
 			// reset iterator
-			iterator = &iterator[i];
-			i = 0;
+			iterator.setBeg(iterator.getEnd());
 		}
 		else if (state.getLast() == COMMENT &&
 		         state.getCurr() == NEWLINE) // end of comment
 		{
 			// reset iterator
-			iterator = &iterator[i];
-			i = 0;
+			iterator.setBeg(iterator.getEnd());
 			tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 		}
 		else if(state.getLast() != START) // end of word (possibly)
@@ -109,17 +100,17 @@ void Lexer::analyze(const char* program)
 			switch (state.getCurr())
 			{
 			case START: // end of word
-				tokenize(iterator, i, state.getLast()); // tokenize the lexeme
+				tokenize(iterator, state.getLast()); // tokenize the lexeme
 				break;
 
 			case NEWLINE: // end of word and line
-				tokenize(iterator, i, state.getLast()); // tokenize the lexeme
+				tokenize(iterator, state.getLast()); // tokenize the lexeme
 				tokens.emplace(nullptr, Token::NEWLINE); // terminate the current line
 				break;
 			}
 		}
 
-		++i;
+		iterator.setEnd(iterator.getEnd() + 1);
 	}
 
 	tokens.emplace(nullptr, Token::END);
