@@ -32,6 +32,7 @@ void Lexer::analyze(const char* program)
 	StateTracker state{ START };
 	while (iterator.getEnd()[0] != '\0')
 	{
+		// change states depending on the next character
 		switch (iterator.getEnd()[0])
 		{
 		case '\t':
@@ -82,6 +83,7 @@ void Lexer::analyze(const char* program)
 			}
 		}
 
+		// decide what to do based on what state it switched to
 		if (state.getCurr() != START &&
 		    state.getLast() == START) // start of word
 		{
@@ -110,6 +112,7 @@ void Lexer::analyze(const char* program)
 			}
 		}
 
+		// advance to the next character
 		iterator.setEnd(iterator.getEnd() + 1);
 	}
 
