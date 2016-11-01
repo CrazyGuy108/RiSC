@@ -13,6 +13,7 @@ public:
 	Lexeme() = default;
 	Lexeme(const char* beg, const char* end);
 
+	// for string literals
 	template<size_t len>
 	constexpr Lexeme(const char(&str)[len])
 		: beg{ str }, end{ &str[len] } {}
