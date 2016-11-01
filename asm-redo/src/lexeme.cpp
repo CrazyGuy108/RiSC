@@ -18,6 +18,11 @@ std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 	return os;
 }
 
+bool operator<(const Lexeme& l, const Lexeme& r)
+{
+	return l.cmp(r) < 0;
+}
+
 int Lexeme::cmp(const Lexeme& l)
 {
 	size_t i{ 0 };

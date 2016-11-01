@@ -8,6 +8,7 @@ class Lexeme
 {
 public:
 	friend std::ostream& operator<<(std::ostream& os, const Lexeme& l);
+	friend bool operator<(const Lexeme& l, const Lexeme& r);
 
 	Lexeme() = default;
 	Lexeme(const char* ptr);
