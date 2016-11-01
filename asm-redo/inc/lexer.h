@@ -11,8 +11,7 @@ class Lexer
 public:
 	enum State
 	{
-		A, B, C, D, E, F, G, H, I, J,
-		START = A,
+		START,
 		IMM,
 		REG,
 		ID,
@@ -21,7 +20,8 @@ public:
 		ERROR,
 		COMMENT,
 		IMM_CHECK,
-		REG_CHECK
+		REG_CHECK,
+		A = START, B, C, D, E, F, G, H, I, J
 	};
 
 	Lexer(const char* program);
