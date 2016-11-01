@@ -37,9 +37,6 @@ int Lexeme::cmp(const Lexeme& l) const
 	return 0; // =
 }
 
-Lexeme::Lexeme(const char* ptr)
-	: Lexeme{ ptr, ptr } {}
-
 Lexeme::Lexeme(const char* beg, const char* end)
 	: beg{ beg }, end{ end } {}
 

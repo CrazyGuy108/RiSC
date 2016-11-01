@@ -28,7 +28,7 @@ void Lexer::analyze(const char* program)
 	// state machine stuff here, combining everything in tokenize()
 	//  as well as some other special functions
 
-	Lexeme iterator{ program };
+	Lexeme iterator{ program, program };
 	StateTracker state{ START };
 	while (iterator.getEnd()[0] != '\0')
 	{
