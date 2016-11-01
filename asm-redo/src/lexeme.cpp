@@ -37,12 +37,11 @@ int Lexeme::cmp(const Lexeme& l) const
 	return 0; // =
 }
 
+Lexeme::Lexeme(const char* str)
+	: Lexeme{ str, &str[strlen(str)] } {}
+
 Lexeme::Lexeme(const char* beg, const char* end)
 	: beg{ beg }, end{ end } {}
-
-template<size_t len>
-constexpr Lexeme::Lexeme(const char str[len])
-	: Lexeme{ str, &str[len] } {}
 
 const char* Lexeme::getBeg() const
 {
