@@ -52,7 +52,11 @@ void Lexer::analyze(const char* program)
 			if (state.getCurr() == START)
 				state = IMM_CHECK;
 			else
-				state = states[state.getCurr()][0]; // treat as letter
+			{
+				// error: invalid character
+				state = ERROR;
+				++errors;
+			}
 			break;
 
 		case ':': // could be label name
