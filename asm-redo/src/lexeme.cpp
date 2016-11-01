@@ -18,6 +18,20 @@ std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 	return os;
 }
 
+int Lexeme::cmp(const Lexeme& l)
+{
+	size_t i{ 0 };
+	while (&beg[i] != end && &l.beg[i] != l.end)
+		if (beg[i] < l.beg[i])
+			return -1; // <
+		else if (beg[i] > l.beg[i])
+			return 1; // >
+		else
+			++i;
+
+	return 0; // =
+}
+
 Lexeme::Lexeme(const char* ptr)
 	: Lexeme{ ptr, ptr } {}
 
