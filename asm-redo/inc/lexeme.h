@@ -11,8 +11,11 @@ public:
 	friend bool operator<(const Lexeme& l, const Lexeme& r);
 
 	Lexeme() = default;
-	Lexeme(const char* str);
 	Lexeme(const char* beg, const char* end);
+
+	template<size_t len>
+	constexpr Lexeme(const char(&str)[len])
+		: beg{ str }, end{ &str[len] } {}
 
 	const char* getBeg() const; // gets beg
 	const char* getEnd() const; // gets end

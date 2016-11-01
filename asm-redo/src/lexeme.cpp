@@ -37,9 +37,6 @@ int Lexeme::cmp(const Lexeme& l) const
 	return 0; // =
 }
 
-Lexeme::Lexeme(const char* str)
-	: Lexeme{ str, str == nullptr ? str : strchr(str, '\0') } {}
-
 Lexeme::Lexeme(const char* beg, const char* end)
 	: beg{ beg }, end{ end } {}
 
