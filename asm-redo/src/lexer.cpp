@@ -25,8 +25,8 @@ void Lexer::analyze(const char* program)
 
 	tokens.emplace("null", Token::BEGIN);
 
-	// state machine stuff here, combining everything in tokenize()
-	//  as well as some other special functions
+	// lexically parse the program, tokenizing and categorizing matches
+	//  by using the state table and some special cases
 
 	Lexeme iterator{ program, program };
 	StateTracker state{ START };
