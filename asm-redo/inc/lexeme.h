@@ -26,7 +26,7 @@ public:
 
 	size_t length() const; // gets length of substring
 
-	int cmp(const Lexeme& l);
+	int cmp(const Lexeme& l) const;
 
 private:
 	const char* beg; // beginning of lexeme

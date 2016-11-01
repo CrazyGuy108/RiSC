@@ -23,7 +23,7 @@ bool operator<(const Lexeme& l, const Lexeme& r)
 	return l.cmp(r) < 0;
 }
 
-int Lexeme::cmp(const Lexeme& l)
+int Lexeme::cmp(const Lexeme& l) const
 {
 	size_t i{ 0 };
 	while (&beg[i] != end && &l.beg[i] != l.end)
