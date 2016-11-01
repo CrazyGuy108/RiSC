@@ -97,9 +97,8 @@ void Lexer::analyze(const char* program)
 		else if (state.getLast() == COMMENT &&
 		         state.getCurr() == NEWLINE) // end of comment
 		{
-			// reset iterator
-			iterator.setBeg(iterator.getEnd());
-			tokens.emplace(Token::NEWLINE); // terminate the current line
+			iterator.setBeg(iterator.getEnd() + 1); // reset iterator
+			tokens.emplace(Token::NEWLINE);         // terminate the current line
 		}
 		else if(state.getLast() != START) // end of word (possibly)
 		{
