@@ -23,7 +23,7 @@ void Lexer::analyze(const char* program)
 		{ D, C }  // J (reg digit check, entered by a start-of-word 'r' )
 	};
 
-	tokens.emplace("null", Token::BEGIN);
+	tokens.emplace(Token::BEGIN);
 
 	// lexically parse the program, tokenizing and categorizing matches
 	//  by using the state table and some special cases
@@ -99,7 +99,7 @@ void Lexer::analyze(const char* program)
 		{
 			// reset iterator
 			iterator.setBeg(iterator.getEnd());
-			tokens.emplace("null", Token::NEWLINE); // terminate the current line
+			tokens.emplace(Token::NEWLINE); // terminate the current line
 		}
 		else if(state.getLast() != START) // end of word (possibly)
 		{
@@ -111,7 +111,7 @@ void Lexer::analyze(const char* program)
 
 			case NEWLINE: // end of word and line
 				tokenize(iterator, state.getLast()); // tokenize the lexeme
-				tokens.emplace("null", Token::NEWLINE); // terminate the current line
+				tokens.emplace(Token::NEWLINE); // terminate the current line
 				break;
 			}
 		}
@@ -120,13 +120,13 @@ void Lexer::analyze(const char* program)
 		iterator.setEnd(iterator.getEnd() + 1);
 	}
 
-	tokens.emplace("null", Token::END);
+	tokens.emplace(Token::END);
 }
 
 Token Lexer::next()
 {
 	if(tokens.empty())
-		return Token{ "null", Token::END };
+		return Token{ Token::END };
 	else
 	{
 		Token tmp{ tokens.front() };

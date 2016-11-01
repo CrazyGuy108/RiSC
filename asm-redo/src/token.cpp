@@ -5,6 +5,9 @@ std::ostream& operator<<(std::ostream& os, const Token& t)
 	return os << t.lexeme << ": " << t.getTypeName();
 }
 
+Token::Token(Type type)
+	: lexeme{ "null" }, type{ type } {}
+
 Token::Token(const Lexeme& lexeme, Type type)
 	: lexeme{ lexeme }, type{ type } {}
 

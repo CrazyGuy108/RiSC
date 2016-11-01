@@ -17,6 +17,7 @@ public:
 	};
 
 	Token() = default;
+	Token(Type type);
 	Token(const Lexeme& l, Type type);
 
 	const char* getTypeName() const;
