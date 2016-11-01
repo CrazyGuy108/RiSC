@@ -14,6 +14,10 @@ public:
 	Lexeme(const char* ptr);
 	Lexeme(const char* beg, const char* end);
 
+	template<size_t len>
+	Lexeme(const char str[len])
+		: Lexeme{ str, &str[len] } {}
+
 	const char* getBeg() const; // gets beg
 	const char* getEnd() const; // gets end
 
