@@ -128,12 +128,12 @@ Token Lexer::next()
 	}
 }
 
-size_t Lexer::getErrors()
+size_t Lexer::getErrors() const
 {
 	return errors;
 }
 
-bool Lexer::empty()
+bool Lexer::empty() const
 {
 	return tokens.empty();
 }

@@ -28,9 +28,9 @@ public:
 	
 	void analyze(const char* program); // lexically analyze the given program
 
-	Token next();       // gets the next lexeme from tokens queue
-	size_t getErrors(); // gets the amount of errors the lexer encountered
-	bool empty();       // checks if the lexer is all out of tokens
+	Token next();             // gets the next lexeme from tokens queue
+	size_t getErrors() const; // gets the amount of errors the lexer encountered
+	bool empty() const;       // checks if the lexer is all out of tokens
 
 private:
 	// helpers
