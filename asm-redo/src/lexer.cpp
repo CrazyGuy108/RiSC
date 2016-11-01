@@ -145,7 +145,7 @@ void Lexer::tokenize(const Lexeme& l, State last)
 {
 	Token::Type tmp{ parseState(last) };
 
-	if (keywords.count(l)) // could be a keyword
+	if (keywords.find(l) != keywords.end()) // could be a keyword
 		tmp = Token::KEYWORD;
 	else if (tmp == Token::ERROR) // check for errors
 	{
