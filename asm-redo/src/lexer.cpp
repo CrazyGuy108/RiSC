@@ -176,6 +176,7 @@ Token::Type Lexer::parseState(State s)
 	case REG:
 		return Token::REGISTER;
 
+	case REG_CHECK: // couldn't resolve as a register, so likely a keyword/identifier
 	case ID:
 		return Token::IDENTIFIER;
 
