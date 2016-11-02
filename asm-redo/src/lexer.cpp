@@ -88,8 +88,30 @@ void Lexer::analyze(const char* program)
 		}
 
 		// decide what to do based on what state it switched to
-		if (state.getCurr() != START &&
-		    state.getLast() == START) // start of word
+		if (state.getCurr() == NEWLINE) // end of the line
+		{
+			switch (state.getLast()) // what just happened before?
+			{
+			// exclude these cases from being a valid accepting state
+			case START:   // trailing spaces after a line of code, typical
+			case NEWLINE: // next line of code separated by multiple lines
+			case COMMENT: // terminating a line comment
+				break;
+
+			default: // assumed to be in an accepting/error state
+				// create the appropriate token
+				tokenize(iterator, state.getLast());
+			}
+
+			// terminate the current line
+			tokens.emplace(Token::NEWLINE);
+
+			// reset iterator and state
+			iterator.setBeg(iterator.getEnd() + 1);
+			state = START;
+		}
+		else if (state.getCurr() != START &&
+		         state.getLast() == START) // start of word
 		{
 			// reset iterator
 			iterator.setBeg(iterator.getEnd());
