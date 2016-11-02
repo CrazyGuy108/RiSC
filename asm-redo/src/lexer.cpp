@@ -116,19 +116,10 @@ void Lexer::analyze(const char* program)
 			// reset iterator
 			iterator.setBeg(iterator.getEnd());
 		}
-		else if(state.getLast() != START) // end of word (possibly)
+		else if(state.getCurr() == START &&
+		        state.getLast() != START) // end of word
 		{
-			switch (state.getCurr())
-			{
-			case START: // end of word
-				tokenize(iterator, state.getLast()); // tokenize the lexeme
-				break;
-
-			case NEWLINE: // end of word and line
-				tokenize(iterator, state.getLast()); // tokenize the lexeme
-				tokens.emplace(Token::NEWLINE); // terminate the current line
-				break;
-			}
+			tokenize(iterator, state.getLast()); // tokenize the lexeme
 		}
 
 		// advance to the next character
