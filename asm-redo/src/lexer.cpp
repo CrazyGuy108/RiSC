@@ -44,8 +44,8 @@ void Lexer::analyze(const char* program)
 		case 'r': // could be register name
 			if (state.getCurr() == START)
 				state = REG_CHECK;
-			else
-				state = states[state.getCurr()][0]; // treat as letter
+			else // treat as letter
+				state = states[state.getCurr()][LETTER];
 			break;
 
 		case '-': // could be immediate name
@@ -72,9 +72,9 @@ void Lexer::analyze(const char* program)
 
 		default:
 			if (letter(iterator.getEnd()[0]))
-				state = states[state.getCurr()][0];
+				state = states[state.getCurr()][LETTER];
 			else if (digit(iterator.getEnd()[0]))
-				state = states[state.getCurr()][1]; 
+				state = states[state.getCurr()][DIGIT]; 
 			else if (state.getCurr() != COMMENT)
 			{
 				// error: invalid character
@@ -84,7 +84,8 @@ void Lexer::analyze(const char* program)
 		}
 
 		// decide what to do based on what state it switched to
-		if (state.getCurr() == NEWLINE) // end of the line
+		if (state.getCurr() == START || // end of word
+		    state.getCurr() == NEWLINE) // end of the line
 		{
 			switch (state.getLast()) // what just happened before?
 			{
@@ -98,24 +99,16 @@ void Lexer::analyze(const char* program)
 				tokenize(iterator, state.getLast());
 			}
 
-			// terminate the current line
-			tokens.emplace(Token::NEWLINE);
+			// terminate the current line if needed
+			if(state.getCurr() == NEWLINE)
+				tokens.emplace(Token::NEWLINE);
 
 			// reset iterator and state
 			iterator.setBeg(iterator.getEnd() + 1);
 			state = START;
 		}
-		else if (state.getCurr() != START &&
-		         state.getLast() == START) // start of word
-		{
-			// reset iterator
-			iterator.setBeg(iterator.getEnd());
-		}
-		else if(state.getCurr() == START &&
-		        state.getLast() != START) // end of word
-		{
-			tokenize(iterator, state.getLast()); // tokenize the lexeme
-		}
+		else if (state.getLast() == START) // start of word
+			iterator.setBeg(iterator.getEnd()); // reset iterator
 
 		// advance to the next character
 		iterator.setEnd(iterator.getEnd() + 1);
