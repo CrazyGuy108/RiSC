@@ -19,13 +19,13 @@ int main()
 #endif // READ_TEST
 		
 #ifdef LEXER_TEST
-		std::cout << "Lexer:\n";
+		std::cout << "Lexer:" << std::endl;
 		Lexer lexer{ contents.c_str() };
 
 		while (!lexer.empty())
 			std::cout << lexer.next() << '\n';
 
-		std::cout << '\n';
+		std::cout << std::endl;
 #endif // LEXER_TEST
 
 		ifile.close();
@@ -33,6 +33,8 @@ int main()
 	}
 	else
 		std::cout << "error: input file failed to open\n";
+
+	std::cout << std::endl;
 
 	return 0;
 }
