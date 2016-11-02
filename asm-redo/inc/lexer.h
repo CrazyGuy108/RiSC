@@ -24,6 +24,11 @@ public:
 		A = START, B, C, D, E, F, G, H, I, J
 	};
 
+	enum Column
+	{
+		LETTER, DIGIT
+	};
+
 	Lexer(const char* program);
 	
 	void analyze(const char* program); // lexically analyze the given program
