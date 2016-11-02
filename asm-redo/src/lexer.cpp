@@ -92,11 +92,10 @@ void Lexer::analyze(const char* program)
 		{
 			switch (state.getLast()) // what just happened before?
 			{
-			// exclude these cases from being a valid accepting state
 			case START:   // trailing spaces after a line of code, typical
 			case NEWLINE: // next line of code separated by multiple lines
 			case COMMENT: // terminating a line comment
-				break;
+				break; // exclude these cases from creating a token
 
 			default: // assumed to be in an accepting/error state
 				// create the appropriate token
