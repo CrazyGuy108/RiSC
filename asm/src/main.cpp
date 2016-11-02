@@ -22,6 +22,7 @@ int main()
 		std::cout << "Lexer:" << std::endl;
 		Lexer lexer{ contents.c_str() };
 
+		// print out every Token created by the lexer
 		while (!lexer.empty())
 			std::cout << lexer.next() << '\n';
 
