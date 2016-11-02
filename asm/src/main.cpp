@@ -27,6 +27,9 @@ int main()
 
 		std::cout << '\n';
 #endif // LEXER_TEST
+
+		ifile.close();
+		std::cout << "input file closed\n";
 	}
 	else
 		std::cout << "error: input file failed to open\n";
