@@ -51,18 +51,14 @@ void Lexer::analyze(const char* program)
 		case '-': // could be immediate name
 			if (state.getCurr() == START)
 				state = IMM_CHECK;
-			else
-			{
-				// error: invalid character
-				state = ERROR;
-				++errors;
-			}
+			else if (state.getCurr() != COMMENT)
+				state = ERROR; // can't have a hyphen anywhere else
 			break;
 
 		case ':': // could be label name
-			if(state.getCurr() == ID)
+			if (state.getCurr() == ID)
 				state = LABEL;
-			else if(state.getCurr() != COMMENT)
+			else if (state.getCurr() != COMMENT)
 				state = ERROR; // can't have a colon anywhere else
 			break;
 
@@ -79,7 +75,7 @@ void Lexer::analyze(const char* program)
 				state = states[state.getCurr()][0];
 			else if (digit(iterator.getEnd()[0]))
 				state = states[state.getCurr()][1]; 
-			else
+			else if (state.getCurr() != COMMENT)
 			{
 				// error: invalid character
 				state = ERROR;
