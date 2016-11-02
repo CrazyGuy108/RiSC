@@ -1,2 +1,5 @@
 # Assembler
-The assembler as of now compiles source code directly into bytecode. Later, this will all be redone and split into an assembler and linker.
+(In development)
+
+The first assembler I wrote in the `asm-old` folder was made without any prior knowledge as to what compiler theory even is.
+This project will be made _with_ prior knowledge instead.

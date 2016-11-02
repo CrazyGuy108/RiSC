@@ -1,41 +1,35 @@
-#include "../include/assembler.h"
+#include <fstream>        // for ifstream
+#include <iostream>       // for cout
+#include <string>         // for string
+#include "../inc/lexer.h" // for lexer
 
-int main(int argc, char** argv)
+#define READ_TEST
+#define LEXER_TEST
+
+int main()
 {
-	if (argc == 3)
+	std::ifstream ifile{ "test.asm" };
+	if (ifile.is_open())
 	{
-		std::ifstream ifile;
-		std::ofstream ofile;
+		std::string contents{ std::istreambuf_iterator<char>{ ifile }, std::istreambuf_iterator<char>{} };
+		std::cout << "input file opened\n";
 
-		const char* ext{ strrchr(argv[1], '.') };
+#ifdef READ_TEST
+		std::cout << "Read:\n" << contents << '\n';
+#endif // READ_TEST
+		
+#ifdef LEXER_TEST
+		std::cout << "Lexer:\n";
+		Lexer lexer{ contents.c_str() };
 
-		if (ext && !strcmp(ext, ".asm"))
-		{
-			ifile.open(argv[1]);
-			if (ifile.fail())
-			{
-				std::cout << "error: input file failed to open\n";
-				return 0;
-			}
-		}
+		while (!lexer.empty())
+			std::cout << lexer.next() << '\n';
 
-		ext = strrchr(argv[2], '.');
-
-		if (ext && !strcmp(ext, ".risc"))
-		{
-			ofile.open(argv[2], std::ofstream::binary);
-			if (ofile.fail())
-			{
-				std::cout << "error: output file failed to open\n";
-				return 0;
-			}
-		}
-
-		assemble(ifile, ofile);
-
-		ifile.close();
-		ofile.close();
+		std::cout << '\n';
+#endif // LEXER_TEST
 	}
+	else
+		std::cout << "error: input file failed to open\n";
 
 	return 0;
 }
