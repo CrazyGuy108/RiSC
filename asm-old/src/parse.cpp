@@ -1,4 +1,4 @@
-#include "../include/parse.h"
+#include "../include/parse.hpp"
 
 inst_t reg(const char* name)
 {

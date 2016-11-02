@@ -1,9 +1,9 @@
-#ifndef LEXER_H
-#define LEXER_H
+#ifndef LEXER_HPP
+#define LEXER_HPP
 
-#include <queue>     // for queue
-#include "token.h"   // for Token
-#include "utility.h" // for keywords and keyword_map
+#include <queue>       // for queue
+#include "token.hpp"   // for Token
+#include "utility.hpp" // for keywords and keyword_map
 
 // state machine that lexically parses a program line by line
 class Lexer
@@ -69,4 +69,4 @@ private:
 	Lexer::State last; // last state
 };
 
-#endif // LEXER_H
+#endif // LEXER_HPP

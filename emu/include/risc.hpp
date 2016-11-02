@@ -1,8 +1,8 @@
-#ifndef RISC_H
-#define RISC_H
+#ifndef RISC_HPP
+#define RISC_HPP
 
-#include <iostream>    // for cout
-#include "utilities.h" // for typedefs
+#include <iostream>      // for cout
+#include "utilities.hpp" // for typedefs
 
 class RiSC
 {
@@ -25,4 +25,4 @@ private:
 	data_t pc;
 };
 
-#endif // RISC_H
+#endif // RISC_HPP

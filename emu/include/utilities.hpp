@@ -1,5 +1,5 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILITIES_HPP
+#define UTILITIES_HPP
 
 #include <cstdint> // for int16_t and uint16_t
 
@@ -44,4 +44,4 @@ OPERAND(rc);
 OPERAND(i7);
 OPERAND(i10);
 
-#endif // UTILITIES_H
+#endif // UTILITIES_HPP

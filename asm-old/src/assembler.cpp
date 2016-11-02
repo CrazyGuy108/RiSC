@@ -1,4 +1,4 @@
-#include "../include/assembler.h"
+#include "../include/assembler.hpp"
 
 size_t preprocessor(std::vector<std::vector<char*>>& words, std::vector<Opcode>& opcodes, char* iterator)
 {

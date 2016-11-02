@@ -1,9 +1,9 @@
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef UTILITIES_HPP
+#define UTILITIES_HPP
 
-#include <cstdint> // for uint16_T
-#include <vector>  // for vector
-#include "table.h" // for Table
+#include <cstdint>   // for uint16_T
+#include <vector>    // for vector
+#include "table.hpp" // for Table
 
 #define OP(name) line_t name##(size_t argc, const char** argv, uint16_t line)
 
@@ -27,4 +27,4 @@ constexpr inst_t lui_shift  = 6;
 
 extern Table<inst_t> symbols;
 
-#endif // UTILITIES_H
+#endif // UTILITIES_HPP

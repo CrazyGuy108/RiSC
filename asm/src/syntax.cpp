@@ -1,1 +1,1 @@
-#include "../inc/syntax.h"
+#include "../inc/syntax.hpp"

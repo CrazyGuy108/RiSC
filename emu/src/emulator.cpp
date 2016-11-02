@@ -1,4 +1,4 @@
-#include "../include/emulator.h"
+#include "../include/emulator.hpp"
 
 void emulator(char* contents, size_t length)
 {

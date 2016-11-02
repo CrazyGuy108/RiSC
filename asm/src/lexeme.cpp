@@ -1,4 +1,4 @@
-#include "../inc/lexeme.h"
+#include "../inc/lexeme.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Lexeme& l)
 {

@@ -1,4 +1,4 @@
-#include "../include/exception.h"
+#include "../include/exception.hpp"
 
 RiscException::RiscException()
 	: msg{ nullptr } {}

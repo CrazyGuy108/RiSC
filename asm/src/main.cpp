@@ -1,7 +1,7 @@
-#include <fstream>        // for ifstream
-#include <iostream>       // for cout
-#include <string>         // for string
-#include "../inc/lexer.h" // for lexer
+#include <fstream>          // for ifstream
+#include <iostream>         // for cout
+#include <string>           // for string
+#include "../inc/lexer.hpp" // for lexer
 
 #define READ_TEST
 #define LEXER_TEST

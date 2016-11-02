@@ -1,8 +1,8 @@
-#ifndef PARSER_H
-#define PARSER_H
+#ifndef PARSER_HPP
+#define PARSER_HPP
 
-#include "lexer.h"      // for Lexer
-#include "syntaxtree.h" // for SyntaxTree
+#include "lexer.hpp"      // for Lexer
+#include "syntaxtree.hpp" // for SyntaxTree
 
 class Parser
 {
@@ -18,4 +18,4 @@ private:
 	SyntaxTree ast; // syntax tree to be generated
 };
 
-#endif // PARSER_H
+#endif // PARSER_HPP

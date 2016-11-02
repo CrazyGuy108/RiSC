@@ -1,7 +1,7 @@
-#ifndef SYNTAXTREE_H
-#define SYNTAXTREE_H
+#ifndef SYNTAXTREE_HPP
+#define SYNTAXTREE_HPP
 
-#include "token.h" // for Token
+#include "token.hpp" // for Token
 
 class SyntaxTree
 {
@@ -14,4 +14,4 @@ private:
 	// syntax tree stuff
 };
 
-#endif // SYNTAXTREE_H
+#endif // SYNTAXTREE_HPP

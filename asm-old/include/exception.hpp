@@ -1,5 +1,5 @@
-#ifndef EXCEPTION_H
-#define EXCEPTION_H
+#ifndef EXCEPTION_HPP
+#define EXCEPTION_HPP
 
 // base class for all exceptions
 class RiscException
@@ -48,4 +48,4 @@ protected:
 	size_t given;    // amount of operands given
 };
 
-#endif // EXCEPTION_H
+#endif // EXCEPTION_HPP

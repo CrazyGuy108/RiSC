@@ -1,11 +1,11 @@
-#ifndef ASSEMBLER_H
-#define ASSEMBLER_H
+#ifndef ASSEMBLER_HPP
+#define ASSEMBLER_HPP
 
-#include <fstream>      // for ifstream and ostream
-#include <iostream>     // for cout
-#include <vector>       // for vector
-#include "operations.h" // for Opcode
-#include "parse.h"      // for compile()
+#include <fstream>        // for ifstream and ostream
+#include <iostream>       // for cout
+#include <vector>         // for vector
+#include "operations.hpp" // for Opcode
+#include "parse.hpp"      // for compile()
 
 // enables debug messages
 //#define DEBUG
@@ -16,4 +16,4 @@ size_t compiler(const std::vector<std::vector<char*>>& words, const std::vector<
 
 void assemble(std::ifstream& ifile, std::ostream& ofile);
 
-#endif // ASSEMBLER_H
+#endif // ASSEMBLER_HPP

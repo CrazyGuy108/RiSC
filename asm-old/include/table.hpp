@@ -1,8 +1,8 @@
-#ifndef TABLE_H
-#define TABLE_H
+#ifndef TABLE_HPP
+#define TABLE_HPP
 
-#include <map>         // for map
-#include "exception.h" // for TokenException
+#include <map>           // for map
+#include "exception.hpp" // for TokenException
 
 class StrLess
 {
@@ -71,4 +71,4 @@ private:
 	map_type data;
 };
 
-#endif // TABLE_H
+#endif // TABLE_HPP

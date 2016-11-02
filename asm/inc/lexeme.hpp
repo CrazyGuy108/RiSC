@@ -1,5 +1,5 @@
-#ifndef LEXEME_H
-#define LEXEME_H
+#ifndef LEXEME_HPP
+#define LEXEME_HPP
 
 #include <iostream> // for ostream
 
@@ -33,4 +33,4 @@ private:
 	const char* end; // end of lexeme
 };
 
-#endif // LEXEME_H
+#endif // LEXEME_HPP

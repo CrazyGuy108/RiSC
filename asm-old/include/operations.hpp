@@ -1,9 +1,9 @@
-#ifndef OPERATIONS_H
-#define OPERATIONS_H
+#ifndef OPERATIONS_HPP
+#define OPERATIONS_HPP
 
-#include "instruction.h" // for rrr/rri/ri
-#include "parse.h"       // for reg()/imm()
-#include "utilities.h"   // for macros/constants
+#include "instruction.hpp" // for rrr/rri/ri
+#include "parse.hpp"       // for reg()/imm()
+#include "utilities.hpp"   // for macros/constants
 
 class Opcode
 {
@@ -40,4 +40,4 @@ OP(movi);
 
 OP(unknown);
 
-#endif // OPERATIONS_H
+#endif // OPERATIONS_HPP

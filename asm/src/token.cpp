@@ -1,4 +1,4 @@
-#include "../inc/token.h"
+#include "../inc/token.hpp"
 
 std::ostream& operator<<(std::ostream& os, const Token& t)
 {

@@ -1,8 +1,8 @@
-#ifndef TOKEN_H
-#define TOKEN_H
+#ifndef TOKEN_HPP
+#define TOKEN_HPP
 
-#include <iostream> // for ostream
-#include "lexeme.h" // for Lexeme
+#include <iostream>   // for ostream
+#include "lexeme.hpp" // for Lexeme
 
 // defines a token containing a name and a type
 class Token
@@ -28,4 +28,4 @@ private:
 	Type type;
 };
 
-#endif // TOKEN_H
+#endif // TOKEN_HPP

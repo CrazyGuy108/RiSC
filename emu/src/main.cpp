@@ -1,6 +1,6 @@
 #include <fstream>  // for ifstream
 #include <iostream> // for cout
-#include "../include/emulator.h"
+#include "../include/emulator.hpp"
 
 int main(int argc, char** argv)
 {

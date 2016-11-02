@@ -1,4 +1,4 @@
-#include "../inc/parser.h"
+#include "../inc/parser.hpp"
 
 Parser::Parser(const char* program)
 {

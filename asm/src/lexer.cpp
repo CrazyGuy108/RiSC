@@ -1,4 +1,4 @@
-#include "../inc/lexer.h"
+#include "../inc/lexer.hpp"
 
 Lexer::Lexer(const char* program)
 	: tokens{}, errors{ 0 }

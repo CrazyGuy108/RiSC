@@ -1,4 +1,4 @@
-#include "../inc/syntaxtree.h"
+#include "../inc/syntaxtree.hpp"
 
 void SyntaxTree::add(Token t)
 {

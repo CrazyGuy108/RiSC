@@ -1,4 +1,4 @@
-#include "../include/operations.h"
+#include "../include/operations.hpp"
 
 Opcode::Opcode(OP((*func)), inst_t len)
 	: func{ func }, len{ len } {}
