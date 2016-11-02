@@ -1,6 +1,7 @@
 #ifndef TOKEN_H
 #define TOKEN_H
 
+#include <iostream> // for ostream
 #include "lexeme.h" // for Lexeme
 
 // defines a token containing a name and a type
