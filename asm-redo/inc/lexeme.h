@@ -1,7 +1,7 @@
 #ifndef LEXEME_H
 #define LEXEME_H
 
-#include <iostream> // for ostream
+#include <iosfwd> // for ostream forward declaration
 
 // non-terminated substring of the source code
 class Lexeme
