@@ -1,14 +1,17 @@
 #ifndef SYNTAXTREE_HPP
 #define SYNTAXTREE_HPP
 
-#include "token.hpp" // for Token
+#include "lexer.cpp" // for Lexer
 
 class SyntaxTree
 {
 public:
 	SyntaxTree() = default;
+	SyntaxTree(const char* program); // lex and parse the given program
+	SyntaxTree(Lexer& lexer);        // parse the program using the given lexer
 
-	void add(Token t); // adds a Token to the syntax tree
+	void parse(const char* program); // lex and parse the given program
+	void parse(Lexer& lexer);        // parse the program using the given lexer
 
 private:
 	// syntax tree stuff
