@@ -1,7 +1,8 @@
 #ifndef SYNTAXTREE_HPP
 #define SYNTAXTREE_HPP
 
-#include "lexer.cpp" // for Lexer
+#include "lexer.hpp"      // for Lexer
+#include "syntaxnode.hpp" // for SyntaxNode
 
 class SyntaxTree
 {
@@ -14,7 +15,7 @@ public:
 	void parse(Lexer& lexer);        // parse the program using the given lexer
 
 private:
-	// syntax tree stuff
+	SyntaxNode root; // root of the syntax tree
 };
 
 #endif // SYNTAXTREE_HPP
