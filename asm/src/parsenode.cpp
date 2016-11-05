@@ -28,7 +28,6 @@ bool ParseNode::isNonTerminal() const
 	return type >= program && type <= ri1;
 }
 
-
 Terminal::Terminal(Symbol type)
 	: ParseNode{ type } {}
 
@@ -56,4 +55,22 @@ NonTerminal::NonTerminal(Symbol type)
 NonTerminal::~NonTerminal()
 {
 
+}
+
+void NonTerminal::setChildren(const production_t& p)
+{
+	children = new ParseNode*[p.size()];
+	for (size_t i{ 0 }; i < p.size(); ++i)
+	{
+		if (p[i] >= BEGIN && p[i] <= ERROR) // Terminal
+		{
+			children[i] = new Terminal{ p[i] };
+		}
+		else if (p[i] >= program && p[i] <= ri1) // NonTerminal
+		{
+			children[i] = new NonTerminal{ p[i] };
+		}
+		else
+			; // error!
+	}
 }

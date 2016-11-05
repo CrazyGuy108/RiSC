@@ -70,10 +70,10 @@ public:
 	NonTerminal(Symbol type);
 	virtual ~NonTerminal() override final;
 
-	void setChildren(production_t p);
+	void setChildren(const production_t& p);
 
 private:
-	ParseNode* children;
+	ParseNode** children;
 };
 
 #endif // PARSENODE_HPP
