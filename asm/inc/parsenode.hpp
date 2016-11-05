@@ -73,7 +73,7 @@ public:
 	void setChildren(const production_t& p);
 
 private:
-	ParseNode** children;
+	std::vector<ParseNode*> children;
 };
 
 #endif // PARSENODE_HPP
