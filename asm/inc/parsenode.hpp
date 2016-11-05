@@ -7,6 +7,17 @@
 class ParseNode
 {
 public:
+	enum Symbol
+	{
+		PROGRAM,  // program  : BEGIN content ;
+		CONTENT,  // content  : label line NEWLINE content | EPSILON ;
+		LABEL,    // label    : LABEL | EPSILON ;
+		LINE,     // line     : OPCODE operands | EPSILON ;
+		OPERANDS, // operands : REG ri1 | IMM | EPSILON ;
+		RI1,      // ri1      : REG ri2 | IMM ;
+		RI2       // ri2      : REG | IMM ;
+	};
+
 	virtual ~ParseNode() = 0;
 };
 
