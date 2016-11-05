@@ -18,7 +18,7 @@ public:
 	void parse(Lexer& lexer);        // parse the program using the given lexer
 
 private:
-	ParseNode root; // root of the parse tree
+	ParseNode* root; // root of the parse tree
 };
 
 #endif // PARSETREE_HPP
