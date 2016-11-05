@@ -16,8 +16,10 @@ void ParseTree::parse(const char* program)
 }
 void ParseTree::parse(Lexer& lexer)
 {
+	Token token;
 	while (!lexer.empty())
 	{
-
+		token = lexer.next();
+		// match against parse table
 	}
 }
