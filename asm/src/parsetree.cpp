@@ -33,87 +33,52 @@ void ParseTree::parse(Lexer& lexer)
 	{
 		// program
 		{
-			&program, // BEGIN
-			&error,   // END
-			&error,   // NEWLINE
-			&error,   // KEYWORD
-			&error,   // LABEL
-			&error,   // REGISTER
-			&error,   // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&program, &error, &error, &error, &error,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&error, &error, &error, &error
 		},
 		// content
 		{
-			&error,   // BEGIN
-			&epsilon, // END
-			&content, // NEWLINE
-			&content, // KEYWORD
-			&content, // LABEL
-			&error,   // REGISTER
-			&error,   // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &epsilon, &content, &content, &content,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&error, &error, &error, &error
 		},
 		// label
 		{
-			&error,   // BEGIN
-			&error,   // END
-			&epsilon, // NEWLINE
-			&epsilon, // KEYWORD
-			&label,   // LABEL
-			&error,   // REGISTER
-			&error,   // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &error, &epsilon, &epsilon, &label,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&error, &error, &error, &error
 		},
 		// line
 		{
-			&error,   // BEGIN
-			&error,   // END
-			&epsilon, // NEWLINE
-			&line,    // KEYWORD
-			&error,   // LABEL
-			&error,   // REGISTER
-			&error,   // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &error, &epsilon, &line, &error,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&error, &error, &error, &error
 		},
 		// operands
 		{
-			&error,    // BEGIN
-			&error,    // END
-			&epsilon,  // NEWLINE
-			&error,    // KEYWORD
-			&error,    // LABEL
-			&operands, // REGISTER
-			&imm,      // IMMEDIATE
-			&error,    // IDENTIFIER
-			&error     // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &error, &epsilon, &error, &error,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&operands, &imm, &error, &error
 		},
 		// ri1
 		{
-			&error,   // BEGIN
-			&error,   // END
-			&epsilon, // NEWLINE
-			&error,   // KEYWORD
-			&error,   // LABEL
-			&ri1,     // REGISTER
-			&imm,     // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &error, &epsilon, &error, &error,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&ri1, &imm, &error, &error
 		},
 		// ri2
 		{
-			&error,   // BEGIN
-			&error,   // END
-			&epsilon, // NEWLINE
-			&error,   // KEYWORD
-			&error,   // LABEL
-			&reg,     // REGISTER
-			&imm,     // IMMEDIATE
-			&error,   // IDENTIFIER
-			&error    // ERROR
+			// BEGIN, END, NEWLINE, KEYWORD, LABEL
+			&error, &error, &epsilon, &error, &error,
+			// REGISTER, IMMEDIATE, IDENTIFIER, ERROR
+			&reg, &imm, &error, &error
 		}
 	};
 
