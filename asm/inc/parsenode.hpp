@@ -32,6 +32,9 @@ public:
 	ParseNode() = default;
 	ParseNode(Symbol type);
 
+	Symbol getType() const;
+	void setType(Symbol s);
+
 	virtual ~ParseNode() = 0;
 
 private:

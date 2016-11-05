@@ -3,6 +3,16 @@
 ParseNode::ParseNode(Symbol type)
 	: type{ type } {}
 
+ParseNode::Symbol ParseNode::getType() const
+{
+	return type;
+}
+
+void ParseNode::setType(Symbol s)
+{
+	type = s;
+}
+
 Terminal::Terminal(Symbol type)
 	: ParseNode{ type } {}
 
