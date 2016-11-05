@@ -26,7 +26,11 @@ private:
 class NonTerminal
 	: public ParseNode
 {
+private:
+	NonTerminal() = default;
 
+private:
+	ParseNode* children;
 };
 
 #endif // PARSENODE_HPP
