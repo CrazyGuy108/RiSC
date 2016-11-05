@@ -6,7 +6,8 @@
 // base class for terminal and nonterminal symbols
 class ParseNode
 {
-
+public:
+	virtual ~ParseNode();
 };
 
 class Terminal
@@ -15,6 +16,7 @@ class Terminal
 public:
 	Terminal() = default;
 	Terminal(const Token& token);
+	virtual ~Terminal() override final;
 
 	const Token& getToken() const;
 	void setToken(const Token& t);
@@ -28,6 +30,7 @@ class NonTerminal
 {
 private:
 	NonTerminal() = default;
+	virtual ~NonTerminal() override final;
 
 private:
 	ParseNode* children;
