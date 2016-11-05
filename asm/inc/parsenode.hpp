@@ -9,13 +9,13 @@ class ParseNode
 public:
 	enum Symbol
 	{
-		PROGRAM,  // program  : BEGIN content ;
-		CONTENT,  // content  : label line NEWLINE content | EPSILON ;
-		LABEL,    // label    : LABEL | EPSILON ;
-		LINE,     // line     : OPCODE operands | EPSILON ;
-		OPERANDS, // operands : REG ri1 | IMM | EPSILON ;
-		RI1,      // ri1      : REG ri2 | IMM ;
-		RI2       // ri2      : REG | IMM ;
+		program,  // program  : BEGIN content ;
+		content,  // content  : label line NEWLINE content | EPSILON ;
+		label,    // label    : LABEL | EPSILON ;
+		line,     // line     : OPCODE operands | EPSILON ;
+		operands, // operands : REG ri1 | IMM | EPSILON ;
+		ri1,      // ri1      : REG ri2 | IMM ;
+		ri2       // ri2      : REG | IMM ;
 	};
 
 	virtual ~ParseNode() = 0;
