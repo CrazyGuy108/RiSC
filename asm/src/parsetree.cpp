@@ -16,5 +16,8 @@ void ParseTree::parse(const char* program)
 }
 void ParseTree::parse(Lexer& lexer)
 {
-	// parsing time!
+	while (!lexer.empty())
+	{
+
+	}
 }
