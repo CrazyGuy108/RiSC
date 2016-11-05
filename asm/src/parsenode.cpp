@@ -1,5 +1,8 @@
 #include "../inc/parsenode.hpp"
 
+Terminal::Terminal(const Token& token)
+	: token{ token } {}
+
 const Token& Terminal::getToken() const
 {
 	return token;
