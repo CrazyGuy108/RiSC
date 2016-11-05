@@ -36,7 +36,7 @@ public:
 	Symbol getType() const;
 	void setType(Symbol s);
 
-private:
+protected:
 	Symbol type; // tells the parser what kind of node it is
 };
 
