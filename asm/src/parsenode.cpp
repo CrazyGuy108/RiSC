@@ -1,5 +1,8 @@
 #include "../inc/parsenode.hpp"
 
+ParseNode::ParseNode(Symbol type)
+	: type{ type } {}
+
 Terminal::Terminal(const Token& token)
 	: token{ token } {}
 

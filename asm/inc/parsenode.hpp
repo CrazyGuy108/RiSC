@@ -29,7 +29,13 @@ public:
 		ERROR
 	};
 
+	ParseNode() = default;
+	ParseNode(Symbol type);
+
 	virtual ~ParseNode() = 0;
+
+private:
+	Symbol type; // tells the parser what kind of node it is
 };
 
 class Terminal final
