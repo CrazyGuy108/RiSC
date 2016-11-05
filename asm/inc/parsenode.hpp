@@ -31,11 +31,10 @@ public:
 
 	ParseNode() = default;
 	ParseNode(Symbol type);
+	virtual ~ParseNode() = 0;
 
 	Symbol getType() const;
 	void setType(Symbol s);
-
-	virtual ~ParseNode() = 0;
 
 private:
 	Symbol type; // tells the parser what kind of node it is

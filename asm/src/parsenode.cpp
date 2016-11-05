@@ -3,6 +3,11 @@
 ParseNode::ParseNode(Symbol type)
 	: type{ type } {}
 
+ParseNode::~ParseNode()
+{
+
+}
+
 ParseNode::Symbol ParseNode::getType() const
 {
 	return type;
