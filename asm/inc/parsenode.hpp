@@ -25,7 +25,8 @@ public:
 		REG,
 		IMM,
 		NEWLINE,
-		EPSILON
+		EPSILON,
+		ERROR
 	};
 
 	virtual ~ParseNode() = 0;
