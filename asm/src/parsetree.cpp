@@ -14,6 +14,7 @@ void ParseTree::parse(const char* program)
 {
 	parse(Lexer{ program });
 }
+
 void ParseTree::parse(Lexer& lexer)
 {
 	Token token;
