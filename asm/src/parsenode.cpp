@@ -18,6 +18,17 @@ void ParseNode::setType(Symbol s)
 	type = s;
 }
 
+bool ParseNode::isTerminal() const
+{
+	return type >= BEGIN && type <= ERROR;
+}
+
+bool ParseNode::isNonTerminal() const
+{
+	return type >= program && type <= ri1;
+}
+
+
 Terminal::Terminal(Symbol type)
 	: ParseNode{ type } {}
 

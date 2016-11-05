@@ -37,6 +37,9 @@ public:
 	Symbol getType() const;
 	void setType(Symbol s);
 
+	bool isTerminal() const;
+	bool isNonTerminal() const;
+
 protected:
 	Symbol type; // tells the parser what kind of node it is
 };
