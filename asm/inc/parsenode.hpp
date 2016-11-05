@@ -43,7 +43,8 @@ class Terminal final
 {
 public:
 	Terminal() = default;
-	Terminal(const Token& token);
+	Terminal(Symbol type);
+	Terminal(Symbol type, const Token& token);
 	virtual ~Terminal() override final;
 
 	const Token& getToken() const;
@@ -58,6 +59,7 @@ class NonTerminal final
 {
 public:
 	NonTerminal() = default;
+	NonTerminal(Symbol type);
 	virtual ~NonTerminal() override final;
 
 private:

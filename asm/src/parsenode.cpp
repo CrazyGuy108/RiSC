@@ -3,8 +3,11 @@
 ParseNode::ParseNode(Symbol type)
 	: type{ type } {}
 
-Terminal::Terminal(const Token& token)
-	: token{ token } {}
+Terminal::Terminal(Symbol type)
+	: ParseNode{ type } {}
+
+Terminal::Terminal(Symbol type, const Token& token)
+	: ParseNode{ type }, token{ token } {}
 
 Terminal::~Terminal()
 {
@@ -20,6 +23,9 @@ void Terminal::setToken(const Token& t)
 {
 	token = t;
 }
+
+NonTerminal::NonTerminal(Symbol type)
+	: ParseNode{ type } {}
 
 NonTerminal::~NonTerminal()
 {
