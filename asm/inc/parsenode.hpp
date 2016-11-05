@@ -1,7 +1,8 @@
 #ifndef PARSENODE_HPP
 #define PARSENODE_HPP
 
-#include "token.hpp" // for Token
+#include <vector>
+#include "token.hpp"   // for Token
 
 // base class for terminal and nonterminal symbols
 class ParseNode
@@ -40,6 +41,8 @@ protected:
 	Symbol type; // tells the parser what kind of node it is
 };
 
+typedef std::vector<ParseNode::Symbol> production_t;
+
 class Terminal final
 	: public ParseNode
 {
@@ -63,6 +66,8 @@ public:
 	NonTerminal() = default;
 	NonTerminal(Symbol type);
 	virtual ~NonTerminal() override final;
+
+	void setChildren(production_t p);
 
 private:
 	ParseNode* children;

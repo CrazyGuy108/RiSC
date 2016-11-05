@@ -1,10 +1,8 @@
 #ifndef PARSETREE_HPP
 #define PARSETREE_HPP
 
-#include "lexer.hpp"      // for Lexer
-#include "parsenode.hpp"  // for ParseNode
-
-typedef std::vector<ParseNode::Symbol> production_t;
+#include "lexer.hpp"     // for Lexer
+#include "parsenode.hpp" // for ParseNode
 
 class ParseTree
 {
