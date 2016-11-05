@@ -54,7 +54,8 @@ NonTerminal::NonTerminal(Symbol type)
 
 NonTerminal::~NonTerminal()
 {
-
+	for(ParseNode* node : children)
+		delete node;
 }
 
 void NonTerminal::expand(const production_t& p)
