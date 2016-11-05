@@ -70,7 +70,7 @@ public:
 	NonTerminal(Symbol type);
 	virtual ~NonTerminal() override final;
 
-	void setChildren(const production_t& p);
+	void expand(const production_t& p);
 
 private:
 	std::vector<ParseNode*> children;

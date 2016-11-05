@@ -57,7 +57,7 @@ NonTerminal::~NonTerminal()
 
 }
 
-void NonTerminal::setChildren(const production_t& p)
+void NonTerminal::expand(const production_t& p)
 {
 	children.clear();
 	for (size_t i{ 0 }; i < p.size(); ++i)
