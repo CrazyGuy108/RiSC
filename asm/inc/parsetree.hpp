@@ -3,7 +3,8 @@
 
 #include "lexer.hpp"      // for Lexer
 #include "parsenode.hpp"  // for ParseNode
-#include "parsetable.hpp" // for production_t
+
+typedef std::vector<ParseNode::Symbol> production_t;
 
 class ParseTree
 {

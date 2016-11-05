@@ -4,7 +4,7 @@
 #include <vector> // for vector
 #include "parsenode.hpp" // for ParseNode
 
-typedef std::vector<ParseNode::Symbol> production_t;
+
 
 class ParseTable
 {
