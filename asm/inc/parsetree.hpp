@@ -1,8 +1,9 @@
 #ifndef PARSETREE_HPP
 #define PARSETREE_HPP
 
-#include "lexer.hpp"     // for Lexer
-#include "parsenode.hpp" // for ParseNode
+#include "lexer.hpp"      // for Lexer
+#include "parsenode.hpp"  // for ParseNode
+#include "parsetable.hpp" // for production_t
 
 class ParseTree
 {
