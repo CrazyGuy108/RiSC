@@ -10,7 +10,7 @@ public:
 	virtual ~ParseNode();
 };
 
-class Terminal
+class Terminal final
 	: public ParseNode
 {
 public:
@@ -25,10 +25,10 @@ private:
 	Token token;
 };
 
-class NonTerminal
+class NonTerminal final
 	: public ParseNode
 {
-private:
+public:
 	NonTerminal() = default;
 	virtual ~NonTerminal() override final;
 
