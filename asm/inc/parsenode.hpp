@@ -7,7 +7,7 @@
 class ParseNode
 {
 public:
-	virtual ~ParseNode();
+	virtual ~ParseNode() = 0;
 };
 
 class Terminal final

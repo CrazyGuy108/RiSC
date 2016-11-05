@@ -1,10 +1,5 @@
 #include "../inc/parsenode.hpp"
 
-ParseNode::~ParseNode()
-{
-
-}
-
 Terminal::Terminal(const Token& token)
 	: token{ token } {}
 
