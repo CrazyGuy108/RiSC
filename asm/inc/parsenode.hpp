@@ -31,7 +31,7 @@ public:
 	};
 
 	ParseNode() = default;
-	ParseNode(Symbol type);
+	ParseNode(Symbol type, ParseNode* parent);
 	virtual ~ParseNode() = 0;
 
 	Symbol getType() const;
@@ -42,6 +42,7 @@ public:
 
 protected:
 	Symbol type; // tells the parser what kind of node it is
+	ParseNode* parent;
 };
 
 typedef std::vector<ParseNode::Symbol> production_t;
@@ -51,8 +52,8 @@ class Terminal final
 {
 public:
 	Terminal() = default;
-	Terminal(Symbol type);
-	Terminal(Symbol type, const Token& token);
+	Terminal(Symbol type, ParseNode* parent);
+	Terminal(Symbol type, ParseNode* parent, const Token& token);
 	virtual ~Terminal() override final;
 
 	const Token& getToken() const;
@@ -70,7 +71,7 @@ class NonTerminal final
 {
 public:
 	NonTerminal() = default;
-	NonTerminal(Symbol type);
+	NonTerminal(Symbol type, ParseNode* parent);
 	virtual ~NonTerminal() override final;
 
 	void expand(const production_t& p);
