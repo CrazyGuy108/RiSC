@@ -103,10 +103,8 @@ void ParseTree::advanceNode()
 		{
 			// backtrack to parent and go to the next node
 		}
-		else
-		{
-			// go further down the tree to the first child
-		}
+		else // go further down the tree to the first child
+			node = children[0];
 	}
 	else
 		; // error! (should never happen)
