@@ -39,6 +39,11 @@ const Token& Terminal::getToken() const
 	return token;
 }
 
+const std::vector<ParseNode*>& Terminal::getChildren() const
+{
+	return std::vector<ParseNode*>{}; // construct empty vector
+}
+
 void Terminal::setToken(const Token& t)
 {
 	token = t;

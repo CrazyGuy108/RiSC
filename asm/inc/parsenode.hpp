@@ -36,6 +36,7 @@ public:
 
 	Symbol getType() const;
 	ParseNode* getParent() const;
+	virtual const std::vector<ParseNode*>& getChildren() const = 0;
 
 	void setType(Symbol s);
 
@@ -56,6 +57,8 @@ public:
 	virtual ~Terminal() override final;
 
 	const Token& getToken() const;
+	virtual const std::vector<ParseNode*>& getChildren() const override final;
+
 	void setToken(const Token& t);
 
 private:
@@ -71,7 +74,7 @@ public:
 	virtual ~NonTerminal() override final;
 
 	void expand(const production_t& p);
-	const std::vector<ParseNode*>& getChildren() const;
+	virtual const std::vector<ParseNode*>& getChildren() const override final;
 
 private:
 	std::vector<ParseNode*> children;
