@@ -91,3 +91,13 @@ void ParseTree::parse(Lexer& lexer)
 		// match against parse table
 	}
 }
+
+void ParseTree::advanceNode()
+{
+	if(node->isTerminal())
+		; // go to the next leaf of parent
+	else if(node->isNonTerminal())
+		; // go to first leaf of parent
+	else
+		; // error! (should never happen)
+}
