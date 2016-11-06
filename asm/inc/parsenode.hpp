@@ -77,6 +77,7 @@ public:
 	virtual ~NonTerminal() override final;
 
 	void expand(const production_t& p);
+	const std::vector<ParseNode*>& getChildren() const;
 
 	virtual bool isTerminal() const override final;
 	virtual bool isNonTerminal() const override final;

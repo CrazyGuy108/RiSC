@@ -78,6 +78,11 @@ void NonTerminal::expand(const production_t& p)
 	}
 }
 
+const std::vector<ParseNode*>& NonTerminal::getChildren() const
+{
+	return children;
+}
+
 bool NonTerminal::isTerminal() const
 {
 	return false;
