@@ -57,7 +57,7 @@ NonTerminal::~NonTerminal()
 void NonTerminal::expand(const production_t& p)
 {
 	children.clear();
-	for (ParseNode::Symbol s : p)
+	for (production_t::value_type s : p)
 	{
 		if (s >= BEGIN && s <= ERROR) // Terminal
 			children.push_back(new Terminal{ s, this });
