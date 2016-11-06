@@ -13,7 +13,7 @@ ParseNode::Symbol ParseNode::getType() const
 	return type;
 }
 
-const ParseNode* ParseNode::getParent() const
+ParseNode* ParseNode::getParent() const
 {
 	return parent;
 }
