@@ -94,9 +94,9 @@ void ParseTree::parse(Lexer& lexer)
 
 void ParseTree::advanceNode()
 {
-	if (node->isTerminal())
+	if (dynamic_cast<Terminal*>(node) != nullptr)
 		; // go to the next leaf of parent
-	else if (node->isNonTerminal())
+	else if (dynamic_cast<NonTerminal*>(node) != nullptr)
 	{
 		std::vector<ParseNode*> children{ ((NonTerminal*)node)->getChildren() };
 		if (children.empty())
