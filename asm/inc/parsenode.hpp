@@ -40,8 +40,8 @@ public:
 	void setType(Symbol s);
 
 protected:
-	Symbol type; // tells the parser what kind of node it is
-	ParseNode* parent;
+	Symbol type;       // tells the parser what kind of node it is
+	ParseNode* parent; // pointer to the parent node
 };
 
 typedef std::vector<ParseNode::Symbol> production_t;
