@@ -36,13 +36,14 @@ public:
 
 	Symbol getType() const;
 	ParseNode* getParent() const;
-	virtual const std::vector<ParseNode*>& getChildren() const = 0;
+	const std::vector<ParseNode*>& getChildren() const;
 
 	void setType(Symbol s);
 
 protected:
-	Symbol type;       // tells the parser what kind of node it is
-	ParseNode* parent; // pointer to the parent node
+	Symbol type;                      // tells the parser what kind of node it is
+	ParseNode* parent;                // pointer to the parent node
+	std::vector<ParseNode*> children; // children of this node
 };
 
 typedef std::vector<ParseNode::Symbol> production_t;
@@ -57,8 +58,6 @@ public:
 	virtual ~Terminal() override final;
 
 	const Token& getToken() const;
-	virtual const std::vector<ParseNode*>& getChildren() const override final;
-
 	void setToken(const Token& t);
 
 private:
@@ -74,10 +73,6 @@ public:
 	virtual ~NonTerminal() override final;
 
 	void expand(const production_t& p);
-	virtual const std::vector<ParseNode*>& getChildren() const override final;
-
-private:
-	std::vector<ParseNode*> children;
 };
 
 #endif // PARSENODE_HPP
