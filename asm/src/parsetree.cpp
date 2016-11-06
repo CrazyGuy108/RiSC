@@ -94,7 +94,7 @@ void ParseTree::parse(Lexer& lexer)
 
 void ParseTree::advanceNode()
 {
-	std::vector<ParseNode*> children{ node->getChildren() };
+	const std::vector<ParseNode*>& children{ node->getChildren() };
 	if (children.empty())
 	{
 		// go to the next sibling
