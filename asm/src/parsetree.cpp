@@ -94,10 +94,20 @@ void ParseTree::parse(Lexer& lexer)
 
 void ParseTree::advanceNode()
 {
-	if(node->isTerminal())
+	if (node->isTerminal())
 		; // go to the next leaf of parent
-	else if(node->isNonTerminal())
-		; // go to first leaf of parent
+	else if (node->isNonTerminal())
+	{
+		std::vector<ParseNode*> children{ ((NonTerminal*)node)->getChildren() };
+		if (children.empty())
+		{
+			// backtrack to parent and go to the next node
+		}
+		else
+		{
+			// go further down the tree to the first child
+		}
+	}
 	else
 		; // error! (should never happen)
 }
