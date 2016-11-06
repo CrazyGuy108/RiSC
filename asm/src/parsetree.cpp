@@ -98,6 +98,7 @@ void ParseTree::advanceNode()
 	if (children.empty())
 	{
 		// go to the next sibling
+		// but if this is the last sibling, backtrack and try again
 	}
 	else
 	{
