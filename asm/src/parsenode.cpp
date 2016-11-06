@@ -44,16 +44,6 @@ void Terminal::setToken(const Token& t)
 	token = t;
 }
 
-bool Terminal::isTerminal() const
-{
-	return true;
-}
-
-bool Terminal::isNonTerminal() const
-{
-	return false;
-}
-
 NonTerminal::NonTerminal(Symbol type, ParseNode* parent)
 	: ParseNode{ type, parent } {}
 
@@ -81,14 +71,4 @@ void NonTerminal::expand(const production_t& p)
 const std::vector<ParseNode*>& NonTerminal::getChildren() const
 {
 	return children;
-}
-
-bool NonTerminal::isTerminal() const
-{
-	return false;
-}
-
-bool NonTerminal::isNonTerminal() const
-{
-	return true;
 }
