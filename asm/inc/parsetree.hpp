@@ -1,12 +1,18 @@
 #ifndef PARSETREE_HPP
 #define PARSETREE_HPP
 
+#include <iterator>      // for forward_iterator_tag
 #include "lexer.hpp"     // for Lexer
 #include "parsenode.hpp" // for ParseNode
+
+class ParseIterator;
 
 class ParseTree
 {
 public:
+	typedef ParseIterator iterator;
+	typedef const ParseIterator const_iterator;
+
 	ParseTree() = default;
 	ParseTree(const char* program); // lex and parse the given program
 	ParseTree(Lexer& lexer);        // parse the program using the given lexer
@@ -22,6 +28,13 @@ private:
 	ParseNode* node; // iterator
 
 	void advanceNode();
+};
+
+// iterator class for the parse tree
+class ParseIterator
+	: public std::forward_iterator_tag
+{
+
 };
 
 #endif // PARSETREE_HPP
