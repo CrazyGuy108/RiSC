@@ -37,8 +37,8 @@ public:
 	Symbol getType() const;
 	void setType(Symbol s);
 
-	bool isTerminal() const;
-	bool isNonTerminal() const;
+	virtual bool isTerminal() const = 0;
+	virtual bool isNonTerminal() const = 0;
 
 protected:
 	Symbol type; // tells the parser what kind of node it is
@@ -58,6 +58,9 @@ public:
 	const Token& getToken() const;
 	void setToken(const Token& t);
 
+	virtual bool isTerminal() const override final;
+	virtual bool isNonTerminal() const override final;
+
 private:
 	Token token;
 };
@@ -71,6 +74,9 @@ public:
 	virtual ~NonTerminal() override final;
 
 	void expand(const production_t& p);
+
+	virtual bool isTerminal() const override final;
+	virtual bool isNonTerminal() const override final;
 
 private:
 	std::vector<ParseNode*> children;

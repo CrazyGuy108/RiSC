@@ -18,16 +18,6 @@ void ParseNode::setType(Symbol s)
 	type = s;
 }
 
-bool ParseNode::isTerminal() const
-{
-	return type >= BEGIN && type <= ERROR;
-}
-
-bool ParseNode::isNonTerminal() const
-{
-	return type >= program && type <= ri1;
-}
-
 Terminal::Terminal(Symbol type)
 	: ParseNode{ type } {}
 
@@ -47,6 +37,16 @@ const Token& Terminal::getToken() const
 void Terminal::setToken(const Token& t)
 {
 	token = t;
+}
+
+bool Terminal::isTerminal() const
+{
+	return true;
+}
+
+bool Terminal::isNonTerminal() const
+{
+	return false;
 }
 
 NonTerminal::NonTerminal(Symbol type)
@@ -71,4 +71,14 @@ void NonTerminal::expand(const production_t& p)
 		else
 			; // error!
 	}
+}
+
+bool NonTerminal::isTerminal() const
+{
+	return false;
+}
+
+bool NonTerminal::isNonTerminal() const
+{
+	return true;
 }
