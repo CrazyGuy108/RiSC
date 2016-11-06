@@ -35,6 +35,8 @@ public:
 	virtual ~ParseNode() = 0;
 
 	Symbol getType() const;
+	const ParseNode* getParent() const;
+
 	void setType(Symbol s);
 
 	virtual bool isTerminal() const = 0;
