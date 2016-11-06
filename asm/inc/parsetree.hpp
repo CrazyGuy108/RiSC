@@ -1,7 +1,7 @@
 #ifndef PARSETREE_HPP
 #define PARSETREE_HPP
 
-#include <iterator>      // for forward_iterator_tag
+#include <iterator>      // for iterator
 #include "lexer.hpp"     // for Lexer
 #include "parsenode.hpp" // for ParseNode
 
@@ -32,7 +32,7 @@ private:
 
 // iterator class for the parse tree
 class ParseIterator
-	: public std::forward_iterator_tag
+	: public std::iterator<std::forward_iterator_tag, ParseNode>
 {
 
 };
