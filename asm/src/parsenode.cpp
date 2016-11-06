@@ -23,6 +23,11 @@ const std::vector<ParseNode*>& ParseNode::getChildren() const
 	return children;
 }
 
+const std::vector<ParseNode*>& ParseNode::getSiblings() const
+{
+	return parent->getChildren();
+}
+
 void ParseNode::setType(Symbol s)
 {
 	type = s;

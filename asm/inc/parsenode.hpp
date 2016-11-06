@@ -37,6 +37,7 @@ public:
 	Symbol getType() const;
 	ParseNode* getParent() const;
 	const std::vector<ParseNode*>& getChildren() const;
+	const std::vector<ParseNode*>& getSiblings() const;
 
 	void setType(Symbol s);
 
