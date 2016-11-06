@@ -1,13 +1,13 @@
 #include "../inc/parsetree.hpp"
 
 ParseTree::ParseTree(const char* program)
-	: root{ new NonTerminal{ ParseNode::program, nullptr } }
+	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
 {
 	parse(program);
 }
 
 ParseTree::ParseTree(Lexer& lexer)
-	: root{ new NonTerminal{ ParseNode::program, nullptr } }
+	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
 {
 	parse(lexer);
 }

@@ -19,6 +19,7 @@ public:
 
 private:
 	ParseNode* root; // root of the parse tree
+	ParseNode* node; // iterator
 };
 
 #endif // PARSETREE_HPP
