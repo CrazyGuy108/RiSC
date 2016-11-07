@@ -13,35 +13,35 @@ public:
 	public:
 		typedef ParseNode                 value_type;
 		typedef std::ptrdiff_t            difference_type;
-		typedef ParseNode*                pointer;
-		typedef ParseNode&                reference;
+		typedef value_type*               pointer;
+		typedef value_type&               reference;
 		typedef std::forward_iterator_tag iterator_category;
 
 		bool operator==(const const_iterator& a) const;
 		bool operator!=(const const_iterator& a) const;
 
-		const reference operator*() const;
-		const pointer operator->() const;
+		const value_type& operator*() const;
+		const value_type* operator->() const;
 
-		const_iterator& operator++();    // prefix
-		const_iterator& operator++(int); // postfix
+		const_iterator operator++();    // prefix
+		const_iterator operator++(int); // postfix
 
 	private:
-		const ParseNode* ptr;
+		const value_type* ptr;
 	};
 
 	class iterator
 		: public const_iterator
 	{
 	public:
-		reference operator*() const;
-		pointer operator->() const;
+		value_type& operator*() const;
+		value_type* operator->() const;
 
-		iterator& operator++();    // prefix
-		iterator& operator++(int); // postfix
+		iterator operator++();    // prefix
+		iterator operator++(int); // postfix
 
 	private:
-		ParseNode* ptr;
+		value_type* ptr;
 	};
 
 	ParseTree() = default;

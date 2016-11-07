@@ -1,5 +1,61 @@
 #include "../inc/parsetree.hpp"
 
+bool ParseTree::const_iterator::operator==(const const_iterator& a) const
+{
+	return ptr == a.ptr;
+}
+
+bool ParseTree::const_iterator::operator!=(const const_iterator& a) const
+{
+	return ptr != a.ptr;
+}
+
+const ParseTree::const_iterator::value_type& ParseTree::const_iterator::operator*() const
+{
+	return *ptr;
+}
+
+const ParseTree::const_iterator::value_type* ParseTree::const_iterator::operator->() const
+{
+	return ptr;
+}
+
+ParseTree::const_iterator ParseTree::const_iterator::operator++()
+{
+	// advance pointer
+	return *this;
+}
+
+ParseTree::const_iterator ParseTree::const_iterator::operator++(int)
+{
+	const_iterator tmp{ *this };
+	// advance pointer
+	return tmp;
+}
+
+ParseTree::iterator::value_type& ParseTree::iterator::operator*() const
+{
+	return *ptr;
+}
+
+ParseTree::iterator::value_type* ParseTree::iterator::operator->() const
+{
+	return ptr;
+}
+
+ParseTree::iterator ParseTree::iterator::operator++()
+{
+	// advance pointer
+	return *this;
+}
+
+ParseTree::iterator ParseTree::iterator::operator++(int)
+{
+	iterator tmp{ *this };
+	// advance pointer
+	return tmp;
+}
+
 ParseTree::ParseTree(const char* program)
 	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
 {
