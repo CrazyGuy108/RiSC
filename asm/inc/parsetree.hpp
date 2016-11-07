@@ -42,6 +42,9 @@ public:
 	typedef T*                        pointer;
 	typedef T&                        reference;
 	typedef std::forward_iterator_tag iterator_category;
+
+	friend bool operator==(ParseIterator<value_type>& a, ParseIterator<value_type>& b);
+	friend bool operator!=(ParseIterator<value_type>& a, ParseIterator<value_type>& b);
 };
 
 #endif // PARSETREE_HPP
