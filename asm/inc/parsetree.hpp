@@ -22,12 +22,20 @@ public:
 
 		const reference operator*() const;
 		const pointer operator->() const;
+
+		const_iterator& operator++();    // prefix
+		const_iterator& operator++(int); // postfix
 	};
 
 	class iterator
 		: public const_iterator
 	{
-		// non-const stuff
+	public:
+		reference operator*() const;
+		pointer operator->() const;
+
+		iterator& operator++();    // prefix
+		iterator& operator++(int); // postfix
 	};
 
 	ParseTree() = default;
