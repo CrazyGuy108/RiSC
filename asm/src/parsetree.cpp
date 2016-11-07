@@ -1,5 +1,8 @@
 #include "../inc/parsetree.hpp"
 
+ParseTree::const_iterator::const_iterator(const value_type* ptr)
+	: ptr{ ptr } {}
+
 bool ParseTree::const_iterator::operator==(const const_iterator& a) const
 {
 	return ptr == a.ptr;
@@ -32,6 +35,9 @@ ParseTree::const_iterator ParseTree::const_iterator::operator++(int)
 	// advance pointer
 	return tmp;
 }
+
+ParseTree::iterator::iterator(value_type* ptr)
+	: ptr{ ptr } {}
 
 ParseTree::iterator::value_type& ParseTree::iterator::operator*() const
 {

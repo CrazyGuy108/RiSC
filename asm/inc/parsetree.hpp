@@ -17,6 +17,9 @@ public:
 		typedef value_type&               reference;
 		typedef std::forward_iterator_tag iterator_category;
 
+		const_iterator() = default;
+		const_iterator(const value_type* ptr);
+
 		bool operator==(const const_iterator& a) const;
 		bool operator!=(const const_iterator& a) const;
 
@@ -34,6 +37,9 @@ public:
 		: public const_iterator
 	{
 	public:
+		iterator() = default;
+		iterator(value_type* ptr);
+
 		value_type& operator*() const;
 		value_type* operator->() const;
 
