@@ -19,6 +19,9 @@ public:
 
 		bool operator==(const const_iterator& a) const;
 		bool operator!=(const const_iterator& a) const;
+
+		const reference operator*() const;
+		const pointer operator->() const;
 	};
 
 	class iterator
