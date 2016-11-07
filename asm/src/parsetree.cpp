@@ -72,6 +72,11 @@ ParseTree::iterator ParseTree::iterator::operator++(int)
 	return tmp;
 }
 
+ParseTree::iterator::operator const_iterator()
+{
+	return const_iterator{ ptr };
+}
+
 ParseTree::ParseTree(const char* program)
 	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
 {

@@ -8,6 +8,31 @@
 class ParseTree
 {
 public:
+	class const_iterator
+	{
+	public:
+		typedef ParseNode                 value_type;
+		typedef std::ptrdiff_t            difference_type;
+		typedef const value_type*         pointer;
+		typedef const value_type&         reference;
+		typedef std::forward_iterator_tag iterator_category;
+
+		const_iterator() = default;
+		const_iterator(pointer ptr);
+
+		bool operator==(const const_iterator& a) const;
+		bool operator!=(const const_iterator& a) const;
+
+		reference operator*() const;
+		pointer operator->() const;
+
+		const_iterator operator++();    // prefix
+		const_iterator operator++(int); // postfix
+
+	private:
+		pointer ptr;
+	};
+
 	class iterator
 	{
 	public:
@@ -29,30 +54,7 @@ public:
 		iterator operator++();    // prefix
 		iterator operator++(int); // postfix
 
-	private:
-		pointer ptr;
-	};
-
-	class const_iterator
-	{
-	public:
-		typedef ParseNode                 value_type;
-		typedef std::ptrdiff_t            difference_type;
-		typedef const value_type*         pointer;
-		typedef const value_type&         reference;
-		typedef std::forward_iterator_tag iterator_category;
-
-		const_iterator() = default;
-		const_iterator(pointer ptr);
-
-		bool operator==(const const_iterator& a) const;
-		bool operator!=(const const_iterator& a) const;
-
-		reference operator*() const;
-		pointer operator->() const;
-
-		const_iterator operator++();    // prefix
-		const_iterator operator++(int); // postfix
+		operator const_iterator(); // convertable to const_iterator
 
 	private:
 		pointer ptr;
