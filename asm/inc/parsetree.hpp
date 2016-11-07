@@ -5,13 +5,15 @@
 #include "lexer.hpp"     // for Lexer
 #include "parsenode.hpp" // for ParseNode
 
+// forward declaration
+template<typename>
 class ParseIterator;
 
 class ParseTree
 {
 public:
-	typedef ParseIterator iterator;
-	typedef const ParseIterator const_iterator;
+	typedef ParseIterator<ParseNode> iterator;
+	typedef ParseIterator<const ParseNode> const_iterator;
 
 	ParseTree() = default;
 	ParseTree(const char* program); // lex and parse the given program
@@ -31,13 +33,14 @@ private:
 };
 
 // iterator class for the parse tree
+template<typename T>
 class ParseIterator
 {
 public:
-	typedef ParseNode                 value_type;
+	typedef T                         value_type;
 	typedef std::ptrdiff_t            difference_type;
-	typedef ParseNode*                pointer;
-	typedef ParseNode&                reference;
+	typedef T*                        pointer;
+	typedef T&                        reference;
 	typedef std::forward_iterator_tag iterator_category;
 };
 
