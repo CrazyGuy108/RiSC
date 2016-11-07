@@ -8,7 +8,7 @@
 class ParseTree
 {
 public:
-	class const_iterator
+	class iterator
 	{
 	public:
 		typedef ParseNode                 value_type;
@@ -17,37 +17,45 @@ public:
 		typedef value_type&               reference;
 		typedef std::forward_iterator_tag iterator_category;
 
-		const_iterator() = default;
-		const_iterator(const value_type* ptr);
-
-		bool operator==(const const_iterator& a) const;
-		bool operator!=(const const_iterator& a) const;
-
-		const value_type& operator*() const;
-		const value_type* operator->() const;
-
-		const_iterator operator++();    // prefix
-		const_iterator operator++(int); // postfix
-
-	private:
-		const value_type* ptr;
-	};
-
-	class iterator
-		: public const_iterator
-	{
-	public:
 		iterator() = default;
-		iterator(value_type* ptr);
+		iterator(pointer ptr);
 
-		value_type& operator*() const;
-		value_type* operator->() const;
+		bool operator==(const iterator& a) const;
+		bool operator!=(const iterator& a) const;
+
+		reference operator*() const;
+		pointer operator->() const;
 
 		iterator operator++();    // prefix
 		iterator operator++(int); // postfix
 
 	private:
-		value_type* ptr;
+		pointer ptr;
+	};
+
+	class const_iterator
+	{
+	public:
+		typedef ParseNode                 value_type;
+		typedef std::ptrdiff_t            difference_type;
+		typedef const value_type*         pointer;
+		typedef const value_type&         reference;
+		typedef std::forward_iterator_tag iterator_category;
+
+		const_iterator() = default;
+		const_iterator(pointer ptr);
+
+		bool operator==(const const_iterator& a) const;
+		bool operator!=(const const_iterator& a) const;
+
+		reference operator*() const;
+		pointer operator->() const;
+
+		const_iterator operator++();    // prefix
+		const_iterator operator++(int); // postfix
+
+	private:
+		pointer ptr;
 	};
 
 	ParseTree() = default;

@@ -1,6 +1,6 @@
 #include "../inc/parsetree.hpp"
 
-ParseTree::const_iterator::const_iterator(const value_type* ptr)
+ParseTree::const_iterator::const_iterator(pointer ptr)
 	: ptr{ ptr } {}
 
 bool ParseTree::const_iterator::operator==(const const_iterator& a) const
@@ -13,12 +13,12 @@ bool ParseTree::const_iterator::operator!=(const const_iterator& a) const
 	return ptr != a.ptr;
 }
 
-const ParseTree::const_iterator::value_type& ParseTree::const_iterator::operator*() const
+ParseTree::const_iterator::reference ParseTree::const_iterator::operator*() const
 {
 	return *ptr;
 }
 
-const ParseTree::const_iterator::value_type* ParseTree::const_iterator::operator->() const
+ParseTree::const_iterator::pointer ParseTree::const_iterator::operator->() const
 {
 	return ptr;
 }
@@ -36,15 +36,25 @@ ParseTree::const_iterator ParseTree::const_iterator::operator++(int)
 	return tmp;
 }
 
-ParseTree::iterator::iterator(value_type* ptr)
+ParseTree::iterator::iterator(pointer ptr)
 	: ptr{ ptr } {}
 
-ParseTree::iterator::value_type& ParseTree::iterator::operator*() const
+bool ParseTree::iterator::operator==(const iterator& a) const
+{
+	return ptr == a.ptr;
+}
+
+bool ParseTree::iterator::operator!=(const iterator& a) const
+{
+	return ptr != a.ptr;
+}
+
+ParseTree::iterator::reference ParseTree::iterator::operator*() const
 {
 	return *ptr;
 }
 
-ParseTree::iterator::value_type* ParseTree::iterator::operator->() const
+ParseTree::iterator::pointer ParseTree::iterator::operator->() const
 {
 	return ptr;
 }
