@@ -17,7 +17,8 @@ public:
 		typedef ParseNode&                reference;
 		typedef std::forward_iterator_tag iterator_category;
 
-		// const stuff
+		bool operator==(const const_iterator& a) const;
+		bool operator!=(const const_iterator& a) const;
 	};
 
 	class iterator
