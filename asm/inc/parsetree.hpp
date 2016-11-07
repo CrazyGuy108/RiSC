@@ -25,6 +25,9 @@ public:
 
 		const_iterator& operator++();    // prefix
 		const_iterator& operator++(int); // postfix
+
+	private:
+		const ParseNode* ptr;
 	};
 
 	class iterator
@@ -36,6 +39,9 @@ public:
 
 		iterator& operator++();    // prefix
 		iterator& operator++(int); // postfix
+
+	private:
+		ParseNode* ptr;
 	};
 
 	ParseTree() = default;
