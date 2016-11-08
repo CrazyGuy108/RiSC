@@ -8,60 +8,14 @@
 
 class ParseTree
 {
+private:
+	// base iterator class for const_iterator and iterator
+	template<typename T>
+	class base_iterator;
+
 public:
-	class const_iterator
-	{
-	public:
-		typedef ParseNode                 value_type;
-		typedef std::ptrdiff_t            difference_type;
-		typedef const value_type*         pointer;
-		typedef const value_type&         reference;
-		typedef std::forward_iterator_tag iterator_category;
-
-		const_iterator() = default;
-		const_iterator(pointer ptr);
-
-		bool operator==(const const_iterator& a) const;
-		bool operator!=(const const_iterator& a) const;
-
-		reference operator*() const;
-		pointer operator->() const;
-
-		const_iterator operator++();    // prefix
-		const_iterator operator++(int); // postfix
-
-	private:
-		pointer ptr;                // pointer to the current node
-		std::stack<size_t> indexes; // sibling indexes that tell how the iterator got there
-	};
-
-	class iterator
-	{
-	public:
-		typedef ParseNode                 value_type;
-		typedef std::ptrdiff_t            difference_type;
-		typedef value_type*               pointer;
-		typedef value_type&               reference;
-		typedef std::forward_iterator_tag iterator_category;
-
-		iterator() = default;
-		iterator(pointer ptr);
-
-		bool operator==(const iterator& a) const;
-		bool operator!=(const iterator& a) const;
-
-		reference operator*() const;
-		pointer operator->() const;
-
-		iterator operator++();    // prefix
-		iterator operator++(int); // postfix
-
-		operator const_iterator(); // convertable to const_iterator
-
-	private:
-		pointer ptr;                // pointer to the current node
-		std::stack<size_t> indexes; // sibling indexes that tell how the iterator got there
-	};
+	typedef base_iterator<ParseNode>       iterator;
+	typedef base_iterator<const ParseNode> const_iterator;
 
 	ParseTree() = default;
 	ParseTree(const char* program); // lex and parse the given program
@@ -78,6 +32,33 @@ private:
 	ParseNode* node; // iterator
 
 	void advanceNode();
+};
+
+template<typename T>
+class ParseTree::base_iterator
+{
+public:
+	typedef T                         value_type;
+	typedef std::ptrdiff_t            difference_type;
+	typedef T*                        pointer;
+	typedef T&                        reference;
+	typedef std::forward_iterator_tag iterator_category;
+
+	base_iterator() = default;
+	base_iterator(pointer ptr);
+
+	bool operator==(const base_iterator& rhs) const;
+	bool operator!=(const base_iterator& rhs) const;
+
+	reference operator*() const;
+	pointer operator->() const;
+
+	base_iterator operator++();    // prefix
+	base_iterator operator++(int); // postfix
+
+private:
+	pointer ptr;                // pointer to the current node
+	std::stack<size_t> indexes; // sibling indexes that tell how the iterator got there
 };
 
 #endif // PARSETREE_HPP

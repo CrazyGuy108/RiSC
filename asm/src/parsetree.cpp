@@ -1,80 +1,46 @@
 #include "../inc/parsetree.hpp"
 
-ParseTree::const_iterator::const_iterator(pointer ptr)
-	: ptr{ ptr } {}
+template<typename T>
+ParseTree::base_iterator<T>::base_iterator(pointer ptr)
+	: ptr{ ptr }, indexes{} {}
 
-bool ParseTree::const_iterator::operator==(const const_iterator& a) const
+template<typename T>
+bool ParseTree::base_iterator<T>::operator==(const base_iterator<T>& a) const
 {
 	return ptr == a.ptr;
 }
 
-bool ParseTree::const_iterator::operator!=(const const_iterator& a) const
+template<typename T>
+bool ParseTree::base_iterator<T>::operator!=(const base_iterator<T>& a) const
 {
 	return ptr != a.ptr;
 }
 
-ParseTree::const_iterator::reference ParseTree::const_iterator::operator*() const
+template<typename T>
+typename ParseTree::base_iterator<T>::reference ParseTree::base_iterator<T>::operator*() const
 {
 	return *ptr;
 }
 
-ParseTree::const_iterator::pointer ParseTree::const_iterator::operator->() const
+template<typename T>
+typename ParseTree::base_iterator<T>::pointer ParseTree::base_iterator<T>::operator->() const
 {
 	return ptr;
 }
 
-ParseTree::const_iterator ParseTree::const_iterator::operator++()
+template<typename T>
+ParseTree::base_iterator<T> ParseTree::base_iterator<T>::operator++()
 {
 	// advance pointer
 	return *this;
 }
 
-ParseTree::const_iterator ParseTree::const_iterator::operator++(int)
+template<typename T>
+ParseTree::base_iterator<T> ParseTree::base_iterator<T>::operator++(int)
 {
 	const_iterator tmp{ *this };
 	++(*this);
 	return tmp;
-}
-
-ParseTree::iterator::iterator(pointer ptr)
-	: ptr{ ptr } {}
-
-bool ParseTree::iterator::operator==(const iterator& a) const
-{
-	return ptr == a.ptr;
-}
-
-bool ParseTree::iterator::operator!=(const iterator& a) const
-{
-	return ptr != a.ptr;
-}
-
-ParseTree::iterator::reference ParseTree::iterator::operator*() const
-{
-	return *ptr;
-}
-
-ParseTree::iterator::pointer ParseTree::iterator::operator->() const
-{
-	return ptr;
-}
-
-ParseTree::iterator ParseTree::iterator::operator++()
-{
-	// advance pointer
-	return *this;
-}
-
-ParseTree::iterator ParseTree::iterator::operator++(int)
-{
-	iterator tmp{ *this };
-	++(*this);
-	return tmp;
-}
-
-ParseTree::iterator::operator const_iterator()
-{
-	return const_iterator{ ptr };
 }
 
 ParseTree::ParseTree(const char* program)
