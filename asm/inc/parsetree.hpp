@@ -2,6 +2,7 @@
 #define PARSETREE_HPP
 
 #include <iterator>      // for forward_iterator_tag
+#include <stack>         // for stack
 #include "lexer.hpp"     // for Lexer
 #include "parsenode.hpp" // for ParseNode
 
@@ -30,7 +31,8 @@ public:
 		const_iterator operator++(int); // postfix
 
 	private:
-		pointer ptr;
+		pointer ptr;                // pointer to the current node
+		std::stack<size_t> indexes; // sibling indexes that tell how the iterator got there
 	};
 
 	class iterator
@@ -57,7 +59,8 @@ public:
 		operator const_iterator(); // convertable to const_iterator
 
 	private:
-		pointer ptr;
+		pointer ptr;                // pointer to the current node
+		std::stack<size_t> indexes; // sibling indexes that tell how the iterator got there
 	};
 
 	ParseTree() = default;
