@@ -32,7 +32,7 @@ ParseTree::const_iterator ParseTree::const_iterator::operator++()
 ParseTree::const_iterator ParseTree::const_iterator::operator++(int)
 {
 	const_iterator tmp{ *this };
-	// advance pointer
+	++(*this);
 	return tmp;
 }
 
@@ -68,7 +68,7 @@ ParseTree::iterator ParseTree::iterator::operator++()
 ParseTree::iterator ParseTree::iterator::operator++(int)
 {
 	iterator tmp{ *this };
-	// advance pointer
+	++(*this);
 	return tmp;
 }
 
