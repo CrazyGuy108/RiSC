@@ -135,6 +135,26 @@ void ParseTree::parse(Lexer& lexer)
 	}
 }
 
+ParseTree::iterator ParseTree::begin() const
+{
+	return iterator{ root };
+}
+
+ParseTree::iterator ParseTree::end() const
+{
+	return iterator{ nullptr };
+}
+
+ParseTree::const_iterator ParseTree::cbegin() const
+{
+	return const_iterator{ root };
+}
+
+ParseTree::const_iterator ParseTree::cend() const
+{
+	return const_iterator{ nullptr };
+}
+
 void ParseTree::advanceNode()
 {
 	const std::vector<ParseNode*>& children{ node->getChildren() };

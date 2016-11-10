@@ -27,6 +27,11 @@ public:
 	void parse(const char* program); // lex and parse the given program
 	void parse(Lexer& lexer);        // parse the program using the given lexer
 
+	iterator begin() const;
+	iterator end() const;
+	const_iterator cbegin() const;
+	const_iterator cend() const;
+
 private:
 	ParseNode* root; // root of the parse tree
 	ParseNode* node; // iterator
