@@ -44,13 +44,13 @@ ParseTree::base_iterator<T> ParseTree::base_iterator<T>::operator++(int)
 }
 
 ParseTree::ParseTree(const char* program)
-	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
+	: root{ new NonTerminal{ ParseNode::program, nullptr } }
 {
 	parse(program);
 }
 
 ParseTree::ParseTree(Lexer& lexer)
-	: root{ new NonTerminal{ ParseNode::program, nullptr } }, node{ root }
+	: root{ new NonTerminal{ ParseNode::program, nullptr } }
 {
 	parse(lexer);
 }
@@ -153,18 +153,4 @@ ParseTree::const_iterator ParseTree::cbegin() const
 ParseTree::const_iterator ParseTree::cend() const
 {
 	return const_iterator{ nullptr };
-}
-
-void ParseTree::advanceNode()
-{
-	const std::vector<ParseNode*>& children{ node->getChildren() };
-	if (children.empty())
-	{
-		// go to the next sibling
-		// but if this is the last sibling, backtrack and try again
-	}
-	else
-	{
-		// go to the next child
-	}
 }
