@@ -1,7 +1,7 @@
 #include "../inc/parsenode.hpp"
 
 ParseNode::ParseNode(Symbol type, ParseNode* parent)
-	: type{ type }, parent{ parent }, children{} {}
+	: type{ type }, parent{ parent } {}
 
 ParseNode::~ParseNode()
 {
@@ -18,14 +18,9 @@ ParseNode* ParseNode::getParent() const
 	return parent;
 }
 
-const std::vector<ParseNode*>& ParseNode::getChildren() const
+const std::vector<ParseNode*>&& ParseNode::getSiblings() const
 {
-	return children;
-}
-
-const std::vector<ParseNode*>& ParseNode::getSiblings() const
-{
-	return parent->getChildren();
+	return std::forward<const std::vector<ParseNode*>>(parent->getChildren());
 }
 
 void ParseNode::setType(Symbol s)
@@ -54,6 +49,11 @@ void Terminal::setToken(const Token& t)
 	token = t;
 }
 
+const std::vector<ParseNode*>&& Terminal::getChildren() const
+{
+	return std::forward<const std::vector<ParseNode*>>({});
+}
+
 NonTerminal::NonTerminal(Symbol type, ParseNode* parent)
 	: ParseNode{ type, parent } {}
 
@@ -76,4 +76,9 @@ void NonTerminal::expand(const production_t& p)
 		else
 			; // error!
 	}
+}
+
+const std::vector<ParseNode*>&& NonTerminal::getChildren() const
+{
+	return std::forward<const std::vector<ParseNode*>>(children);
 }
