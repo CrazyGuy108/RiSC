@@ -44,11 +44,6 @@ void Terminal::setToken(const Token& t)
 	token = t;
 }
 
-const std::vector<ParseNode*>&& Terminal::getChildren() const
-{
-	return std::forward<const std::vector<ParseNode*>>({});
-}
-
 NonTerminal::NonTerminal(Symbol type, ParseNode* parent)
 	: ParseNode{ type, parent } {}
 
@@ -73,7 +68,7 @@ void NonTerminal::expand(const production_t& p)
 	}
 }
 
-const std::vector<ParseNode*>&& NonTerminal::getChildren() const
+const std::vector<ParseNode*>& NonTerminal::getChildren() const
 {
-	return std::forward<const std::vector<ParseNode*>>(children);
+	return children;
 }
