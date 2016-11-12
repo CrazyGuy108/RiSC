@@ -30,7 +30,6 @@ public:
 		ERROR
 	};
 
-	ParseNode() = default;
 	ParseNode(Symbol type, ParseNode* parent);
 	virtual ~ParseNode() = 0;
 
@@ -40,8 +39,8 @@ public:
 	void setType(Symbol s);
 
 protected:
-	Symbol type;                      // tells the parser what kind of node it is
-	ParseNode* parent;                // pointer to the parent node
+	Symbol type;       // tells the parser what kind of node it is
+	ParseNode* parent; // pointer to the parent node
 };
 
 typedef std::vector<ParseNode::Symbol> production_t;
@@ -50,7 +49,6 @@ class Terminal final
 	: public ParseNode
 {
 public:
-	Terminal() = default;
 	Terminal(Symbol type, ParseNode* parent);
 	Terminal(Symbol type, ParseNode* parent, const Token& token);
 	virtual ~Terminal() override final;
@@ -66,7 +64,6 @@ class NonTerminal final
 	: public ParseNode
 {
 public:
-	NonTerminal() = default;
 	NonTerminal(Symbol type, ParseNode* parent);
 	virtual ~NonTerminal() override final;
 
