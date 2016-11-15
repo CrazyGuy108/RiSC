@@ -10,6 +10,27 @@ void Parser::parse(Lexer& lexer)
 	// parsing stuff
 }
 
+Line::Line(Keyword opcode)
+	: opcode{ opcode } {}
+
+Line::~Line()
+{
+	// destroy operands
+}
+
+Keyword Line::getOpcode() const
+{
+	return opcode;
+}
+
+LineWithLabel::LineWithLabel(Keyword opcode, const Lexeme& label)
+	: Line{ opcode }, label{ label } {}
+
+const Lexeme& LineWithLabel::getLabel() const
+{
+	return label;
+}
+
 Operand::~Operand()
 {}
 

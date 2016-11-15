@@ -25,6 +25,8 @@ public:
 	Line(Keyword opcode);
 	virtual ~Line();
 
+	Keyword getOpcode() const;
+
 protected:
 	Keyword opcode;
 	// operands
@@ -35,8 +37,10 @@ class LineWithLabel final
 	: public Line
 {
 public:
-	LineWithLabel(Lexeme label, Keyword opcode);
-	virtual ~LineWithLabel() override final;
+	LineWithLabel(Keyword opcode, const Lexeme& label);
+	virtual ~LineWithLabel() override final = default;
+
+	const Lexeme& getLabel() const;
 
 private:
 	Lexeme label;
