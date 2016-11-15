@@ -1,6 +1,7 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
+#include <vector>      // for vector
 #include "lexeme.hpp"  // for Lexeme
 #include "lexer.hpp"   // for Lexer
 #include "utility.hpp" // for Keyword
@@ -26,10 +27,14 @@ public:
 	virtual ~Line();
 
 	Keyword getOpcode() const;
+	Operand* getOperand(size_t index);
+	const Operand* getOperand(size_t index) const;
+
+	void addOperand(Operand* operand);
 
 protected:
 	Keyword opcode;
-	// operands
+	std::vector<Operand*> operands;
 };
 
 // similar to a Line but with a label
