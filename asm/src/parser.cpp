@@ -38,6 +38,27 @@ void Parser::parse(Lexer& lexer)
 			; // error: invalid first token
 
 		// get operands
+		while (token.getType() != Token::NEWLINE)
+		{
+			token = lexer.next();
+			switch (token.getType())
+			{
+			case Token::REGISTER:
+				// convert to reg and add operand
+				break;
+
+			case Token::IMMEDIATE:
+				// convert to imm and add operand
+				break;
+
+			case Token::IDENTIFIER:
+				line->addOperand(new Identifier(token.getLexeme()));
+				break;
+
+			default:
+				; // error: invalid operand
+			}
+		}
 
 		// add newly constructed line to the Line stream and reset
 		lines.push(line);
