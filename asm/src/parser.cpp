@@ -15,7 +15,9 @@ Line::Line(Keyword opcode)
 
 Line::~Line()
 {
-	// destroy operands
+	for(auto i : operands)
+		if(i != nullptr)
+			delete i;
 }
 
 Keyword Line::getOpcode() const
