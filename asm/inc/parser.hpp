@@ -1,13 +1,19 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
+#include <queue>       // for queue
 #include <vector>      // for vector
 #include "lexeme.hpp"  // for Lexeme
 #include "lexer.hpp"   // for Lexer
 #include "utility.hpp" // for Keyword
 
+// forward declare base classes
+
+class Line;
+class Operand;
+
 // verifies and organizes a stream of tokens from the Lexer
-class Parser
+class Parser final
 {
 public:
 	Parser() = default;
@@ -16,7 +22,7 @@ public:
 	void parse(Lexer& lexer); // parse using the given lexer
 
 private:
-	// stream of lines
+	std::queue<Line*> lines; // stream of Lines created by the parser
 };
 
 // represents a parsed and tokenized line of code
