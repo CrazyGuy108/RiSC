@@ -7,7 +7,20 @@ Parser::Parser(Lexer& lexer)
 
 void Parser::parse(Lexer& lexer)
 {
-	// parsing stuff
+	Line* line{ nullptr };
+	Token token;
+	while (!lexer.empty())
+	{
+		// get next token
+		// skip if newline/error
+		// get label, deciding if it should be a LineWithLabel or Line
+		// get opcode
+		// get operands
+		// add newly constructed line to the Line stream and reset
+	}
+
+	if(line != nullptr)
+		; // error: end of file but incomplete line
 }
 
 Line::Line(Keyword opcode)
