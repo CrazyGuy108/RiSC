@@ -1,7 +1,9 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
-#include "lexer.hpp" // for Lexer
+#include "lexeme.hpp"  // for Lexeme
+#include "lexer.hpp"   // for Lexer
+#include "utility.hpp" // for Keyword
 
 // verifies and organizes a stream of tokens from the Lexer
 class Parser
@@ -20,16 +22,24 @@ private:
 class Line
 {
 public:
-	// opcode
+	Line(Keyword opcode);
+	virtual ~Line();
+
+protected:
+	Keyword opcode;
 	// operands
 };
 
 // similar to a Line but with a label
-class LineWithLabel
+class LineWithLabel final
 	: public Line
 {
 public:
-	// label
+	LineWithLabel(Lexeme label, Keyword opcode);
+	virtual ~LineWithLabel() override final;
+
+private:
+	Lexeme label;
 };
 
 #endif // PARSER_HPP
