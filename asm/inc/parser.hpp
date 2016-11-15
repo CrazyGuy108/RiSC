@@ -42,7 +42,7 @@ private:
 	Lexeme label;
 };
 
-// base abstract class for operands
+// abstract base class for operands
 class Operand
 {
 public:
@@ -55,10 +55,13 @@ class Register final
 	: public Operand
 {
 public:
-	virtual ~Register() override final;
+	Register(inst_t reg);
+	virtual ~Register() override final = default;
+
+	inst_t getReg() const;
 
 private:
-	// register
+	inst_t reg;
 };
 
 // immediate operand
@@ -66,10 +69,13 @@ class Immediate final
 	: public Operand
 {
 public:
-	virtual ~Immediate() override final;
+	Immediate(inst_t imm);
+	virtual ~Immediate() override final = default;
+
+	inst_t getImm() const;
 
 private:
-	// immediate
+	inst_t imm;
 };
 
 // identifier operand
@@ -77,8 +83,10 @@ class Identifier final
 	: public Operand
 {
 public:
-	Identifier(Lexeme& id);
-	virtual ~Identifier() override final;
+	Identifier(const Lexeme& id);
+	virtual ~Identifier() override final = default;
+
+	const Lexeme& getID() const;
 
 private:
 	Lexeme id;
