@@ -35,13 +35,18 @@ const Operand* Line::getOperand(size_t index) const
 	return operands[index];
 }
 
+void Line::setOpcode(Keyword opcode)
+{
+	this->opcode = opcode;
+}
+
 void Line::addOperand(Operand* operand)
 {
 	operands.push_back(operand);
 }
 
-LineWithLabel::LineWithLabel(Keyword opcode, const Lexeme& label)
-	: Line{ opcode }, label{ label } {}
+LineWithLabel::LineWithLabel(const Lexeme& label)
+	: label{ label } {}
 
 const Lexeme& LineWithLabel::getLabel() const
 {

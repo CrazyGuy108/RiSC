@@ -29,6 +29,7 @@ private:
 class Line
 {
 public:
+	Line() = default;
 	Line(Keyword opcode);
 	virtual ~Line();
 
@@ -36,6 +37,7 @@ public:
 	Operand* getOperand(size_t index);
 	const Operand* getOperand(size_t index) const;
 
+	void setOpcode(Keyword opcode);
 	void addOperand(Operand* operand);
 
 protected:
@@ -48,7 +50,7 @@ class LineWithLabel final
 	: public Line
 {
 public:
-	LineWithLabel(Keyword opcode, const Lexeme& label);
+	LineWithLabel(const Lexeme& label);
 	virtual ~LineWithLabel() override final = default;
 
 	const Lexeme& getLabel() const;
