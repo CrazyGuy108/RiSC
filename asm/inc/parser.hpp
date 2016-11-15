@@ -42,4 +42,46 @@ private:
 	Lexeme label;
 };
 
+// base abstract class for operands
+class Operand
+{
+public:
+	Operand() = default;
+	virtual ~Operand() = 0;
+};
+
+// register operand
+class Register final
+	: public Operand
+{
+public:
+	virtual ~Register() override final;
+
+private:
+	// register
+};
+
+// immediate operand
+class Immediate final
+	: public Operand
+{
+public:
+	virtual ~Immediate() override final;
+
+private:
+	// immediate
+};
+
+// identifier operand
+class Identifier final
+	: public Operand
+{
+public:
+	Identifier(Lexeme& id);
+	virtual ~Identifier() override final;
+
+private:
+	Lexeme id;
+};
+
 #endif // PARSER_HPP
