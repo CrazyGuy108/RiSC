@@ -44,15 +44,15 @@ void Parser::parse(Lexer& lexer)
 			switch (token.getType())
 			{
 			case Token::REGISTER:
-				// convert to reg and add operand
+				line->addOperand(new Register{ token.getLexeme() });
 				break;
 
 			case Token::IMMEDIATE:
-				// convert to imm and add operand
+				line->addOperand(new Immediate{ token.getLexeme() });
 				break;
 
 			case Token::IDENTIFIER:
-				line->addOperand(new Identifier(token.getLexeme()));
+				line->addOperand(new Identifier{ token.getLexeme() });
 				break;
 
 			default:
@@ -118,6 +118,11 @@ Operand::~Operand()
 Register::Register(inst_t reg)
 	: reg{ reg } {}
 
+Register::Register(const Lexeme& lexeme)
+{
+
+}
+
 inst_t Register::getReg() const
 {
 	return reg;
@@ -125,6 +130,11 @@ inst_t Register::getReg() const
 
 Immediate::Immediate(inst_t imm)
 	: imm{ imm } {}
+
+Immediate::Immediate(const Lexeme& lexeme)
+{
+
+}
 
 inst_t Immediate::getImm() const
 {

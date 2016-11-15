@@ -73,6 +73,7 @@ class Register final
 {
 public:
 	Register(inst_t reg);
+	Register(const Lexeme& lexeme);
 	virtual ~Register() override final = default;
 
 	inst_t getReg() const;
@@ -87,6 +88,7 @@ class Immediate final
 {
 public:
 	Immediate(inst_t imm);
+	Immediate(const Lexeme& lexeme);
 	virtual ~Immediate() override final = default;
 
 	inst_t getImm() const;
