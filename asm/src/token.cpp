@@ -11,6 +11,16 @@ Token::Token(Type type)
 Token::Token(const Lexeme& lexeme, Type type)
 	: lexeme{ lexeme }, type{ type } {}
 
+const Lexeme& Token::getLexeme() const
+{
+	return lexeme;
+}
+
+Token::Type Token::getType() const
+{
+	return type;
+}
+
 const char* Token::getTypeName() const
 {
 	switch (type)
