@@ -11,12 +11,37 @@ void Parser::parse(Lexer& lexer)
 	Token token;
 	while (!lexer.empty())
 	{
-		// get next token
-		// skip if newline/error
+		token = lexer.next();
+
+		if(token.getType() == Token::NEWLINE || token.getType() == Token::ERROR)
+			continue;
+
 		// get label, deciding if it should be a LineWithLabel or Line
+		if (token.getType() == Token::LABEL)
+		{
+			line = new LineWithLabel{ token.getLexeme() };
+			token = lexer.next();
+		}
+		else
+			line = new Line{};
+
 		// get opcode
+		if (token.getType() == Token::KEYWORD)
+		{
+			keyword_map::const_iterator it{ keywords.find(token.getLexeme()) };
+			if(it != keywords.cend())
+				line->setOpcode(it->second);
+			else
+				; // error: invalid keyword (should never happen)
+		}
+		else
+			; // error: invalid first token
+
 		// get operands
+
 		// add newly constructed line to the Line stream and reset
+		lines.push(line);
+		line = nullptr;
 	}
 
 	if(line != nullptr)
