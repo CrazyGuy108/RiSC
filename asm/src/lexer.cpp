@@ -142,16 +142,19 @@ bool Lexer::empty() const
 void Lexer::tokenize(const Lexeme& l, State last)
 {
 	Token::Type tmp{ parseState(last) };
+	Lexeme lexeme{ l };
 
-	if (keywords.find(l) != keywords.end()) // could be a keyword
-		tmp = Token::KEYWORD;
-	else if (tmp == Token::ERROR) // check for errors
+	if (tmp == Token::ERROR) // check for errors
 	{
 		// error: invalid token
 		++errors;
 	}
+	else if(tmp == Token::LABEL) // remove colon from label declaration
+		lexeme.setEnd(lexeme.getEnd() - 1);
+	else if (keywords.find(lexeme) != keywords.end()) // could be a keyword
+		tmp = Token::KEYWORD;
 
-	tokens.emplace(l, tmp); // create the token
+	tokens.emplace(lexeme, tmp); // create the token
 }
 
 Token::Type Lexer::parseState(State s)
