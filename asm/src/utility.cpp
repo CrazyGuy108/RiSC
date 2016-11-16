@@ -1,13 +1,13 @@
 #include "../inc/utility.hpp"
 
-const keyword_map keywords
+const opcode_map opcodes
 {
-	{ "add",  Keyword::ADD },
-	{ "addi", Keyword::ADDI },
-	{ "nand", Keyword::NAND },
-	{ "lui",  Keyword::LUI },
-	{ "sw",   Keyword::SW },
-	{ "lw",   Keyword::LW },
-	{ "beq",  Keyword::BEQ },
-	{ "jalr", Keyword::JALR }
+	{ "add",  Token::ADD },
+	{ "addi", Token::ADDI },
+	{ "nand", Token::NAND },
+	{ "lui",  Token::LUI },
+	{ "sw",   Token::SW },
+	{ "lw",   Token::LW },
+	{ "beq",  Token::BEQ },
+	{ "jalr", Token::JALR }
 };

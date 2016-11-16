@@ -4,16 +4,11 @@
 #include <cstdint>    // for uint16_t
 #include <map>        // for map
 #include "lexeme.hpp" // for Lexeme
+#include "token.hpp"  // for Token::Type
 
-enum class Keyword
-{
-	ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR // opcode
-};
-
-typedef std::map<Lexeme, Keyword> keyword_map;
+typedef std::map<Lexeme, Token::Type> opcode_map;
 typedef uint16_t inst_t;
 
-// keywords mapped to the Keyword enum class
-extern const keyword_map keywords;
+extern const opcode_map opcodes;
 
 #endif // UTILITY_HPP

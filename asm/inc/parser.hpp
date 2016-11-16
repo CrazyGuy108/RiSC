@@ -30,18 +30,18 @@ class Line
 {
 public:
 	Line() = default;
-	Line(Keyword opcode);
+	Line(Token::Type opcode);
 	virtual ~Line();
 
-	Keyword getOpcode() const;
+	Token::Type getOpcode() const;
 	Operand* getOperand(size_t index);
 	const Operand* getOperand(size_t index) const;
 
-	void setOpcode(Keyword opcode);
+	void setOpcode(Token::Type opcode);
 	void addOperand(Operand* operand);
 
 protected:
-	Keyword opcode;
+	Token::Type opcode;
 	std::vector<Operand*> operands;
 };
 

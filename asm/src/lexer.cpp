@@ -151,8 +151,12 @@ void Lexer::tokenize(const Lexeme& l, State last)
 	}
 	else if(tmp == Token::LABEL) // remove colon from label declaration
 		lexeme.setEnd(lexeme.getEnd() - 1);
-	else if (keywords.find(lexeme) != keywords.end()) // could be a keyword
-		tmp = Token::KEYWORD;
+	else // could be an opcode
+	{
+		opcode_map::const_iterator it{ opcodes.find(lexeme) };
+		if(it != opcodes.cend())
+			tmp = it->second;
+	}
 
 	tokens.emplace(lexeme, tmp); // create the token
 }
@@ -161,11 +165,11 @@ Token::Type Lexer::parseState(State s)
 {
 	switch (s)
 	{
-	case IMM:
-		return Token::IMMEDIATE;
-
 	case REG:
 		return Token::REGISTER;
+
+	case IMM:
+		return Token::IMMEDIATE;
 
 	case REG_CHECK: // couldn't resolve as a register, so likely a keyword/identifier
 	case ID:

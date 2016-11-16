@@ -26,16 +26,10 @@ void Parser::parse(Lexer& lexer)
 			line = new Line{};
 
 		// get opcode
-		if (token.getType() == Token::KEYWORD)
-		{
-			keyword_map::const_iterator it{ keywords.find(token.getLexeme()) };
-			if(it != keywords.cend())
-				line->setOpcode(it->second);
-			else
-				; // error: invalid keyword (should never happen)
-		}
+		if (token.getType() >= Token::ADD && token.getType() <= Token::JALR)
+			line->setOpcode(token.getType());
 		else
-			; // error: invalid first token
+			; // error: invalid opcode
 
 		// get operands
 		while (token.getType() != Token::NEWLINE)
@@ -69,7 +63,7 @@ void Parser::parse(Lexer& lexer)
 		; // error: end of file but incomplete line
 }
 
-Line::Line(Keyword opcode)
+Line::Line(Token::Type opcode)
 	: opcode{ opcode } {}
 
 Line::~Line()
@@ -79,7 +73,7 @@ Line::~Line()
 			delete i;
 }
 
-Keyword Line::getOpcode() const
+Token::Type Line::getOpcode() const
 {
 	return opcode;
 }
@@ -94,7 +88,7 @@ const Operand* Line::getOperand(size_t index) const
 	return operands[index];
 }
 
-void Line::setOpcode(Keyword opcode)
+void Line::setOpcode(Token::Type opcode)
 {
 	this->opcode = opcode;
 }

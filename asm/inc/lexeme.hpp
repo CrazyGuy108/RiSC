@@ -16,7 +16,7 @@ public:
 	// for string literals
 	template<size_t len>
 	constexpr Lexeme(const char(&str)[len])
-		: beg{ str }, end{ &str[len - 1] } {}
+		: beg{ str }, end{ &str[len] } {}
 
 	const char* getBeg() const; // gets beg
 	const char* getEnd() const; // gets end
