@@ -9,6 +9,17 @@
 class Lexer
 {
 public:
+	Lexer(const char* program);
+	
+	void analyze(const char* program); // lexically analyze the given program
+
+	Token next();             // gets the next lexeme from tokens queue
+	size_t getErrors() const; // gets the amount of errors the lexer encountered
+	bool empty() const;       // checks if the lexer is all out of tokens
+
+private:
+	class StateTracker;
+
 	enum State
 	{
 		START,
@@ -29,19 +40,10 @@ public:
 		LETTER, DIGIT
 	};
 
-	Lexer(const char* program);
-	
-	void analyze(const char* program); // lexically analyze the given program
-
-	Token next();             // gets the next lexeme from tokens queue
-	size_t getErrors() const; // gets the amount of errors the lexer encountered
-	bool empty() const;       // checks if the lexer is all out of tokens
-
-private:
 	// helpers
 
-	// creates a token out of the given string
-	// the given state s tells it how it should treat the token
+	// creates a token out of the given Lexeme
+	// the given state tells it how it should treat the token
 	void tokenize(const Lexeme& l, State last);
 
 	// static helpers
@@ -55,7 +57,7 @@ private:
 };
 
 // keeps track of the machine's state and the state it just exited
-class StateTracker
+class Lexer::StateTracker
 {
 public:
 	StateTracker(Lexer::State curr); // initializes state
