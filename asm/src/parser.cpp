@@ -1,5 +1,15 @@
 #include "../inc/parser.hpp"
 
+std::ostream& operator<<(std::ostream& os, const Line& line)
+{
+
+}
+
+std::ostream& operator<<(std::ostream& os, const Operand& operand)
+{
+
+}
+
 Parser::Parser(Lexer& lexer)
 {
 	parse(lexer);

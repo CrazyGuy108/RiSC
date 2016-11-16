@@ -29,6 +29,8 @@ private:
 class Line
 {
 public:
+	friend std::ostream& operator<<(std::ostream& os, const Line& line);
+
 	Line() = default;
 	Line(Token::Type opcode);
 	virtual ~Line();
@@ -63,6 +65,8 @@ private:
 class Operand
 {
 public:
+	friend std::ostream& operator<<(std::ostream& os, const Operand& operand);
+
 	Operand() = default;
 	virtual ~Operand() = 0;
 };
