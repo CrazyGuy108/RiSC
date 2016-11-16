@@ -2,12 +2,20 @@
 
 std::ostream& operator<<(std::ostream& os, const Line& line)
 {
+	os << "opcode: " << getTypeName(line.opcode);
+	if(!line.operands.empty())
+		os << '\n';
 
+	// print operands
+	for (const Operand* i : line.operands)
+		os << *i;
+
+	return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const Operand& operand)
 {
-
+	return os; // placeholder
 }
 
 Parser::Parser(Lexer& lexer)
