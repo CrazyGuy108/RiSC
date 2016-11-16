@@ -3,12 +3,18 @@
 std::ostream& operator<<(std::ostream& os, const Line& line)
 {
 	os << "opcode: " << getTypeName(line.opcode);
-	if(!line.operands.empty())
+
+	// add the label if present
+	const LineWithLabel* linewithlabel{ dynamic_cast<const LineWithLabel*>(&line) };
+	if(linewithlabel != nullptr)
+		os << "\n label: " << linewithlabel->getLabel();
+
+	if (!line.operands.empty())
 		os << '\n';
 
 	// print operands
 	for (const Operand* i : line.operands)
-		os << *i;
+		os << ' ' << *i;
 
 	return os;
 }
