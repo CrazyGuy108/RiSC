@@ -11,4 +11,7 @@ typedef uint16_t inst_t;
 
 extern const opcode_map opcodes;
 
+// converts a Token::Type to string
+const char* getTypeName(Token::Type type);
+
 #endif // UTILITY_HPP

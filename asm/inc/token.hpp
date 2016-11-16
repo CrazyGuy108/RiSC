@@ -24,11 +24,12 @@ public:
 
 	const Lexeme& getLexeme() const;
 	Type getType() const;
-	const char* getTypeName() const;
 
 private:
 	Lexeme lexeme;
 	Type type;
 };
+
+#include "utility.hpp" // for getTypeName
 
 #endif // TOKEN_HPP
