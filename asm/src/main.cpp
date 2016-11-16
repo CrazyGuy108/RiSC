@@ -26,6 +26,8 @@ int main()
 		while (!lexer.empty())
 			std::cout << lexer.next() << '\n';
 
+		std::cout << "errors found: " << lexer.getErrors() << '\n';
+
 		std::cout << std::endl;
 #endif // LEXER_TEST
 
