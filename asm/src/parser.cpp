@@ -9,19 +9,24 @@ std::ostream& operator<<(std::ostream& os, const Line& line)
 	if(linewithlabel != nullptr)
 		os << "\n label: " << linewithlabel->getLabel();
 
-	if (!line.operands.empty())
-		os << '\n';
-
 	// print operands
-	for (const Operand* i : line.operands)
-		os << ' ' << *i;
+	if (!line.operands.empty())
+		for (const Operand* i : line.operands)
+			os << "\n " << *i;
 
 	return os;
 }
 
 std::ostream& operator<<(std::ostream& os, const Operand& operand)
 {
-	return os; // placeholder
+	if (dynamic_cast<const Register*>(&operand) != nullptr)
+		return os << "register: " << dynamic_cast<const Register*>(&operand)->getReg();
+	else if (dynamic_cast<const Immediate*>(&operand) != nullptr)
+		return os << "immediate: " << dynamic_cast<const Immediate*>(&operand)->getImm();
+	else if (dynamic_cast<const Identifier*>(&operand) != nullptr)
+		return os << "identifier: " << dynamic_cast<const Identifier*>(&operand)->getID();
+	else
+		return os << "error";
 }
 
 Parser::Parser(Lexer& lexer)
