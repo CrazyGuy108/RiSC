@@ -16,13 +16,16 @@ public:
 	// for string literals
 	template<size_t len>
 	constexpr Lexeme(const char(&str)[len])
-		: beg{ str }, end{ &str[len] } {}
+		: beg{ str }, end{ &str[len - 1] } {}
 
 	const char* getBeg() const; // gets beg
 	const char* getEnd() const; // gets end
 
 	void setBeg(const char* beg); // sets beg
 	void setEnd(const char* end); // sets end
+
+	char operator[](size_t index) const;
+	char at(size_t index) const;
 
 	size_t length() const; // gets length of substring
 

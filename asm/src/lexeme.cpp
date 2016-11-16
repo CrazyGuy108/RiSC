@@ -60,6 +60,19 @@ void Lexeme::setEnd(const char* end)
 	this->end = end;
 }
 
+char Lexeme::operator[](size_t index) const
+{
+	return beg[index];
+}
+
+char Lexeme::at(size_t index) const
+{
+	if(index < length())
+		return beg[index];
+	else
+		throw std::out_of_range{ "Lexeme::at" };
+}
+
 size_t Lexeme::length() const
 {
 	return end - beg;
