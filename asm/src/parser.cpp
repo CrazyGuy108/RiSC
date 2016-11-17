@@ -46,12 +46,16 @@ void Parser::parse(Lexer& lexer)
 {
 	Line* line{ nullptr };
 	Token token;
+	size_t currentLine{ 0 };
 	while (!lexer.empty())
 	{
 		token = lexer.next();
 
-		if(token.getType() == Token::NEWLINE || token.getType() == Token::ERROR)
+		if (token.getType() == Token::NEWLINE)
+		{
+			++currentLine;
 			continue;
+		}
 
 		// get label, deciding if it should be a LineWithLabel or Line
 		if (token.getType() == Token::LABEL)
@@ -67,7 +71,7 @@ void Parser::parse(Lexer& lexer)
 			line->setOpcode(token.getType());
 		else
 		{
-			std::cout << "error: expected opcode but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
+			std::cout << "error(" << currentLine << "): expected opcode but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
 			++errors;
 			delete line;
 			line = nullptr;
@@ -96,13 +100,13 @@ void Parser::parse(Lexer& lexer)
 					break;
 
 				default:
-					std::cout << "error: expected operand but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
+					std::cout << "error(" << currentLine << "): expected operand but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
 					++errors;
 				}
 			}
 			catch (std::invalid_argument& e)
 			{
-				std::cout << "error: invalid " << e.what() << " \"" << token.getLexeme() << "\"\n";
+				std::cout << "error(" << currentLine << "): invalid " << e.what() << " \"" << token.getLexeme() << "\"\n";
 				++errors;
 			}
 
@@ -112,6 +116,7 @@ void Parser::parse(Lexer& lexer)
 		// add newly constructed line to the Line stream and reset
 		lines.push_back(line);
 		line = nullptr;
+		++currentLine;
 	}
 
 	it = lines.cbegin();
