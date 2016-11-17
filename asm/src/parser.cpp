@@ -66,7 +66,13 @@ void Parser::parse(Lexer& lexer)
 		if (token.getType() >= Token::ADD && token.getType() <= Token::JALR)
 			line->setOpcode(token.getType());
 		else
-			; // error: invalid opcode
+		{
+			// error: invalid opcode
+			++errors;
+			delete line;
+			line = nullptr;
+			continue;
+		}
 
 		// get operands
 		while (token.getType() != Token::NEWLINE)
@@ -104,7 +110,7 @@ void Parser::parse(Lexer& lexer)
 
 Line* Parser::next()
 {
-	if(it != lines.cend())
+	if(!empty())
 		return *it++;
 	else
 		return nullptr;
@@ -117,7 +123,7 @@ size_t Parser::getErrors() const
 
 bool Parser::empty() const
 {
-	return lines.empty();
+	return it == lines.cend();
 }
 
 Line::Line(Token::Type opcode)
