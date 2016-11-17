@@ -10,9 +10,10 @@ class SymbolTable final
 {
 public:
 	typedef std::map<Lexeme, inst_t> map_type;
+	typedef map_type::value_type     value_type;
 
 	SymbolTable() = default;
-	SymbolTable(std::initializer_list<map_type::value_type> il);
+	SymbolTable(std::initializer_list<value_type> il);
 
 private:
 	map_type symbols;
