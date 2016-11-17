@@ -74,12 +74,13 @@ void Parser::parse(Lexer& lexer)
 			continue;
 		}
 
+		token = lexer.next();
+
 		// get operands
 		while (token.getType() != Token::NEWLINE)
 		{
 			try
 			{
-				token = lexer.next();
 				switch (token.getType())
 				{
 				case Token::REGISTER:
@@ -95,7 +96,8 @@ void Parser::parse(Lexer& lexer)
 					break;
 
 				default:
-					; // error: invalid operand
+					std::cout << "error: expected operand but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
+					++errors;
 				}
 			}
 			catch (std::invalid_argument& e)
@@ -103,6 +105,8 @@ void Parser::parse(Lexer& lexer)
 				std::cout << "error: invalid " << e.what() << " \"" << token.getLexeme() << "\"\n";
 				++errors;
 			}
+
+			token = lexer.next();
 		}
 
 		// add newly constructed line to the Line stream and reset
