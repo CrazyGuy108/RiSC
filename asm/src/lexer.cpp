@@ -28,6 +28,7 @@ void Lexer::analyze(const char* program)
 
 	Lexeme iterator{ program, program };
 	StateTracker state{ START };
+	size_t line{ 0 };
 	while (iterator.getEnd()[0] != '\0')
 	{
 		// change states depending on the next character
@@ -62,6 +63,7 @@ void Lexer::analyze(const char* program)
 
 		case '\n': // newline
 			state = NEWLINE;
+			++line;
 			break;
 
 		case '#': // line comment
@@ -75,7 +77,7 @@ void Lexer::analyze(const char* program)
 				state = states[state.getCurr()][DIGIT]; 
 			else if (state.getCurr() != COMMENT)
 			{
-				std::cout << "error: invalid character '" << iterator.getEnd()[0] << "'\n";
+				std::cout << "error(" << line << "): invalid character '" << iterator.getEnd()[0] << "'\n";
 				state = ERROR;
 				++errors;
 			}
@@ -93,8 +95,16 @@ void Lexer::analyze(const char* program)
 				break; // exclude these cases from creating a token
 
 			default: // assumed to be in an accepting/error state
-				// create the appropriate token
-				tokenize(iterator, state.getLast());
+				try
+				{
+					// create the appropriate token
+					tokenize(iterator, state.getLast());
+				}
+				catch (std::invalid_argument& e)
+				{
+					std::cout << "error(" << line << "): invalid token \"" << iterator << "\"\n";
+					++errors;
+				}
 			}
 
 			// terminate the current line if needed
@@ -141,10 +151,7 @@ void Lexer::tokenize(const Lexeme& l, State last)
 	Lexeme lexeme{ l };
 
 	if (tmp == Token::ERROR) // check for errors
-	{
-		std::cout << "error: invalid token \"" << l << "\"\n";
-		++errors;
-	}
+		throw std::invalid_argument{ "Lexer::tokenize" };
 	else if(tmp == Token::LABEL) // remove colon from label declaration
 		lexeme.setEnd(lexeme.getEnd() - 1);
 	else // could be an opcode
