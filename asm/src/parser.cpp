@@ -114,9 +114,6 @@ void Parser::parse(Lexer& lexer)
 		line = nullptr;
 	}
 
-	if(line != nullptr)
-		; // error: end of file but incomplete line
-
 	it = lines.cbegin();
 }
 
