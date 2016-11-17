@@ -18,32 +18,12 @@ public:
 	bool empty() const;       // checks if the lexer is all out of tokens
 
 private:
+	enum State;
+	enum Column;
 	class StateTracker;
 
-	enum State
-	{
-		START,
-		IMM,
-		REG,
-		ID,
-		LABEL,
-		NEWLINE,
-		ERROR,
-		COMMENT,
-		IMM_CHECK,
-		REG_CHECK,
-		A = START, B, C, D, E, F, G, H, I, J
-	};
-
-	enum Column
-	{
-		LETTER, DIGIT
-	};
-
-	// helpers
-
 	// creates a token out of the given Lexeme
-	// the given state tells it how it should treat the token
+	// the given state tells it how it should tokenize it
 	void tokenize(const Lexeme& l, State last);
 
 	// static helpers
@@ -54,6 +34,26 @@ private:
 
 	size_t errors;            // tracks the amount of errors the lexer encountered
 	std::queue<Token> tokens; // queue containing the Tokens created by constructor
+};
+
+enum Lexer::State
+{
+	START,
+	IMM,
+	REG,
+	ID,
+	LABEL,
+	NEWLINE,
+	ERROR,
+	COMMENT,
+	IMM_CHECK,
+	REG_CHECK,
+	A = 0, B, C, D, E, F, G, H, I, J
+};
+
+enum Lexer::Column
+{
+	LETTER, DIGIT
 };
 
 // keeps track of the machine's state and the state it just exited
