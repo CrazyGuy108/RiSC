@@ -17,8 +17,12 @@ class Parser final
 public:
 	Parser() = default;
 	Parser(Lexer& lexer);
+	~Parser();
 
 	void parse(Lexer& lexer); // parse using the given lexer
+
+	Line* next();       // get the next Line
+	bool empty() const; // checks if the lines container is empty
 
 private:
 	std::vector<Line*> lines; // stream of Lines created by the parser

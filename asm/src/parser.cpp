@@ -34,6 +34,13 @@ Parser::Parser(Lexer& lexer)
 	parse(lexer);
 }
 
+Parser::~Parser()
+{
+	for(auto i : lines)
+		if(i != nullptr)
+			delete i;
+}
+
 void Parser::parse(Lexer& lexer)
 {
 	Line* line{ nullptr };
@@ -92,6 +99,19 @@ void Parser::parse(Lexer& lexer)
 		; // error: end of file but incomplete line
 
 	it = lines.cbegin();
+}
+
+Line* Parser::next()
+{
+	if(it != lines.cend())
+		return *it++;
+	else
+		return nullptr;
+}
+
+bool Parser::empty() const
+{
+	return lines.empty();
 }
 
 Line::Line(Token::Type opcode)
