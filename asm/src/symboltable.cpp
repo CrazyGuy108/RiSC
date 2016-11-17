@@ -3,6 +3,22 @@
 SymbolTable::SymbolTable(std::initializer_list<value_type> il)
 	: symbols{ il } {}
 
+void SymbolTable::add(const Lexeme& lexeme, inst_t value)
+{
+	symbols.emplace(lexeme, value);
+}
+
+inst_t SymbolTable::operator[](const Lexeme& lexeme) const
+{
+	return symbols.at(lexeme);
+}
+
+bool SymbolTable::empty() const
+{
+	return symbols.empty();
+}
+
+
 SymbolTable::iterator SymbolTable::begin()
 {
 	return symbols.begin();

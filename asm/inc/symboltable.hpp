@@ -17,10 +17,15 @@ public:
 	SymbolTable() = default;
 	SymbolTable(std::initializer_list<value_type> il);
 
+	void add(const Lexeme& lexeme, inst_t value);  // creates an entry
+	inst_t operator[](const Lexeme& lexeme) const; // finds an entry
+	bool empty() const; // check if there are no entries
+
+	// iterator functions
+
 	iterator begin();
 	const_iterator begin() const;
 	const_iterator cbegin() const;
-
 	iterator end();
 	const_iterator end() const;
 	const_iterator cend() const;
