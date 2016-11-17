@@ -67,7 +67,7 @@ void Parser::parse(Lexer& lexer)
 			line->setOpcode(token.getType());
 		else
 		{
-			// error: invalid opcode
+			std::cout << "error: expected opcode but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
 			++errors;
 			delete line;
 			line = nullptr;
@@ -77,23 +77,31 @@ void Parser::parse(Lexer& lexer)
 		// get operands
 		while (token.getType() != Token::NEWLINE)
 		{
-			token = lexer.next();
-			switch (token.getType())
+			try
 			{
-			case Token::REGISTER:
-				line->addOperand(new Register{ token.getLexeme() });
-				break;
+				token = lexer.next();
+				switch (token.getType())
+				{
+				case Token::REGISTER:
+					line->addOperand(new Register{ token.getLexeme() });
+					break;
 
-			case Token::IMMEDIATE:
-				line->addOperand(new Immediate{ token.getLexeme() });
-				break;
+				case Token::IMMEDIATE:
+					line->addOperand(new Immediate{ token.getLexeme() });
+					break;
 
-			case Token::IDENTIFIER:
-				line->addOperand(new Identifier{ token.getLexeme() });
-				break;
+				case Token::IDENTIFIER:
+					line->addOperand(new Identifier{ token.getLexeme() });
+					break;
 
-			default:
-				; // error: invalid operand
+				default:
+					; // error: invalid operand
+				}
+			}
+			catch (std::invalid_argument& e)
+			{
+				std::cout << "error: invalid " << e.what() << " \"" << token.getLexeme() << "\"\n";
+				++errors;
 			}
 		}
 
@@ -183,7 +191,7 @@ Register::Register(const Lexeme& lexeme)
 	    lexeme[1] <= '7')
 		reg = lexeme[1] - '0';
 	else
-		throw std::invalid_argument{ "Register::Register" };
+		throw std::invalid_argument{ "register" };
 }
 
 inst_t Register::getReg() const
@@ -197,12 +205,21 @@ Immediate::Immediate(inst_t imm)
 Immediate::Immediate(const Lexeme& lexeme)
 {
 	size_t sz{ 0 };
-	int value{ std::stoi(std::string{ lexeme.getBeg(), lexeme.length() }, &sz, 0) };
+	int value;
+	std::string str{ lexeme.getBeg(), lexeme.length() };
+	try
+	{
+		value = std::stoi(str, &sz, 0);
+	}
+	catch (std::logic_error& e)
+	{
+		throw std::invalid_argument{ "immediate" };
+	}
 
 	if (sz != 0) // conversion succeeded
 		imm = value;
 	else
-		throw std::invalid_argument{ "Immediate::Immediate" };
+		throw std::invalid_argument{ "immediate" };
 }
 
 inst_t Immediate::getImm() const
