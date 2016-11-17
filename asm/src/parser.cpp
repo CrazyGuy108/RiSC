@@ -30,6 +30,7 @@ std::ostream& operator<<(std::ostream& os, const Operand& operand)
 }
 
 Parser::Parser(Lexer& lexer)
+	: errors{ 0 }
 {
 	parse(lexer);
 }
@@ -107,6 +108,11 @@ Line* Parser::next()
 		return *it++;
 	else
 		return nullptr;
+}
+
+size_t Parser::getErrors() const
+{
+	return errors;
 }
 
 bool Parser::empty() const

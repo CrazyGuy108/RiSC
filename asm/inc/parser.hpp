@@ -22,12 +22,14 @@ public:
 
 	void parse(Lexer& lexer); // parse using the given lexer
 
-	Line* next();       // get the next Line
-	bool empty() const; // checks if the lines container is empty
+	Line* next();             // get the next Line
+	size_t getErrors() const; // gets the amount of errors the parser encountered
+	bool empty() const;       // checks if the lines container is empty
 
 private:
 	std::vector<Line*> lines; // stream of Lines created by the parser
 	std::vector<Line*>::const_iterator it; // current position of stream
+	size_t errors; // the amount of errors the parser encountered
 };
 
 // represents a parsed and tokenized line of code
