@@ -192,8 +192,8 @@ bool Lexer::digit(char c)
 	return c >= '0' && c <= '9';
 }
 
-Lexer::StateTracker::StateTracker(Lexer::State curr)
-	: curr{ curr }, last{ Lexer::START } {}
+Lexer::StateTracker::StateTracker(State curr)
+	: curr{ curr }, last{ START } {}
 
 Lexer::State Lexer::StateTracker::getCurr() const
 {
@@ -205,7 +205,7 @@ Lexer::State Lexer::StateTracker::getLast() const
 	return last;
 }
 
-Lexer::StateTracker& Lexer::StateTracker::operator=(Lexer::State s)
+Lexer::StateTracker& Lexer::StateTracker::operator=(State s)
 {
 	last = curr;
 	curr = s;

@@ -60,15 +60,15 @@ enum Lexer::Column
 class Lexer::StateTracker
 {
 public:
-	StateTracker(Lexer::State curr); // initializes state
+	StateTracker(State curr); // initializes state
 
-	Lexer::State getCurr() const;            // gets current state
-	Lexer::State getLast() const;            // gets last state
-	StateTracker& operator=(Lexer::State s); // sets current state and last state
+	State getCurr() const;            // gets current state
+	State getLast() const;            // gets last state
+	StateTracker& operator=(State s); // sets current state and last state
 
 private:
-	Lexer::State curr; // current state
-	Lexer::State last; // last state
+	State curr; // current state
+	State last; // last state
 };
 
 #endif // LEXER_HPP
