@@ -165,7 +165,13 @@ Register::Register(inst_t reg)
 
 Register::Register(const Lexeme& lexeme)
 {
-
+	if (lexeme.length() == 2 &&
+	    lexeme[0] == 'r' &&
+	    lexeme[1] >= '0' &&
+	    lexeme[1] <= '7')
+		reg = lexeme[1] - '0';
+	else
+		throw std::invalid_argument{ "Register::Register" };
 }
 
 inst_t Register::getReg() const
