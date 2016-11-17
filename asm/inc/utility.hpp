@@ -6,8 +6,9 @@
 #include "lexeme.hpp" // for Lexeme
 #include "token.hpp"  // for Token::Type
 
+typedef uint16_t                      inst_t;
 typedef std::map<Lexeme, Token::Type> opcode_map;
-typedef uint16_t inst_t;
+typedef std::map<Lexeme, inst_t>      symbol_table;
 
 extern const opcode_map opcodes;
 
