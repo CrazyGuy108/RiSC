@@ -1,6 +1,7 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
+#include <string>      // for stoi
 #include <vector>      // for vector
 #include "lexeme.hpp"  // for Lexeme
 #include "lexer.hpp"   // for Lexer

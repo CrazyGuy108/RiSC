@@ -184,7 +184,13 @@ Immediate::Immediate(inst_t imm)
 
 Immediate::Immediate(const Lexeme& lexeme)
 {
+	size_t sz{ 0 };
+	int value{ std::stoi(std::string{ lexeme.getBeg(), lexeme.length() }, &sz, 0) };
 
+	if (sz != 0) // conversion succeeded
+		imm = value;
+	else
+		throw std::invalid_argument{ "Immediate::Immediate" };
 }
 
 inst_t Immediate::getImm() const
