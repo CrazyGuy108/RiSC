@@ -11,6 +11,7 @@ class SymbolTable final
 public:
 	typedef std::map<Lexeme, inst_t> map_type;
 
+	SymbolTable() = default;
 	SymbolTable(std::initializer_list<map_type::value_type> il);
 
 private:
