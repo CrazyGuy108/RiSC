@@ -12,7 +12,7 @@ public:
 
 	enum Type
 	{
-		BEGIN, END, NEWLINE, // punctuation
+		NEWLINE, // signal to the parser
 		LABEL, REGISTER, IMMEDIATE, IDENTIFIER, // type of lexeme
 		ADD, ADDI, NAND, LUI, SW, LW, BEQ, JALR, // opcode
 		ERROR // lexical error

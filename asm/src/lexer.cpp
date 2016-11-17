@@ -23,8 +23,6 @@ void Lexer::analyze(const char* program)
 		{ D, C }  // J (reg digit check, entered by a start-of-word 'r' )
 	};
 
-	tokens.emplace(Token::BEGIN);
-
 	// lexically parse the program, tokenizing and categorizing matches
 	//  by using the state table and some special cases
 
@@ -113,14 +111,12 @@ void Lexer::analyze(const char* program)
 		// advance to the next character
 		iterator.setEnd(iterator.getEnd() + 1);
 	}
-
-	tokens.emplace(Token::END);
 }
 
 Token Lexer::next()
 {
 	if(tokens.empty())
-		return Token{ Token::END };
+		return Token{ Token::ERROR };
 	else
 	{
 		Token tmp{ tokens.front() };

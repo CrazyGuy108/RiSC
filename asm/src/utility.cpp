@@ -16,10 +16,6 @@ const char* getTypeName(Token::Type type)
 {
 	switch (type)
 	{
-	case Token::BEGIN:
-		return "begin";
-	case Token::END:
-		return "end";
 	case Token::NEWLINE:
 		return "newline";
 	case Token::LABEL:
