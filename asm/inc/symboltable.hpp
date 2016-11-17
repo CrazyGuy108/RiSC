@@ -1,0 +1,4 @@
+#ifndef SYMBOLTABLE_HPP
+#define SYMBOLTABLE_HPP
+
+#endif // SYMBOLTABLE_HPP
