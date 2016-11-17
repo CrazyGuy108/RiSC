@@ -75,7 +75,7 @@ void Lexer::analyze(const char* program)
 				state = states[state.getCurr()][DIGIT]; 
 			else if (state.getCurr() != COMMENT)
 			{
-				// error: invalid character
+				std::cout << "error: invalid character '" << iterator.getEnd()[0] << "'\n";
 				state = ERROR;
 				++errors;
 			}
@@ -142,7 +142,7 @@ void Lexer::tokenize(const Lexeme& l, State last)
 
 	if (tmp == Token::ERROR) // check for errors
 	{
-		// error: invalid token
+		std::cout << "error: invalid token \"" << l << "\"\n";
 		++errors;
 	}
 	else if(tmp == Token::LABEL) // remove colon from label declaration
