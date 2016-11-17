@@ -84,12 +84,14 @@ void Parser::parse(Lexer& lexer)
 		}
 
 		// add newly constructed line to the Line stream and reset
-		lines.push(line);
+		lines.push_back(line);
 		line = nullptr;
 	}
 
 	if(line != nullptr)
 		; // error: end of file but incomplete line
+
+	it = lines.cbegin();
 }
 
 Line::Line(Token::Type opcode)

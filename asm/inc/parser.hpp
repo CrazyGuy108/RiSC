@@ -1,7 +1,6 @@
 #ifndef PARSER_HPP
 #define PARSER_HPP
 
-#include <queue>       // for queue
 #include <vector>      // for vector
 #include "lexeme.hpp"  // for Lexeme
 #include "lexer.hpp"   // for Lexer
@@ -22,7 +21,8 @@ public:
 	void parse(Lexer& lexer); // parse using the given lexer
 
 private:
-	std::queue<Line*> lines; // stream of Lines created by the parser
+	std::vector<Line*> lines; // stream of Lines created by the parser
+	std::vector<Line*>::const_iterator it; // current position of stream
 };
 
 // represents a parsed and tokenized line of code
