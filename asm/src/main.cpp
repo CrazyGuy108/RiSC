@@ -50,7 +50,7 @@ int main()
 
 		// print out every line of bytecode
 		while(!generator.empty())
-			std::cout << generator.next() << '\n';
+			std::cout << std::hex << generator.next() << '\n';
 
 		std::cout << "\nSymbol table:\n";
 
