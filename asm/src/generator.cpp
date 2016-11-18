@@ -14,10 +14,7 @@ void Generator::generate(Parser& parser)
 
 inst_t Generator::next()
 {
-	if (!empty())
-		return *it++;
-	else
-		return 0; // create a nop
+	return *it++;
 }
 
 bool Generator::empty() const

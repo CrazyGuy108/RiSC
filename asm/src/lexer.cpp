@@ -127,10 +127,7 @@ void Lexer::analyze(const char* program)
 
 const Token& Lexer::next()
 {
-	if(!empty())
-		return *it++;
-	else
-		throw std::out_of_range{ "Lexer::next" };
+	return *it++;
 }
 
 bool Lexer::empty() const

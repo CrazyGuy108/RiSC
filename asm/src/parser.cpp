@@ -124,10 +124,7 @@ void Parser::parse(Lexer& lexer)
 
 Line* Parser::next()
 {
-	if(!empty())
-		return *it++;
-	else
-		return nullptr;
+	return *it++;
 }
 
 size_t Parser::getErrors() const
