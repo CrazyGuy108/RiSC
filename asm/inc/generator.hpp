@@ -1,6 +1,7 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
+#include <utility>     // for pair
 #include <vector>      // for vector
 #include "parser.hpp"  // for Parser
 #include "utility.hpp" // for inst_t
