@@ -77,7 +77,7 @@ void Lexer::analyze(const char* program)
 				state = states[state.getCurr()][DIGIT]; 
 			else if (state.getCurr() != COMMENT)
 			{
-				std::cout << "error(" << line << "): invalid character '" << iterator.getEnd()[0] << "'\n";
+				std::cout << "lexer error(" << line << "): invalid character '" << iterator.getEnd()[0] << "'\n";
 				state = ERROR;
 				++errors;
 			}
@@ -102,7 +102,7 @@ void Lexer::analyze(const char* program)
 				}
 				catch (std::invalid_argument& e)
 				{
-					std::cout << "error(" << line << "): invalid token \"" << iterator << "\"\n";
+					std::cout << "lexer error(" << line << "): invalid token \"" << iterator << "\"\n";
 					++errors;
 				}
 			}
