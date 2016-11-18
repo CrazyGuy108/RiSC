@@ -1,7 +1,7 @@
 #ifndef LEXER_HPP
 #define LEXER_HPP
 
-#include <queue>       // for queue
+#include <vector>      // for vector
 #include "token.hpp"   // for Token
 #include "utility.hpp" // for keywords and keyword_map
 
@@ -9,13 +9,15 @@
 class Lexer
 {
 public:
+	typedef std::vector<Token> token_list;
+
 	Lexer(const char* program);
 	
 	void analyze(const char* program); // lexically analyze the given program
 
-	Token next();             // gets the next lexeme from tokens queue
-	size_t getErrors() const; // gets the amount of errors the lexer encountered
+	const Token& next();      // gets the next lexeme from token stream
 	bool empty() const;       // checks if the lexer is all out of tokens
+	size_t getErrors() const; // gets the amount of errors the lexer encountered
 
 private:
 	enum State;
@@ -32,8 +34,9 @@ private:
 	static bool letter(char c);
 	static bool digit(char c);
 
-	size_t errors;            // tracks the amount of errors the lexer encountered
-	std::queue<Token> tokens; // queue containing the Tokens created by constructor
+	token_list tokens;             // stream of tokens
+	token_list::const_iterator it; // keeps track of position
+	size_t errors;                 // tracks the amount of errors the lexer encountered
 };
 
 enum Lexer::State

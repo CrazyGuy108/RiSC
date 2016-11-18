@@ -109,7 +109,7 @@ void Lexer::analyze(const char* program)
 
 			// terminate the current line if needed
 			if(state.getCurr() == NEWLINE)
-				tokens.emplace(Token::NEWLINE);
+				tokens.emplace_back(Token::NEWLINE);
 
 			// reset iterator and state
 			iterator.setBeg(iterator.getEnd() + 1);
@@ -121,28 +121,26 @@ void Lexer::analyze(const char* program)
 		// advance to the next character
 		iterator.setEnd(iterator.getEnd() + 1);
 	}
+
+	it = tokens.cbegin();
 }
 
-Token Lexer::next()
+const Token& Lexer::next()
 {
-	if(tokens.empty())
-		return Token{ Token::ERROR };
+	if(!empty())
+		return *it++;
 	else
-	{
-		Token tmp{ tokens.front() };
-		tokens.pop();
-		return tmp;
-	}
+		throw std::out_of_range{ "Lexer::next" };
+}
+
+bool Lexer::empty() const
+{
+	return it == tokens.cend();
 }
 
 size_t Lexer::getErrors() const
 {
 	return errors;
-}
-
-bool Lexer::empty() const
-{
-	return tokens.empty();
 }
 
 void Lexer::tokenize(const Lexeme& l, State last)
@@ -161,7 +159,7 @@ void Lexer::tokenize(const Lexeme& l, State last)
 			tmp = it->second;
 	}
 
-	tokens.emplace(lexeme, tmp); // create the token
+	tokens.emplace_back(lexeme, tmp); // create the token
 }
 
 Token::Type Lexer::parseState(State s)
