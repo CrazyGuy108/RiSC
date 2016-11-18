@@ -26,7 +26,7 @@ private:
 
 	// helpers
 
-	inst_t assemble(const Line& line);          // uses symtable to generate a line of code
+	inst_t assemble(Line& line);                // uses symtable to generate a line of code
 	inst_t resolve(const Identifier& id) const; // resolves a single identifier
 	static inst_t compile(const Line& line);    // compiles a line of code
 

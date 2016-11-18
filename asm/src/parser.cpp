@@ -152,6 +152,11 @@ Token::Type Line::getOpcode() const
 	return opcode;
 }
 
+Line::operand_list& Line::getOperands()
+{
+	return operands;
+}
+
 const Line::operand_list& Line::getOperands() const
 {
 	return operands;

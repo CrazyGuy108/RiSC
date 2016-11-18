@@ -11,13 +11,12 @@ void Generator::generate(Parser& parser)
 	std::vector<std::pair<Line*, inst_t>> failed; // holds lines that failed to compile given the current context
 	Line* currentLine;
 	size_t line{ 0 };
-
 	while (!parser.empty())
 	{
 		currentLine = parser.next();
 
 		// add label to symbol table if existent
-		if(dynamic_cast<LineWithLabel*>(currentLine) != nullptr)
+		if (dynamic_cast<LineWithLabel*>(currentLine) != nullptr)
 			symtable.emplace(dynamic_cast<LineWithLabel*>(currentLine)->getLabel(), line);
 
 		try
@@ -71,16 +70,19 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 	return symtable;
 }
 
-inst_t Generator::assemble(const Line& line)
+inst_t Generator::assemble(Line& line)
 {
-	Line noID{ line.getOpcode() };
-
 	// fill in identifiers using the symbol table
+	Line::operand_list& operands{ line.getOperands() };
 	for (auto& i : line.getOperands())
-		noID.addOperand(dynamic_cast<Identifier*>(i) != nullptr ?
-			new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } : i);
+		if (dynamic_cast<Identifier*>(i) != nullptr)
+		{
+			Immediate* tmp{ new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } };
+			delete i;
+			i = tmp;
+		}
 
-	return compile(noID);
+	return compile(line);
 }
 
 inst_t Generator::resolve(const Identifier& id) const
@@ -99,28 +101,20 @@ inst_t Generator::compile(const Line& line)
 	{
 	case Token::ADD:
 		return rrr(Bitwise::ADD, line);
-		break;
 	case Token::ADDI:
 		return rri(Bitwise::ADDI, line);
-		break;
 	case Token::NAND:
 		return rrr(Bitwise::NAND, line);
-		break;
 	case Token::LUI:
 		return ri(Bitwise::LUI, line);
-		break;
 	case Token::SW:
 		return rri(Bitwise::SW, line);
-		break;
 	case Token::LW:
 		return rri(Bitwise::LW, line);
-		break;
 	case Token::BEQ:
 		return rri(Bitwise::BEQ, line);
-		break;
 	case Token::JALR:
 		return rri(Bitwise::JALR, line);
-		break;
 	default:
 		; // error: invalid opcode
 	}

@@ -46,7 +46,7 @@ int main()
 
 #ifdef GEN_TEST
 		std::cout << "Generator:" << std::endl;
-		Generator generator{ Parser{ Lexer{ contents.c_str() }}};
+		Generator generator{ Parser{ Lexer{ contents.c_str() } } };
 
 		// print out every line of bytecode
 		while(!generator.empty())

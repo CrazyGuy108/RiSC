@@ -45,6 +45,7 @@ public:
 	virtual ~Line();
 
 	Token::Type getOpcode() const;
+	operand_list& getOperands();
 	const operand_list& getOperands() const;
 
 	void setOpcode(Token::Type opcode);
