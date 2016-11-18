@@ -42,7 +42,7 @@ void Generator::generate(Parser& parser)
 		}
 		catch (const std::invalid_argument& e)
 		{
-			std::cout << "error(" << line << "): " << e.what() << '\n';
+			std::cout << "generator error(" << line << "): " << e.what() << '\n';
 			++errors;
 		}
 	}
@@ -73,7 +73,6 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 inst_t Generator::assemble(Line& line)
 {
 	// fill in identifiers using the symbol table
-	Line::operand_list& operands{ line.getOperands() };
 	for (auto& i : line.getOperands())
 		if (dynamic_cast<Identifier*>(i) != nullptr)
 		{
@@ -116,7 +115,7 @@ inst_t Generator::compile(const Line& line)
 	case Token::JALR:
 		return rri(Bitwise::JALR, line);
 	default:
-		; // error: invalid opcode
+		throw std::invalid_argument{ "invalid opcode" }; // should never happen
 	}
 }
 
