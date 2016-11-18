@@ -71,7 +71,7 @@ void Parser::parse(Lexer& lexer)
 			line->setOpcode(token.getType());
 		else
 		{
-			std::cout << "error(" << currentLine << "): expected opcode but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
+			std::cout << "error(" << currentLine << "): expected opcode but was given " << getTypeName(token.getType()) << " instead\n";
 			++errors;
 			delete line;
 			line = nullptr;
@@ -100,11 +100,11 @@ void Parser::parse(Lexer& lexer)
 					break;
 
 				default:
-					std::cout << "error(" << currentLine << "): expected operand but was given " << getTypeName(token.getType()) << " \"" << token.getLexeme() << "\" instead\n";
+					std::cout << "error(" << currentLine << "): expected operand but was given " << getTypeName(token.getType()) << " instead\n";
 					++errors;
 				}
 			}
-			catch (std::invalid_argument& e)
+			catch (const std::invalid_argument& e)
 			{
 				std::cout << "error(" << currentLine << "): invalid " << e.what() << " \"" << token.getLexeme() << "\"\n";
 				++errors;
