@@ -23,7 +23,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile
-			assemble(*currentLine);
+			bytecode.emplace_back(assemble(*currentLine));
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -39,7 +39,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile again given the complete symtable
-			assemble(*i.first);
+			bytecode[i.second] = assemble(*i.first);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -71,7 +71,7 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 	return symtable;
 }
 
-void Generator::assemble(const Line& line)
+inst_t Generator::assemble(const Line& line)
 {
 	Line noID{ line.getOpcode() };
 
@@ -80,7 +80,7 @@ void Generator::assemble(const Line& line)
 		noID.addOperand(dynamic_cast<Identifier*>(i) != nullptr ?
 			new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } : i);
 
-	bytecode.push_back(compile(noID));
+	return compile(noID);
 }
 
 inst_t Generator::resolve(const Identifier& id) const
