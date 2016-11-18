@@ -8,24 +8,21 @@ Generator::Generator(Parser& parser)
 
 void Generator::generate(Parser& parser)
 {
-
+	// generate code
+	it = bytecode.cbegin();
 }
 
 inst_t Generator::next()
 {
 	if (!empty())
-	{
-		inst_t tmp{ bytecode.front() };
-		bytecode.pop();
-		return tmp;
-	}
+		return *it++;
 	else
 		return 0; // create a nop
 }
 
 bool Generator::empty() const
 {
-	return bytecode.empty();
+	return it == bytecode.cend();
 }
 
 size_t Generator::getErrors() const

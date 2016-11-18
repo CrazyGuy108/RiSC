@@ -1,7 +1,7 @@
 #ifndef GENERATOR_HPP
 #define GENERATOR_HPP
 
-#include <queue>       // for queue
+#include <vector>      // for vector
 #include "parser.hpp"  // for Parser
 #include "utility.hpp" // for inst_t
 
@@ -9,6 +9,7 @@ class Generator
 {
 public:
 	typedef std::map<Lexeme, inst_t> symbol_table;
+	typedef std::vector<inst_t>      bytecode_list;
 
 	Generator() = default;
 	Generator(Parser& parser);
@@ -20,9 +21,10 @@ public:
 	const symbol_table& getSymbolTable() const;
 
 private:
-	std::queue<inst_t> bytecode;
-	size_t errors;
-	symbol_table symtable;
+	bytecode_list bytecode;           // stream of bytecode
+	bytecode_list::const_iterator it; // keeps track of position
+	size_t errors;                    // amount of errors encountered
+	symbol_table symtable;            // table for resolving labels
 };
 
 #endif // GENERATOR_HPP
