@@ -24,8 +24,9 @@ public:
 private:
 	enum class Bitwise : inst_t;
 
-	void assemble(Line* line); // uses symtable to generate a line of code
+	void assemble(const Line& line);            // uses symtable to generate a line of code
 	inst_t resolve(const Identifier& id) const; // resolves a single identifier
+	static inst_t compile(const Line& line);    // compiles a line of code
 
 	bytecode_list bytecode;           // stream of bytecode
 	bytecode_list::const_iterator it; // keeps track of position

@@ -23,7 +23,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile
-			assemble(currentLine);
+			assemble(*currentLine);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -39,7 +39,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile again given the complete symtable
-			assemble(i.first);
+			assemble(*i.first);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -71,18 +71,16 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 	return symtable;
 }
 
-void Generator::assemble(Line* line)
+void Generator::assemble(const Line& line)
 {
-	Line noID{ line->getOpcode() };
-	Operand* operand;
+	Line noID{ line.getOpcode() };
 
 	// fill in identifiers using the symbol table
-	for (auto& i : line->getOperands())
+	for (auto& i : line.getOperands())
 		noID.addOperand(dynamic_cast<Identifier*>(i) != nullptr ?
 			new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } : i);
 
-	// compile
-	// (placeholder)
+	bytecode.push_back(compile(noID));
 }
 
 inst_t Generator::resolve(const Identifier& id) const
@@ -93,4 +91,29 @@ inst_t Generator::resolve(const Identifier& id) const
 		return it->second;
 	else
 		throw std::invalid_argument{ std::string{ lexeme.getBeg(), lexeme.length() } };
+}
+
+inst_t Generator::compile(const Line& line)
+{
+	switch (line.getOpcode())
+	{
+	case Token::ADD:
+		break;
+	case Token::ADDI:
+		break;
+	case Token::NAND:
+		break;
+	case Token::LUI:
+		break;
+	case Token::SW:
+		break;
+	case Token::LW:
+		break;
+	case Token::BEQ:
+		break;
+	case Token::JALR:
+		break;
+	default:
+		; // error: invalid opcode
+	}
 }
