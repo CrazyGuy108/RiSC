@@ -81,7 +81,7 @@ void Parser::parse(Lexer& lexer)
 		token = lexer.next();
 
 		// get operands
-		while (token.getType() != Token::NEWLINE)
+		while (token.getType() != Token::NEWLINE && !lexer.empty())
 		{
 			try
 			{
