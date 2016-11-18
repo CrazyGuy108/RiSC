@@ -73,5 +73,26 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 
 void Generator::compile(Line* line)
 {
+	Line noID{ line->getOpcode() };
+	Operand* operand;
 
+	// fill in identifiers using the symbol table
+	for (auto& i : line->getOperands())
+	{
+		operand = i;
+		if (dynamic_cast<Identifier*>(i) != nullptr)
+		{
+			const Lexeme& lexeme{ dynamic_cast<Identifier*>(i)->getID() };
+			symbol_table::iterator it{ symtable.find(lexeme) };
+			if (it != symtable.end()) // found the name in the symbol table
+				operand = new Immediate{ it->second };
+			else
+				throw std::invalid_argument{ std::string{ lexeme.getBeg(), lexeme.length() } };
+		}
+
+		noID.addOperand(operand);
+	}
+
+	// compile
+	// (placeholder)
 }
