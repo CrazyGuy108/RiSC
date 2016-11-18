@@ -15,10 +15,12 @@ public:
 	inst_t next();
 	bool empty() const;
 	size_t getErrors() const;
+	const symbol_table& getSymbolTable() const;
 
 private:
 	std::queue<inst_t> bytecode;
 	size_t errors;
+	symbol_table symtable;
 };
 
 #endif // GENERATOR_HPP
