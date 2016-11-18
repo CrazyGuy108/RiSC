@@ -23,6 +23,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile
+			compile(currentLine);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -38,6 +39,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile again given the complete symtable
+			compile(i.first);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -67,4 +69,9 @@ size_t Generator::getErrors() const
 const Generator::symbol_table& Generator::getSymbolTable() const
 {
 	return symtable;
+}
+
+void Generator::compile(Line* line)
+{
+
 }

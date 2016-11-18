@@ -22,6 +22,8 @@ public:
 	const symbol_table& getSymbolTable() const;
 
 private:
+	void compile(Line* line); // uses symtable to generate a line of code
+
 	bytecode_list bytecode;           // stream of bytecode
 	bytecode_list::const_iterator it; // keeps track of position
 	size_t errors;                    // amount of errors encountered
