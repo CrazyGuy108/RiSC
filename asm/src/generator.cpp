@@ -33,7 +33,7 @@ size_t Generator::getErrors() const
 	return errors;
 }
 
-const symbol_table& Generator::getSymbolTable() const
+const Generator::symbol_table& Generator::getSymbolTable() const
 {
 	return symtable;
 }

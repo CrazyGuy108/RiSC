@@ -8,6 +8,8 @@
 class Generator
 {
 public:
+	typedef std::map<Lexeme, inst_t> symbol_table;
+
 	Generator() = default;
 	Generator(Parser& parser);
 
