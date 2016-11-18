@@ -78,21 +78,19 @@ void Generator::compile(Line* line)
 
 	// fill in identifiers using the symbol table
 	for (auto& i : line->getOperands())
-	{
-		operand = i;
-		if (dynamic_cast<Identifier*>(i) != nullptr)
-		{
-			const Lexeme& lexeme{ dynamic_cast<Identifier*>(i)->getID() };
-			symbol_table::iterator it{ symtable.find(lexeme) };
-			if (it != symtable.end()) // found the name in the symbol table
-				operand = new Immediate{ it->second };
-			else
-				throw std::invalid_argument{ std::string{ lexeme.getBeg(), lexeme.length() } };
-		}
-
-		noID.addOperand(operand);
-	}
+		noID.addOperand(dynamic_cast<Identifier*>(i) != nullptr ?
+			new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } : i);
 
 	// compile
 	// (placeholder)
+}
+
+inst_t Generator::resolve(const Identifier& id) const
+{
+	const Lexeme& lexeme{ id.getID() };
+	symbol_table::const_iterator it{ symtable.find(lexeme) };
+	if (it != symtable.cend()) // label definition matches the identifier
+		return it->second;
+	else
+		throw std::invalid_argument{ std::string{ lexeme.getBeg(), lexeme.length() } };
 }
