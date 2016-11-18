@@ -36,6 +36,8 @@ private:
 class Line
 {
 public:
+	typedef std::vector<Operand*> operand_list;
+
 	friend std::ostream& operator<<(std::ostream& os, const Line& line);
 
 	Line() = default;
@@ -43,15 +45,14 @@ public:
 	virtual ~Line();
 
 	Token::Type getOpcode() const;
-	Operand* getOperand(size_t index);
-	const Operand* getOperand(size_t index) const;
+	const operand_list& getOperands() const;
 
 	void setOpcode(Token::Type opcode);
 	void addOperand(Operand* operand);
 
 protected:
 	Token::Type opcode;
-	std::vector<Operand*> operands;
+	operand_list operands;
 };
 
 // similar to a Line but with a label

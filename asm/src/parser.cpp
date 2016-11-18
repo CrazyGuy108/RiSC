@@ -152,14 +152,9 @@ Token::Type Line::getOpcode() const
 	return opcode;
 }
 
-Operand* Line::getOperand(size_t index)
+const Line::operand_list& Line::getOperands() const
 {
-	return operands[index];
-}
-
-const Operand* Line::getOperand(size_t index) const
-{
-	return operands[index];
+	return operands;
 }
 
 void Line::setOpcode(Token::Type opcode)
