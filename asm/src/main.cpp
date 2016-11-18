@@ -1,12 +1,14 @@
-#include <fstream>           // for ifstream
-#include <iostream>          // for cout
-#include <string>            // for string
-#include "../inc/lexer.hpp"  // for Lexer
-#include "../inc/parser.hpp" // for Parser
+#include <fstream>              // for ifstream
+#include <iostream>             // for cout
+#include <string>               // for string
+#include "../inc/lexer.hpp"     // for Lexer
+#include "../inc/parser.hpp"    // for Parser
+#include "../inc/generator.hpp" // for Generator
 
 #define READ_TEST
-#define LEXER_TEST
-#define PARSER_TEST
+//#define LEXER_TEST
+//#define PARSER_TEST
+#define GEN_TEST
 
 int main()
 {
@@ -41,6 +43,23 @@ int main()
 
 		std::cout << "errors found: " << parser.getErrors() << '\n' << std::endl;
 #endif // PARSER_TEST
+
+#ifdef GEN_TEST
+		std::cout << "Generator:" << std::endl;
+		Generator generator{ Parser{ Lexer{ contents.c_str() }}};
+
+		// print out every line of bytecode
+		while(!generator.empty())
+			std::cout << generator.next() << '\n';
+
+		std::cout << "\nSymbol table:\n";
+
+		// print out symbol table
+		for (const auto& i : generator.getSymbolTable())
+			std::cout << i.first << ": " << i.second << '\n';
+
+		std::cout << "errors found: " << generator.getErrors() << '\n' << std::endl;
+#endif // GEN_TEST
 
 		ifile.close();
 		std::cout << "input file closed\n";
