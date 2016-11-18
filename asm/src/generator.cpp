@@ -98,22 +98,92 @@ inst_t Generator::compile(const Line& line)
 	switch (line.getOpcode())
 	{
 	case Token::ADD:
+		return rrr(Bitwise::ADD, line);
 		break;
 	case Token::ADDI:
+		return rri(Bitwise::ADDI, line);
 		break;
 	case Token::NAND:
+		return rrr(Bitwise::NAND, line);
 		break;
 	case Token::LUI:
+		return ri(Bitwise::LUI, line);
 		break;
 	case Token::SW:
+		return rri(Bitwise::SW, line);
 		break;
 	case Token::LW:
+		return rri(Bitwise::LW, line);
 		break;
 	case Token::BEQ:
+		return rri(Bitwise::BEQ, line);
 		break;
 	case Token::JALR:
+		return rri(Bitwise::JALR, line);
 		break;
 	default:
 		; // error: invalid opcode
 	}
+}
+
+inst_t Generator::rrr(Bitwise op, const Line& line)
+{
+	if (line.getOperands().size() == 3)
+	{
+		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
+		Register* rb{ dynamic_cast<Register*>(line.getOperands()[1]) };
+		Register* rc{ dynamic_cast<Register*>(line.getOperands()[2]) };
+		if (ra != nullptr)
+			if(rb != nullptr)
+				if (rc != nullptr)
+					return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (rb->getReg() << (inst_t)Bitwise::RB_SHIFT) | rc->getReg();
+				else
+					throw std::invalid_argument{ "expected register for operand 3" };
+			else
+				throw std::invalid_argument{ "expected register for operand 2" };
+		else
+			throw std::invalid_argument{ "expected register for operand 1" };
+	}
+	else
+		throw std::invalid_argument{ "operand amount is not 3" };
+}
+
+inst_t Generator::rri(Bitwise op, const Line& line)
+{
+	if (line.getOperands().size() == 3)
+	{
+		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
+		Register* rb{ dynamic_cast<Register*>(line.getOperands()[1]) };
+		Immediate* i7{ dynamic_cast<Immediate*>(line.getOperands()[2]) };
+		if (ra != nullptr)
+			if (rb != nullptr)
+				if (i7 != nullptr)
+					return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (rb->getReg() << (inst_t)Bitwise::RB_SHIFT) | (i7->getImm() & (inst_t)Bitwise::I7_MASK);
+				else
+					throw std::invalid_argument{ "expected immediate for operand 3" };
+			else
+				throw std::invalid_argument{ "expected register for operand 2" };
+		else
+			throw std::invalid_argument{ "expected register for operand 1" };
+	}
+	else
+		throw std::invalid_argument{ "operand amount is not 3" };
+}
+
+inst_t Generator::ri(Bitwise op, const Line& line)
+{
+	if (line.getOperands().size() == 2)
+	{
+		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
+		Immediate* i10{ dynamic_cast<Immediate*>(line.getOperands()[1]) };
+		if (ra != nullptr)
+			if (i10 != nullptr)
+				return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (i10->getImm() & (inst_t)Bitwise::I10_MASK);
+			else
+				throw std::invalid_argument{ "expected immediate for operand 2" };
+		else
+			throw std::invalid_argument{ "expected register for operand 1" };
+	}
+	else
+		throw std::invalid_argument{ "operand amount is not 2" };
 }
