@@ -43,7 +43,7 @@ void Generator::generate(Parser& parser)
 		}
 		catch (const std::invalid_argument& e)
 		{
-			// error: undefined identifier
+			std::cout << "error(" << line << "): " << e.what() << '\n';
 			++errors;
 		}
 	}
