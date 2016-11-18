@@ -90,7 +90,7 @@ inst_t Generator::resolve(const Identifier& id) const
 	if (it != symtable.cend()) // label definition matches the identifier
 		return it->second;
 	else
-		throw std::invalid_argument{ std::string{ lexeme.getBeg(), lexeme.length() } };
+		throw std::invalid_argument{ "unresolved identifier \"" + std::string{ lexeme.getBeg(), lexeme.length() } + '\"' };
 }
 
 inst_t Generator::compile(const Line& line)
