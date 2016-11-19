@@ -39,7 +39,9 @@ int main(int argc, char** argv)
 				ifile.read(contents, length);
 				ifile.close();
 
-				emulator(contents, length);
+				RiSC machine;
+				machine.load(contents, length);
+				machine.execute();
 
 				delete[] contents;
 			}

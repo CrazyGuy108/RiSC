@@ -3,10 +3,10 @@
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}
 
-void RiSC::load(data_t* program, data_t length)
+void RiSC::load(const char* bytecode, data_t length)
 {
-	for (data_t i{ 0 }; i < length; ++i)
-		mem(i) = program[i];
+	for (size_t i{ 0 }; i < length; i += 2)
+		mem(i) = bytecode[i - 1] << 8 | bytecode[i];
 }
 
 void RiSC::execute()

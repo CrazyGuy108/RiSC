@@ -9,7 +9,7 @@ class RiSC
 public:
 	RiSC();
 
-	void load(data_t* program, data_t length); // load a program into memory
+	void load(const char* program, data_t length); // load a program into memory
 	void execute(); // execute the program where the PC left off
 
 	data_t getRam(data_t addr);
