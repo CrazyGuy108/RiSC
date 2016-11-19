@@ -70,7 +70,7 @@ void RiSC::execute()
 			break;
 
 		default:
-			; // error: undefined opcode (should never happen)
+			exit(1); // should never happen
 		}
 
 		++pc;
@@ -92,7 +92,7 @@ data_t& RiSC::mem(data_t addr)
 	if (addr < ram_length)
 		return ram[addr];
 	else
-		; // error: mem index out of range
+		exit(1); // should never happen
 }
 
 data_t& RiSC::reg(data_t addr)
@@ -104,5 +104,5 @@ data_t& RiSC::reg(data_t addr)
 		return regs[addr];
 	}
 	else
-		; // error: reg index out of range
+		exit(1); // should never happen
 }
