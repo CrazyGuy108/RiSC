@@ -111,7 +111,7 @@ inst_t Generator::compile(Line& currentLine, size_t line)
 	case Token::LW:
 		return rri(Bitwise::LW, currentLine);
 	case Token::BEQ:
-		return rri(Bitwise::BEQ, currentLine, line);
+		return rri(Bitwise::BEQ, currentLine, line + 1);
 	case Token::JALR:
 		return rri(Bitwise::JALR, currentLine);
 	default:
