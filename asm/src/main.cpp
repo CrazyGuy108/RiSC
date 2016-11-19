@@ -8,7 +8,7 @@
 #define READ_TEST
 //#define LEXER_TEST
 //#define PARSER_TEST
-#define GEN_TEST
+//#define GEN_TEST
 
 int main()
 {
@@ -60,9 +60,36 @@ int main()
 
 		std::cout << "errors found: " << generator.getErrors() << '\n' << std::endl;
 #endif // GEN_TEST
+		// go through the entire compilation process
+		Lexer l{ contents.c_str() };
+		Parser p{ l };
+		Generator g{ p };
 
 		ifile.close();
 		std::cout << "input file closed\n";
+
+		if (!l.getErrors() && !p.getErrors() && !g.getErrors())
+		{
+			std::ofstream ofile{ "test.risc", std::ofstream::binary };
+			if (ofile.is_open())
+			{
+				std::cout << "output file opened\n";
+
+				while (!g.empty())
+				{
+					inst_t inst{ g.next() };
+					char bytes[2]{ (inst & 0xff00) >> 8, inst & 0x00ff };
+					ofile.write(bytes, 2);
+				}
+
+				ofile.close();
+				std::cout << "output file closed\n";
+			}
+			else
+				std::cout << "error: output file failed to open\n";
+		}
+		else
+			std::cout << "errors found: " << (l.getErrors() + p.getErrors() + g.getErrors()) << '\n';
 	}
 	else
 		std::cout << "error: input file failed to open\n";
