@@ -1,4 +1,4 @@
-#include "../include/risc.hpp"
+#include "../inc/risc.hpp"
 
 RiSC::RiSC()
 	: ram{}, regs{}, pc{ 0 } {}

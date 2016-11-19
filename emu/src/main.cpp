@@ -1,6 +1,6 @@
 #include <fstream>  // for ifstream
 #include <iostream> // for cout
-#include "../include/emulator.hpp"
+#include "../inc/emulator.hpp"
 
 #define TEST
 
