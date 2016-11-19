@@ -2,8 +2,22 @@
 #include <iostream> // for cout
 #include "../include/emulator.hpp"
 
+#define TEST
+
+#ifdef TEST
+#define IF_TEST(...) __VA_ARGS__
+#else
+#define IF_TEST(...)
+#endif
+
 int main(int argc, char** argv)
 {
+	IF_TEST
+	(
+		argc = 2;
+		argv = new char*[2];
+		argv[1] = "test.risc";
+	)
 	if (argc == 2)
 	{
 		const char* ext{ strrchr(argv[1], '.') };
@@ -37,6 +51,7 @@ int main(int argc, char** argv)
 	}
 	else
 		std::cout << "error: input file not specified\n";
+	IF_TEST(delete[] argv);
 
 	return 0;
 }
