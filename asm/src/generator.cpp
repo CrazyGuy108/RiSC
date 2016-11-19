@@ -22,7 +22,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile
-			bytecode.emplace_back(assemble(*currentLine));
+			bytecode.emplace_back(assemble(*currentLine, line));
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -38,7 +38,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile again given the complete symtable
-			bytecode[i.second] = assemble(*i.first);
+			bytecode[i.second] = assemble(*i.first, line);
 		}
 		catch (const std::invalid_argument& e)
 		{
@@ -70,10 +70,10 @@ const Generator::symbol_table& Generator::getSymbolTable() const
 	return symtable;
 }
 
-inst_t Generator::assemble(Line& line)
+inst_t Generator::assemble(Line& currentLine, size_t line)
 {
 	// fill in identifiers using the symbol table
-	for (auto& i : line.getOperands())
+	for (auto& i : currentLine.getOperands())
 		if (dynamic_cast<Identifier*>(i) != nullptr)
 		{
 			Immediate* tmp{ new Immediate{ resolve(*dynamic_cast<Identifier*>(i)) } };
@@ -81,7 +81,7 @@ inst_t Generator::assemble(Line& line)
 			i = tmp;
 		}
 
-	return compile(line);
+	return compile(currentLine, line);
 }
 
 inst_t Generator::resolve(const Identifier& id) const
@@ -94,38 +94,38 @@ inst_t Generator::resolve(const Identifier& id) const
 		throw std::invalid_argument{ "unresolved identifier \"" + std::string{ lexeme.getBeg(), lexeme.length() } + '\"' };
 }
 
-inst_t Generator::compile(const Line& line)
+inst_t Generator::compile(Line& currentLine, size_t line)
 {
-	switch (line.getOpcode())
+	switch (currentLine.getOpcode())
 	{
 	case Token::ADD:
-		return rrr(Bitwise::ADD, line);
+		return rrr(Bitwise::ADD, currentLine);
 	case Token::ADDI:
-		return rri(Bitwise::ADDI, line);
+		return rri(Bitwise::ADDI, currentLine);
 	case Token::NAND:
-		return rrr(Bitwise::NAND, line);
+		return rrr(Bitwise::NAND, currentLine);
 	case Token::LUI:
-		return ri(Bitwise::LUI, line);
+		return ri(Bitwise::LUI, currentLine);
 	case Token::SW:
-		return rri(Bitwise::SW, line);
+		return rri(Bitwise::SW, currentLine);
 	case Token::LW:
-		return rri(Bitwise::LW, line);
+		return rri(Bitwise::LW, currentLine);
 	case Token::BEQ:
-		return rri(Bitwise::BEQ, line);
+		return rri(Bitwise::BEQ, currentLine, line);
 	case Token::JALR:
-		return rri(Bitwise::JALR, line);
+		return rri(Bitwise::JALR, currentLine);
 	default:
 		throw std::invalid_argument{ "invalid opcode" }; // should never happen
 	}
 }
 
-inst_t Generator::rrr(Bitwise op, const Line& line)
+inst_t Generator::rrr(Bitwise op, const Line& currentLine)
 {
-	if (line.getOperands().size() == 3)
+	if (currentLine.getOperands().size() == 3)
 	{
-		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
-		Register* rb{ dynamic_cast<Register*>(line.getOperands()[1]) };
-		Register* rc{ dynamic_cast<Register*>(line.getOperands()[2]) };
+		Register* ra{ dynamic_cast<Register*>(currentLine.getOperands()[0]) };
+		Register* rb{ dynamic_cast<Register*>(currentLine.getOperands()[1]) };
+		Register* rc{ dynamic_cast<Register*>(currentLine.getOperands()[2]) };
 		if (ra != nullptr)
 			if(rb != nullptr)
 				if (rc != nullptr)
@@ -141,17 +141,17 @@ inst_t Generator::rrr(Bitwise op, const Line& line)
 		throw std::invalid_argument{ "operand amount is not 3" };
 }
 
-inst_t Generator::rri(Bitwise op, const Line& line)
+inst_t Generator::rri(Bitwise op, const Line& currentLine, size_t line)
 {
-	if (line.getOperands().size() == 3)
+	if (currentLine.getOperands().size() == 3)
 	{
-		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
-		Register* rb{ dynamic_cast<Register*>(line.getOperands()[1]) };
-		Immediate* i7{ dynamic_cast<Immediate*>(line.getOperands()[2]) };
+		Register* ra{ dynamic_cast<Register*>(currentLine.getOperands()[0]) };
+		Register* rb{ dynamic_cast<Register*>(currentLine.getOperands()[1]) };
+		Immediate* i7{ dynamic_cast<Immediate*>(currentLine.getOperands()[2]) };
 		if (ra != nullptr)
 			if (rb != nullptr)
 				if (i7 != nullptr)
-					return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (rb->getReg() << (inst_t)Bitwise::RB_SHIFT) | (i7->getImm() & (inst_t)Bitwise::I7_MASK);
+					return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (rb->getReg() << (inst_t)Bitwise::RB_SHIFT) | ((i7->getImm() - line) & (inst_t)Bitwise::I7_MASK);
 				else
 					throw std::invalid_argument{ "expected immediate for operand 3" };
 			else
@@ -163,12 +163,12 @@ inst_t Generator::rri(Bitwise op, const Line& line)
 		throw std::invalid_argument{ "operand amount is not 3" };
 }
 
-inst_t Generator::ri(Bitwise op, const Line& line)
+inst_t Generator::ri(Bitwise op, const Line& currentLine)
 {
-	if (line.getOperands().size() == 2)
+	if (currentLine.getOperands().size() == 2)
 	{
-		Register* ra{ dynamic_cast<Register*>(line.getOperands()[0]) };
-		Immediate* i10{ dynamic_cast<Immediate*>(line.getOperands()[1]) };
+		Register* ra{ dynamic_cast<Register*>(currentLine.getOperands()[0]) };
+		Immediate* i10{ dynamic_cast<Immediate*>(currentLine.getOperands()[1]) };
 		if (ra != nullptr)
 			if (i10 != nullptr)
 				return (inst_t)op | (ra->getReg() << (inst_t)Bitwise::RA_SHIFT) | (i10->getImm() & (inst_t)Bitwise::I10_MASK);

@@ -26,13 +26,13 @@ private:
 
 	// helpers
 
-	inst_t assemble(Line& line);                // uses symtable to generate a line of code
-	inst_t resolve(const Identifier& id) const; // resolves a single identifier
-	static inst_t compile(const Line& line);    // compiles a line of code
+	inst_t assemble(Line& currentLine, size_t line);       // uses symtable to generate a line of code
+	inst_t resolve(const Identifier& id) const;            // resolves a single identifier
+	static inst_t compile(Line& currentLine, size_t line); // compiles a line of code
 
-	static inst_t rrr(Bitwise op, const Line& line);
-	static inst_t rri(Bitwise op, const Line& line);
-	static inst_t ri(Bitwise op, const Line& line);
+	static inst_t rrr(Bitwise op, const Line& currentLine);
+	static inst_t rri(Bitwise op, const Line& currentLine, size_t line = 0);
+	static inst_t ri(Bitwise op, const Line& currentLine);
 
 	bytecode_list bytecode;           // stream of bytecode
 	bytecode_list::const_iterator it; // keeps track of position
