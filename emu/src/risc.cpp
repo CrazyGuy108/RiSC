@@ -6,7 +6,7 @@ RiSC::RiSC()
 void RiSC::load(const char* bytecode, data_t length)
 {
 	for (size_t i{ 0 }; i < length; i += 2)
-		mem(i) = bytecode[i - 1] << 8 | bytecode[i];
+		ram[i] = bytecode[i - 1] << 8 | bytecode[i];
 }
 
 void RiSC::execute()
@@ -14,7 +14,7 @@ void RiSC::execute()
 	inst_t inst;
 	while (true)
 	{
-		inst = mem(pc);
+		inst = ram[pc];
 		switch (op(inst))
 		{
 		case add:
@@ -34,11 +34,11 @@ void RiSC::execute()
 			break;
 
 		case sw:
-			mem(reg(rb(inst)) + i7(inst)) = reg(ra(inst));
+			ram[reg(rb(inst)) + i7(inst)] = reg(ra(inst));
 			break;
 
 		case lw:
-			reg(ra(inst)) = mem(reg(rb(inst)) + i7(inst));
+			reg(ra(inst)) = ram[reg(rb(inst)) + i7(inst)];
 			break;
 
 		case beq:
@@ -57,7 +57,7 @@ void RiSC::execute()
 				switch (i7(inst))
 				{
 				case 1: // Halt - Stop machine and print state
-					for (size_t i{ 1 }; i < regs_count; ++i)
+					for (size_t i{ 1 }; i < regs.size(); ++i)
 						std::cout << "r" << i << ": " << reg(i) << '\n';
 
 					std::cout << "pc: " << pc << std::endl;
@@ -70,39 +70,24 @@ void RiSC::execute()
 			break;
 
 		default:
-			exit(1); // should never happen
+			throw std::out_of_range{ "invalid syscall id" };
 		}
 
 		++pc;
 	}
 }
 
-data_t RiSC::getRam(data_t addr)
-{
-	return mem(addr);
-}
-
-data_t RiSC::getReg(data_t addr)
-{
-	return reg(addr);
-}
-
-data_t& RiSC::mem(data_t addr)
-{
-	if (addr < ram_length)
-		return ram[addr];
-	else
-		exit(1); // should never happen
-}
-
 data_t& RiSC::reg(data_t addr)
 {
-	if (addr < regs_count)
-	{
-		if (!addr) // accessing zero register
-			regs[0] = 0; // reading will always produce 0
-		return regs[addr];
-	}
+	if(addr == 0)
+		regs[addr] = 0;
+	return regs[addr];
+}
+
+data_t RiSC::reg(data_t addr) const
+{
+	if (addr == 0)
+		return 0;
 	else
-		exit(1); // should never happen
+		return regs[addr];
 }
