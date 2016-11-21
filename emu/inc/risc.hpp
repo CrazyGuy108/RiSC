@@ -1,18 +1,20 @@
 #ifndef RISC_HPP
 #define RISC_HPP
 
-#include <array>         // for array
-#include <cstdint>       // for uint16_t
-#include <iostream>      // for cout
+#include <array>     // for array
+#include <cstdint>   // for uint16_t
+#include <iostream>  // for cout
+#include <stdexcept> // for out_of_range
 
 class RiSC
 {
 public:
-	template<size_t len>
-	using Memory = std::array<data_t, len>;
-
 	typedef uint16_t inst_t; // instruction word
 	typedef uint16_t data_t; // data word
+
+	// represents a single block of memory
+	template<size_t len>
+	using Memory = std::array<data_t, len>;
 
 	RiSC();
 
@@ -41,8 +43,6 @@ private:
 enum RiSC::Bitwise
 	: RiSC::inst_t
 {
-	// opcodes
-
 	ADD  = 0x0000,
 	ADDI = 0x2000,
 	NAND = 0x4000,
@@ -52,8 +52,6 @@ enum RiSC::Bitwise
 	BEQ  = 0xC000,
 	JALR = 0xE000,
 
-	// bitmasks
-
 	OP_MASK  = 0xE000,
 	RA_MASK  = 0x1C00,
 	RB_MASK  = 0x0380,
@@ -61,8 +59,6 @@ enum RiSC::Bitwise
 	I7_MASK  = 0x003F,
 	I7_SIGN  = 0x0020,
 	I10_MASK = 0x03FF,
-
-	// bitshifts
 
 	RA_SHIFT  = 10,
 	RB_SHIFT  = 7,
