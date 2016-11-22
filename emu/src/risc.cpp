@@ -117,7 +117,7 @@ void RiSC::syscall(inst_t inst)
 		std::cout << "pc: " << pc << std::endl;
 
 	case 2: // Exit - Stop machine
-		return;
+		exit(0);
 
 	default:
 		throw std::out_of_range{ "invalid syscall id" };
