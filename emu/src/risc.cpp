@@ -18,35 +18,43 @@ void RiSC::execute()
 		switch (op(inst))
 		{
 		case ADD:
+			std::cout << "add r" << ra(inst) << " r" << rb(inst) << " r" << rc(inst) << '\n';
 			reg(ra(inst)) = reg(rb(inst)) + reg(rc(inst));
 			break;
 
 		case ADDI:
+			std::cout << "addi r" << ra(inst) << " r" << rb(inst) << ' ' << i7(inst) << '\n';
 			reg(ra(inst)) = reg(rb(inst)) + i7(inst);
 			break;
 
 		case NAND:
+			std::cout << "nand r" << ra(inst) << " r" << rb(inst) << " r" << rc(inst) << '\n';
 			reg(ra(inst)) = ~(reg(rb(inst)) & reg(rc(inst)));
 			break;
 
 		case LUI:
+			std::cout << "lui r" << ra(inst) << ' ' << i10(inst) << '\n';
 			reg(ra(inst)) = i10(inst);
 			break;
 
 		case SW:
+			std::cout << "sw r" << ra(inst) << " r" << rb(inst) << ' ' << i7(inst) << '\n';
 			ram[reg(rb(inst)) + i7(inst)] = reg(ra(inst));
 			break;
 
 		case LW:
+			std::cout << "lw r" << ra(inst) << " r" << rb(inst) << ' ' << i7(inst) << '\n';
 			reg(ra(inst)) = ram[reg(rb(inst)) + i7(inst)];
 			break;
 
 		case BEQ:
+			std::cout << "beq r" << ra(inst) << " r" << rb(inst) << ' ' << i7(inst) << '\n';
 			if (reg(ra(inst)) == reg(rb(inst)))
 				pc += i7(inst);
 			break;
 
 		case JALR:
+			std::cout << "jalr r" << ra(inst) << " r" << rb(inst) << ' ' << i7(inst) << '\n';
 			if (!i7(inst))
 			{
 				reg(ra(inst)) = pc + 1;
@@ -121,4 +129,3 @@ RiSC::inst_t RiSC::i10(inst_t inst)
 {
 	return (inst & I10_MASK) << I10_SHIFT;
 }
-
