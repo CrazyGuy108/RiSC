@@ -38,7 +38,7 @@ void Generator::generate(Parser& parser)
 		try
 		{
 			// attempt to compile again given the complete symtable
-			bytecode[i.second] = assemble(*i.first, line);
+			bytecode[i.second] = assemble(*i.first, i.second);
 		}
 		catch (const std::invalid_argument& e)
 		{
