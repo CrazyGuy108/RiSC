@@ -72,13 +72,16 @@ void RiSC::execute()
 
 				case 2: // Exit - Stop machine
 					return;
+
+				default:
+					throw std::range_error{ "invalid syscall id" };
 				}
 			}
 
 			break;
 
 		default:
-			throw std::out_of_range{ "invalid syscall id" };
+			throw std::range_error{ "invalid opcode" }; // should never happen
 		}
 
 		++pc;
