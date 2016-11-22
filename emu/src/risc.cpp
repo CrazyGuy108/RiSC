@@ -5,8 +5,8 @@ RiSC::RiSC()
 
 void RiSC::load(const char* bytecode, data_t length)
 {
-	for (size_t i{ 0 }; i < length; i += 2)
-		ram[i] = bytecode[i - 1] << 8 | bytecode[i];
+	for (size_t i{ 1 }, j{ 0 }; i < length; i += 2, ++j)
+		ram[j] = (inst_t)(((inst_t)bytecode[i - 1] << 8) | (unsigned char)bytecode[i]);
 }
 
 void RiSC::start()
