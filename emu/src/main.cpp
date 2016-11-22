@@ -41,7 +41,7 @@ int main(int argc, char** argv)
 
 				RiSC machine;
 				machine.load(contents, length);
-				machine.execute();
+				machine.start();
 
 				delete[] contents;
 			}

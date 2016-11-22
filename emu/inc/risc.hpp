@@ -19,11 +19,24 @@ public:
 	RiSC();
 
 	void load(const char* program, data_t length); // load a program into memory
-	void execute(); // execute the program where the PC left off
+	void start(); // start executing the program where the PC left off
 
 private:
 	enum Bitwise
 		: inst_t;
+
+	void execute(inst_t inst);
+
+	void add(inst_t inst);
+	void addi(inst_t inst);
+	void nand(inst_t inst);
+	void lui(inst_t inst);
+	void sw(inst_t inst);
+	void lw(inst_t inst);
+	void beq(inst_t inst);
+	void jalr(inst_t inst);
+
+	void syscall(inst_t inst);
 
 	data_t& reg(data_t addr);
 	data_t  reg(data_t addr) const;
