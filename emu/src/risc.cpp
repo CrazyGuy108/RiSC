@@ -1,7 +1,7 @@
 #include "../inc/risc.hpp"
 
 RiSC::RiSC()
-	: pc{ 0 } {}
+	: ram{}, regs{}, pc{ 0 } {}
 
 void RiSC::load(const char* bytecode, data_t length)
 {
